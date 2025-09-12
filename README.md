@@ -2,6 +2,21 @@
 For a full description of the mapp Framework and how to use it, [download](https://github.com/br-automation-com/mapp-Framework/releases) and install the Framework. Then refer to the Automation Studio Help at the following path: 
 **mapp Technology -> mapp Framework**
 
+## Repository Statistics
+To view repository statistics including downloads, forks, and clones for the last year:
+
+**Basic Statistics:**
+```bash
+python3 basic_stats.py
+```
+
+**Detailed Statistics (requires GitHub token):**
+```bash
+python3 repo_stats.py --token YOUR_GITHUB_TOKEN
+```
+
+You can also view detailed analytics directly on GitHub by visiting the [Insights tab](https://github.com/br-automation-community/mapp-Framework-6/pulse).
+
 
 ## Intended Use of this Repository
 Cloning this Git repository for the mapp Framework is only intended to be used by applications engineers that would like to submit a code change or a new piece of code to the Framework. This could be a bugfix, new feature, etc. The project in the repository uses AS4.10 and mapp 5.18.  
