@@ -27,18 +27,18 @@ TYPE
 		mcPVAHMKD_YES := 1 (*Yes - mcSWITCH_ON*)
 		);
 	McPVAHModDirRefPUseType : STRUCT (*Type mcPVAHMDRP_USE settings*)
-		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [Measurement units/s]*)
-		Acceleration : REAL; (*Acceleration for homing movement [Measurement units/s²]*)
+		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [measurement units/s]*)
+		Acceleration : REAL; (*Acceleration for homing movement [measurement units/s²]*)
 		HomingDirection : McPVAHModHomeDirEnum; (*Movement direction in which the homing event is evaluated*)
 		KeepDirection : McPVAHModKeepDirEnum; (*Keep direction (move only in one direction)*)
-		ReferencePulseBlockingDistance : LREAL; (*Distance for blocking the activation of triggering reference pulse [Measurement units]*)
+		ReferencePulseBlockingDistance : LREAL; (*Distance for blocking the activation of triggering reference pulse [measurement units]*)
 	END_STRUCT;
 	McPVAHModDirRefPType : STRUCT (*Use reference pulse of encoder*)
 		Type : McPVAHModDirRefPEnum; (*Reference pulse selector setting*)
 		Used : McPVAHModDirRefPUseType; (*Type mcPVAHMDRP_USE settings*)
 	END_STRUCT;
 	McPVAHModDirType : STRUCT (*Type mcPVAHM_DIR settings*)
-		Position : LREAL; (*Home position [Measurement units]*)
+		Position : LREAL; (*Home position [measurement units]*)
 		ReferencePulse : McPVAHModDirRefPType; (*Use reference pulse of encoder*)
 	END_STRUCT;
 	McPVAHModSwEdgEnum :
@@ -52,17 +52,17 @@ TYPE
 		mcPVAHMRP_USE := 1 (*Used - Reference pulse is used*)
 		);
 	McPVAHModRefPUseType : STRUCT (*Type mcPVAHMRP_USE settings*)
-		ReferencePulseBlockingDistance : LREAL; (*Distance for blocking the activation of triggering reference pulse [Measurement units]*)
+		ReferencePulseBlockingDistance : LREAL; (*Distance for blocking the activation of triggering reference pulse [measurement units]*)
 	END_STRUCT;
 	McPVAHModRefPType : STRUCT (*Use reference pulse of encoder*)
 		Type : McPVAHModRefPEnum; (*Reference pulse selector setting*)
 		Used : McPVAHModRefPUseType; (*Type mcPVAHMRP_USE settings*)
 	END_STRUCT;
 	McPVAHModAbsSwType : STRUCT (*Type mcPVAHM_ABS_SW settings*)
-		Position : LREAL; (*Home position [Measurement units]*)
-		StartVelocity : REAL; (*Speed for searching the reference switch [Measurement units/s]*)
-		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [Measurement units/s]*)
-		Acceleration : REAL; (*Acceleration for homing movement [Measurement units/s²]*)
+		Position : LREAL; (*Home position [measurement units]*)
+		StartVelocity : REAL; (*Speed for searching the reference switch [measurement units/s]*)
+		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [measurement units/s]*)
+		Acceleration : REAL; (*Acceleration for homing movement [measurement units/s²]*)
 		SwitchEdge : McPVAHModSwEdgEnum; (*Edge of reference switch*)
 		HomingDirection : McPVAHModHomeDirEnum; (*Movement direction in which the homing event is evaluated*)
 		KeepDirection : McPVAHModKeepDirEnum; (*Keep direction (move only in one direction)*)
@@ -74,10 +74,10 @@ TYPE
 		mcPVAHMSD_NEG := 1 (*Negative - Negative movement direction*)
 		);
 	McPVAHModSwGateType : STRUCT (*Type mcPVAHM_SW_GATE settings*)
-		Position : LREAL; (*Home position [Measurement units]*)
-		StartVelocity : REAL; (*Speed for searching the reference switch [Measurement units/s]*)
-		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [Measurement units/s]*)
-		Acceleration : REAL; (*Acceleration for homing movement [Measurement units/s²]*)
+		Position : LREAL; (*Home position [measurement units]*)
+		StartVelocity : REAL; (*Speed for searching the reference switch [measurement units/s]*)
+		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [measurement units/s]*)
+		Acceleration : REAL; (*Acceleration for homing movement [measurement units/s²]*)
 		SwitchEdge : McPVAHModSwEdgEnum; (*Edge of reference switch*)
 		StartDirection : McPVAHModStartDirEnum; (*Start direction of movement for searching the reference switch*)
 		HomingDirection : McPVAHModHomeDirEnum; (*Movement direction in which the homing event is evaluated*)
@@ -85,26 +85,26 @@ TYPE
 		ReferencePulse : McPVAHModRefPType; (*Use reference pulse of encoder*)
 	END_STRUCT;
 	McPVAHModLimSwType : STRUCT (*Type mcPVAHM_LIM_SW settings*)
-		Position : LREAL; (*Home position [Measurement units]*)
-		StartVelocity : REAL; (*Speed for searching the reference switch [Measurement units/s]*)
-		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [Measurement units/s]*)
-		Acceleration : REAL; (*Acceleration for homing movement [Measurement units/s²]*)
+		Position : LREAL; (*Home position [measurement units]*)
+		StartVelocity : REAL; (*Speed for searching the reference switch [measurement units/s]*)
+		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [measurement units/s]*)
+		Acceleration : REAL; (*Acceleration for homing movement [measurement units/s²]*)
 		SwitchEdge : McPVAHModSwEdgEnum; (*Edge of reference switch*)
 		HomingDirection : McPVAHModHomeDirEnum; (*Movement direction in which the homing event is evaluated*)
 		KeepDirection : McPVAHModKeepDirEnum; (*Keep direction (move only in one direction)*)
 		ReferencePulse : McPVAHModRefPType; (*Use reference pulse of encoder*)
 	END_STRUCT;
 	McPVAHModAbsType : STRUCT (*Type mcPVAHM_ABS settings*)
-		Position : LREAL; (*Home offset [Measurement units]*)
+		Position : LREAL; (*Home offset [measurement units]*)
 	END_STRUCT;
 	McPVAHModAbsCorrType : STRUCT (*Type mcPVAHM_ABS_CORR settings*)
-		Position : LREAL; (*Home offset [Measurement units]*)
+		Position : LREAL; (*Home offset [measurement units]*)
 	END_STRUCT;
 	McPVAHModBlkRefPNotUseType : STRUCT (*Type mcPVAHMRP_NOT_USE settings*)
-		MinimumReturnDistance : LREAL; (*Minimum return distance after the blockade is reached [Measurement units]*)
+		MinimumReturnDistance : LREAL; (*Minimum return distance after the blockade is reached [measurement units]*)
 	END_STRUCT;
 	McPVAHModBlkRefPUseType : STRUCT (*Type mcPVAHMRP_USE settings*)
-		ReferencePulseBlockingDistance : LREAL; (*Distance for blocking the activation of triggering reference pulse [Measurement units]*)
+		ReferencePulseBlockingDistance : LREAL; (*Distance for blocking the activation of triggering reference pulse [measurement units]*)
 	END_STRUCT;
 	McPVAHModBlkRefPType : STRUCT (*Use reference pulse of encoder*)
 		Type : McPVAHModRefPEnum; (*Reference pulse selector setting*)
@@ -112,15 +112,15 @@ TYPE
 		Used : McPVAHModBlkRefPUseType; (*Type mcPVAHMRP_USE settings*)
 	END_STRUCT;
 	McPVAHModBlkLagErrType : STRUCT (*Type mcPVAHM_BLK_LAG_ERR settings*)
-		Position : LREAL; (*Home position [Measurement units]*)
-		StartVelocity : REAL; (*Speed for searching the reference switch [Measurement units/s]*)
-		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [Measurement units/s]*)
-		Acceleration : REAL; (*Acceleration for homing movement [Measurement units/s²]*)
+		Position : LREAL; (*Home position [measurement units]*)
+		StartVelocity : REAL; (*Speed for searching the reference switch [measurement units/s]*)
+		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [measurement units/s]*)
+		Acceleration : REAL; (*Acceleration for homing movement [measurement units/s²]*)
 		StartDirection : McPVAHModStartDirEnum; (*Start direction of movement for searching the reference switch*)
 		HomingDirection : McPVAHModHomeDirEnum; (*Movement direction in which the homing event is evaluated*)
 		ReferencePulse : McPVAHModBlkRefPType; (*Use reference pulse of encoder*)
-		PositionErrorStopLimit : LREAL; (*Lag error for stop of the homing movement [Measurement units]*)
-		BlockDetectionPositionError : LREAL; (*Lag error for block detection [Measurement units]*)
+		PositionErrorStopLimit : LREAL; (*Lag error for stop of the homing movement [measurement units]*)
+		BlockDetectionPositionError : LREAL; (*Lag error for block detection [measurement units]*)
 	END_STRUCT;
 	McPVAHModType : STRUCT (*Homing mode*)
 		Type : McPVAHModEnum; (*Mode selector setting*)
@@ -147,7 +147,7 @@ TYPE
 		JerkTime : REAL; (*Used jerk filter time ('Jerk time' <= 'Maximum jerk time') [s]*)
 	END_STRUCT;
 	McPVAJFJerkLimType : STRUCT (*Type mcPVAJF_JERK_LIM settings*)
-		JerkLimit : REAL; (*Jerk limit in any movement direction [Measurement units/s³]*)
+		JerkLimit : REAL; (*Jerk limit in any movement direction [measurement units/s³]*)
 	END_STRUCT;
 	McPVAJFType : STRUCT (*Jerk filter*)
 		Type : McPVAJFEnum; (*Jerk filter selector setting*)
@@ -408,7 +408,7 @@ TYPE
 		ExtrapolationAndDisturbance : McPVAELOEEPosFltrExtpolDistType; (*Type mcPVAELOEEPF_EXTPOL_AND_DIST settings*)
 	END_STRUCT;
 	McPVAELOEPosEncExtType : STRUCT (*Type mcPVAELOEPE_EXT settings*)
-		LinesPerEncoderRevolution : UDINT; (*Absolute number of lines of an encoder revolution [Lines/Rev]*)
+		LinesPerEncoderRevolution : UDINT; (*Absolute number of lines of an encoder revolution [lines / revolution]*)
 		PositionType : McPVAELOEExtPosTypType; (*Type of the encoder*)
 		PositionSource : McPVAELOEExtPosSrcType; (*Position source*)
 		ValidityCheck : McPVAELOEExtValCkType; (*Check if given position is valid*)
@@ -436,8 +436,8 @@ TYPE
 		IntegrationTime : REAL; (*Integral action time [s]*)
 		PredictionTime : REAL; (*Prediction time [s]*)
 		TotalDelayTime : REAL; (*Total delay time [s]*)
-		MaximumProportionalAction : REAL; (*Maximum proportional action [Measurement units/s]*)
-		MaximumIntegralAction : REAL; (*Maximum integral action [Measurement units/s]*)
+		MaximumProportionalAction : REAL; (*Maximum proportional action [measurement units/s]*)
+		MaximumIntegralAction : REAL; (*Maximum integral action [measurement units/s]*)
 	END_STRUCT;
 	McPVACModPosCtrlType : STRUCT (*Type mcPVACM_POS_CTRL settings*)
 		Position : McPVACModPosCtrlPosType; (*Position controller parameters*)
@@ -469,7 +469,7 @@ TYPE
 		DriveError : McPVASRDrvErrType; (*Deceleration ramp / reaction in case of an error stop which is caused by a drive error*)
 	END_STRUCT;
 	McPVAMELType : STRUCT (*Limit values that result in a stop reaction when exceeded*)
-		PositionError : LREAL; (*Lag error limit for stopping a movement [Measurement units]*)
+		PositionError : LREAL; (*Lag error limit for stopping a movement [measurement units]*)
 	END_STRUCT;
 	McPVADIAllSrcEnum :
 		( (*Source selector setting*)

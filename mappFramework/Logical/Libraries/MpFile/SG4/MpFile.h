@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* MpFile 6.2.0 */
+/* MpFile 6.4.0 */
 
 #ifndef _MPFILE_
 #define _MPFILE_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _MpFile_VERSION
-#define _MpFile_VERSION 6.2.0
+#define _MpFile_VERSION 6.4.0
 #endif
 
 #include <bur/plctypes.h>

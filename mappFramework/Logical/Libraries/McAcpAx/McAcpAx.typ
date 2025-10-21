@@ -58,6 +58,14 @@ TYPE
 		mcACPAX_LL_WITHOUT_FEED_FORWARD    (*Only the share of torque that results from control deviations is limited. Feed-forward torque is ignored*)
 	);
 
+	McAcpAxLimitLoadParIDModeEnum :
+	(
+		mcACPAX_LLPM_NO_INIT := 0, (*Value of ParID will not be initialized - default value*)
+		mcACPAX_LLPM_INIT_FB_INPUT := 1 (*Value of ParID will be initialized with the value of respective input*)
+
+	);
+
+
 	McAcpAxBrakeTestCmdEnum :
 	(
 		mcACPAX_BRAKE_TEST_INIT := 0,		 (*Transfers parameters for holding brake test*)
@@ -275,6 +283,9 @@ TYPE
 		LoadPosDecelParID : UINT; (*ParID with limit value for decelerating torque in the positive direction*)
 		LoadNegAccelParID : UINT; (*ParID with limit value for accelerating torque in the negative direction*)
 		LoadNegDecelParID : UINT; (*ParID with limit value for decelerating torque in the negative direction*)
+		LoadParIDMode : McAcpAxLimitLoadParIDModeEnum; (*Mode which defines if the ParID is initialized with the respective input value*)
+		StopMode : McLimitLoadStopModeEnum; (*Mode defines how and if limits are switched when movement is aborted*)
+		StopTorque : REAL; (*If Stop mode is mcLLSM_USER_DEFINED, switch over to limit value contained in StopTorque is performed*)
 	END_STRUCT;
 
 	McAcpAxBrakeParType : STRUCT

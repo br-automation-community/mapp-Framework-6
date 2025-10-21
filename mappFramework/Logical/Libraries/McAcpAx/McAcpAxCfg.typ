@@ -974,7 +974,7 @@ TYPE
 		LineResistance : McAPICEITIPS5VLinResType; (*Resistance of the encoder supply line (1line)(Calculate value is only executed correct for copper lines)*)
 		Symmetry : McAPICEITIPS5VSymType; (*Symmetry of the encoder signals*)
 		ReferencePulseDetection : McAPICEITIPS5VRefPDetectEnum; (*Reference pulse detection*)
-		LineCount : UDINT; (*Number of pulses per encoder revolution [Lines per revolution]*)
+		LineCount : UDINT; (*Number of pulses per encoder revolution [lines per revolution]*)
 		MaxExpectedOutputFrequency : UDINT; (*RS422 mode 50kHz to 6250kHz, other modes 50kHz to 200kHz [kHz]*)
 	END_STRUCT;
 	McAPICEITIPS12VLogLvlEnum :
@@ -1035,7 +1035,7 @@ TYPE
 	McAPICEITIPS12VType : STRUCT (*Type mcAPICEITIPS_PWR_SUP_12V settings*)
 		LogicLevel : McAPICEITIPS12VLogLvlType; (*Logic (level) of the encoder output signals*)
 		ReferencePulseDetection : McAPICEITIPS12VRefPDetectEnum; (*Reference pulse detection*)
-		LineCount : UDINT; (*Number of pulses per encoder revolution [Lines per revolution]*)
+		LineCount : UDINT; (*Number of pulses per encoder revolution [lines per revolution]*)
 		MaxExpectedOutputFrequency : UDINT; (*RS422 mode 50kHz to 6250kHz, other modes 50kHz to 200kHz [kHz]*)
 	END_STRUCT;
 	McAPICEITIncrPwrSupType : STRUCT (*Power supply of the encoder*)
@@ -1223,7 +1223,7 @@ TYPE
 	McAPICIOIncrEncABREmuType : STRUCT (*Type mcAPICIODIO1T3_INCR_ENC_ABR_EMU settings*)
 		ValueSource : McAPICIOIncrEmuValSrcType; (*Value which should be output by the emulation*)
 		LinesPerEncoderRevolution : UDINT; (*Absolute number of lines of an encoder revolution*)
-		UnitsPerEncoderRevolutions : LREAL; (*Absolute number of units per encoder revolutions [Measurement units]*)
+		UnitsPerEncoderRevolutions : LREAL; (*Absolute number of units per encoder revolutions [measurement units]*)
 		UnitsPerEncoderRevolutionsParID : UDINT; (*Absolute number of units per encoder revolutions*)
 		NumberOfEncoderRevolutions : UDINT; (*Number of encoder revolutions relating to units*)
 		CountDirection : McAPICIOIncrEncABREmuCntDirEnum; (*Direction of the encoder in which the position value is increasing*)
@@ -1236,7 +1236,7 @@ TYPE
 	McAPICIOIncrEncABEmuType : STRUCT (*Type mcAPICIODIO1T3_INCR_ENC_AB_EMU settings*)
 		ValueSource : McAPICIOIncrEmuValSrcType; (*Value which should be output by the emulation*)
 		LinesPerEncoderRevolution : UDINT; (*Absolute number of lines of an encoder revolution*)
-		UnitsPerEncoderRevolutions : LREAL; (*Absolute number of units per encoder revolutions [Measurement units]*)
+		UnitsPerEncoderRevolutions : LREAL; (*Absolute number of units per encoder revolutions [measurement units]*)
 		UnitsPerEncoderRevolutionsParID : UDINT; (*Absolute number of units per encoder revolutions*)
 		NumberOfEncoderRevolutions : UDINT; (*Number of encoder revolutions relating to units*)
 		CountDirection : McAPICIOIncrEncABEmuCntDirEnum; (*Direction of the encoder in which the position value is increasing*)
@@ -1462,7 +1462,7 @@ TYPE
 		MotorEncoder : McAELTwoEncMotEncType;
 		EncoderParameterSet : McAELEncParSetEnum; (*Encoder parameter set selection*)
 		PositionEncoder : McAELTwoEncPosEncType;
-		PositionDifferenceLimit : REAL; (*Position difference limit between motor and position encoder for stopping a movement [Measurement units]*)
+		PositionDifferenceLimit : REAL; (*Position difference limit between motor and position encoder for stopping a movement [measurement units]*)
 	END_STRUCT;
 	McAELType : STRUCT
 		Type : McAELEnum; (*Encoder link selector setting*)
@@ -1595,11 +1595,21 @@ TYPE
 	McACCTMSgenType : STRUCT (*Selects if set value generation is done in the faster position controller cycle*)
 		Type : McACCTMSgenEnum; (*Set value generation selector setting*)
 	END_STRUCT;
+	McACCTMIOsEnum :
+		( (*IOs on plug-in cards selector setting*)
+		mcACCTMIOs_STD := 0, (*Standard - Standard: 400µs*)
+		mcACCTMIOs_CYCLE_TIME_OF_CTRL := 1 (*Cycle time of controller - Position controller cycle time*)
+		);
+	McACCTMIOsType : STRUCT (*Selects if DIO/AIOs on plug-in cards are handled in faster position controller cycle*)
+		Type : McACCTMIOsEnum; (*IOs on plug-in cards selector setting*)
+	END_STRUCT;
 	McACCTMAdvType : STRUCT (*Type mcACCTM_ADV settings*)
 		SetValueGeneration : McACCTMSgenType; (*Selects if set value generation is done in the faster position controller cycle*)
+		IOsOnPlugInCards : McACCTMIOsType; (*Selects if DIO/AIOs on plug-in cards are handled in faster position controller cycle*)
 	END_STRUCT;
 	McACCTMPwrType : STRUCT (*Type mcACCTM_PWR settings*)
 		SetValueGeneration : McACCTMSgenType; (*Selects if set value generation is done in the faster position controller cycle*)
+		IOsOnPlugInCards : McACCTMIOsType; (*Selects if DIO/AIOs on plug-in cards are handled in faster position controller cycle*)
 	END_STRUCT;
 	McACCTMType : STRUCT (*Controller cascade cycle time mode; Position/Speed/Current; Check documentation for limitations*)
 		Type : McACCTMEnum; (*Cycle time mode selector setting*)
@@ -1793,18 +1803,18 @@ TYPE
 		mcAHMKD_YES := 1 (*Yes - mcSWITCH_ON*)
 		);
 	McAHModDirRefPUseType : STRUCT (*Type mcAHMDRP_USE settings*)
-		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [Measurement units/s]*)
-		Acceleration : REAL; (*Acceleration for homing movement [Measurement units/s²]*)
+		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [measurement units/s]*)
+		Acceleration : REAL; (*Acceleration for homing movement [measurement units/s²]*)
 		HomingDirection : McAHModHomeDirEnum; (*Movement direction in which the homing event is evaluated*)
 		KeepDirection : McAHModKeepDirEnum; (*Keep direction (move only in one direction)*)
-		ReferencePulseBlockingDistance : LREAL; (*Distance for blocking the activation of triggering reference pulse [Measurement units]*)
+		ReferencePulseBlockingDistance : LREAL; (*Distance for blocking the activation of triggering reference pulse [measurement units]*)
 	END_STRUCT;
 	McAHModDirRefPType : STRUCT (*Use reference pulse of encoder*)
 		Type : McAHModDirRefPEnum; (*Reference pulse selector setting*)
 		Used : McAHModDirRefPUseType; (*Type mcAHMDRP_USE settings*)
 	END_STRUCT;
 	McAHModDirType : STRUCT (*Type mcAHM_DIR settings*)
-		Position : LREAL; (*Home position [Measurement units]*)
+		Position : LREAL; (*Home position [measurement units]*)
 		ReferencePulse : McAHModDirRefPType; (*Use reference pulse of encoder*)
 	END_STRUCT;
 	McAHModSwEdgEnum :
@@ -1818,17 +1828,17 @@ TYPE
 		mcAHMRP_USE := 1 (*Used - Reference pulse is used*)
 		);
 	McAHModRefPUseType : STRUCT (*Type mcAHMRP_USE settings*)
-		ReferencePulseBlockingDistance : LREAL; (*Distance for blocking the activation of triggering reference pulse [Measurement units]*)
+		ReferencePulseBlockingDistance : LREAL; (*Distance for blocking the activation of triggering reference pulse [measurement units]*)
 	END_STRUCT;
 	McAHModRefPType : STRUCT (*Use reference pulse of encoder*)
 		Type : McAHModRefPEnum; (*Reference pulse selector setting*)
 		Used : McAHModRefPUseType; (*Type mcAHMRP_USE settings*)
 	END_STRUCT;
 	McAHModAbsSwType : STRUCT (*Type mcAHM_ABS_SW settings*)
-		Position : LREAL; (*Home position [Measurement units]*)
-		StartVelocity : REAL; (*Speed for searching the reference switch [Measurement units/s]*)
-		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [Measurement units/s]*)
-		Acceleration : REAL; (*Acceleration for homing movement [Measurement units/s²]*)
+		Position : LREAL; (*Home position [measurement units]*)
+		StartVelocity : REAL; (*Speed for searching the reference switch [measurement units/s]*)
+		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [measurement units/s]*)
+		Acceleration : REAL; (*Acceleration for homing movement [measurement units/s²]*)
 		SwitchEdge : McAHModSwEdgEnum; (*Edge of reference switch*)
 		HomingDirection : McAHModHomeDirEnum; (*Movement direction in which the homing event is evaluated*)
 		KeepDirection : McAHModKeepDirEnum; (*Keep direction (move only in one direction)*)
@@ -1840,10 +1850,10 @@ TYPE
 		mcAHMSD_NEG := 1 (*Negative - Negative movement direction*)
 		);
 	McAHModSwGateType : STRUCT (*Type mcAHM_SW_GATE settings*)
-		Position : LREAL; (*Home position [Measurement units]*)
-		StartVelocity : REAL; (*Speed for searching the reference switch [Measurement units/s]*)
-		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [Measurement units/s]*)
-		Acceleration : REAL; (*Acceleration for homing movement [Measurement units/s²]*)
+		Position : LREAL; (*Home position [measurement units]*)
+		StartVelocity : REAL; (*Speed for searching the reference switch [measurement units/s]*)
+		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [measurement units/s]*)
+		Acceleration : REAL; (*Acceleration for homing movement [measurement units/s²]*)
 		SwitchEdge : McAHModSwEdgEnum; (*Edge of reference switch*)
 		StartDirection : McAHModStartDirEnum; (*Start direction of movement for searching the reference switch*)
 		HomingDirection : McAHModHomeDirEnum; (*Movement direction in which the homing event is evaluated*)
@@ -1851,40 +1861,40 @@ TYPE
 		ReferencePulse : McAHModRefPType; (*Use reference pulse of encoder*)
 	END_STRUCT;
 	McAHModLimSwType : STRUCT (*Type mcAHM_LIM_SW settings*)
-		Position : LREAL; (*Home position [Measurement units]*)
-		StartVelocity : REAL; (*Speed for searching the reference switch [Measurement units/s]*)
-		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [Measurement units/s]*)
-		Acceleration : REAL; (*Acceleration for homing movement [Measurement units/s²]*)
+		Position : LREAL; (*Home position [measurement units]*)
+		StartVelocity : REAL; (*Speed for searching the reference switch [measurement units/s]*)
+		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [measurement units/s]*)
+		Acceleration : REAL; (*Acceleration for homing movement [measurement units/s²]*)
 		SwitchEdge : McAHModSwEdgEnum; (*Edge of reference switch*)
 		HomingDirection : McAHModHomeDirEnum; (*Movement direction in which the homing event is evaluated*)
 		KeepDirection : McAHModKeepDirEnum; (*Keep direction (move only in one direction)*)
 		ReferencePulse : McAHModRefPType; (*Use reference pulse of encoder*)
 	END_STRUCT;
 	McAHModAbsType : STRUCT (*Type mcAHM_ABS settings*)
-		Position : LREAL; (*Home offset [Measurement units]*)
+		Position : LREAL; (*Home offset [measurement units]*)
 	END_STRUCT;
 	McAHModAbsCorrType : STRUCT (*Type mcAHM_ABS_CORR settings*)
-		Position : LREAL; (*Home offset [Measurement units]*)
+		Position : LREAL; (*Home offset [measurement units]*)
 	END_STRUCT;
 	McAHModDistCMarksType : STRUCT (*Type mcAHM_DIST_C_MARKS settings*)
-		Position : LREAL; (*Home position [Measurement units]*)
-		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [Measurement units/s]*)
-		Acceleration : REAL; (*Acceleration for homing movement [Measurement units/s²]*)
+		Position : LREAL; (*Home position [measurement units]*)
+		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [measurement units/s]*)
+		Acceleration : REAL; (*Acceleration for homing movement [measurement units/s²]*)
 		HomingDirection : McAHModHomeDirEnum; (*Movement direction in which the homing event is evaluated*)
 		KeepDirection : McAHModKeepDirEnum; (*Keep direction (move only in one direction)*)
 	END_STRUCT;
 	McAHModDistCMarksCorrType : STRUCT (*Type mcAHM_DIST_C_MARKS_CORR settings*)
-		Position : LREAL; (*Home position [Measurement units]*)
-		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [Measurement units/s]*)
-		Acceleration : REAL; (*Acceleration for homing movement [Measurement units/s²]*)
+		Position : LREAL; (*Home position [measurement units]*)
+		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [measurement units/s]*)
+		Acceleration : REAL; (*Acceleration for homing movement [measurement units/s²]*)
 		HomingDirection : McAHModHomeDirEnum; (*Movement direction in which the homing event is evaluated*)
 		KeepDirection : McAHModKeepDirEnum; (*Keep direction (move only in one direction)*)
 	END_STRUCT;
 	McAHModBlkRefPNotUseType : STRUCT (*Type mcAHMRP_NOT_USE settings*)
-		MinimumReturnDistance : LREAL; (*Minimum return distance after the blockade is reached [Measurement units]*)
+		MinimumReturnDistance : LREAL; (*Minimum return distance after the blockade is reached [measurement units]*)
 	END_STRUCT;
 	McAHModBlkRefPUseType : STRUCT (*Type mcAHMRP_USE settings*)
-		ReferencePulseBlockingDistance : LREAL; (*Distance for blocking the activation of triggering reference pulse [Measurement units]*)
+		ReferencePulseBlockingDistance : LREAL; (*Distance for blocking the activation of triggering reference pulse [measurement units]*)
 	END_STRUCT;
 	McAHModBlkRefPType : STRUCT (*Use reference pulse of encoder*)
 		Type : McAHModRefPEnum; (*Reference pulse selector setting*)
@@ -1909,15 +1919,15 @@ TYPE
 		NegativeDirection : McAHModBlkTqAddTqLimNegDirType; (*Type mcAHMBTATL_NEG_DIR settings*)
 	END_STRUCT;
 	McAHModBlkTorqType : STRUCT (*Type mcAHM_BLK_TORQ settings*)
-		Position : LREAL; (*Home position [Measurement units]*)
-		StartVelocity : REAL; (*Speed for searching the reference switch [Measurement units/s]*)
-		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [Measurement units/s]*)
-		Acceleration : REAL; (*Acceleration for homing movement [Measurement units/s²]*)
+		Position : LREAL; (*Home position [measurement units]*)
+		StartVelocity : REAL; (*Speed for searching the reference switch [measurement units/s]*)
+		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [measurement units/s]*)
+		Acceleration : REAL; (*Acceleration for homing movement [measurement units/s²]*)
 		StartDirection : McAHModStartDirEnum; (*Start direction of movement for searching the reference switch*)
 		HomingDirection : McAHModHomeDirEnum; (*Movement direction in which the homing event is evaluated*)
 		ReferencePulse : McAHModBlkRefPType; (*Use reference pulse of encoder*)
 		TorqueLimit : REAL; (*Torque limit for homing on block [Nm]*)
-		PositionErrorStopLimit : LREAL; (*Lag error for stop of the homing movement [Measurement units]*)
+		PositionErrorStopLimit : LREAL; (*Lag error for stop of the homing movement [measurement units]*)
 		AdditionalTorqueLimit : McAHModBlkTorqAddTorqLimType; (*Activate an additional torque limit for a defined movement direction*)
 	END_STRUCT;
 	McAHModBlkLagErrAddTorqLimEnum :
@@ -1938,16 +1948,16 @@ TYPE
 		NegativeDirection : McAHModBlkLErrAddTqLimNegDirType; (*Type mcAHMBLEATL_NEG_DIR settings*)
 	END_STRUCT;
 	McAHModBlkLagErrType : STRUCT (*Type mcAHM_BLK_LAG_ERR settings*)
-		Position : LREAL; (*Home position [Measurement units]*)
-		StartVelocity : REAL; (*Speed for searching the reference switch [Measurement units/s]*)
-		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [Measurement units/s]*)
-		Acceleration : REAL; (*Acceleration for homing movement [Measurement units/s²]*)
+		Position : LREAL; (*Home position [measurement units]*)
+		StartVelocity : REAL; (*Speed for searching the reference switch [measurement units/s]*)
+		HomingVelocity : REAL; (*Speed which is used while searching for the homing event (e.g. after reference switch has been reached) [measurement units/s]*)
+		Acceleration : REAL; (*Acceleration for homing movement [measurement units/s²]*)
 		StartDirection : McAHModStartDirEnum; (*Start direction of movement for searching the reference switch*)
 		HomingDirection : McAHModHomeDirEnum; (*Movement direction in which the homing event is evaluated*)
 		ReferencePulse : McAHModBlkRefPType; (*Use reference pulse of encoder*)
 		TorqueLimit : REAL; (*Torque limit for homing on block [Nm]*)
-		PositionErrorStopLimit : LREAL; (*Lag error for stop of the homing movement [Measurement units]*)
-		BlockDetectionPositionError : LREAL; (*Lag error for block detection [Measurement units]*)
+		PositionErrorStopLimit : LREAL; (*Lag error for stop of the homing movement [measurement units]*)
+		BlockDetectionPositionError : LREAL; (*Lag error for block detection [measurement units]*)
 		AdditionalTorqueLimit : McAHModBlkLagErrAddTorqLimType; (*Activate an additional torque limit for a defined movement direction*)
 	END_STRUCT;
 	McAHModType : STRUCT (*Homing mode*)
@@ -1989,7 +1999,7 @@ TYPE
 		mcASRDE_CYC_DEC_FROM_AX_GRP := 3 (*Cyclic deceleration from axes group - The deceleration calculation is done by the axes group on the PLC and the value is forwarded to the axis*)
 		);
 	McASRDrvErrCycDecFromAxGrpType : STRUCT (*Type mcASRDE_CYC_DEC_FROM_AX_GRP settings*)
-		DefaultDeceleration : REAL; (*Default deceleration value. If 0.0, the maximum allowed value is used [Measurement units/s²]*)
+		DefaultDeceleration : REAL; (*Default deceleration value. If 0.0, the maximum allowed value is used [measurement units/s²]*)
 	END_STRUCT;
 	McASRDrvErrType : STRUCT (*Deceleration ramp / Response in the event of ErrorStop caused by drive error*)
 		Type : McASRDrvErrEnum; (*Drive error selector setting*)
@@ -2007,14 +2017,14 @@ TYPE
 		mcAMELVEM_NOT_USE := 3 (*Not used - Velocity error monitoring is not active*)
 		);
 	McAMELVelErrMonUsrDefType : STRUCT (*Type mcAMELVEM_USRDEF settings*)
-		VelocityError : REAL; (*Velocity error limit for stopping a movement [Measurement units/s]*)
+		VelocityError : REAL; (*Velocity error limit for stopping a movement [measurement units/s]*)
 	END_STRUCT;
 	McAMELVelErrMonType : STRUCT (*Velocity error monitoring mode*)
 		Type : McAMELVelErrMonEnum; (*Velocity error monitoring selector setting*)
 		UserDefined : McAMELVelErrMonUsrDefType; (*Type mcAMELVEM_USRDEF settings*)
 	END_STRUCT;
 	McAMELType : STRUCT (*Limit values that result in a stop reaction when exceeded*)
-		PositionError : LREAL; (*Lag error limit for stopping a movement [Measurement units]*)
+		PositionError : LREAL; (*Lag error limit for stopping a movement [measurement units]*)
 		VelocityErrorMonitoring : McAMELVelErrMonType; (*Velocity error monitoring mode*)
 	END_STRUCT;
 	McAJFEnum :
@@ -3063,7 +3073,7 @@ TYPE
 		mcAVAVAUHM_NOT_USE := 100 (*Not used - No preconfigured homing settings used*)
 		);
 	McAVAVirtAxUseHomeModDirType : STRUCT (*Type mcAVAVAUHM_DIR settings*)
-		Position : LREAL; (*Home position [Measurement units]*)
+		Position : LREAL; (*Home position [measurement units]*)
 	END_STRUCT;
 	McAVAVirtAxUseHomeModType : STRUCT (*Homing mode*)
 		Type : McAVAVirtAxUseHomeModEnum; (*Mode selector setting*)
@@ -3097,7 +3107,7 @@ TYPE
 		mcAVHHM_NOT_USE := 100 (*Not used - No preconfigured homing settings used*)
 		);
 	McAVHHomeModDirType : STRUCT (*Type mcAVHHM_DIR settings*)
-		Position : LREAL; (*Home position [Measurement units]*)
+		Position : LREAL; (*Home position [measurement units]*)
 	END_STRUCT;
 	McAVHHomeModType : STRUCT (*Homing mode*)
 		Type : McAVHHomeModEnum; (*Mode selector setting*)
@@ -3192,8 +3202,8 @@ TYPE
 		IOChannelUDINT : McAEEON00d64bPosHWIOChUDINTType; (*Type mcAEEON00DPH_IO_CH_UDINT settings*)
 	END_STRUCT;
 	McAEEON00d64bType : STRUCT (*Type mcAEEON00_D64B settings*)
-		ValueRangeOfPositionLW : UDINT; (*Value range (span) of position low word [Increment]*)
-		ValueRangeOfPositionHW : UDINT; (*Value range (span) of position high word [Increment]*)
+		ValueRangeOfPositionLW : UDINT; (*Value range (span) of position low word [increment]*)
+		ValueRangeOfPositionHW : UDINT; (*Value range (span) of position high word [increment]*)
 		PositionLW : McAEEON00d64bPosLWType; (*Position low word source*)
 		PositionHW : McAEEON00d64bPosHWType; (*Position high word source*)
 	END_STRUCT;
@@ -3214,7 +3224,7 @@ TYPE
 		IOChannelUDINT : McAEEON00d32bPosIOChUDINTType; (*Type mcAEEON00DP_IO_CH_UDINT settings*)
 	END_STRUCT;
 	McAEEON00d32bType : STRUCT (*Type mcAEEON00_D32B settings*)
-		ValueRangeOfPosition : UDINT; (*Value range (span) of position [Increment]*)
+		ValueRangeOfPosition : UDINT; (*Value range (span) of position [increment]*)
 		Position : McAEEON00d32bPosType; (*Position source*)
 	END_STRUCT;
 	McAEEON00d16bPosEnum :
@@ -3234,7 +3244,7 @@ TYPE
 		IOChannelUINT : McAEEON00d16bPosIOChUINTType; (*Type mcAEEON00DP_IO_CH_UINT settings*)
 	END_STRUCT;
 	McAEEON00d16bType : STRUCT (*Type mcAEEON00_D16B settings*)
-		ValueRangeOfPosition : UDINT; (*Value range (span) of position [Increment]*)
+		ValueRangeOfPosition : UDINT; (*Value range (span) of position [increment]*)
 		Position : McAEEON00d16bPosType; (*Position source*)
 	END_STRUCT;
 	McAEEON00Type : STRUCT (*Position value format*)
@@ -3501,7 +3511,7 @@ TYPE
 		NetworkCompensationTime : REAL; (*The encoder position is pre-calculated by this amount of time [s]*)
 	END_STRUCT;
 	McAEEAUseEncLinkOEPEEONType : STRUCT (*Type mcAEEAUELOEPE_ENC_ON_NETW settings*)
-		IncrementsPerEncoderRevolution : UDINT; (*Absolute number of increments of an encoder revolution [Increment/Rev]*)
+		IncrementsPerEncoderRevolution : UDINT; (*Absolute number of increments of an encoder revolution [increment/rev]*)
 		PositionType : McAEEON0Type; (*Type of the encoder*)
 		PositionProcessing : McAEEON1Type; (*Position information processing parameters*)
 	END_STRUCT;
@@ -3546,11 +3556,11 @@ TYPE
 		Type : McAEEAHModDirRefPEnum; (*Reference pulse selector setting*)
 	END_STRUCT;
 	McAEEAHModDirType : STRUCT (*Type mcAEEAHM_DIR settings*)
-		Position : LREAL; (*Home position [Measurement units]*)
+		Position : LREAL; (*Home position [measurement units]*)
 		ReferencePulse : McAEEAHModDirRefPType; (*Use reference pulse of encoder*)
 	END_STRUCT;
 	McAEEAHModAbsType : STRUCT (*Type mcAEEAHM_ABS settings*)
-		Position : LREAL; (*Home offset [Measurement units]*)
+		Position : LREAL; (*Home offset [measurement units]*)
 	END_STRUCT;
 	McAEEAHModType : STRUCT (*Homing mode*)
 		Type : McAEEAHModEnum; (*Mode selector setting*)
@@ -3609,8 +3619,8 @@ TYPE
 	McAFAIAnInScUseType : STRUCT (*Type mcAFAIAIS_USE settings*)
 		MinimumVoltage : REAL; (*Minimum voltage of the analog input [V]*)
 		MaximumVoltage : REAL; (*Maximum voltage of the analog input [V]*)
-		MinimumScaledValue : REAL; (*Minimum scaled value of the analog input [Signal units]*)
-		MaximumScaledValue : REAL; (*Maximum scaled value of the analog input [Signal units]*)
+		MinimumScaledValue : REAL; (*Minimum scaled value of the analog input [signal units]*)
+		MaximumScaledValue : REAL; (*Maximum scaled value of the analog input [signal units]*)
 	END_STRUCT;
 	McAFAIAnInScType : STRUCT
 		Type : McAFAIAnInScEnum; (*Scaling selector setting*)

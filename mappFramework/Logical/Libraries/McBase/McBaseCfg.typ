@@ -21,6 +21,7 @@ TYPE
 		mcCFG_PROC_TRAK_MON := 1604, (*Associated with data type McCfgProcPtTrakMonType*)
 		mcCFG_TRK_PATH := 1700, (*Associated with data type McCfgTrkPathType*)
 		mcCFG_TRK_PATH_SCN := 1701, (*Associated with data type McCfgTrkPathScnType*)
+		mcCFG_TRK_PATH_AUT_CRT_COND := 1702, (*Associated with data type McCfgTrkPathAutCrtCondType*)
 		mcCFG_PICK_CORE := 2100, (*Associated with data type MpCfgPickCoreType*)
 		mcCFG_PICK_REG := 2110, (*Associated with data type MpCfgPickRegType*)
 		mcCFG_PICK_REG_SCN := 2111, (*Associated with data type MpCfgPickRegScnType*)
@@ -169,6 +170,7 @@ TYPE
 		mcCFG_AXGRP_FEAT_REV_MOVE := 21125, (*Associated with data type McCfgAxGrpFeatRevMoveType*)
 		mcCFG_AXGRP_FEAT_TRK := 21126, (*Associated with data type McCfgAxGrpFeatTrkType*)
 		mcCFG_AXGRP_FEAT_PIPE_CUT := 21127, (*Associated with data type McCfgAxGrpPipeCutType*)
+		mcCFG_AXGRP_FEAT_TRKFRM_SEL := 21128, (*Associated with data type McCfgAxGrpFeatTrkFrmSelType*)
 		mcCFG_ASM := 31000, (*Associated with data type McCfgAsmType*)
 		mcCFG_ASM_COGG_COMP := 31001, (*Associated with data type McCfgAsmCoggComp*)
 		mcCFG_ASM_ELONG_COMP := 31002, (*Associated with data type McCfgAsmElongComp*)
@@ -176,11 +178,12 @@ TYPE
 		mcCFG_ASM_ADD_CTRL_PARAM := 31004, (*Associated with data type McCfgAsmAddCtrlParam*)
 		mcCFG_ASM_STOP_REACTION := 31005, (*Associated with data type McCfgAsmStopReaction*)
 		mcCFG_ASM_SPEED_FILTER := 31006, (*Associated with data type McCfgAsmSpeedFilt*)
-		mcCFG_ASM_MAGNET_PLATE := 31007, (*Associated with data type McCfgAsmMagnetPlate*)
 		mcCFG_ASM_SCOPE_OF_ERR_REAC := 31008, (*Associated with data type McCfgAsmScopeOfErrReaction*)
 		mcCFG_ASM_SH_IDENT_TIME := 31009, (*Associated with data type McCfgAsmShIdentTime*)
 		mcCFG_ASM_POS_CTRL_LAG_MON := 31010, (*Associated with data type McCfgAsmPosCtrlLagMonitor*)
 		mcCFG_ASM_DIVERTER := 31011, (*Associated with data type McCfgAsmDiverter*)
+		mcCFG_ASM_STRATEGY := 31012, (*Associated with data type McCfgAsmColAvoidStrategy*)
+		mcCFG_ASM_ADJUSTMENT_MODE := 31013, (*Associated with data type McCfgAsmColAvoidAdjustMode*)
 		mcCFG_ASM_FEAT_CPLG := 31101, (*Associated with data type McCfgAsmFeatCplgType*)
 		mcCFG_ASM_FEAT_SIM_SH_DEF := 31102, (*Associated with data type McCfgAsmFeatSimShDefType*)
 		mcCFG_ASM_FEAT_SEC_TRACE := 31103, (*Associated with data type McCfgAsmFeatSecTraceType*)
@@ -206,6 +209,7 @@ TYPE
 		mcCFG_MS_3AX_CNC_XYZ := 51301, (*Associated with data type McCfgMS3AxCncXYZType*)
 		mcCFG_MS_3AX_CNC_XZC := 51302, (*Associated with data type McCfgMS3AxCncXZCType*)
 		mcCFG_MS_3AX_CNC_XZB := 51303, (*Associated with data type McCfgMS3AxCncXZBType*)
+		mcCFG_MS_4AX_CNC_XYZA := 51400, (*Associated with data type McCfgMS4AxCncXYZAType*)
 		mcCFG_MS_4AX_CNC_XYZB := 51401, (*Associated with data type McCfgMS4AxCncXYZBType*)
 		mcCFG_MS_4AX_CNC_XYZC := 51402, (*Associated with data type McCfgMS4AxCncXYZCType*)
 		mcCFG_MS_5AX_CNC_XYZBA := 51502, (*Associated with data type McCfgMS5AxCncXYZBAType*)
@@ -360,8 +364,8 @@ TYPE
 	END_STRUCT;
 	McMMCMcAcpDrvPLKCycPerParIDEnum :
 		( (*Defines the number of POWERLINK cycles per ParID for parameter transfer*)
-		mcMMCMPCPP_ONE := 1, (*One - One ParID every cycle*)
-		mcMMCMPCPP_TWO := 2 (*Two - One ParID every second cycle*)
+		mcMMCMPCPP_TWO := 2, (*Two - One ParID every second cycle*)
+		mcMMCMPCPP_ONE := 1 (*One - One ParID every cycle*)
 		);
 	McMMCMcAcpDrvType : STRUCT (*ACOPOS driver configuration*)
 		POWERLINKCyclesPerParID : McMMCMcAcpDrvPLKCycPerParIDEnum; (*Defines the number of POWERLINK cycles per ParID for parameter transfer*)
@@ -886,8 +890,18 @@ TYPE
 		mcPPTAPBF_OFF := 0, (*Off - Disable barrier functionality*)
 		mcPPTAPBF_ON := 1 (*On - Enable barrier functionality*)
 		);
+	McPPTAcpTrakPtShStopPosEnum :
+		( (*Mode that determines the stop position of a shuttle in front of a barrier*)
+		mcPPTASPSP_EXT := 0, (*Extent - Stop shuttle with extent in front of barrier*)
+		mcPPTASPSP_CTR_PT := 1 (*Center point - Stop shuttle center point in front of barrier*)
+		);
+	McPPTAcpTrakPtBarrFunOnType : STRUCT (*Type mcPPTAPBF_ON settings*)
+		ShuttleStopPosition : McPPTAcpTrakPtShStopPosEnum; (*Mode that determines the stop position of a shuttle in front of a barrier*)
+		BarrierStopDistance : LREAL; (*Additional safety distance between a shuttle and a process point [Measurement units]*)
+	END_STRUCT;
 	McPPTAcpTrakPtBarrFunType : STRUCT (*Enable barrier functionality for process point*)
 		Type : McPPTAcpTrakPtBarrFunEnum; (*Barrier functionality selector setting*)
+		On : McPPTAcpTrakPtBarrFunOnType; (*Type mcPPTAPBF_ON settings*)
 	END_STRUCT;
 	McPPTAcpTrakPtPPMMonEnum :
 		( (*Throughput monitor selector setting*)

@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* MpAudit 6.2.0 */
+/* MpAudit 6.4.0 */
 
 #ifndef _MPAUDIT_
 #define _MPAUDIT_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _MpAudit_VERSION
-#define _MpAudit_VERSION 6.2.0
+#define _MpAudit_VERSION 6.4.0
 #endif
 
 #include <bur/plctypes.h>
@@ -112,6 +112,59 @@ typedef enum MpAuditTrailAlarmEnum
 {	mpAUDIT_ALM_ARCHIVE_AVAILABLE = 0,
 	mpAUDIT_ALM_ARCHIVE_OVERFLOW = 1
 } MpAuditTrailAlarmEnum;
+
+typedef enum MpAuditCfgEnum
+{	mpAUDIT_CFG_QUERIES = 190,
+	mpAUDIT_CFG_TRAIL = 100
+} MpAuditCfgEnum;
+
+typedef enum MpAuditCfgQueryOperatorsEnum
+{	mpAUDIT_CFG_QUERY_LT = 0,
+	mpAUDIT_CFG_QUERY_LE = 1,
+	mpAUDIT_CFG_QUERY_GT = 2,
+	mpAUDIT_CFG_QUERY_GE = 3,
+	mpAUDIT_CFG_QUERY_EQ = 4,
+	mpAUDIT_CFG_QUERY_NE = 5,
+	mpAUDIT_CFG_QUERY_LIKE = 6
+} MpAuditCfgQueryOperatorsEnum;
+
+typedef enum MpAuditCfgQueryCompareToEnum
+{	mpAUDIT_CFG_QUERY_VALUE = 0,
+	mpAUDIT_CFG_QUERY_PV = 1
+} MpAuditCfgQueryCompareToEnum;
+
+typedef enum MpAuditCfgTrailArchiveModeEnum
+{	mpAUDIT_CFG_TRAIL_ARCH_DAILY = 0,
+	mpAUDIT_CFG_TRAIL_ARCH_MO_TO_FR = 1,
+	mpAUDIT_CFG_TRAIL_ARCH_BY_BATCH = 2
+} MpAuditCfgTrailArchiveModeEnum;
+
+typedef enum MpAuditCfgTrailFileTypeEnum
+{	mpAUDIT_CFG_TRAIL_TXT = 0,
+	mpAUDIT_CFG_TRAIL_XML = 1
+} MpAuditCfgTrailFileTypeEnum;
+
+typedef enum MpAuditCfgTrailTaskClassEnum
+{	mpAUDIT_CFG_TRAIL_TC_CYCLIC_1 = 1,
+	mpAUDIT_CFG_TRAIL_TC_CYCLIC_2 = 2,
+	mpAUDIT_CFG_TRAIL_TC_CYCLIC_3 = 3,
+	mpAUDIT_CFG_TRAIL_TC_CYCLIC_4 = 4,
+	mpAUDIT_CFG_TRAIL_TC_CYCLIC_5 = 5,
+	mpAUDIT_CFG_TRAIL_TC_CYCLIC_6 = 6,
+	mpAUDIT_CFG_TRAIL_TC_CYCLIC_7 = 7,
+	mpAUDIT_CFG_TRAIL_TC_CYCLIC_8 = 8
+} MpAuditCfgTrailTaskClassEnum;
+
+typedef enum MpAuditCfgTrailMemoryEnum
+{	mpAUDIT_CFG_TRAIL_ROM_DRAM = 0,
+	mpAUDIT_CFG_TRAIL_ROM_RAM = 1,
+	mpAUDIT_CFG_TRAIL_RAM = 2
+} MpAuditCfgTrailMemoryEnum;
+
+typedef enum MpAuditCfgTrailArchiveEnum
+{	mpAUDIT_CFG_TRAIL_ARCHIVE_OFF = 0,
+	mpAUDIT_CFG_TRAIL_ARCHIVE_ON = 1
+} MpAuditCfgTrailArchiveEnum;
 
 typedef struct MpAuditTrailUICurrDTFilterType
 {	plcbit Enable;
@@ -263,6 +316,157 @@ typedef struct MpAuditVC4EventInternalType
 typedef struct MpAuditMonitorInternalType
 {	unsigned long Handle;
 } MpAuditMonitorInternalType;
+
+typedef struct MpAuditCfgQueryColumnsType
+{	plcstring EventIdentifier[4];
+	plcstring EventTime[8];
+	plcstring EntryIndex[5];
+	plcstring EventDescription[6];
+	plcstring OperatorName[4];
+	plcstring MappComponent[5];
+	plcstring OldValue[5];
+	plcstring NewValue[5];
+	plcstring Name[6];
+	plcstring DeviceName[5];
+	plcstring Path[6];
+	plcstring Message[5];
+	plcstring Comment[5];
+	plcstring ErrorNumber[5];
+	plcstring DatapointIdentifier[6];
+	plcstring Time[6];
+	plcstring AlarmCode[6];
+	plcstring Severity[5];
+	plcstring Object[5];
+	plcstring Attribute[6];
+	plcstring VC4Unit[6];
+	plcstring VC4UnitText[7];
+	plcstring VC4SelectionTextgroup[5];
+	plcstring VisualisationName[5];
+	plcstring CustomEventType[5];
+	plcstring OpcClientId[6];
+	plcstring OpcNodeName[10];
+	plcstring OpcNodeDescription[10];
+	plcstring PackMLState[7];
+	plcstring PackMLMode[6];
+	plcstring PackMLInfo[6];
+	plcstring FileSource[4];
+	plcstring FileDest[5];
+	plcstring EventText[6];
+	plcstring DisplayEventText[7];
+} MpAuditCfgQueryColumnsType;
+
+typedef struct MpAuditCfgQueryValueType
+{	plcstring Value[256];
+} MpAuditCfgQueryValueType;
+
+typedef struct MpAuditCfgQueryCompareToType
+{	enum MpAuditCfgQueryCompareToEnum Type;
+	struct MpAuditCfgQueryValueType Value;
+} MpAuditCfgQueryCompareToType;
+
+typedef struct MpAuditCfgQuerySelectColType
+{	plcstring Column[256];
+	plcstring Pv[256];
+} MpAuditCfgQuerySelectColType;
+
+typedef struct MpAuditCfgQuerySelectType
+{	unsigned long NumberOfColumns;
+	struct MpAuditCfgQuerySelectColType Columns[20];
+} MpAuditCfgQuerySelectType;
+
+typedef struct MpAuditCfgQueryWhereFilterType
+{	plcstring Column[256];
+	enum MpAuditCfgQueryOperatorsEnum Operator;
+	struct MpAuditCfgQueryCompareToType CompareTo;
+} MpAuditCfgQueryWhereFilterType;
+
+typedef struct MpAuditCfgQueryWhereType
+{	plcstring Connect[256];
+	struct MpBaseCfgArrayType Filter;
+} MpAuditCfgQueryWhereType;
+
+typedef struct MpAuditCfgQuerySingleType
+{	plcstring Name[101];
+	plcstring UpdateCount[256];
+	plcstring Component[51];
+	struct MpAuditCfgQuerySelectType Select;
+	struct MpAuditCfgQueryWhereType Where;
+} MpAuditCfgQuerySingleType;
+
+typedef struct MpAuditCfgQueryDataQueriesType
+{	struct MpBaseCfgArrayType Query;
+} MpAuditCfgQueryDataQueriesType;
+
+typedef struct MpAuditCfgQueryType
+{	struct MpAuditCfgQueryDataQueriesType DataQueries;
+} MpAuditCfgQueryType;
+
+typedef struct MpAuditCfgTrailGeneralType
+{	plcbit Enable;
+	plcbit EnableCockpit;
+	enum MpAuditCfgTrailTaskClassEnum CyclicTaskClass;
+	plcstring Parent[51];
+} MpAuditCfgTrailGeneralType;
+
+typedef struct MpAuditCfgTrailEventsType
+{	struct MpBaseCfgArrayType Event;
+} MpAuditCfgTrailEventsType;
+
+typedef struct MpAuditCfgTrailDataType
+{	unsigned long Size;
+	unsigned long MaximumSaveInterval;
+	unsigned long BufferSize;
+} MpAuditCfgTrailDataType;
+
+typedef struct MpAuditCfgTrailMemoryType
+{	enum MpAuditCfgTrailMemoryEnum Type;
+	struct MpAuditCfgTrailDataType Data;
+} MpAuditCfgTrailMemoryType;
+
+typedef struct MpAuditCfgTrailTextSourceType
+{	plcstring Display[256];
+	plcstring Export[256];
+} MpAuditCfgTrailTextSourceType;
+
+typedef struct MpAuditCfgTrailArchiveOnType
+{	enum MpAuditCfgTrailArchiveModeEnum Mode;
+	unsigned long Time;
+	unsigned long MaximumSize;
+} MpAuditCfgTrailArchiveOnType;
+
+typedef struct MpAuditCfgTrailArchiveType
+{	enum MpAuditCfgTrailArchiveEnum Type;
+	struct MpAuditCfgTrailArchiveOnType On;
+} MpAuditCfgTrailArchiveType;
+
+typedef struct MpAuditCfgTrailExportType
+{	plcbit RawData;
+	enum MpAuditCfgTrailFileTypeEnum FileType;
+	plcbit Encrypt;
+} MpAuditCfgTrailExportType;
+
+typedef struct MpAuditCfgTrailAuditType
+{	struct MpAuditCfgTrailEventsType EventList;
+	struct MpAuditCfgTrailMemoryType Memory;
+	struct MpAuditCfgTrailTextSourceType Text;
+	struct MpAuditCfgTrailArchiveType Archive;
+	struct MpAuditCfgTrailExportType Export;
+} MpAuditCfgTrailAuditType;
+
+typedef struct MpAuditCfgTrailPvListType
+{	plcstring Pv[256];
+	plcstring Identifier[256];
+} MpAuditCfgTrailPvListType;
+
+typedef struct MpAuditCfgTrailPvMonitorType
+{	struct MpBaseCfgArrayType PvList;
+} MpAuditCfgTrailPvMonitorType;
+
+typedef struct MpAuditCfgTrailType
+{	struct MpAuditCfgTrailGeneralType General;
+	struct MpAuditCfgTrailAuditType Audit;
+	struct MpAuditCfgTrailPvMonitorType VariableMonitor;
+} MpAuditCfgTrailType;
 
 typedef struct MpAuditTrailUI
 {

@@ -556,7 +556,7 @@ TYPE
 		Automatic : McAFBACPBrkTstAutType; (*Type mcAFBACPBT_AUT settings*)
 	END_STRUCT;
 	McAFBACPMoveMonUseType : STRUCT (*Type mcAFBACPMM_USE settings*)
-		PositionErrorLimit : REAL; (*Maximum allowed movement of the motor at closed brake [Motor revolutions]*)
+		PositionErrorLimit : REAL; (*Maximum allowed movement of the motor at closed brake [motor revolutions]*)
 		BrakeTest : McAFBACPBrkTstType; (*Apply torque for testing the brake*)
 	END_STRUCT;
 	McAFBACPMoveMonType : STRUCT (*Mechanical monitoring of motor brake*)
@@ -610,10 +610,10 @@ TYPE
 		mcMDCSE_NEG := 1 (*Negative - Negative*)
 		);
 	McMDCDirDepConstBcklType : STRUCT (*Type mcMDCM_DIR_DEP_CONST_BCKL settings*)
-		Backlash : LREAL; (*Backlash [Measurement units]*)
+		Backlash : LREAL; (*Backlash [measurement units]*)
 		PositionSource : McMDCPosSrcEnum; (*Position source*)
 		StartEdge : McMDCStEdgEnum; (*Edge at which compensation is started*)
-		Velocity : REAL; (*Velocity for edge change [Measurement units/s]*)
+		Velocity : REAL; (*Velocity for edge change [measurement units/s]*)
 		TimeConstant : REAL; (*Time constant of the exponential function for edge change [s]*)
 		NoiseLimit : REAL; (*Noise limit [%]*)
 	END_STRUCT;
@@ -651,7 +651,7 @@ TYPE
 		PositionSource : McMDCPosSrcEnum; (*Position source*)
 		DataInterpretation : McMDCDatIntEnum; (*Compensation data is interpreted as periodic*)
 		StartEdge : McMDCStEdgEnum; (*Edge at which compensation is started*)
-		Velocity : REAL; (*Velocity for edge change [Measurement units/s]*)
+		Velocity : REAL; (*Velocity for edge change [measurement units/s]*)
 		TimeConstant : REAL; (*Time constant of the exponential function for edge change [s]*)
 		NoiseLimit : REAL; (*Noise limit [%]*)
 	END_STRUCT;
@@ -668,11 +668,11 @@ TYPE
 	END_STRUCT;
 	McMDCDirIndBcklType : STRUCT (*Type mcMDCM_DIR_IND_W_BCKL settings*)
 		CompensationDataPositive : McMDCCompDatType; (*Compensation data for movement in positive direction*)
-		Backlash : LREAL; (*Backlash [Measurement units]*)
+		Backlash : LREAL; (*Backlash [measurement units]*)
 		PositionSource : McMDCPosSrcEnum; (*Position source*)
 		DataInterpretation : McMDCDatIntEnum; (*Compensation data is interpreted as periodic*)
 		StartEdge : McMDCStEdgEnum; (*Edge at which compensation is started*)
-		Velocity : REAL; (*Velocity for edge change [Measurement units/s]*)
+		Velocity : REAL; (*Velocity for edge change [measurement units/s]*)
 		TimeConstant : REAL; (*Time constant of the exponential function for edge change [s]*)
 		NoiseLimit : REAL; (*Noise limit [%]*)
 	END_STRUCT;
@@ -701,10 +701,10 @@ TYPE
 		mcMDCPSS_SET_POS := 0 (*Set position - Set position*)
 		);
 	McMDCDirDepConstBcklStpType : STRUCT (*Type mcMDCMS_DIR_DEP_CONST_BCKL settings*)
-		Backlash : LREAL; (*Backlash [Measurement units]*)
+		Backlash : LREAL; (*Backlash [measurement units]*)
 		PositionSource : McMDCPosSrcStpEnum; (*Position source*)
 		StartEdge : McMDCStEdgEnum; (*Edge at which compensation is started*)
-		Velocity : REAL; (*Velocity for edge change [Measurement units/s]*)
+		Velocity : REAL; (*Velocity for edge change [measurement units/s]*)
 		TimeConstant : REAL; (*Time constant of the exponential function for edge change [s]*)
 		NoiseLimit : REAL; (*Noise limit [%]*)
 	END_STRUCT;
@@ -714,7 +714,7 @@ TYPE
 		PositionSource : McMDCPosSrcStpEnum; (*Position source*)
 		DataInterpretation : McMDCDatIntEnum; (*Compensation data is interpreted as periodic*)
 		StartEdge : McMDCStEdgEnum; (*Edge at which compensation is started*)
-		Velocity : REAL; (*Velocity for edge change [Measurement units/s]*)
+		Velocity : REAL; (*Velocity for edge change [measurement units/s]*)
 		TimeConstant : REAL; (*Time constant of the exponential function for edge change [s]*)
 		NoiseLimit : REAL; (*Noise limit [%]*)
 	END_STRUCT;
@@ -725,11 +725,11 @@ TYPE
 	END_STRUCT;
 	McMDCDirIndBcklStpType : STRUCT (*Type mcMDCMS_DIR_IND_W_BCKL settings*)
 		CompensationDataPositive : McMDCCompDatType; (*Compensation data for movement in positive direction*)
-		Backlash : LREAL; (*Backlash [Measurement units]*)
+		Backlash : LREAL; (*Backlash [measurement units]*)
 		PositionSource : McMDCPosSrcStpEnum; (*Position source*)
 		DataInterpretation : McMDCDatIntEnum; (*Compensation data is interpreted as periodic*)
 		StartEdge : McMDCStEdgEnum; (*Edge at which compensation is started*)
-		Velocity : REAL; (*Velocity for edge change [Measurement units/s]*)
+		Velocity : REAL; (*Velocity for edge change [measurement units/s]*)
 		TimeConstant : REAL; (*Time constant of the exponential function for edge change [s]*)
 		NoiseLimit : REAL; (*Noise limit [%]*)
 	END_STRUCT;

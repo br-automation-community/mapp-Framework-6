@@ -1638,3 +1638,19 @@ FUNCTION_BLOCK MC_BR_CheckAutCompensation (*Checks whether or not the compensati
 		Internal : McInternalTwoRefType; (*internal variable*)
 	END_VAR
 END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK MC_BR_PowerOnTest (*Tests if a power-on command would be successful or result in an error*)
+    VAR_INPUT
+        Axis : REFERENCE TO McAxisType; (*axis reference*)
+        Execute : BOOL; (*FB is active as long as input is set*)
+    END_VAR
+    VAR_OUTPUT
+        Done : BOOL; (*execution successful. FB finished*)
+        Busy : BOOL; (*FB is active and needs to be called*)
+        Error : BOOL; (*error occurred during operation*)
+        ErrorID : DINT; (*error number*)
+    END_VAR
+    VAR
+        Internal : McInternalType; (*internal variable*)
+    END_VAR
+END_FUNCTION_BLOCK

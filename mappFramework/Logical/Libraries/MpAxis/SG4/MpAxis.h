@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* MpAxis 6.2.0 */
+/* MpAxis 6.4.1 */
 
 #ifndef _MPAXIS_
 #define _MPAXIS_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _MpAxis_VERSION
-#define _MpAxis_VERSION 6.2.0
+#define _MpAxis_VERSION 6.4.1
 #endif
 
 #include <bur/plctypes.h>
@@ -129,7 +129,9 @@ typedef enum MpAxisMoveCyclicVelocityModeEnum
 
 typedef enum MpAxisBasicConfigSectionEnum
 {	mcAXB_CFG_SEC_ALL,
-	mcAXB_CFG_SEC_DRIVE_CTRL
+	mcAXB_CFG_SEC_DRIVE_CTRL,
+	mcAXB_CFG_SEC_MOVE_LIMITS,
+	mcAXB_CFG_SEC_ALL_WITH_FEAT
 } MpAxisBasicConfigSectionEnum;
 
 typedef enum MpAxisBasicConfigCmdEnum
@@ -165,6 +167,65 @@ typedef enum MpAXBMotorDataTypeEnum
 	mcAXB_CFG_MOTOR_IND_ANY = 10501,
 	mcAXB_CFG_MOTOR_STP = 13013
 } MpAXBMotorDataTypeEnum;
+
+typedef enum MpAXBEncPlInCrdSubslotEnum
+{	mcAXB_ENC_SUB_SLOT_NOT_USE = 0,
+	mcAXB_ENC_SUB_SLOT_1 = 1,
+	mcAXB_ENC_SUB_SLOT_2 = 2,
+	mcAXB_ENC_SUB_SLOT_3 = 3
+} MpAXBEncPlInCrdSubslotEnum;
+
+typedef enum MpAXBEncModuleEnum
+{	mcAXB_ENC_ACP_ONBOARD = 0,
+	mcAXB_ENC_ACP_ENC_CRD = 1,
+	mcAXB_ENC_ACP_MUL_ENC_CRD = 2,
+	mcAXB_ENC_ACP_P3_ENC_CRD = 3,
+	mcAXB_ENC_ACP_P3_SNG_ENC_CRD = 4,
+	mcAXB_ENC_STP_ONBOARD = 5
+} MpAXBEncModuleEnum;
+
+typedef enum MpAXBEncTypeEnum
+{	mcAXB_ENC_TYP_NOT_USE = 0,
+	mcAXB_ENC_TYP_ENDAT = 1,
+	mcAXB_ENC_TYP_HIPERFACE = 2,
+	mcAXB_ENC_TYP_HIPERFACE_DSL = 3,
+	mcAXB_ENC_TYP_TFORMAT = 4,
+	mcAXB_ENC_TYP_BISS = 5,
+	mcAXB_ENC_TYP_SSI = 6,
+	mcAXB_ENC_TYP_SSI_SINE = 7,
+	mcAXB_ENC_TYP_SINE = 8,
+	mcAXB_ENC_TYP_SINE_W_DCM = 9,
+	mcAXB_ENC_TYP_INCR = 10,
+	mcAXB_ENC_TYP_INCR_WITH_DCM = 11,
+	mcAXB_ENC_TYP_RES = 12,
+	mcAXB_ENC_TYP_LINMOT = 13,
+	mcAXB_ENC_TYP_ENDAT_3 = 14,
+	mcAXB_ENC_TYP_ENDAT_SAFE_MOTION = 15,
+	mcAXB_ENC_TYP_MOT_DAT_IF = 16
+} MpAXBEncTypeEnum;
+
+typedef enum MpAXBEncInterfaceEnum
+{	mcAXB_ENC_PI_NOT_USE = 0,
+	mcAXB_ENC_PI_ACP_ONB_ENC = 1,
+	mcAXB_ENC_PI_ACP_P3_ONB_X41 = 2,
+	mcAXB_ENC_PI_ACP_P3_ONB_X42 = 3,
+	mcAXB_ENC_PI_ACP_P3_ONB_X43 = 4,
+	mcAXB_ENC_PI_ACP_P3_PLIN_X41X = 5,
+	mcAXB_ENC_PI_ACP_P3_PLIN_X42X = 6,
+	mcAXB_ENC_PI_ACP_P3_PLIN_X43X = 7,
+	mcAXB_ENC_PI_ACP_PLIN_X11 = 8,
+	mcAXB_ENC_PI_ACP_MIC_ONB_X6A = 9,
+	mcAXB_ENC_PI_ACP_MIC_ONB_X6B = 10,
+	mcAXB_ENC_PI_ACPM_PLIN_X11 = 11,
+	mcAXB_ENC_PI_ACPR_ONB_X11A = 12,
+	mcAXB_ENC_PI_ACP_MOT_ONB = 13,
+	mcAXB_ENC_PI_STP_MOD_ONB = 14,
+	mcAXB_ENC_PI_ACP_MIC_STP_ONB_X6 = 15,
+	mcAXB_ENC_PI_ACP_MIC_STP_ONB_X6A = 16,
+	mcAXB_ENC_PI_ACP_MIC_STP_ONB_X6B = 17,
+	mcAXB_ENC_PI_STP_ONB_X3 = 18,
+	mcAXB_ENC_PI_STP_ONB_X4 = 19
+} MpAXBEncInterfaceEnum;
 
 typedef enum MpAXBAxBaseTypEnum
 {	mcAXB_BASE_TYPE_LIN_BD = 0,
@@ -219,6 +280,12 @@ typedef enum MpAXBDrvCtrlFdbkModEnum
 	mcAXB_CTLR_FEED_TWO_MASS_MDL = 2,
 	mcAXB_CTLR_FEED_TWO_ENC_SPD = 3
 } MpAXBDrvCtrlFdbkModEnum;
+
+typedef enum MpAXBDrvCtrlVFreqCtrlTypEnum
+{	mcAXB_VF_TYP_LIN = 129,
+	mcAXB_VF_TYP_CONST_LD_TORQ = 131,
+	mcAXB_VF_TYP_QUAD = 130
+} MpAXBDrvCtrlVFreqCtrlTypEnum;
 
 typedef enum MpAXBDrvCtrlVFreqCtrlAutCfgEnum
 {	mcAXB_VF_AUTO_CFG_NOT_USE = 0,
@@ -366,7 +433,7 @@ typedef enum MpAXBEncSrcEnum
 typedef enum MpAXBEncLinkEncParSetEnum
 {	mcAXB_ENC_PAR_SET_AUT = 0,
 	mcAXB_ENC_PAR_SET_ENCOD1 = 1,
-	mcAXB_ENC_PAR_SET_ENCOD2 = 1
+	mcAXB_ENC_PAR_SET_ENCOD2 = 2
 } MpAXBEncLinkEncParSetEnum;
 
 typedef enum MpAXBEncLinkStpCntRefPSrcEnum
@@ -493,6 +560,7 @@ typedef struct MpAxisStopAtPositionType
 {	plcbit Activate;
 	float Deceleration;
 	double Position;
+	float Acceleration;
 } MpAxisStopAtPositionType;
 
 typedef struct MpAxisStopType
@@ -803,13 +871,32 @@ typedef struct MpAXBMotorType
 	unsigned long Data;
 } MpAXBMotorType;
 
+typedef struct MpAXBEncPlInCrdType
+{	plcstring Card[51];
+	enum MpAXBEncPlInCrdSubslotEnum Subslot;
+} MpAXBEncPlInCrdType;
+
+typedef struct MpAXBEncoderType
+{	enum MpAXBEncModuleEnum Module;
+	struct MpAXBEncPlInCrdType PlugInCard;
+	unsigned long Data;
+	unsigned char NumberOfEncoders;
+} MpAXBEncoderType;
+
 typedef struct MpAXBModuleType
 {	plcstring ModelNumber[251];
 	plcstring Location[251];
 	enum MpAXBModuleAxTypeEnum AxisType;
 	enum MpAXBModuleChannelEnum Channel;
 	struct MpAXBMotorType Motor;
+	struct MpAXBEncoderType Encoder;
 } MpAXBModuleType;
+
+typedef struct MpAXBEncDatType
+{	enum MpAXBEncInterfaceEnum Interface;
+	enum MpAXBEncTypeEnum Type;
+	unsigned long Data;
+} MpAXBEncDatType;
 
 typedef struct MpAxisBasicConfigParType
 {	struct MpAxisBasicConfigType* Data;
@@ -913,7 +1000,8 @@ typedef struct MpAXBDrvCtrlMdlType
 } MpAXBDrvCtrlMdlType;
 
 typedef struct MpAXBDrvCtrlVFreqCtrlType
-{	enum MpAXBDrvCtrlVFreqCtrlAutCfgEnum AutomaticConfiguration;
+{	enum MpAXBDrvCtrlVFreqCtrlTypEnum Type;
+	enum MpAXBDrvCtrlVFreqCtrlAutCfgEnum AutomaticConfiguration;
 	float SlipCompensation;
 	float TotalDelayTime;
 	float BoostVoltage;
@@ -1114,22 +1202,22 @@ typedef struct MpAXBEncLinkExtAbsPosRngType
 
 typedef struct MpAXBEncLinkEncExtModOkType
 {	enum MpAXBEncLinkEncExtModOkTypEnum Type;
-	plcstring ModuleOkSourceMapping[251];
+	plcstring SourceMapping[251];
 } MpAXBEncLinkEncExtModOkType;
 
 typedef struct MpAXBEncLinkEncExtStDatType
 {	enum MpAXBEncLinkEncExtStDatTypEnum Type;
-	plcstring StaleDataSourceMapping[251];
+	plcstring SourceMapping[251];
 } MpAXBEncLinkEncExtStDatType;
 
 typedef struct MpAXBEncLinkEncExtNetTimeType
 {	enum MpAXBEncLinkEncExtNetTimeTypEnum Type;
-	plcstring NetTimeSourceMapping[251];
+	plcstring SourceMapping[251];
 } MpAXBEncLinkEncExtNetTimeType;
 
 typedef struct MpAXBEncLinkEncExtEncOkType
 {	enum MpAXBEncLinkEncExtEncOkTypEnum Type;
-	plcstring EncoderOkSourceMapping[251];
+	plcstring SourceMapping[251];
 } MpAXBEncLinkEncExtEncOkType;
 
 typedef struct MpAXBEncLinkEncExtValCkType
@@ -1141,7 +1229,8 @@ typedef struct MpAXBEncLinkEncExtValCkType
 
 typedef struct MpAXBEncLinkEncExtRefPType
 {	enum MpAXBEncLinkEncExtRefPTypEnum Type;
-	plcstring ReferencePulseSourceMapping[251];
+	plcstring PositionSourceMapping[251];
+	plcstring CountSourceMapping[251];
 } MpAXBEncLinkEncExtRefPType;
 
 typedef struct MpAXBEncLinkEncExtPosFltrType
@@ -1161,39 +1250,39 @@ typedef struct MpAXBDrvEncLinkPosEncExtType
 	struct MpAXBEncLinkEncExtPosFltrType PositionFilter;
 } MpAXBDrvEncLinkPosEncExtType;
 
-typedef struct MpAXBDrvEncLinkPosEncType
+typedef struct MpAXBDrvEncLinkMotAndPosEncType
 {	enum MpAXBEncSrcEnum Source;
 	enum MpAXBEncLinkEncParSetEnum EncoderParameterSet;
 	struct MpAXBEncLinkStpCntType StepCounter;
 	struct MpAXBDrvEncLinkPosEncExtType External;
-} MpAXBDrvEncLinkPosEncType;
+} MpAXBDrvEncLinkMotAndPosEncType;
 
-typedef struct MpAXBDrvEncLinkMotEncScGBType
+typedef struct MpAXBDrvEncLinkPosEncScGBType
 {	signed long Input;
 	signed long Output;
-} MpAXBDrvEncLinkMotEncScGBType;
+} MpAXBDrvEncLinkPosEncScGBType;
 
 typedef struct MpAXBEncLinkRotToLinTrfType
 {	double ReferenceDistance;
 } MpAXBEncLinkRotToLinTrfType;
 
-typedef struct MpAXBDrvEncLinkMotEncScType
-{	struct MpAXBDrvEncLinkMotEncScGBType Gearbox;
+typedef struct MpAXBDrvEncLinkPosEncScType
+{	struct MpAXBDrvEncLinkPosEncScGBType Gearbox;
 	struct MpAXBEncLinkRotToLinTrfType RotaryToLinearTransformation;
 	enum MpAXBEncLinkCntDirEnum CountDirection;
-} MpAXBDrvEncLinkMotEncScType;
+} MpAXBDrvEncLinkPosEncScType;
 
-typedef struct MpAXBDrvEncLinkMotEncType
+typedef struct MpAXBDrvEncLinkPosEncType
 {	enum MpAXBEncSrcEnum Source;
-	struct MpAXBDrvEncLinkMotEncScType Scaling;
+	struct MpAXBDrvEncLinkPosEncScType Scaling;
 	enum MpAXBEncLinkEncParSetEnum EncoderParameterSet;
 	float PositionDifferenceLimit;
-} MpAXBDrvEncLinkMotEncType;
+} MpAXBDrvEncLinkPosEncType;
 
 typedef struct MpAXBDrvEncLinkType
 {	enum MpAXBDrvEncLinkTypEnum Type;
+	struct MpAXBDrvEncLinkMotAndPosEncType MotorAndPositionEncoder;
 	struct MpAXBDrvEncLinkPosEncType PositionEncoder;
-	struct MpAXBDrvEncLinkMotEncType MotorEncoder;
 } MpAXBDrvEncLinkType;
 
 typedef struct MpAXBDrvType
@@ -1207,9 +1296,28 @@ typedef struct MpAXBDrvType
 	struct MpAXBDrvEncLinkType EncoderLink;
 } MpAXBDrvType;
 
+typedef struct MpAXBFeatRefType
+{	enum McCfgTypeEnum ConfigType;
+	plcstring Name[251];
+} MpAXBFeatRefType;
+
+typedef struct MpAXBFeatAxFeatType
+{	struct MpAXBFeatRefType Reference[10];
+} MpAXBFeatAxFeatType;
+
+typedef struct MpAXBFeatChFeatType
+{	struct MpAXBFeatRefType Reference[10];
+} MpAXBFeatChFeatType;
+
+typedef struct MpAXBFeatType
+{	struct MpAXBFeatAxFeatType AxisFeatures;
+	struct MpAXBFeatChFeatType ChannelFeatures;
+} MpAXBFeatType;
+
 typedef struct MpAxisBasicConfigType
 {	struct MpAXBAxType Axis;
 	struct MpAXBDrvType Drive;
+	struct MpAXBFeatType Features;
 } MpAxisBasicConfigType;
 
 typedef struct MpAxisBasic

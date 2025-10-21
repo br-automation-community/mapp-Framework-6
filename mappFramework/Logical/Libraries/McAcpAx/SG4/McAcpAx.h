@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* McAcpAx 6.2.0 */
+/* McAcpAx 6.4.1 */
 
 #ifndef _MCACPAX_
 #define _MCACPAX_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _McAcpAx_VERSION
-#define _McAcpAx_VERSION 6.2.0
+#define _McAcpAx_VERSION 6.4.1
 #endif
 
 #include <bur/plctypes.h>
@@ -84,6 +84,11 @@ typedef enum McAcpAxLimitLoadModeEnum
 {	mcACPAX_LL_WITH_FEED_FORWARD = 0,
 	mcACPAX_LL_WITHOUT_FEED_FORWARD
 } McAcpAxLimitLoadModeEnum;
+
+typedef enum McAcpAxLimitLoadParIDModeEnum
+{	mcACPAX_LLPM_NO_INIT = 0,
+	mcACPAX_LLPM_INIT_FB_INPUT = 1
+} McAcpAxLimitLoadParIDModeEnum;
 
 typedef enum McAcpAxBrakeTestCmdEnum
 {	mcACPAX_BRAKE_TEST_INIT = 0,
@@ -826,6 +831,11 @@ typedef enum McACCTMSgenEnum
 {	mcACCTMSgen_STD = 0,
 	mcACCTMSgen_CYCLE_TIME_OF_CTRL = 128
 } McACCTMSgenEnum;
+
+typedef enum McACCTMIOsEnum
+{	mcACCTMIOs_STD = 0,
+	mcACCTMIOs_CYCLE_TIME_OF_CTRL = 1
+} McACCTMIOsEnum;
 
 typedef enum McACMPCFFFFwdEnum
 {	mcACMPCFFFF_STD = 0,
@@ -1688,6 +1698,9 @@ typedef struct McAcpAxAdvLimitLoadParType
 	unsigned short LoadPosDecelParID;
 	unsigned short LoadNegAccelParID;
 	unsigned short LoadNegDecelParID;
+	enum McAcpAxLimitLoadParIDModeEnum LoadParIDMode;
+	enum McLimitLoadStopModeEnum StopMode;
+	float StopTorque;
 } McAcpAxAdvLimitLoadParType;
 
 typedef struct McAcpAxBrakeParType
@@ -1958,12 +1971,18 @@ typedef struct McACCTMSgenType
 {	enum McACCTMSgenEnum Type;
 } McACCTMSgenType;
 
+typedef struct McACCTMIOsType
+{	enum McACCTMIOsEnum Type;
+} McACCTMIOsType;
+
 typedef struct McACCTMAdvType
 {	struct McACCTMSgenType SetValueGeneration;
+	struct McACCTMIOsType IOsOnPlugInCards;
 } McACCTMAdvType;
 
 typedef struct McACCTMPwrType
 {	struct McACCTMSgenType SetValueGeneration;
+	struct McACCTMIOsType IOsOnPlugInCards;
 } McACCTMPwrType;
 
 typedef struct McACCTMType

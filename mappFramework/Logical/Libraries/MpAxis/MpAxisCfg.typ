@@ -133,12 +133,19 @@ TYPE
 		Mass1 : MpAXBDrvCtrlMdlMass1Type; (*Mass 1 parameters*)
 		Mass2 : MpAXBDrvCtrlMdlMass2Type; (*Mass 2 parameters*)
 	END_STRUCT;
+	MpAXBDrvCtrlVFreqCtrlTypEnum :
+		( (*Type of characteristic curve*)
+		mcAXB_VF_TYP_LIN := 129, (*Linear - Linear characteristic curve*)
+		mcAXB_VF_TYP_CONST_LD_TORQ := 131, (*Constant load torque - Characteristic curve for quadratic load curves*)
+		mcAXB_VF_TYP_QUAD := 130 (*Quadratic - Characteristic curve for quadratic load curves*)
+		);
 	MpAXBDrvCtrlVFreqCtrlAutCfgEnum :
 		( (*Automatic configuration of parameters*)
 		mcAXB_VF_AUTO_CFG_NOT_USE := 0, (*Not used*)
 		mcAXB_VF_AUTO_CFG_MOT_PAR_BASED := 1 (*Motor parameter based*)
 		);
 	MpAXBDrvCtrlVFreqCtrlType : STRUCT (*V/f control parameters*)
+		Type : MpAXBDrvCtrlVFreqCtrlTypEnum; (*Type of characteristic curve*)
 		AutomaticConfiguration : MpAXBDrvCtrlVFreqCtrlAutCfgEnum; (*Automatic configuration of parameters*)
 		SlipCompensation : REAL; (*Slip compensation: Multiplication factor of compensated frequency*)
 		TotalDelayTime : REAL; (*Total delay time [s]*)
@@ -415,7 +422,7 @@ TYPE
 		mcAXB_ENC_NO_ENC := 2 (*No encoder - No position input, encoder not used*)
 		);
 	MpAXBEncSrcEnum :
-		( (*Source of the digital input which is used for this functionality*)
+		( (*Source of encoder information*)
 		mcAXB_ENC_SRC_ACP_ENC_X6A := 0, (*ACOPOS encoder X6A - OnBoard encoder 1*)
 		mcAXB_ENC_SRC_ACP_ENC_X6B := 1, (*ACOPOS encoder X6B - OnBoard encoder 2*)
 		mcAXB_ENC_SRC_ACP_ENC := 2, (*ACOPOS encoder -*)
@@ -443,10 +450,10 @@ TYPE
 		( (*Encoder parameter set selection. Only for AcpAx*)
 		mcAXB_ENC_PAR_SET_AUT := 0, (*Automatic - Automatic selection of encoder parameter set (see AS-Help)*)
 		mcAXB_ENC_PAR_SET_ENCOD1 := 1, (*ENCOD1 - Parameter set ENCOD1*)
-		mcAXB_ENC_PAR_SET_ENCOD2 := 1 (*ENCOD2 - Parameter set ENCOD2*)
+		mcAXB_ENC_PAR_SET_ENCOD2 := 2 (*ENCOD2 - Parameter set ENCOD2*)
 		);
 	MpAXBEncLinkStpCntRefPSrcEnum :
-		( (*Encoder ok information source type*)
+		( (*Input source for the reference pulse*)
 		mcAXB_ENC_SC_REF_P_DIG_IN_1 := 0, (*Digital input 1*)
 		mcAXB_ENC_SC_REF_P_DIG_IN_2 := 1, (*Digital input 2*)
 		mcAXB_ENC_SC_REF_P_DIG_IN_3 := 2, (*Digital input 3*)
@@ -456,13 +463,13 @@ TYPE
 		mcAXB_ENC_SC_REF_P_R_IN_OF_X6B := 6 (*R input of X6B*)
 		);
 	MpAXBEncLinkStpCntRefPEdgEnum :
-		( (*Direction of the axis in which the position value is increasing*)
+		( (*Detection of the reference pulse*)
 		mcAXB_ENC_SC_REF_P_POS_EDG := 0, (*Positive edge*)
 		mcAXB_ENC_SC_REF_P_NEG_EDG := 1 (*Negative edge*)
 		);
-	MpAXBEncLinkStpCntType : STRUCT (*Encoder scaling based on a gear ratio and / or a movement transformation factor*)
-		ReferencePulseSource : MpAXBEncLinkStpCntRefPSrcEnum; (*Encoder ok information source type*)
-		ReferencePulseEdge : MpAXBEncLinkStpCntRefPEdgEnum; (*Direction of the axis in which the position value is increasing*)
+	MpAXBEncLinkStpCntType : STRUCT (*Internal step counter for StpAx only*)
+		ReferencePulseSource : MpAXBEncLinkStpCntRefPSrcEnum; (*Input source for the reference pulse*)
+		ReferencePulseEdge : MpAXBEncLinkStpCntRefPEdgEnum; (*Detection of the reference pulse*)
 	END_STRUCT;
 	MpAXBEncExtPosTypEnum :
 		( (*Type of encoder position information*)
@@ -474,7 +481,7 @@ TYPE
 		UpperLimit : UDINT; (*Upper limit of encoder range*)
 	END_STRUCT;
 	MpAXBEncLinkExtPosEnum :
-		( (*Source of the digital input which is used for this functionality*)
+		( (*Position source type*)
 		mcAXB_ENC_EXT_SRC_IO_CH_DINT := 0, (*I/O channel DINT*)
 		mcAXB_ENC_EXT_SRC_IO_CH_UDINT := 1, (*I/O channel UDINT*)
 		mcAXB_ENC_EXT_SRC_IO_CH_INT := 2, (*I/O channel INT*)
@@ -493,7 +500,7 @@ TYPE
 		);
 	MpAXBEncLinkEncExtModOkType : STRUCT (*Use module ok for validity check*)
 		Type : MpAXBEncLinkEncExtModOkTypEnum; (*Module ok information source type*)
-		ModuleOkSourceMapping : STRING[250]; (*Process variable or IO channel source for module Ok*)
+		SourceMapping : STRING[250]; (*Process variable or IO channel source for module Ok*)
 	END_STRUCT;
 	MpAXBEncLinkEncExtStDatTypEnum :
 		( (*Stale data information source type*)
@@ -504,7 +511,7 @@ TYPE
 		);
 	MpAXBEncLinkEncExtStDatType : STRUCT (*Use stale data for validity check*)
 		Type : MpAXBEncLinkEncExtStDatTypEnum; (*Stale data information source type*)
-		StaleDataSourceMapping : STRING[250]; (*Process variable or IO channel source for stale data*)
+		SourceMapping : STRING[250]; (*Process variable or IO channel source for stale data*)
 	END_STRUCT;
 	MpAXBEncLinkEncExtNetTimeTypEnum :
 		( (*Net time information source type*)
@@ -514,7 +521,7 @@ TYPE
 		);
 	MpAXBEncLinkEncExtNetTimeType : STRUCT (*Use net time for validity check*)
 		Type : MpAXBEncLinkEncExtNetTimeTypEnum; (*Net time information source type*)
-		NetTimeSourceMapping : STRING[250]; (*Process variable or IO channel source for net time*)
+		SourceMapping : STRING[250]; (*Process variable or IO channel source for net time*)
 	END_STRUCT;
 	MpAXBEncLinkEncExtEncOkTypEnum :
 		( (*Encoder ok information source type*)
@@ -524,7 +531,7 @@ TYPE
 		);
 	MpAXBEncLinkEncExtEncOkType : STRUCT (*Use encoder ok for validity check*)
 		Type : MpAXBEncLinkEncExtEncOkTypEnum; (*Encoder ok information source type*)
-		EncoderOkSourceMapping : STRING[250]; (*Process variable or IO channel source for encoder ok*)
+		SourceMapping : STRING[250]; (*Process variable or IO channel source for encoder ok*)
 	END_STRUCT;
 	MpAXBEncLinkEncExtValCkType : STRUCT (*Check if given position is valid*)
 		ModuleOk : MpAXBEncLinkEncExtModOkType; (*Use module ok for validity check*)
@@ -533,7 +540,7 @@ TYPE
 		EncoderOk : MpAXBEncLinkEncExtEncOkType; (*Use encoder ok for validity check*)
 	END_STRUCT;
 	MpAXBEncLinkEncExtRefPTypEnum :
-		( (*Encoder ok information source type*)
+		( (*Reference pulse type*)
 		mcAXB_ENC_EXT_REF_P_NOT_USE := 0, (*Not Used*)
 		mcAXB_ENC_EXT_REF_P_IO_CH_INT := 1, (*I/O Channel INT*)
 		mcAXB_ENC_EXT_REF_P_VAR_INT := 2, (*Variable INT*)
@@ -541,14 +548,15 @@ TYPE
 		mcAXB_ENC_EXT_REF_P_VAR_DINT := 4 (*Variable DINT*)
 		);
 	MpAXBEncLinkEncExtRefPType : STRUCT (*Usage and settings for the evaluation of the reference pulse of the encoder*)
-		Type : MpAXBEncLinkEncExtRefPTypEnum; (*Encoder ok information source type*)
-		ReferencePulseSourceMapping : STRING[250]; (*Filter for the encoder position*)
+		Type : MpAXBEncLinkEncExtRefPTypEnum; (*Reference pulse type*)
+		PositionSourceMapping : STRING[250]; (*Input source for the reference pulse position*)
+		CountSourceMapping : STRING[250]; (*Input source for the reference pulse count*)
 	END_STRUCT;
 	MpAXBEncLinkEncExtPosFltrTypEnum :
 		( (*Position filter type*)
 		mcAXB_ENC_EXT_POS_FL_EXTPOL_DIST := 0 (*Extrapolation disturbance - Extrapolation and disturbance filter type*)
 		);
-	MpAXBEncLinkEncExtPosFltrType : STRUCT (*Filter for the encoder position*)
+	MpAXBEncLinkEncExtPosFltrType : STRUCT (*Filter for the encoder position. Used for StpAc, PureVax external encoder source or by AcpAx external encoder*)
 		Type : MpAXBEncLinkEncExtPosFltrTypEnum; (*Position filter type*)
 		TimeConstant : REAL; (*Time constant for actual position filter*)
 		ExtrapolationTime : REAL; (*Extrapolation time for actual position filter*)
@@ -557,19 +565,19 @@ TYPE
 		LinesPerEncoderRevolution : UDINT; (*Absolute number of lines of an encoder revolution [lines/revolutions]*)
 		PositionType : MpAXBEncExtPosTypEnum; (*Type of encoder position information*)
 		AbsolutePositionRange : MpAXBEncLinkExtAbsPosRngType; (*Absolute position range of encoder range of the position value*)
-		PositionSource : MpAXBEncLinkExtPosEnum; (*Source of the digital input which is used for this functionality*)
+		PositionSource : MpAXBEncLinkExtPosEnum; (*Position source type*)
 		PositionSourceMapping : STRING[250]; (*Process variable or IO channel source for encoder position*)
 		ValidityCheck : MpAXBEncLinkEncExtValCkType; (*Check if given position is valid*)
 		ReferencePulse : MpAXBEncLinkEncExtRefPType; (*Usage and settings for the evaluation of the reference pulse of the encoder*)
-		PositionFilter : MpAXBEncLinkEncExtPosFltrType; (*Filter for the encoder position*)
+		PositionFilter : MpAXBEncLinkEncExtPosFltrType; (*Filter for the encoder position. Used for StpAc, PureVax external encoder source or by AcpAx external encoder*)
 	END_STRUCT;
-	MpAXBDrvEncLinkPosEncType : STRUCT (*Motor and position encoder settings for mcAXB_ENC_ONE_ENC. Position encoder settings for mcAXB_ENC_TWO_ENC.*)
-		Source : MpAXBEncSrcEnum; (*Source of the digital input which is used for this functionality*)
+	MpAXBDrvEncLinkMotAndPosEncType : STRUCT (*AcpAx: Motor and position encoder settings for mcAXB_ENC_ONE_ENC or Position encoder settings for mcAXB_ENC_TWO_ENC; StpAx: Position encoder settings; PureVax: Position encoder settings*)
+		Source : MpAXBEncSrcEnum; (*Source of encoder information*)
 		EncoderParameterSet : MpAXBEncLinkEncParSetEnum; (*Encoder parameter set selection. Only for AcpAx*)
-		StepCounter : MpAXBEncLinkStpCntType; (*Encoder scaling based on a gear ratio and / or a movement transformation factor*)
+		StepCounter : MpAXBEncLinkStpCntType; (*Internal step counter for StpAx only*)
 		External : MpAXBDrvEncLinkPosEncExtType; (*Settings for external encoder. Only used for PureVax and StpAx*)
 	END_STRUCT;
-	MpAXBDrvEncLinkMotEncScGBType : STRUCT (*Specifies a gearbox by defining the ratio between a gearbox input and output*)
+	MpAXBDrvEncLinkPosEncScGBType : STRUCT (*Specifies a gearbox by defining the ratio between a gearbox input and output*)
 		Input : DINT; (*Number of rotations on the encoder side [revolutions]*)
 		Output : DINT; (*Number of rotations on the load side which correspond to the number of rotations on the encoder side [revolutions]*)
 	END_STRUCT;
@@ -581,21 +589,21 @@ TYPE
 		mcAXB_ENC_COUNT_DIR_AUT := 0, (*Automatic*)
 		mcAXB_ENC_COUNT_DIR_INV := 1 (*Inverse*)
 		);
-	MpAXBDrvEncLinkMotEncScType : STRUCT (*Encoder scaling based on a gear ratio and / or a movement transformation factor*)
-		Gearbox : MpAXBDrvEncLinkMotEncScGBType; (*Specifies a gearbox by defining the ratio between a gearbox input and output*)
+	MpAXBDrvEncLinkPosEncScType : STRUCT (*Encoder scaling based on a gear ratio and / or a movement transformation factor*)
+		Gearbox : MpAXBDrvEncLinkPosEncScGBType; (*Specifies a gearbox by defining the ratio between a gearbox input and output*)
 		RotaryToLinearTransformation : MpAXBEncLinkRotToLinTrfType; (*Specifies a transformation factor between the output of the gear and the actual load movement*)
 		CountDirection : MpAXBEncLinkCntDirEnum; (*Direction of the axis in which the position value is increasing*)
 	END_STRUCT;
-	MpAXBDrvEncLinkMotEncType : STRUCT (*Motor encoder settings for mcAXB_ENC_TWO_ENC*)
-		Source : MpAXBEncSrcEnum; (*Source of the digital input which is used for this functionality*)
-		Scaling : MpAXBDrvEncLinkMotEncScType; (*Encoder scaling based on a gear ratio and / or a movement transformation factor*)
+	MpAXBDrvEncLinkPosEncType : STRUCT (*Position encoder settings for AcpAx mcAXB_ENC_TWO_ENC*)
+		Source : MpAXBEncSrcEnum; (*Source of encoder information*)
+		Scaling : MpAXBDrvEncLinkPosEncScType; (*Encoder scaling based on a gear ratio and / or a movement transformation factor*)
 		EncoderParameterSet : MpAXBEncLinkEncParSetEnum; (*Encoder parameter set selection. Only for AcpAx*)
 		PositionDifferenceLimit : REAL; (*Position difference limit between motor and position encoder for stopping a movement [measurement units]*)
 	END_STRUCT;
 	MpAXBDrvEncLinkType : STRUCT (*Encoder Link*)
 		Type : MpAXBDrvEncLinkTypEnum; (*Encoder type*)
-		PositionEncoder : MpAXBDrvEncLinkPosEncType; (*Motor and position encoder settings for mcAXB_ENC_ONE_ENC. Position encoder settings for mcAXB_ENC_TWO_ENC.*)
-		MotorEncoder : MpAXBDrvEncLinkMotEncType; (*Motor encoder settings for mcAXB_ENC_TWO_ENC*)
+		MotorAndPositionEncoder : MpAXBDrvEncLinkMotAndPosEncType; (*AcpAx: Motor and position encoder settings for mcAXB_ENC_ONE_ENC or Position encoder settings for mcAXB_ENC_TWO_ENC; StpAx: Position encoder settings; PureVax: Position encoder settings*)
+		PositionEncoder : MpAXBDrvEncLinkPosEncType; (*Position encoder settings for AcpAx mcAXB_ENC_TWO_ENC*)
 	END_STRUCT;
 	MpAXBDrvType : STRUCT (*Drive configuration*)
 		MechanicalElements : MpAXBDrvMechElmType; (*Parameter of hardware elements situated between motor encoder and load which influence the scaling*)
@@ -607,8 +615,23 @@ TYPE
 		DigitalInputs : MpAXBDrvDigInType; (*Various digital input functionalities e.g. like homing switch or triggers*)
 		EncoderLink : MpAXBDrvEncLinkType; (*Encoder Link*)
 	END_STRUCT;
+	MpAXBFeatRefType : STRUCT (*Feature references*)
+		ConfigType : McCfgTypeEnum; (*Feature type*)
+		Name : STRING[250]; (*Reference name*)
+	END_STRUCT;
+	MpAXBFeatAxFeatType : STRUCT (*Axis feature references*)
+		Reference : ARRAY[0..9] OF MpAXBFeatRefType; (*Feature references*)
+	END_STRUCT;
+	MpAXBFeatChFeatType : STRUCT (*Channel feature references, only for AcpAx. For all axes sharing the channel features (Real axis and virtual axis) settings should be the same otherwise it will override the other axis settings*)
+		Reference : ARRAY[0..9] OF MpAXBFeatRefType; (*Feature references*)
+	END_STRUCT;
+	MpAXBFeatType : STRUCT (*Used feature configuration*)
+		AxisFeatures : MpAXBFeatAxFeatType; (*Axis feature references*)
+		ChannelFeatures : MpAXBFeatChFeatType; (*Channel feature references, only for AcpAx. For all axes sharing the channel features (Real axis and virtual axis) settings should be the same otherwise it will override the other axis settings*)
+	END_STRUCT;
 	MpAxisBasicConfigType : STRUCT (*General purpose datatype*)
 		Axis : MpAXBAxType; (*Axis configuration*)
 		Drive : MpAXBDrvType; (*Drive configuration*)
+		Features : MpAXBFeatType; (*Used feature configuration*)
 	END_STRUCT;
 END_TYPE

@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* McAxis 6.2.0 */
+/* McAxis 6.4.1 */
 
 #ifndef _MCAXIS_
 #define _MCAXIS_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _McAxis_VERSION
-#define _McAxis_VERSION 6.2.0
+#define _McAxis_VERSION 6.4.1
 #endif
 
 #include <bur/plctypes.h>
@@ -388,6 +388,12 @@ typedef enum McLimitLoadModeEnum
 {	mcLL_WITH_FEED_FORWARD,
 	mcLL_WITHOUT_FEED_FORWARD
 } McLimitLoadModeEnum;
+
+typedef enum McLimitLoadStopModeEnum
+{	mcLLSM_DEFAULT = 0,
+	mcLLSM_USER_DEFINED = 1,
+	mcLLSM_MAX_TORQUE = 2
+} McLimitLoadStopModeEnum;
 
 typedef enum McAcpAxAutoTuneOrientationEnum
 {	mcACPAX_ORIENTATION_HORIZONTAL,
@@ -1105,6 +1111,8 @@ typedef struct McAdvBrLimitLoadCamParType
 	signed long LoadFactorPos;
 	signed long PositionFactorNeg;
 	signed long LoadFactorNeg;
+	enum McLimitLoadStopModeEnum StopMode;
+	float StopTorque;
 } McAdvBrLimitLoadCamParType;
 
 typedef struct McMechDevCompDataType
@@ -3489,6 +3497,22 @@ typedef struct MC_BR_CheckAutCompensation
 	plcbit Error;
 } MC_BR_CheckAutCompensation_typ;
 
+typedef struct MC_BR_PowerOnTest
+{
+	/* VAR_INPUT (analog) */
+	struct McAxisType* Axis;
+	/* VAR_OUTPUT (analog) */
+	signed long ErrorID;
+	/* VAR (analog) */
+	struct McInternalType Internal;
+	/* VAR_INPUT (digital) */
+	plcbit Execute;
+	/* VAR_OUTPUT (digital) */
+	plcbit Done;
+	plcbit Busy;
+	plcbit Error;
+} MC_BR_PowerOnTest_typ;
+
 
 
 /* Prototyping of functions and function blocks */
@@ -3567,6 +3591,7 @@ _BUR_PUBLIC void MC_BR_GetHardwareInfo(struct MC_BR_GetHardwareInfo* inst);
 _BUR_PUBLIC void MC_WriteDigitalOutput(struct MC_WriteDigitalOutput* inst);
 _BUR_PUBLIC void MC_BR_CamGetObjectData(struct MC_BR_CamGetObjectData* inst);
 _BUR_PUBLIC void MC_BR_CheckAutCompensation(struct MC_BR_CheckAutCompensation* inst);
+_BUR_PUBLIC void MC_BR_PowerOnTest(struct MC_BR_PowerOnTest* inst);
 
 
 #ifdef __cplusplus
