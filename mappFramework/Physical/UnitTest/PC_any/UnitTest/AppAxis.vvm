@@ -12,4 +12,5 @@ END_VAR
 VAR_CONFIG
 	::AppAxisUni:AxisControl.Command AT %Q.::AppAxis_1:AxisControl.Command; (*Insert your comment here...*)
 	::AppAxisUni:AxisControl.Parameters AT %Q.::AppAxis_1:AxisControl.Parameters; (*Insert your comment here...*)
+	::AppAxisUni:MpAlarmXAcknowledgeAll AT %Q.::AppAxis_1:AcknowledgeAll; (*Insert your comment here...*)
 END_VAR

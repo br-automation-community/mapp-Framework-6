@@ -65,7 +65,7 @@ FUNCTION_BLOCK MpRecipeXml (*Load/save parameters from/to an XML file*) (* $GROU
 	END_VAR
 	VAR
 		InternalState : {REDUND_UNREPLICABLE} USINT; (*Internal stucture*) (* *) (*#OMIT#;*)
-		InternalData : ARRAY[0..23] OF UDINT;
+		InternalData : ARRAY[0..24] OF UDINT;
 	END_VAR
 END_FUNCTION_BLOCK
 
@@ -116,6 +116,6 @@ FUNCTION_BLOCK MpRecipeCsv (*Load/save parameters from/to an CSV file*) (* $GROU
 	END_VAR
 	VAR
 		InternalState : {REDUND_UNREPLICABLE} USINT; (*Internal stucture*) (* *) (*#OMIT#;*)
-		InternalData : ARRAY[0..23] OF UDINT;
+		InternalData : ARRAY[0..24] OF UDINT;
 	END_VAR
 END_FUNCTION_BLOCK

@@ -4,16 +4,16 @@
   <Objects>
     <Object Type="File">UaCsConfig.uacfg</Object>
     <Object Type="File">UaDvConfig.uadcfg</Object>
-    <Object Type="File" TransferedForTargetSourceCompare="true">OpcUa.uad</Object>
-    <Object Type="File">AlarmTest.uad</Object>
     <Object Type="File">AlarmMgr.uad</Object>
     <Object Type="File">AuditMgr.uad</Object>
-    <Object Type="File">AxisMgr.uad</Object>
     <Object Type="File">BackupMgr.uad</Object>
     <Object Type="File">FileMgr.uad</Object>
     <Object Type="File">PackMLMgr.uad</Object>
     <Object Type="File">RecipeMgr.uad</Object>
     <Object Type="File">ReportMgr.uad</Object>
     <Object Type="File">UserXMgr.uad</Object>
+    <Object Type="File">AxisMgr.uad</Object>
+    <Object Type="File">OpcUa.uad</Object>
+    <Object Type="File">AlarmTest.uad</Object>
   </Objects>
 </Package>

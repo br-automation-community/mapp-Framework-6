@@ -2,28 +2,48 @@
 <?AutomationStudio FileVersion="4.9"?>
 <Configuration>
   <Element ID="UserMgmtX" Type="mpuserx">
-    <Group ID="ImportExport" />
-    <Group ID="UserAccount">
-      <Property Value="5" ID="InvalidPasswordAttempts" />
-      <Property ID="UserExpirationTime" Value="31536000" />
-      <Property ID="UserNameLength" Value="3" />
+    <Group ID="mapp.Gen">
+      <Property ID="Audit" Value="TRUE" />
     </Group>
-    <Group ID="PasswordPolicy">
-      <Property Value="7776000" ID="PasswordMaxAge" />
-      <Property ID="PasswordExpirationNotification" Value="864000" />
-      <Property ID="PasswordHistory" Value="5" />
-      <Property Value="TRUE" ID="PasswordChangeRequired" />
-      <Property ID="PasswordCase" Value="TRUE" />
-      <Property ID="PasswordAlpha" Value="TRUE" />
-      <Property ID="PasswordLength" Value="6" />
+    <Group ID="UserMgmtSystem">
+      <Property ID="UserMgmtSystemType" Value="0" />
     </Group>
     <Group ID="ServerSettings">
-      <Selector ID="Server">
+      <Selector ID="Server" Value="ADServer">
+        <Property ID="Timeout" Value="10" />
+        <Group ID="Mapping">
+          <Property ID="TableName" />
+        </Group>
+        <Property ID="DisplayName" Value="Username" />
         <Group ID="AdditionalUserData">
           <Property ID="[0]" Value="mail" />
           <Property ID="[1]" Value="telephoneNumber" />
         </Group>
       </Selector>
+    </Group>
+    <Group ID="PasswordPolicy">
+      <Property ID="PasswordMaxAge" Value="7776000" />
+      <Property ID="PasswordExpirationNotification" Value="864000" />
+      <Property ID="PasswordHistory" Value="5" />
+      <Property ID="PasswordChangeReq" Value="FALSE" />
+      <Property ID="PasswordCase" Value="TRUE" />
+      <Property ID="PasswordAlpha" Value="TRUE" />
+      <Property ID="PasswordSpecial" Value="TRUE" />
+      <Property ID="PasswordLength" Value="6" />
+    </Group>
+    <Group ID="UserAccount">
+      <Property ID="InvalidPasswordAttempts" Value="5" />
+      <Property ID="UserExpirationTime" Value="31536000" />
+      <Property ID="AutoLogoutTime" Value="3600" />
+      <Property ID="UserNameLength" Value="3" />
+      <Property ID="NoDelete" Value="FALSE" />
+      <Property ID="AdminUnlockTime" Value="3600" />
+      <Property ID="EditSameLevel" Value="1" />
+    </Group>
+    <Group ID="ImportExport">
+      <Property ID="ImportUser" Value="2" />
+      <Property ID="ImportRole" Value="2" />
+      <Property ID="ImportUnchecked" Value="FALSE" />
     </Group>
     <Group ID="Users">
       <Group ID="DefUser#1">
@@ -60,14 +80,17 @@
       <Group ID="DefRole#2">
         <Property ID="id" Value="Everyone" />
         <Property ID="level" Value="3" />
+        <Property ID="admin" Value="FALSE" />
       </Group>
       <Group ID="DefRole#3">
         <Property ID="id" Value="Operators" />
         <Property ID="level" Value="30" />
+        <Property ID="admin" Value="FALSE" />
       </Group>
       <Group ID="DefRole#4">
         <Property ID="id" Value="Service" />
         <Property ID="level" Value="50" />
+        <Property ID="admin" Value="FALSE" />
       </Group>
     </Group>
   </Element>

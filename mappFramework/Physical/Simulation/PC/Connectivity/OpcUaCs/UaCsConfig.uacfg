@@ -12,6 +12,7 @@
     <Group ID="Security">
       <Group ID="MessageSecurity">
         <Group ID="SecurityPolicies">
+          <Property ID="None" Value="0" />
           <Property ID="Basic128Rsa15" Value="0" />
           <Property ID="Basic256" Value="0" />
           <Property ID="Aes128Sha256RsaOaep" Value="1" />
@@ -30,12 +31,15 @@
           <Property ID="Basic256Sha256" Value="1" />
         </Group>
         <Group ID="UserIdentityTokens">
+          <Property ID="AnonymousIdentityToken" Value="0" />
           <Property ID="UserNameIdentityToken" Value="1" />
         </Group>
       </Group>
-      <Property ID="SecurityAdminRole" Value="Administrators" />
-      <Property ID="EngineerRole" Value="Everyone" />
-      <Property ID="ObserverRole" Value="Everyone" />
+      <Group ID="Authorization">
+        <Group ID="AnonymousAccess">
+          <Property ID="DefaultRole0" Value="BR_Anonymous" />
+        </Group>
+      </Group>
     </Group>
     <Group ID="Limits">
       <Group ID="General">

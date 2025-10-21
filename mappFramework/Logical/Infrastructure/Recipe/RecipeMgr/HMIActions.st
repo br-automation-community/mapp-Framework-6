@@ -15,7 +15,7 @@ ACTION FormatDeviceDataProvider:
 			brsmemset(ADR(MpFileManagerUIConnect.DeviceList.DeviceNames[i + 1]), 0, SIZEOF(MpFileManagerUIConnect.DeviceList.DeviceNames[i + 1]));
 		END_IF
 	END_FOR
-	
+
 END_ACTION
 
 ACTION LoadStatus:
@@ -31,18 +31,18 @@ ACTION LoadStatus:
 	HmiRecipe.Status.FilesAvailable := (MpRecipeUIConnect.Recipe.List.Names[0] <> '');
 	HmiRecipe.Status.LoadAllowed := HmiRecipe.Status.FilesAvailable AND NOT HmiRecipe.Status.InvalidRecipe;
 	HmiRecipe.Status.DeviceValid := (MpFileManagerUIRecipe.StatusID <> mpFILE_ERR_INVALID_FILE_DEV);
-	
+
 	IF HmiRecipe.Status.SelectedIndex > MpRecipeUIConnect.Recipe.List.MaxSelection THEN
 		HmiRecipe.Status.SelectedIndex := MpRecipeUIConnect.Recipe.List.MaxSelection;
-	END_IF	
+	END_IF
 
 	MpRecipeUIConnect.Recipe.List.SelectedIndex := HmiRecipe.Status.SelectedIndex;
-	
+
 END_ACTION
 
 ACTION LoadPreview:
 
-	
+
 	CASE HmiRecipe.Status.PreviewCase OF
 		PREVIEW_WAIT:
 			// Load preview when a recipe is selected
@@ -51,7 +51,7 @@ ACTION LoadPreview:
 				AND (MpRecipeUIConnect.Status = mpRECIPE_UI_STATUS_IDLE) THEN
 				HmiRecipe.Status.PreviewCase := PREVIEW_LOAD;
 			END_IF
-			
+
 		PREVIEW_LOAD:
 			// Check selected recipe name is not empty
 			IF (brsstrlen(ADR(MpRecipeUIConnect.Recipe.List.Names[HmiRecipe.Status.SelectedIndex])) > 0) AND (HmiRecipe.Status.HMIcommand = REC_HMI_WAIT) THEN
@@ -65,10 +65,10 @@ ACTION LoadPreview:
 				HmiRecipe.Status.InvalidRecipe := FALSE;
 				HmiRecipe.Status.PreviewCase := PREVIEW_CHANGE;
 			END_IF
-			
+
 		PREVIEW_CHANGE:
 			//Load a second time to ensure correct preview on page up/page down
-			MpRecipeSys.Load := TRUE;	
+			MpRecipeSys.Load := TRUE;
 			HmiRecipe.Status.PreviewCase := PREVIEW_WAIT;
 
 	END_CASE;
@@ -131,9 +131,8 @@ ACTION RecipeHMIcommands:
 					HmiRecipe.Commands.LoadRecipe := TRUE;
 				END_IF
 			END_IF
-		
-		  #warning "USER WRN: TODO: fix string type"	
-			//Header.Name := MpRecipeUIConnect.New.FileName;
+
+			Header.Name := MpRecipeUIConnect.New.FileName;
 			DTGetTimeRecipe.enable := TRUE;
 			REPEAT
 				DTGetTimeRecipe();
@@ -198,6 +197,9 @@ ACTION RecipeHMIcommands:
 			END_IF
 
 		REC_HMI_RESET_PREVIEW:
+			IF (MpRecipeSys.Error) THEN
+				MpRecipeSys.ErrorReset := TRUE;
+			END_IF
 			IF (brsstrcmp(ADR(HmiRecipe.Parameters.Category), ADR(PARAMETERS_RECIPE)) = 0) THEN
 				brsmemset(ADR(ParametersPreview), 0, SIZEOF(ParametersPreview));
 			ELSIF (brsstrcmp(ADR(HmiRecipe.Parameters.Category), ADR(MACHINE_CONFIGURATION_RECIPE)) = 0) THEN
@@ -249,9 +251,9 @@ ACTION RecipeHMIcommands:
 	// Set whether the loading .gif should be shown on the HMI
 	HmiRecipe.Status.LoadingRecipeList := (MpRecipeUIConnect.Status = mpRECIPE_UI_STATUS_REFRESH);
 	HmiRecipe.Status.DefaultRecipeSelected := (HmiRecipe.Status.SelectedRecipe = CONCAT(DEFAULT_PARAMETERS,PARAMETERS_FILE_EXTENSION)) OR (HmiRecipe.Status.SelectedRecipe = CONCAT(DEFAULT_MACHINE_CONFIGURATION, MACHINE_CONFIG_FILE_EXTENSION));
-	
+
 	// Update status information
 	HmiRecipe.Status.LastStatus := MpRecipeUIConnect.Status;
 	HmiRecipe.Status.SelectedRecipe := MpRecipeUIConnect.Recipe.List.Names[HmiRecipe.Status.SelectedIndex];
-	
+
 END_ACTION

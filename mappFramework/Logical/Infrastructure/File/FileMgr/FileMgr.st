@@ -7,7 +7,7 @@
 
 PROGRAM _INIT
 
-	// Inititialize mapp function block
+	// Initialize mapp function block
 	MpFileManagerUIConnect.DeviceList.DeviceNames[0] := 'USER';
 	MpFileManagerUIConnect.DeviceList.DeviceNames[1] := 'mappRecipeFiles';
 	MpFileManagerUIConnect.DeviceList.DeviceNames[2] := 'mappAuditFiles';
@@ -26,7 +26,7 @@ PROGRAM _INIT
 	// Restored the retained values to the FIFO settings
 	HmiFile.Parameters.Fifo := FifoSettingsRetain;
 	// If the FIFO is disabled and parameters are 0, set default values
-	IF NOT HmiFile.Parameters.Fifo.Enable THEN 
+	IF NOT HmiFile.Parameters.Fifo.Enable THEN
 		IF HmiFile.Parameters.Fifo.MaxFolderSize = 0 THEN
 			HmiFile.Parameters.Fifo.MaxFolderSize := 1000;
 		END_IF
@@ -40,13 +40,13 @@ PROGRAM _INIT
 			HmiFile.Parameters.Fifo.DeviceName := 'USER';
 		END_IF
 	END_IF
-	
+
 	// enable the FIFO configuration, used to prevent the user from making changes while the FIFO is actively deleting files
 	HmiFile.Status.FifoConfigEnable := TRUE;
-	
+
 	// Initialize which folders should exist
 	PathCheck.DeviceList := MpFileManagerUIConnect.DeviceList;
-			
+
 	PathCheck.PrgName[0] := 'RecipeMgr';
 	PathCheck.PrgName[1] := 'AuditMgr';
 	PathCheck.PrgName[2] := 'ReportMgr';

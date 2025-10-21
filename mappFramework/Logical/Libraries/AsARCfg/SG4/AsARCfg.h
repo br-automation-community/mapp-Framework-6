@@ -939,6 +939,25 @@ typedef struct CfgSetWebServerStatus
 	plcbit enable;
 } CfgSetWebServerStatus_typ;
 
+typedef struct CfgSetDns
+{
+	/* VAR_INPUT (analog) */
+	unsigned short mode;
+	unsigned long pSuffix;
+	unsigned long pDnsAddr1;
+	unsigned long pDnsAddr2;
+	unsigned long pDnsAddr3;
+	unsigned long option;
+	/* VAR_OUTPUT (analog) */
+	unsigned short status;
+	/* VAR (analog) */
+	unsigned short i_state;
+	unsigned short i_result;
+	unsigned long i_tmp;
+	/* VAR_INPUT (digital) */
+	plcbit enable;
+} CfgSetDns_typ;
+
 typedef struct CfgGetDnsMode
 {
 	/* VAR_OUTPUT (analog) */
@@ -1188,6 +1207,7 @@ _BUR_PUBLIC void CfgGetWebAspGoform(struct CfgGetWebAspGoform* inst);
 _BUR_PUBLIC void CfgSetWebAspGoform(struct CfgSetWebAspGoform* inst);
 _BUR_PUBLIC void CfgGetWebServerStatus(struct CfgGetWebServerStatus* inst);
 _BUR_PUBLIC void CfgSetWebServerStatus(struct CfgSetWebServerStatus* inst);
+_BUR_PUBLIC void CfgSetDns(struct CfgSetDns* inst);
 _BUR_PUBLIC void CfgGetDnsMode(struct CfgGetDnsMode* inst);
 _BUR_PUBLIC void CfgSetDnsMode(struct CfgSetDnsMode* inst);
 _BUR_PUBLIC void CfgGetDnsSuffix(struct CfgGetDnsSuffix* inst);

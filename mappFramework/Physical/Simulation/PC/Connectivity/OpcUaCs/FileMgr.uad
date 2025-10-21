@@ -1,55 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<?AutomationStudio FileVersion="6.0.1.886"?>
-<OpcUaSource FileVersion="10" ArVersion="6.0.7000">
+<?AutomationStudio FileVersion="6.0"?>
+<OpcUaSource FileVersion="10">
   <Aliases>
-    <ACLAliases>
-      <ACL Id="1">
-        <ACE RoleName="Service" Access="0x005F" />
-        <ACE RoleName="Administrators" Access="0x017F" />
-        <ACE RoleName="Operators" Access="0x005F" />
-        <ACE RoleName="Everyone" Access="0x005F" />
-      </ACL>
-      <ACL Id="2">
-        <ACE RoleName="Service" Access="0x01FF" />
-        <ACE RoleName="Administrators" Access="0x01FF" />
-        <ACE RoleName="Operators" Access="0x01FF" />
-        <ACE RoleName="Everyone" Access="0x017F" />
-      </ACL>
-    </ACLAliases>
+    <ACLAliases />
     <EURangeViolationAliases />
     <EURangesAliases />
     <EngineeringUnitAliases />
   </Aliases>
-  <DefaultView AclId="2">
-    <Module Name="&lt;Default&gt;">
-      <Task Name="FileMgr">
-        <Variable Name="HmiFile" RecursiveEnable="1">
-          <Variable Name="Status">
-            <Variable Name="TableConfig" RecursiveEnable="1" />
-            <Variable Name="FifoSelect" />
+  <Module Name="&lt;Default&gt;">
+    <Task Name="FileMgr">
+      <Variable Name="HmiFile" RecursiveEnable="2">
+        <Variable Name="Status">
+          <Variable Name="TableConfig" RecursiveEnable="2" />
+          <Variable Name="FifoSelect" />
+        </Variable>
+      </Variable>
+      <Variable Name="MpFileManagerUIConnect" RecursiveEnable="2">
+        <Variable Name="DeviceList">
+          <Variable Name="DeviceNames" RecursiveEnable="2" />
+        </Variable>
+        <Variable Name="File">
+          <Variable Name="List">
+            <Variable Name="Items" />
           </Variable>
         </Variable>
-        <Variable Name="MpFileManagerUIConnect" RecursiveEnable="1">
-          <Variable Name="DeviceList">
-            <Variable Name="DeviceNames" RecursiveEnable="1" />
-          </Variable>
-          <Variable Name="File">
-            <Variable Name="List">
-              <Variable Name="Items" RecursiveEnable="1" />
-            </Variable>
+      </Variable>
+      <Variable Name="MpFileManagerUISys">
+        <Variable Name="Active" />
+        <Variable Name="Info">
+          <Variable Name="Diag" RecursiveEnable="2">
+            <Variable Name="StatusID" />
           </Variable>
         </Variable>
-        <Variable Name="MpFileManagerUISys">
-          <Variable Name="Active" />
-          <Variable Name="Info">
-            <Variable Name="Diag">
-              <Variable Name="StatusID">
-                <Variable Name="ID" />
-              </Variable>
-            </Variable>
-          </Variable>
-        </Variable>
-      </Task>
-    </Module>
-  </DefaultView>
+      </Variable>
+    </Task>
+  </Module>
 </OpcUaSource>

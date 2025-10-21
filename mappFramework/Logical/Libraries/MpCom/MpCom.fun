@@ -102,6 +102,7 @@ FUNCTION_BLOCK MpComConfigBasic (*Write and apply mapp-configuration*)
 		StatusID : DINT; (*Information about the error that has occurred*) (* *) (*#PAR#;*)
 		CommandBusy : BOOL; (*Function block is busy processing a command.*) (* *) (*#CMD#OPT#;*)
 		CommandDone : BOOL; (*Command has finished and was successful.*) (* *) (*#CMD#;*)
+		CurrentDataSource : MpComDataSourceEnum; (*Parameterization is active for this component.*) (* *) (*#CMD#;*)
 		Info : MpComConfigBasicInfoType; (*Additional information about the component*) (* *) (*#CMD#;*)
 	END_VAR
 	VAR
@@ -134,6 +135,7 @@ FUNCTION_BLOCK MpComConfigAdvanced (*Write/Readapply mapp-configuration or -para
 		IsOpened : BOOL; (*Configuration is opened (read/write access possible)*) (* *) (*#CMD#;*)
 		CommandBusy : BOOL; (*Function block is busy processing a command.*) (* *) (*#CMD#OPT#;*)
 		CommandDone : BOOL; (*Command has finished and was successful.*) (* *) (*#CMD#;*)
+		CurrentDataSource : MpComDataSourceEnum; (*Parameterization is active for this component.*) (* *) (*#CMD#;*)
 		Info : MpComConfigAdvancedInfoType; (*Additional information about the component*) (* *) (*#CMD#;*)
 	END_VAR
 	VAR

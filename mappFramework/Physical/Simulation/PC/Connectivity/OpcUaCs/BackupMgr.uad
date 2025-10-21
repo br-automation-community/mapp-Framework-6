@@ -1,57 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<?AutomationStudio FileVersion="6.0.1.886"?>
-<OpcUaSource FileVersion="10" ArVersion="E4.91">
+<?AutomationStudio FileVersion="6.0"?>
+<OpcUaSource FileVersion="10">
   <Aliases>
-    <ACLAliases>
-      <ACL Id="1">
-        <ACE RoleName="Service" Access="0x015F" />
-        <ACE RoleName="Administrators" Access="0x017F" />
-        <ACE RoleName="Operators" Access="0x015F" />
-        <ACE RoleName="Everyone" Access="0x015F" />
-      </ACL>
-      <ACL Id="3">
-        <ACE RoleName="Service" Access="0x01FF" />
-        <ACE RoleName="Administrators" Access="0x01FF" />
-        <ACE RoleName="Operators" Access="0x01FF" />
-        <ACE RoleName="Everyone" Access="0x017F" />
-      </ACL>
-    </ACLAliases>
+    <ACLAliases />
     <EURangeViolationAliases />
     <EURangesAliases />
     <EngineeringUnitAliases>
       <EngineeringUnit Id="15" UnitId="16708" NameSpaceUri="http://www.opcfoundation.org/UA/units/un/cefact" Name="byte" Symbol="byte" />
     </EngineeringUnitAliases>
   </Aliases>
-  <DefaultView AclId="3">
-    <Module Name="&lt;Default&gt;">
-      <Task Name="BackupMgr">
-        <Variable Name="MpBackupCoreSys">
-          <Variable Name="Active" />
-          <Variable Name="Info">
-            <Variable Name="Automatic">
-              <Variable Name="Backup">
-                <Variable Name="InProgress" />
-              </Variable>
+  <Module Name="&lt;Default&gt;">
+    <Task Name="BackupMgr">
+      <Variable Name="MpBackupCoreSys">
+        <Variable Name="Active" />
+        <Variable Name="Info">
+          <Variable Name="Automatic">
+            <Variable Name="Backup">
+              <Variable Name="InProgress" />
             </Variable>
           </Variable>
         </Variable>
-        <Variable Name="MpFileManagerUIConnect" RecursiveEnable="1">
-          <Variable Name="File">
-            <Variable Name="List">
-              <Variable Name="Items" RecursiveEnable="1" />
-            </Variable>
+      </Variable>
+      <Variable Name="MpFileManagerUIConnect" RecursiveEnable="2">
+        <Variable Name="File">
+          <Variable Name="List">
+            <Variable Name="Items" />
           </Variable>
         </Variable>
-        <Variable Name="HmiBackup">
-          <Variable Name="Status" RecursiveEnable="1">
-            <Variable Name="FileNames" RecursiveEnable="1" />
-            <Variable Name="TimeStamps" RecursiveEnable="1" />
-            <Variable Name="TableConfig" RecursiveEnable="1" />
-          </Variable>
-          <Variable Name="Commands" RecursiveEnable="1" />
-          <Variable Name="Parameters" RecursiveEnable="1" />
+        <Variable Name="DeviceList">
+          <Variable Name="DeviceNames" RecursiveEnable="2" />
         </Variable>
-      </Task>
-    </Module>
-  </DefaultView>
+      </Variable>
+      <Variable Name="HmiBackup">
+        <Variable Name="Status" RecursiveEnable="2">
+          <Variable Name="FileNames" RecursiveEnable="2" />
+          <Variable Name="TimeStamps" RecursiveEnable="2" />
+          <Variable Name="TableConfig" RecursiveEnable="2" />
+          <Variable Name="DeviceDataProvider" RecursiveEnable="2" />
+        </Variable>
+        <Variable Name="Commands" RecursiveEnable="2" />
+        <Variable Name="Parameters" RecursiveEnable="2" />
+      </Variable>
+    </Task>
+  </Module>
 </OpcUaSource>

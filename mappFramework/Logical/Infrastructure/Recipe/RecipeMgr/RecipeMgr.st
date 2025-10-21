@@ -14,19 +14,19 @@ PROGRAM _INIT
 	WHILE (DirCreateRecipe.status = ERR_FUB_BUSY) DO
 		DirCreateRecipe();
 	END_WHILE
-	
+
 	// Check if folder already exist and if so disabled the function block call
 	IF DirCreateRecipe.status = fiERR_DIR_ALREADY_EXIST OR (DirCreateRecipe.status = ERR_OK) THEN
 		DirCreateRecipe(enable := FALSE);
 	END_IF
-	
+
 	// Initialize mapp function blocks
-	// By default, the Framework sets up an XML recipe system. To swtich to the CSV format, refer to the "Change Recipe Format"
+	// By default, the Framework sets up an XML recipe system. To switch to the CSV format, refer to the "Change Recipe Format"
 	// page in the AS Help (GUID 2052b3a5-f59b-45f9-9fcd-3289c93401af)
 	HmiRecipe.Parameters.Category := PARAMETERS_CATEGORY;
 	HmiRecipe.Status.DeviceDataProvider[0] := '{"value":"mappRecipeFiles","text":"CF/PLC"}';
 	HmiRecipe.Parameters.DeviceName := 'mappRecipeFiles';
-	
+
 	MpRecipeUISetup.Confirmation.RecipeDelete := TRUE;
 	MpRecipeUISetup.RecipeListSize := 9;
 	MpRecipeUISetup.RecipeListScrollWindow := 0;
@@ -39,7 +39,7 @@ PROGRAM _INIT
 	MpRecipeUISys.UISetup := MpRecipeUISetup;
 	MpRecipeUISys.DeviceName := ADR(HmiRecipe.Parameters.DeviceName);
 	MpRecipeUISys.Category := ADR(HmiRecipe.Parameters.Category);
-	MpRecipeUISys.Header := ADR(Header);
+	MpRecipeUISys.Header := ADR(UIHeader);
 	MpRecipeUISys();
 
 	MpRecipeSys.MpLink := ADR(gMpLinkRecipeXml);
@@ -53,7 +53,7 @@ PROGRAM _INIT
 	WHILE NOT(MpRecipeSys.Active OR MpRecipeSys.Error) DO
 		MpRecipeSys();
 		MpRecipeUISys();
-	END_WHILE	 
+	END_WHILE
 
 	// Register the preview variables to the recipe. These preview variables are a buffer between the recipe system and the
 	// variables used at runtime on the machine (Parameters, MachineSettings). By using these preview variables, you can
@@ -74,30 +74,29 @@ PROGRAM _INIT
 
 	// Wait for RegPar function blocks to activate. These must be active before you can load a recipe,
 	// which is further down in the Initialization program.
-#warning "USER WRN: TODO: Recipe FBs not active in INIT"
-//    WHILE NOT(MpRecipeRegPar_PreviewPar.Active OR MpRecipeRegPar_PreviewPar.Error) DO
-//        MpRecipeRegPar_PreviewPar();
-//    END_WHILE
-//    WHILE NOT(MpRecipeRegPar_PreviewCfg.Active OR MpRecipeRegPar_PreviewCfg.Error) DO
-//        MpRecipeRegPar_PreviewCfg();   
-//    END_WHILE
+	WHILE NOT(MpRecipeRegPar_PreviewPar.Active OR MpRecipeRegPar_PreviewPar.Error) DO
+		MpRecipeRegPar_PreviewPar();
+	END_WHILE
+	WHILE NOT(MpRecipeRegPar_PreviewCfg.Active OR MpRecipeRegPar_PreviewCfg.Error) DO
+		MpRecipeRegPar_PreviewCfg();
+	END_WHILE
 
 	// Load default Machine Settings recipe
 	HmiRecipe.Parameters.Category := MACHINE_CONFIGURATION_CATEGORY;
 	HmiRecipe.Status.DefaultConfig := DEFAULT_MACHINE_CONFIGURATION;
 	brsstrcat(ADR(HmiRecipe.Status.DefaultConfig),ADR(MACHINE_CONFIG_FILE_EXTENSION));
-	
+
 	IF (brsstrcmp(ADR(HmiRecipeRetain.LastLoadedConfigRecipe), ADR('')) <> 0) THEN
 		HmiRecipe.Parameters.FileName := HmiRecipeRetain.LastLoadedConfigRecipe;
 	ELSE
 		HmiRecipe.Parameters.FileName := HmiRecipe.Status.DefaultConfig;
-	END_IF		
+	END_IF
+	MpRecipeSys.ErrorReset := FALSE;
 	MpRecipeSys.Load := TRUE;
-#warning "USER WRN: TODO: Recipe FBs not active in INIT"
-//	  WHILE NOT(MpRecipeSys.CommandDone OR MpRecipeSys.Error) DO
+	WHILE NOT(MpRecipeSys.CommandDone OR MpRecipeSys.Error) DO
 		MpRecipeSys();
 		MpRecipeUISys();
-//	  END_WHILE
+	END_WHILE
 	MachineSettings := MachineSettingsPreview;
 	IF (brsstrcmp(ADR(HmiRecipeRetain.LastLoadedConfigRecipe), ADR('')) <> 0) THEN
 		HmiRecipe.Status.LastLoadedConfigRecipe := HmiRecipeRetain.LastLoadedConfigRecipe;
@@ -105,15 +104,15 @@ PROGRAM _INIT
 		HmiRecipe.Status.LastLoadedConfigRecipe := DEFAULT_MACHINE_CONFIGURATION;
 		brsstrcat(ADR(HmiRecipe.Status.LastLoadedConfigRecipe),ADR(MACHINE_CONFIG_FILE_EXTENSION));
 		HmiRecipeRetain.LastLoadedConfigRecipe := HmiRecipe.Status.LastLoadedConfigRecipe;
-	END_IF		
+	END_IF
 	HmiRecipe.Status.ConfigRecipeLoaded := TRUE;
 
 	// Check if the default machine settings recipe is missing
 	IF MpRecipeSys.Info.Diag.StatusID.ID = mpRECIPE_ERR_LOAD_DATA THEN
-		IF ((HmiRecipe.Status.DefaultConfig <> HmiRecipe.Parameters.FileName) AND (MpRecipeUIConnect.Recipe.List.Names[0] = '')) 
+		IF ((HmiRecipe.Status.DefaultConfig <> HmiRecipe.Parameters.FileName) AND (MpRecipeUIConnect.Recipe.List.Names[0] = ''))
 			OR (HmiRecipe.Status.DefaultConfig = HmiRecipe.Parameters.FileName) THEN
 		  HmiRecipe.Status.MachineSettingsRecipeMissing := TRUE;
-		END_IF	
+		END_IF
 		HmiRecipe.Status.LastLoadedConfigRecipe := '';
 		HmiRecipeRetain.LastLoadedConfigRecipe := HmiRecipe.Status.LastLoadedConfigRecipe;
 		HmiRecipe.Status.ConfigRecipeLoaded := FALSE;
@@ -127,19 +126,19 @@ PROGRAM _INIT
 	HmiRecipe.Parameters.Category := PARAMETERS_CATEGORY;
 	HmiRecipe.Status.DefaultRecipe := DEFAULT_PARAMETERS;
 	brsstrcat(ADR(HmiRecipe.Status.DefaultRecipe),ADR(PARAMETERS_FILE_EXTENSION));
-	
+
 	IF (brsstrcmp(ADR(HmiRecipeRetain.LastLoadedProductRecipe), ADR('')) <> 0) THEN
 		HmiRecipe.Parameters.FileName := HmiRecipeRetain.LastLoadedProductRecipe;
 	ELSE
 		HmiRecipe.Parameters.FileName := HmiRecipe.Status.DefaultRecipe;
-	END_IF	   
-	
+	END_IF
+
+	MpRecipeSys.ErrorReset := FALSE;
 	MpRecipeSys.Load := TRUE;
-#warning "USER WRN: TODO: Recipe FBs not active in INIT"
-//	  WHILE NOT(MpRecipeSys.CommandDone OR MpRecipeSys.Error) DO
-	   MpRecipeSys();
+	WHILE NOT(MpRecipeSys.CommandDone OR MpRecipeSys.Error) DO
+		MpRecipeSys();
 		MpRecipeUISys();
-//	  END_WHILE
+	END_WHILE
 	Parameters := ParametersPreview;
 	IF (brsstrcmp(ADR(HmiRecipeRetain.LastLoadedProductRecipe), ADR('')) <> 0) THEN
 		HmiRecipe.Status.LastLoadedProductRecipe := HmiRecipeRetain.LastLoadedProductRecipe;
@@ -147,15 +146,15 @@ PROGRAM _INIT
 		HmiRecipe.Status.LastLoadedProductRecipe := DEFAULT_PARAMETERS;
 		brsstrcat(ADR(HmiRecipe.Status.LastLoadedProductRecipe),ADR(PARAMETERS_FILE_EXTENSION));
 		HmiRecipeRetain.LastLoadedProductRecipe := HmiRecipe.Status.LastLoadedProductRecipe;
-	END_IF	 
+	END_IF
 	HmiRecipe.Status.ProductRecipeLoaded := TRUE;
 
 	// Check if the default parameters recipe is missing
-	IF MpRecipeSys.Info.Diag.StatusID.ID = mpRECIPE_ERR_LOAD_DATA THEN 
-		IF ((HmiRecipe.Status.DefaultRecipe <> HmiRecipe.Parameters.FileName) AND (MpRecipeUIConnect.Recipe.List.Names[0] = '')) 
+	IF MpRecipeSys.Info.Diag.StatusID.ID = mpRECIPE_ERR_LOAD_DATA THEN
+		IF ((HmiRecipe.Status.DefaultRecipe <> HmiRecipe.Parameters.FileName) AND (MpRecipeUIConnect.Recipe.List.Names[0] = ''))
 			OR (HmiRecipe.Status.DefaultRecipe = HmiRecipe.Parameters.FileName) THEN
 			HmiRecipe.Status.ParameterRecipeMissing := TRUE;
-		END_IF	
+		END_IF
 		HmiRecipe.Status.LastLoadedProductRecipe := '';
 		HmiRecipeRetain.LastLoadedProductRecipe := HmiRecipe.Status.LastLoadedProductRecipe;
 		HmiRecipe.Status.ProductRecipeLoaded := FALSE;
@@ -201,6 +200,30 @@ PROGRAM _CYCLIC
 		END_IF
 	END_IF
 
+	// Assign MpLinks & address references
+	MpRecipeSys.MpLink := ADR(gMpLinkRecipeXml);
+	MpRecipeSys.DeviceName := ADR(HmiRecipe.Parameters.DeviceName);
+	MpRecipeSys.Header := ADR(Header);
+	MpRecipeUISys.MpLink := ADR(gMpLinkRecipeXml);
+	MpRecipeUISys.UIConnect := ADR(MpRecipeUIConnect);
+	MpRecipeUISys.DeviceName := ADR(HmiRecipe.Parameters.DeviceName);
+	MpRecipeUISys.Category := ADR(HmiRecipe.Parameters.Category);
+	MpRecipeUISys.Header := ADR(UIHeader);
+	MpFileManagerUIRecipe.MpLink := ADR(gMpLinkFileManagerUIRecipe);
+	MpRecipeRegPar_PreviewPar.MpLink := ADR(gMpLinkRecipeXml);
+	MpRecipeRegPar_PreviewPar.PVName := ADR('RecipeMgr:ParametersPreview');
+	MpRecipeRegPar_PreviewPar.Category := ADR(PARAMETERS_CATEGORY);
+	MpRecipeRegPar_PreviewCfg.MpLink := ADR(gMpLinkRecipeXml);
+	MpRecipeRegPar_PreviewCfg.PVName := ADR('RecipeMgr:MachineSettingsPreview');
+	MpRecipeRegPar_PreviewCfg.Category := ADR(MACHINE_CONFIGURATION_CATEGORY);
+	MpFileManagerUIRecipe.UIConnect := ADR(MpFileManagerUIConnect);
+
+	// Call function blocks
+	MpRecipeSys();
+	MpRecipeUISys();
+	MpFileManagerUIRecipe();
+	MpRecipeRegPar_PreviewPar();
+	MpRecipeRegPar_PreviewCfg();
 
 	// Error reset
 	IF NOT MpRecipeSys.Error THEN
@@ -211,36 +234,11 @@ PROGRAM _CYCLIC
 		MpRecipeUISys.ErrorReset := FALSE;
 	END_IF
 
-	// Assign MpLinks & address references
-	MpRecipeSys.MpLink := ADR(gMpLinkRecipeXml);
-	MpRecipeSys.DeviceName := ADR(HmiRecipe.Parameters.DeviceName);
-	MpRecipeSys.Header := ADR(Header);
-	MpRecipeUISys.MpLink := ADR(gMpLinkRecipeXml);
-	MpRecipeUISys.UIConnect := ADR(MpRecipeUIConnect);
-	MpRecipeUISys.DeviceName := ADR(HmiRecipe.Parameters.DeviceName);
-	MpRecipeUISys.Category := ADR(HmiRecipe.Parameters.Category);
-	MpRecipeUISys.Header := ADR(Header);
-	MpFileManagerUIRecipe.MpLink := ADR(gMpLinkFileManagerUIRecipe);
-	MpRecipeRegPar_PreviewPar.MpLink := ADR(gMpLinkRecipeXml);
-	MpRecipeRegPar_PreviewPar.PVName := ADR('RecipeMgr:ParametersPreview');
-	MpRecipeRegPar_PreviewPar.Category := ADR(PARAMETERS_CATEGORY);
-	MpRecipeRegPar_PreviewCfg.MpLink := ADR(gMpLinkRecipeXml);
-	MpRecipeRegPar_PreviewCfg.PVName := ADR('RecipeMgr:MachineSettingsPreview');
-	MpRecipeRegPar_PreviewCfg.Category := ADR(MACHINE_CONFIGURATION_CATEGORY);
-	MpFileManagerUIRecipe.UIConnect := ADR(MpFileManagerUIConnect);	
-
-	// Call function blocks
-	MpRecipeSys();
-	MpRecipeUISys();
-	MpFileManagerUIRecipe();
-	MpRecipeRegPar_PreviewPar();
-	MpRecipeRegPar_PreviewCfg();
-
 END_PROGRAM
 
 PROGRAM _EXIT
 
-	// Disable the function blocls to unlink the MpLinks
+	// Disable the function blocks to unlink the MpLinks
 	MpRecipeSys.Enable := FALSE;
 	MpRecipeUISys.Enable := FALSE;
 	MpRecipeRegPar_PreviewPar.Enable := FALSE;

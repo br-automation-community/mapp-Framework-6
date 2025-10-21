@@ -1,65 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<?AutomationStudio FileVersion="6.0.1.886"?>
-<OpcUaSource FileVersion="10" ArVersion="E4.91">
+<?AutomationStudio FileVersion="6.0"?>
+<OpcUaSource FileVersion="10">
   <Aliases>
-    <ACLAliases>
-      <ACL Id="1">
-        <ACE RoleName="Administrators" Access="0x017F" />
-        <ACE RoleName="Operators" Access="0x005F" />
-        <ACE RoleName="Service" Access="0x005F" />
-        <ACE RoleName="Everyone" Access="0x005F" />
-      </ACL>
-      <ACL Id="2">
-        <ACE RoleName="Administrators" Access="0x01FF" />
-        <ACE RoleName="Operators" Access="0x01FF" />
-        <ACE RoleName="Service" Access="0x01FF" />
-        <ACE RoleName="Everyone" Access="0x017F" />
-      </ACL>
-    </ACLAliases>
+    <ACLAliases />
     <EURangeViolationAliases />
     <EURangesAliases />
     <EngineeringUnitAliases />
   </Aliases>
-  <DefaultView AclId="2">
-    <Module Name="&lt;Default&gt;">
-      <Task Name="ReportMgr">
-        <Variable Name="HmiReport" RecursiveEnable="1">
-          <Variable Name="Status">
-            <Variable Name="TableConfig" RecursiveEnable="1" />
-            <Variable Name="FileNames" RecursiveEnable="1" />
-            <Variable Name="TimeStamps" RecursiveEnable="1" />
+  <Module Name="&lt;Default&gt;">
+    <Task Name="ReportMgr">
+      <Variable Name="HmiReport" RecursiveEnable="2">
+        <Variable Name="Status">
+          <Variable Name="FileNames" />
+          <Variable Name="TimeStamps" />
+		  <Variable Name="TableConfig" RecursiveEnable="2" />
+        </Variable>
+      </Variable>
+      <Variable Name="MpFileManagerUIConnect">
+        <Variable Name="DeviceList">
+          <Variable Name="DeviceNames" />
+          <Variable Name="SelectedIndex" />
+        </Variable>
+        <Variable Name="File">
+          <Variable Name="Refresh" />
+          <Variable Name="Delete" />
+          <Variable Name="List">
+            <Variable Name="Items" />
           </Variable>
         </Variable>
-        <Variable Name="MpFileManagerUIConnect">
-          <Variable Name="DeviceList">
-            <Variable Name="DeviceNames" RecursiveEnable="1" />
-            <Variable Name="SelectedIndex" />
-          </Variable>
-          <Variable Name="File">
-            <Variable Name="Refresh" />
-            <Variable Name="Delete" />
-            <Variable Name="List">
-              <Variable Name="Items" RecursiveEnable="1" />
-            </Variable>
-          </Variable>
-          <Variable Name="MessageBox">
-            <Variable Name="Confirm" />
-            <Variable Name="Cancel" />
-          </Variable>
+        <Variable Name="MessageBox">
+          <Variable Name="Confirm" />
+          <Variable Name="Cancel" />
         </Variable>
-        <Variable Name="MpReportCoreSys">
-          <Variable Name="Generate" />
-          <Variable Name="Active" />
+      </Variable>
+      <Variable Name="MpReportCoreSys">
+        <Variable Name="Generate" />
+        <Variable Name="Active" />
+      </Variable>
+      <Variable Name="ReportExample">
+        <Variable Name="SimpleReport">
+          <Variable Name="OeeLine" />
         </Variable>
-        <Variable Name="ReportExample" RecursiveEnable="1">
-          <Variable Name="SimpleReport">
-            <Variable Name="OeeLine" RecursiveEnable="1" />
-          </Variable>
-          <Variable Name="AdvancedReport">
-            <Variable Name="OeeLine" RecursiveEnable="1" />
-          </Variable>
+        <Variable Name="AdvancedReport">
+          <Variable Name="OeeLine" />
         </Variable>
-      </Task>
-    </Module>
-  </DefaultView>
+      </Variable>
+    </Task>
+  </Module>
 </OpcUaSource>

@@ -327,18 +327,18 @@
     </tu>
     <tu tuid="400">
       <tuv xml:lang="de">
-        <seg>Wert von {&amp;dpid} von {&amp;old} auf {&amp;new} geändert</seg>
+        <seg>Wert von {&amp;dpid} von {&amp;old|'} auf {&amp;new|'} geändert</seg>
       </tuv>
       <tuv xml:lang="en">
-        <seg>changed value of {&amp;dpid} from {&amp;old} to {&amp;new}</seg>
+        <seg>changed value of {&amp;dpid} from {&amp;old|'} to {&amp;new|'}</seg>
       </tuv>
     </tu>
     <tu tuid="401">
       <tuv xml:lang="de">
-        <seg>Wert von (UserID: {&amp;dpid}) von {&amp;old} auf {&amp;new} geändert</seg>
+        <seg>Wert von (UserID: {&amp;dpid}) von {&amp;old|'} auf {&amp;new|'} geändert</seg>
       </tuv>
       <tuv xml:lang="en">
-        <seg>changed value of (UserID: {&amp;dpid}) from {&amp;old} to {&amp;new}</seg>
+        <seg>changed value of (UserID: {&amp;dpid}) from {&amp;old|'} to {&amp;new|'}</seg>
       </tuv>
     </tu>
     <tu tuid="402">
@@ -375,10 +375,10 @@
     </tu>
     <tu tuid="500">
       <tuv xml:lang="de">
-        <seg>Wert von {&amp;dpid} von {&amp;old} auf {&amp;new} geändert</seg>
+        <seg>Wert von {&amp;dpid} von {&amp;old|'} auf {&amp;new|'} geändert</seg>
       </tuv>
       <tuv xml:lang="en">
-        <seg>changed value of {&amp;dpid} from {&amp;old} to {&amp;new}</seg>
+        <seg>changed value of {&amp;dpid} from {&amp;old|'} to {&amp;new|'}</seg>
       </tuv>
     </tu>
     <tu tuid="600">

@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* MpAudit 6.0.7003 */
+/* MpAudit 6.4.0 */
 
 #ifndef _MPAUDIT_
 #define _MPAUDIT_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _MpAudit_VERSION
-#define _MpAudit_VERSION 6.0.7003
+#define _MpAudit_VERSION 6.4.0
 #endif
 
 #include <bur/plctypes.h>
@@ -93,16 +93,16 @@ typedef enum MpAuditErrorEnum
 	mpAUDIT_ERR_BUFFER_CREATE = -1064124499,
 	mpAUDIT_ERR_WRITE_EXPORT_FILE = -1064124498,
 	mpAUDIT_ERR_READ_BUFFER_ENTRIES = -1064124497,
-	mpAUDIT_INF_ARCHIVE_NO_ENTRIES = 1083359152,
-	mpAUDIT_ERR_EVENT_RECORDER = -1064124495,
+	mpAUDIT_ERR_EVENT_RECORDER = -1064124496,
+	mpAUDIT_INF_ARCHIVE_NO_ENTRIES = 1083359153,
 	mpAUDIT_ERR_INVALID_FILE_DEV = -1064124494,
 	mpAUDIT_ERR_MAX_ARCHIVES = -1064124493,
 	mpAUDIT_ERR_MISSING_UICONNECT = -1064124492,
-	mpAUDIT_INF_WAIT_AUDIT_FB = 1083359157,
 	mpAUDIT_ERR_READ_VC_EVENTS = -1064124490,
 	mpAUDIT_WRN_OPC_AUDIT_DISABLED = -2137866313,
 	mpAUDIT_ERR_MONITOR_PV = -1064124488,
 	mpAUDIT_ERR_NO_BATCHID = -1064124487,
+	mpAUDIT_ERR_ARCHIVE_REMOVE = -1064124486,
 	mpAUDIT_ERR_QUERY_NOT_FOUND = -1064124485,
 	mpAUDIT_INF_QUERY_NO_DATA = 1083359164,
 	mpAUDIT_ERR_INVALID_FILE_NAME = -1064124483
@@ -112,6 +112,59 @@ typedef enum MpAuditTrailAlarmEnum
 {	mpAUDIT_ALM_ARCHIVE_AVAILABLE = 0,
 	mpAUDIT_ALM_ARCHIVE_OVERFLOW = 1
 } MpAuditTrailAlarmEnum;
+
+typedef enum MpAuditCfgEnum
+{	mpAUDIT_CFG_QUERIES = 190,
+	mpAUDIT_CFG_TRAIL = 100
+} MpAuditCfgEnum;
+
+typedef enum MpAuditCfgQueryOperatorsEnum
+{	mpAUDIT_CFG_QUERY_LT = 0,
+	mpAUDIT_CFG_QUERY_LE = 1,
+	mpAUDIT_CFG_QUERY_GT = 2,
+	mpAUDIT_CFG_QUERY_GE = 3,
+	mpAUDIT_CFG_QUERY_EQ = 4,
+	mpAUDIT_CFG_QUERY_NE = 5,
+	mpAUDIT_CFG_QUERY_LIKE = 6
+} MpAuditCfgQueryOperatorsEnum;
+
+typedef enum MpAuditCfgQueryCompareToEnum
+{	mpAUDIT_CFG_QUERY_VALUE = 0,
+	mpAUDIT_CFG_QUERY_PV = 1
+} MpAuditCfgQueryCompareToEnum;
+
+typedef enum MpAuditCfgTrailArchiveModeEnum
+{	mpAUDIT_CFG_TRAIL_ARCH_DAILY = 0,
+	mpAUDIT_CFG_TRAIL_ARCH_MO_TO_FR = 1,
+	mpAUDIT_CFG_TRAIL_ARCH_BY_BATCH = 2
+} MpAuditCfgTrailArchiveModeEnum;
+
+typedef enum MpAuditCfgTrailFileTypeEnum
+{	mpAUDIT_CFG_TRAIL_TXT = 0,
+	mpAUDIT_CFG_TRAIL_XML = 1
+} MpAuditCfgTrailFileTypeEnum;
+
+typedef enum MpAuditCfgTrailTaskClassEnum
+{	mpAUDIT_CFG_TRAIL_TC_CYCLIC_1 = 1,
+	mpAUDIT_CFG_TRAIL_TC_CYCLIC_2 = 2,
+	mpAUDIT_CFG_TRAIL_TC_CYCLIC_3 = 3,
+	mpAUDIT_CFG_TRAIL_TC_CYCLIC_4 = 4,
+	mpAUDIT_CFG_TRAIL_TC_CYCLIC_5 = 5,
+	mpAUDIT_CFG_TRAIL_TC_CYCLIC_6 = 6,
+	mpAUDIT_CFG_TRAIL_TC_CYCLIC_7 = 7,
+	mpAUDIT_CFG_TRAIL_TC_CYCLIC_8 = 8
+} MpAuditCfgTrailTaskClassEnum;
+
+typedef enum MpAuditCfgTrailMemoryEnum
+{	mpAUDIT_CFG_TRAIL_ROM_DRAM = 0,
+	mpAUDIT_CFG_TRAIL_ROM_RAM = 1,
+	mpAUDIT_CFG_TRAIL_RAM = 2
+} MpAuditCfgTrailMemoryEnum;
+
+typedef enum MpAuditCfgTrailArchiveEnum
+{	mpAUDIT_CFG_TRAIL_ARCHIVE_OFF = 0,
+	mpAUDIT_CFG_TRAIL_ARCHIVE_ON = 1
+} MpAuditCfgTrailArchiveEnum;
 
 typedef struct MpAuditTrailUICurrDTFilterType
 {	plcbit Enable;
@@ -231,10 +284,12 @@ typedef struct MpAuditDiagType
 
 typedef struct MpAuditTrailUIInfoType
 {	struct MpAuditDiagType Diag;
+	plcstring GeneratedFileName[256];
 } MpAuditTrailUIInfoType;
 
 typedef struct MpAuditExportInfoType
 {	struct MpAuditDiagType Diag;
+	plcstring GeneratedFileName[256];
 } MpAuditExportInfoType;
 
 typedef struct MpAuditQueryInfoType
@@ -262,26 +317,176 @@ typedef struct MpAuditMonitorInternalType
 {	unsigned long Handle;
 } MpAuditMonitorInternalType;
 
+typedef struct MpAuditCfgQueryColumnsType
+{	plcstring EventIdentifier[4];
+	plcstring EventTime[8];
+	plcstring EntryIndex[5];
+	plcstring EventDescription[6];
+	plcstring OperatorName[4];
+	plcstring MappComponent[5];
+	plcstring OldValue[5];
+	plcstring NewValue[5];
+	plcstring Name[6];
+	plcstring DeviceName[5];
+	plcstring Path[6];
+	plcstring Message[5];
+	plcstring Comment[5];
+	plcstring ErrorNumber[5];
+	plcstring DatapointIdentifier[6];
+	plcstring Time[6];
+	plcstring AlarmCode[6];
+	plcstring Severity[5];
+	plcstring Object[5];
+	plcstring Attribute[6];
+	plcstring VC4Unit[6];
+	plcstring VC4UnitText[7];
+	plcstring VC4SelectionTextgroup[5];
+	plcstring VisualisationName[5];
+	plcstring CustomEventType[5];
+	plcstring OpcClientId[6];
+	plcstring OpcNodeName[10];
+	plcstring OpcNodeDescription[10];
+	plcstring PackMLState[7];
+	plcstring PackMLMode[6];
+	plcstring PackMLInfo[6];
+	plcstring FileSource[4];
+	plcstring FileDest[5];
+	plcstring EventText[6];
+	plcstring DisplayEventText[7];
+} MpAuditCfgQueryColumnsType;
+
+typedef struct MpAuditCfgQueryValueType
+{	plcstring Value[256];
+} MpAuditCfgQueryValueType;
+
+typedef struct MpAuditCfgQueryCompareToType
+{	enum MpAuditCfgQueryCompareToEnum Type;
+	struct MpAuditCfgQueryValueType Value;
+} MpAuditCfgQueryCompareToType;
+
+typedef struct MpAuditCfgQuerySelectColType
+{	plcstring Column[256];
+	plcstring Pv[256];
+} MpAuditCfgQuerySelectColType;
+
+typedef struct MpAuditCfgQuerySelectType
+{	unsigned long NumberOfColumns;
+	struct MpAuditCfgQuerySelectColType Columns[20];
+} MpAuditCfgQuerySelectType;
+
+typedef struct MpAuditCfgQueryWhereFilterType
+{	plcstring Column[256];
+	enum MpAuditCfgQueryOperatorsEnum Operator;
+	struct MpAuditCfgQueryCompareToType CompareTo;
+} MpAuditCfgQueryWhereFilterType;
+
+typedef struct MpAuditCfgQueryWhereType
+{	plcstring Connect[256];
+	struct MpBaseCfgArrayType Filter;
+} MpAuditCfgQueryWhereType;
+
+typedef struct MpAuditCfgQuerySingleType
+{	plcstring Name[101];
+	plcstring UpdateCount[256];
+	plcstring Component[51];
+	struct MpAuditCfgQuerySelectType Select;
+	struct MpAuditCfgQueryWhereType Where;
+} MpAuditCfgQuerySingleType;
+
+typedef struct MpAuditCfgQueryDataQueriesType
+{	struct MpBaseCfgArrayType Query;
+} MpAuditCfgQueryDataQueriesType;
+
+typedef struct MpAuditCfgQueryType
+{	struct MpAuditCfgQueryDataQueriesType DataQueries;
+} MpAuditCfgQueryType;
+
+typedef struct MpAuditCfgTrailGeneralType
+{	plcbit Enable;
+	plcbit EnableCockpit;
+	enum MpAuditCfgTrailTaskClassEnum CyclicTaskClass;
+	plcstring Parent[51];
+} MpAuditCfgTrailGeneralType;
+
+typedef struct MpAuditCfgTrailEventsType
+{	struct MpBaseCfgArrayType Event;
+} MpAuditCfgTrailEventsType;
+
+typedef struct MpAuditCfgTrailDataType
+{	unsigned long Size;
+	unsigned long MaximumSaveInterval;
+	unsigned long BufferSize;
+} MpAuditCfgTrailDataType;
+
+typedef struct MpAuditCfgTrailMemoryType
+{	enum MpAuditCfgTrailMemoryEnum Type;
+	struct MpAuditCfgTrailDataType Data;
+} MpAuditCfgTrailMemoryType;
+
+typedef struct MpAuditCfgTrailTextSourceType
+{	plcstring Display[256];
+	plcstring Export[256];
+} MpAuditCfgTrailTextSourceType;
+
+typedef struct MpAuditCfgTrailArchiveOnType
+{	enum MpAuditCfgTrailArchiveModeEnum Mode;
+	unsigned long Time;
+	unsigned long MaximumSize;
+} MpAuditCfgTrailArchiveOnType;
+
+typedef struct MpAuditCfgTrailArchiveType
+{	enum MpAuditCfgTrailArchiveEnum Type;
+	struct MpAuditCfgTrailArchiveOnType On;
+} MpAuditCfgTrailArchiveType;
+
+typedef struct MpAuditCfgTrailExportType
+{	plcbit RawData;
+	enum MpAuditCfgTrailFileTypeEnum FileType;
+	plcbit Encrypt;
+} MpAuditCfgTrailExportType;
+
+typedef struct MpAuditCfgTrailAuditType
+{	struct MpAuditCfgTrailEventsType EventList;
+	struct MpAuditCfgTrailMemoryType Memory;
+	struct MpAuditCfgTrailTextSourceType Text;
+	struct MpAuditCfgTrailArchiveType Archive;
+	struct MpAuditCfgTrailExportType Export;
+} MpAuditCfgTrailAuditType;
+
+typedef struct MpAuditCfgTrailPvListType
+{	plcstring Pv[256];
+	plcstring Identifier[256];
+} MpAuditCfgTrailPvListType;
+
+typedef struct MpAuditCfgTrailPvMonitorType
+{	struct MpBaseCfgArrayType PvList;
+} MpAuditCfgTrailPvMonitorType;
+
+typedef struct MpAuditCfgTrailType
+{	struct MpAuditCfgTrailGeneralType General;
+	struct MpAuditCfgTrailAuditType Audit;
+	struct MpAuditCfgTrailPvMonitorType VariableMonitor;
+} MpAuditCfgTrailType;
+
 typedef struct MpAuditTrailUI
 {
 	/* VAR_INPUT (analog) */
 	struct MpComIdentType* MpLink;
-	plcstring (*DeviceName);
-	plcstring (*FileName);
+	plcstring *DeviceName;
+	plcstring *FileName;
 	struct MpAuditTrailUISetupType UISetup;
-	plcstring (*Language);
+	plcstring *Language;
 	enum MpAuditMeasurementSystemEnum MeasurementSystem;
 	struct MpAuditTrailUIConnectType* UIConnect;
 	/* VAR_OUTPUT (analog) */
 	signed long StatusID;
-	struct MpAuditTrailInfoType Info;
+	struct MpAuditTrailUIInfoType Info;
 	/* VAR (analog) */
 	unsigned char InternalState;
 	unsigned long InternalData[30];
 	/* VAR_INPUT (digital) */
 	plcbit Enable;
 	plcbit ErrorReset;
-	plcbit Refresh;
 	/* VAR_OUTPUT (digital) */
 	plcbit Active;
 	plcbit Error;
@@ -291,9 +496,9 @@ typedef struct MpAuditTrail
 {
 	/* VAR_INPUT (analog) */
 	struct MpComIdentType* MpLink;
-	plcstring (*DeviceName);
-	plcstring (*FileName);
-	plcstring (*Language);
+	plcstring *DeviceName;
+	plcstring *FileName;
+	plcstring *Language;
 	enum MpAuditMeasurementSystemEnum MeasurementSystem;
 	/* VAR_OUTPUT (analog) */
 	signed long StatusID;
@@ -306,6 +511,7 @@ typedef struct MpAuditTrail
 	/* VAR_INPUT (digital) */
 	plcbit Enable;
 	plcbit ErrorReset;
+	plcbit Overwrite;
 	plcbit Export;
 	plcbit ExportArchive;
 	plcbit Clear;
@@ -340,8 +546,8 @@ typedef struct MpAuditRegPar
 {
 	/* VAR_INPUT (analog) */
 	struct MpComIdentType* MpLink;
-	plcstring (*PVName);
-	plcstring (*Identifier);
+	plcstring *PVName;
+	plcstring *Identifier;
 	/* VAR_OUTPUT (analog) */
 	signed long StatusID;
 	struct MpAuditRegParInfoType Info;
@@ -362,20 +568,21 @@ typedef struct MpAuditExport
 	struct MpComIdentType* MpLink;
 	struct MpAuditExportFilterType* Filter;
 	unsigned long ToRecord;
-	plcstring (*DeviceName);
-	plcstring (*FileName);
-	plcstring (*Language);
+	plcstring *DeviceName;
+	plcstring *FileName;
+	plcstring *Language;
 	enum MpAuditMeasurementSystemEnum MeasurementSystem;
 	/* VAR_OUTPUT (analog) */
 	signed long StatusID;
 	unsigned long Record;
-	struct MpAuditTrailInfoType Info;
+	struct MpAuditExportInfoType Info;
 	/* VAR (analog) */
 	unsigned long InternalState;
 	unsigned long InternalData[20];
 	/* VAR_INPUT (digital) */
 	plcbit Enable;
 	plcbit ErrorReset;
+	plcbit Overwrite;
 	plcbit Export;
 	/* VAR_OUTPUT (digital) */
 	plcbit Active;
@@ -389,8 +596,8 @@ typedef struct MpAuditQuery
 	/* VAR_INPUT (analog) */
 	struct MpComIdentType* MpLink;
 	enum MpAuditQueryModeEnum Mode;
-	plcstring (*Name);
-	plcstring (*Language);
+	plcstring *Name;
+	plcstring *Language;
 	enum MpAuditMeasurementSystemEnum MeasurementSystem;
 	/* VAR_OUTPUT (analog) */
 	signed long StatusID;

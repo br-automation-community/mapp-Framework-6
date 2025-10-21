@@ -34,7 +34,6 @@ FUNCTION_BLOCK MpAuditTrailUI (*UI connection to a VC4 audit trail page*) (* $GR
 		DeviceName : REFERENCE TO STRING[50]; (*File device (data storage medium) where the files are stored*) (* *) (*#CMD#;*)
 		FileName : REFERENCE TO STRING[255]; (*Name of the file to be stored*) (* *) (*#CMD#;*)
 		UISetup : MpAuditTrailUISetupType; (*Used to configure the elements connected to the HMI application*) (* *) (*#PAR#;*)
-		Refresh : BOOL; (*A rising edge on this command updates the event list (e.g. after the language has been changed)*) (* *) (*#CMD#;*)
 		Language : REFERENCE TO STRING[20]; (*Language ID that should be used when displaying data*) (* *) (*#CMD#;*)
 		MeasurementSystem : MpAuditMeasurementSystemEnum; (*Measurement system that shoule be used when displaying data*) (* *) (*#CMD#;*)
 		UIConnect : REFERENCE TO MpAuditTrailUIConnectType; (*This structure contains the parameters needed for the connection to the HMI application*) (* *) (*#CMD#;*)
@@ -43,7 +42,7 @@ FUNCTION_BLOCK MpAuditTrailUI (*UI connection to a VC4 audit trail page*) (* $GR
 		Active : BOOL; (*Indicates whether the function block is active*) (* *) (*#PAR#;*)
 		Error : BOOL; (*Indicates that the function block is in an error state or a command was not executed correctly*) (* *) (*#PAR#;*)
 		StatusID : DINT; (*Status information about the function block*) (* *) (*#PAR#; *)
-		Info : MpAuditTrailInfoType; (*Additional information about the component*) (* *) (*#CMD#;*)
+		Info : MpAuditTrailUIInfoType; (*Additional information about the component*) (* *) (*#CMD#;*)
 	END_VAR
 	VAR
 		InternalState : USINT;
@@ -58,6 +57,7 @@ FUNCTION_BLOCK MpAuditTrail (*Centralized event audit trail*) (* $GROUP=mapp Ser
 		ErrorReset : BOOL; (*Resets function block errors*) (* *) (*#PAR#;*)
 		DeviceName : REFERENCE TO STRING[50]; (*File device (data storage medium) where the files are stored*) (* *) (*#CMD#;*)
 		FileName : REFERENCE TO STRING[255]; (*Name of the file to be stored*) (* *) (*#CMD#;*)
+		Overwrite : BOOL; (*Overwrite existing file when necessary*) (* *) (*#CMD#;*)
 		Language : REFERENCE TO STRING[20]; (*Language ID that should be used when displaying data*) (* *) (*#CMD#;*)
 		MeasurementSystem : MpAuditMeasurementSystemEnum; (*Measurement-system that should be used when exporting data*) (* *) (*#CMD#;*)
 		Export : BOOL; (*Saves the currently logged from memory to a file on the specified data storage medium ("DeviceName")*) (* *) (*#CMD#;*)
@@ -145,6 +145,7 @@ FUNCTION_BLOCK MpAuditExport (*Advanced export function*) (* $GROUP=mapp Service
 		ToRecord : UDINT; (*Record-number up to which (and excluding) data is exported*) (* *) (*#CMD#;*)
 		DeviceName : REFERENCE TO STRING[50]; (*File device (data storage medium) where the files are stored*) (* *) (*#CMD#;*)
 		FileName : REFERENCE TO STRING[255]; (*Name of the file to be stored*) (* *) (*#CMD#;*)
+		Overwrite : BOOL; (*Overwrite existing file when necessary*) (* *) (*#CMD#;*)
 		Language : REFERENCE TO STRING[20]; (*Language ID that should be used when displaying data*) (* *) (*#CMD#;*)
 		MeasurementSystem : MpAuditMeasurementSystemEnum; (*Measurement-system that should be used when exporting data*) (* *) (*#CMD#;*)
 		Export : BOOL; (*Execute export*) (* *) (*#CMD#;*)
@@ -156,7 +157,7 @@ FUNCTION_BLOCK MpAuditExport (*Advanced export function*) (* $GROUP=mapp Service
 		CommandBusy : BOOL; (*Function block currently executing command*) (* *) (*#CMD#OPT#;*)
 		CommandDone : BOOL; (*Command successfully executed by function block*) (* *) (*#CMD#;*)
 		Record : UDINT; (*Record-number of last exported record (set after export)*) (* *) (*#CMD#;*)
-		Info : MpAuditTrailInfoType; (*Additional information about the component*) (* *) (*#CMD#;*)
+		Info : MpAuditExportInfoType; (*Additional information about the component*) (* *) (*#CMD#;*)
 	END_VAR
 	VAR
 		InternalState : {REDUND_UNREPLICABLE} UDINT;

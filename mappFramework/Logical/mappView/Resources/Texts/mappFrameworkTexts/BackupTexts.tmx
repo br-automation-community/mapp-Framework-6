@@ -151,6 +151,16 @@
         <seg>Daily</seg>
       </tuv>
     </tu>
+    <tu tuid="DayOfWeek">
+      <tuv xml:lang="en">
+        <seg>Day</seg>
+      </tuv>
+    </tu>
+    <tu tuid="OnEnable">
+      <tuv xml:lang="en">
+        <seg>On Enable</seg>
+      </tuv>
+    </tu>
     <tu tuid="DateTimeFormat">
       <tuv xml:lang="de">
         <seg>dd-MM-yy hh:mm</seg>

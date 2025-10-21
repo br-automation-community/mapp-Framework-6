@@ -14,17 +14,18 @@ PROGRAM _INIT
 	WHILE (DirCreateReport.status = ERR_FUB_BUSY) DO
 		DirCreateReport();
 	END_WHILE
-	
+
 	// Check if folder already exist and if so disabled the function block call
 	IF DirCreateReport.status = fiERR_DIR_ALREADY_EXIST OR (DirCreateReport.status = ERR_OK) THEN
 		DirCreateReport(enable := FALSE);
 	END_IF
-	
+
 	// Initialize mapp function blocks
 	MpReportCoreSys.Language := ADR('en');
 	MpReportCoreSys.DeviceName := ADR('mappReportFiles');
 	MpReportCoreSys.MpLink := ADR(gMpLinkSimpleReport);
 	MpReportCoreSys.FileName := ADR(HmiReport.Parameters.Name);
+	MpReportCoreSys.ReportID := ADR('SimpleReport');
 	HmiReport.Parameters.Name := 'SimpleReport';
 	HmiReport.Parameters.SortType := 'NameAsc';
 	MpReportCoreSys();
@@ -39,7 +40,7 @@ PROGRAM _INIT
 	MpFileManagerUIConnect.DeviceList.DeviceNames[7] := '';
 	MpFileManagerUIConnect.DeviceList.DeviceNames[8] := '';
 	MpFileManagerUIConnect.DeviceList.DeviceNames[9] := '';
-	
+
 	MpFileManagerUIReport.MpLink := ADR(gMpLinkFileManagerUIReport);
 	MpFileManagerUIReport.UIConnect := ADR(MpFileManagerUIConnect);
 	MpFileManagerUIReport.UISetup.FileListSize := SIZEOF(MpFileManagerUIConnect.File.List.Items) / SIZEOF(MpFileManagerUIConnect.File.List.Items[0]);
@@ -58,7 +59,7 @@ PROGRAM _INIT
 		TimeIndex := TimeIndex + 15;
 	END_FOR
 
-	// Ficticious number to serve as an example in the report
+	// Fictitious number to serve as an example in the report
 	ReportExample.AdvancedReport.BatchNumber := 325454685;
 
 END_PROGRAM
@@ -74,11 +75,11 @@ PROGRAM _CYCLIC
 	// Call all cyclic actions
 	ReportFormat;
 	ReportFileExplorer;
-	
+
 	// Generate command
 	MpReportCoreSys.Generate := HmiReport.Commands.Generate;
 	MpReportCoreSys.FileName := ADR(HmiReport.Parameters.Name);
-	
+
 	// Assign address references
 	MpFileManagerUIReport.UIConnect := ADR(MpFileManagerUIConnect);
 	MpFileManagerUIReport.MpLink := ADR(gMpLinkFileManagerUIReport);
@@ -95,7 +96,7 @@ PROGRAM _EXIT
 	// Disable the function blocks to unlink the MpLinks
 	MpReportCoreSys.Enable := FALSE;
 	MpFileManagerUIReport.Enable := FALSE;
-	
+
 	// Call function blocks
 	MpReportCoreSys();
 	MpFileManagerUIReport();

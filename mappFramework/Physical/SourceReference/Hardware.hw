@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<?AutomationStudio Version=6.0.1.886 FileVersion="4.9"?>
+<?AutomationStudio Version=6.0.2.177 FileVersion="4.9"?>
 <Hardware xmlns="http://br-automation.co.at/AS/Hardware">
   <Module Name="PC" Type="PC_any" Version="1.1.2.0" OrderNumber="PC">
     <Parameter ID="ConfigurationID" Value="mappFramework516_Simulation" />
@@ -33,14 +33,12 @@
     <Group ID="FileDevice8" />
     <Parameter ID="FileDeviceName8" Value="mappReportFiles" />
     <Parameter ID="FileDevicePath8" Value="USER_PATH:\Report" />
+    <Parameter ID="ActivateFtpServer" Value="1" />
     <Group ID="FtpUser1" />
     <Parameter ID="FtpUsername1" Value="Admin" />
     <Parameter ID="FtpUserPassword1" Value="jhTZ9rja+dMo4uQziZxIvYZJ7RF3iWJ9y9zyiFMZfoo=" Description="123ABc" />
     <Parameter ID="FtpUserSalt1" Value="8r0jnJ0m" />
     <Parameter ID="FTPAccessRight1" Value="0" />
     <Parameter ID="FTPdevice1" Value="ALL" />
-    <Parameter ID="ActivateOpcUa" Value="1" />
-    <Parameter ID="OpcUaInformationModels_PV_Version" Value="1" />
-    <Parameter ID="ActivateFtpServer" Value="1" />
   </Module>
 </Hardware>

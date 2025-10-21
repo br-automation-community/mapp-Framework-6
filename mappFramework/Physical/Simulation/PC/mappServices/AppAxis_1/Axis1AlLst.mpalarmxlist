@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio FileVersion="4.9"?>
+<Configuration>
+  <Element ID="gMpLinkAlarmXCoreLAppAxis_1" Type="mpalarmxlist">
+    <Group ID="mapp.AlarmX.Core.Configuration">
+      <Group ID="[0]">
+        <Property ID="Name" Value="ReferenceRequired" />
+        <Property ID="Message" Value="{$IAT/AppAxis_1/Info/Name} : {$Axis/Alarms/ReferenceRequired}" />
+        <Property ID="Code" Value="0" />
+        <Property ID="Severity" Value="10" />
+        <Selector ID="Behavior" Value="DiscreteValueMonitoring">        
+          <Property ID="Acknowledge" Value="1" />
+          <Property ID="Confirm" Value="0" />
+          <Property ID="MultipleInstances" Value="TRUE" />
+          <Property ID="ReactionWhilePending" Value="TRUE" />
+          <Group ID="Recording">
+            <Property ID="InactiveToActive" Value="TRUE" />
+            <Property ID="ActiveToInactive" Value="FALSE" />
+            <Property ID="UnacknowledgedToAcknowledged" Value="TRUE" />
+            <Property ID="AcknowledgedToUnacknowledged" Value="FALSE" />
+            <Property ID="UnconfirmedToConfirmed" Value="TRUE" />
+            <Property ID="ConfirmedToUnconfirmed" Value="FALSE" />
+            <Property ID="Update" Value="FALSE" />
+          </Group>
+          <Group ID="Monitoring">
+            <Property ID="MonitoredPV" Value="::AppAxis_1:AxisControl.Status.ReferenceRequired" />
+            <Group ID="TriggerValues">
+              <Property ID="[0]" Value="1" />
+            </Group>
+            <Selector ID="Settings" Value="0">
+              <Property ID="Delay" Value="0.0" />
+            </Selector>
+          </Group>
+        </Selector>
+        <Property ID="Disable" Value="FALSE" />
+        <Property ID="InhibitPV" />
+        <Property ID="AdditionalInformation1" />
+        <Property ID="AdditionalInformation2" />
+      </Group>
+      <Group ID="[1]">
+        <Property ID="Name" Value="AppAxis_1SpeedNotSet" />
+        <Property ID="Message" Value="{$IAT/AppAxis_1/Info/Name} : {$Axis/Alarms/AxisSpeedNotSet}" />
+        <Property ID="Code" Value="250" />
+        <Property ID="Severity" Value="20" />
+        <Selector ID="Behavior" Value="EdgeAlarm">         
+          <Property ID="Acknowledge" Value="1" />
+          <Property ID="Confirm" Value="0" />
+          <Property ID="MultipleInstances" Value="TRUE" />
+          <Property ID="ReactionWhilePending" Value="TRUE" />
+          <Property ID="Retain" Value="FALSE" />
+          <Property ID="Async" Value="TRUE" />
+          <Group ID="DataUpdate">
+            <Group ID="Activation">
+              <Property ID="TimeStamp" Value="FALSE" />
+              <Property ID="Snippets" Value="FALSE" />
+            </Group>
+          </Group>
+          <Group ID="Recording">
+            <Property ID="InactiveToActive" Value="TRUE" />
+            <Property ID="ActiveToInactive" Value="FALSE" />
+            <Property ID="UnacknowledgedToAcknowledged" Value="TRUE" />
+            <Property ID="AcknowledgedToUnacknowledged" Value="FALSE" />
+            <Property ID="UnconfirmedToConfirmed" Value="TRUE" />
+            <Property ID="ConfirmedToUnconfirmed" Value="FALSE" />
+          </Group>
+        </Selector>
+        <Property ID="Disable" Value="FALSE" />
+        <Property ID="InhibitPV" />
+        <Property ID="AdditionalInformation1" />
+        <Property ID="AdditionalInformation2" />
+      </Group>
+    </Group>
+    <Group ID="mapp.AlarmX.Snippets">
+      <Selector ID="AutoDetect" Value="1">
+        <Property ID="Language" />
+      </Selector>
+      <Group ID="[0]">
+        <Property ID="Key" Value="AxisSpeed" />
+        <Selector ID="Value" Value="PV">
+          <Property ID="PV" Value="::AppAxis_1:AxisControl.Parameters.Velocity" />
+        </Selector>
+        <Property ID="Alarm" />
+      </Group>
+    </Group>
+  </Element>
+</Configuration>

@@ -1,61 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<?AutomationStudio FileVersion="6.0.1.886"?>
-<OpcUaSource FileVersion="10" ArVersion="E4.91">
+<?AutomationStudio FileVersion="6.0"?>
+<OpcUaSource FileVersion="10">
   <Aliases>
-    <ACLAliases>
-      <ACL Id="1">
-        <ACE RoleName="Operators" Access="0x005F" />
-        <ACE RoleName="Service" Access="0x005F" />
-        <ACE RoleName="Administrators" Access="0x017F" />
-        <ACE RoleName="Everyone" Access="0x005F" />
-      </ACL>
-      <ACL Id="3">
-        <ACE RoleName="Operators" Access="0x01FF" />
-        <ACE RoleName="Service" Access="0x01FF" />
-        <ACE RoleName="Administrators" Access="0x01FF" />
-        <ACE RoleName="Everyone" Access="0x017F" />
-      </ACL>
-    </ACLAliases>
+    <ACLAliases />
     <EURangeViolationAliases />
     <EURangesAliases />
     <EngineeringUnitAliases />
   </Aliases>
-  <DefaultView AclId="3">
-    <Module Name="&lt;Default&gt;">
-      <Task Name="PackMLMgr">
-        <Variable Name="MpPackMLModuleMain">
-          <Variable Name="Command">
-            <Variable Name="Abort" />
-            <Variable Name="Clear" />
-            <Variable Name="Stop" />
-            <Variable Name="Reset" />
-            <Variable Name="Start" />
-            <Variable Name="Hold" />
-            <Variable Name="Unhold" />
-            <Variable Name="Suspend" />
-            <Variable Name="Unsuspend" />
-            <Variable Name="StateComplete" />
-          </Variable>
-          <Variable Name="MpLink" />
-          <Variable Name="Enable" />
-          <Variable Name="ErrorReset" />
-          <Variable Name="Parameters" />
-          <Variable Name="Update" />
-          <Variable Name="Blocked" />
-          <Variable Name="Starved" />
-          <Variable Name="SubState" />
-          <Variable Name="StateInfo" />
-          <Variable Name="Active" />
-          <Variable Name="Error" />
-          <Variable Name="StatusID" />
-          <Variable Name="UpdateDone" />
-          <Variable Name="StateCurrent" />
-          <Variable Name="SubStateCurrent" />
-          <Variable Name="ModeID" />
+  <Module Name="&lt;Default&gt;">
+    <Task Name="PackMLMgr">
+      <Variable Name="MpPackMLModuleMain">
+        <Variable Name="Command">
+          <Variable Name="Abort" />
+          <Variable Name="Clear" />
+          <Variable Name="Stop" />
+          <Variable Name="Reset" />
+          <Variable Name="Start" />
+          <Variable Name="Hold" />
+          <Variable Name="Unhold" />
+          <Variable Name="Suspend" />
+          <Variable Name="Unsuspend" />
+          <Variable Name="StateComplete" />
         </Variable>
-        <Variable Name="MpPackMLModuleParMain" />
-        <Variable Name="HmiPackML" RecursiveEnable="1" />
-      </Task>
-    </Module>
-  </DefaultView>
+        <Variable Name="MpLink" />
+        <Variable Name="Enable" />
+        <Variable Name="ErrorReset" />
+        <Variable Name="Parameters" />
+        <Variable Name="Update" />
+        <Variable Name="Blocked" />
+        <Variable Name="Starved" />
+        <Variable Name="SubState" />
+        <Variable Name="StateInfo" />
+        <Variable Name="Active" />
+        <Variable Name="Error" />
+        <Variable Name="StatusID" />
+        <Variable Name="UpdateDone" />
+        <Variable Name="StateCurrent" />
+        <Variable Name="SubStateCurrent" />
+        <Variable Name="ModeID" />
+      </Variable>
+      <Variable Name="MpPackMLModuleParMain" />
+      <Variable Name="HmiPackML" RecursiveEnable="2" />
+    </Task>
+  </Module>
 </OpcUaSource>

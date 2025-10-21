@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* MpReport 6.0.7003 */
+/* MpReport 6.4.0 */
 
 #ifndef _MPREPORT_
 #define _MPREPORT_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _MpReport_VERSION
-#define _MpReport_VERSION 6.0.7003
+#define _MpReport_VERSION 6.4.0
 #endif
 
 #include <bur/plctypes.h>
@@ -78,17 +78,17 @@ typedef struct MpReportCore
 {
 	/* VAR_INPUT (analog) */
 	struct MpComIdentType* MpLink;
-	plcstring (*ReportID);
-	plcstring (*DeviceName);
-	plcstring (*FileName);
-	plcstring (*Language);
+	plcstring *ReportID;
+	plcstring *DeviceName;
+	plcstring *FileName;
+	plcstring *Language;
 	enum MpReportMeasurementSystemEnum MeasurementSystem;
 	/* VAR_OUTPUT (analog) */
 	signed long StatusID;
 	struct MpReportCoreInfoType Info;
 	/* VAR (analog) */
 	unsigned char InternalState;
-	unsigned long InternalData[10];
+	unsigned long InternalData[22];
 	/* VAR_INPUT (digital) */
 	plcbit Enable;
 	plcbit ErrorReset;

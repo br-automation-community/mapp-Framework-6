@@ -9,6 +9,9 @@ TYPE
 		mcACPAX_PARTYPE_UINT,  (*Data type: Whole number, 2 bytes, positive numbers only*)
 		mcACPAX_PARTYPE_UDINT,  (*Data type: Whole number, 4 bytes, positive numbers only*)
 		mcACPAX_PARTYPE_REAL,  (*Data type: Floating point, 4 bytes*)
+		mcACPAX_PARTYPE_DINT_REAL := 64, (*Data type: 4 byte signed integer + 4 byte floating point (a.k.a I4+R4)*)
+		mcACPAX_PARTYPE_DINT_REAL_COUNT := 65, (*Data type: 4 byte signed integer + 4 byte floating point + 4 byte unsigned integer for count (a.k.a I4+R4+UI4Cnt)*)
+		mcACPAX_PARTYPE_DINT_REAL_TIME := 66, (*Data type: 4 byte signed integer + 4 byte floating point + 4 byte unsigned integer for time stamp (a.k.a I4+R4+UI4Time)*)
 		mcACPAX_PARTYPE_VOID := 65535   (*General data type*)
 	);
 
@@ -22,7 +25,8 @@ TYPE
 	(
 		mcACPAX_PARID_GET := 0,  (*Read ParID(s)*)
 		mcACPAX_PARID_SET,	 (*Write ParID(s)*)
-		mcACPAX_PARID_GET_NO_NCT  (*Read ParID(s) without entry in the NCT*)
+		mcACPAX_PARID_GET_NO_NCT,  (*Read ParID(s) without entry in the NCT*)
+		mcACPAX_PARID_GET_NO_LOG  (*Read ParID(s) without NCT and logger entry. If an error occurs while reading, an entry is still created.*)
 	);
 
 	McAcpAxProcessParTabModeEnum :
@@ -53,6 +57,14 @@ TYPE
 		mcACPAX_LL_WITH_FEED_FORWARD := 0,  (*The overall torque is limited, i.e. the sum of feed-forward torque and corrective action*)
 		mcACPAX_LL_WITHOUT_FEED_FORWARD    (*Only the share of torque that results from control deviations is limited. Feed-forward torque is ignored*)
 	);
+
+	McAcpAxLimitLoadParIDModeEnum :
+	(
+		mcACPAX_LLPM_NO_INIT := 0, (*Value of ParID will not be initialized - default value*)
+		mcACPAX_LLPM_INIT_FB_INPUT := 1 (*Value of ParID will be initialized with the value of respective input*)
+
+	);
+
 
 	McAcpAxBrakeTestCmdEnum :
 	(
@@ -209,6 +221,11 @@ TYPE
 		mcACPAX_RECEIVE_CHANNEL_5 := 5 (*Select channel 5*)
 	);
 
+	McAcpAxSctrlLimitLoadModeEnum :
+	(
+		mcACPAX_SLL_LIMIT_AND_REPORT := 0  (*Limit load (torque) and report limitation status.*)
+	);
+
 	McAcpAxHomingAddTorqLimParType : STRUCT
 		PositiveDirection : REAL; (*Positive torque limit value for homing to blocks. If '0.0' is specified, the value of 'TorqueLimit' is used for positive direction. [Nm]*)
 		NegativeDirection : REAL; (*Negative torque limit value for homing to blocks. If '0.0' is specified, the value of 'TorqueLimit' is used for negative direction. [Nm]*)
@@ -266,6 +283,9 @@ TYPE
 		LoadPosDecelParID : UINT; (*ParID with limit value for decelerating torque in the positive direction*)
 		LoadNegAccelParID : UINT; (*ParID with limit value for accelerating torque in the negative direction*)
 		LoadNegDecelParID : UINT; (*ParID with limit value for decelerating torque in the negative direction*)
+		LoadParIDMode : McAcpAxLimitLoadParIDModeEnum; (*Mode which defines if the ParID is initialized with the respective input value*)
+		StopMode : McLimitLoadStopModeEnum; (*Mode defines how and if limits are switched when movement is aborted*)
+		StopTorque : REAL; (*If Stop mode is mcLLSM_USER_DEFINED, switch over to limit value contained in StopTorque is performed*)
 	END_STRUCT;
 
 	McAcpAxBrakeParType : STRUCT
@@ -692,6 +712,7 @@ TYPE
 		NodeNumber : USINT; (*Node number of the POWERLINK station from which data should be received.*)
 		BitOffset : UINT; (*Bit offset of the POWERLINK data in the telegram from the transmitter from which point the data is read, must be a multiple of 16.*)
 		ReceiveChannel : McAcpAxReceiveChannelEnum; (*Requested channel number on the axis to be used to receive the data.*)
+		CycleTime : UDINT; (*Update cycle time of the transmitted user data [us].*)
 	END_STRUCT;
 
 	McAcpAxAdvReceiveParIDOnPLCType : STRUCT
@@ -723,5 +744,10 @@ TYPE
 		FourByteCount : USINT; (*Number of four byte (32 bit) data in this record.*)
 		ParIDCount : USINT; (*Number of ParIDs configured in this record (i.e. OneByteCount + TwoByteCount + FourByteCount).*)
 		ParID : ARRAY[0..11] OF UINT; (*Array of ParIDs configured in this record.*)
+	END_STRUCT;
+
+	McAcpAxAdvSctrlLimitLoadParType : STRUCT
+		LoadPositiveParID : UINT; (*Parameter ID of the positive load (torque) limit.*)
+		LoadNegativeParID : UINT; (*Parameter ID of the negative load (torque) limit.*)
 	END_STRUCT;
 END_TYPE

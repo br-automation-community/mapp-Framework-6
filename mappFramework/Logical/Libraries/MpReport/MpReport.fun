@@ -22,6 +22,6 @@ FUNCTION_BLOCK MpReportCore (*Component provides the functionality to enerate pd
 	END_VAR
 	VAR
 		InternalState : USINT; (*Internal stucture*)
-		InternalData : ARRAY[0..9] OF UDINT;
+		InternalData : ARRAY[0..21] OF UDINT;
 	END_VAR
 END_FUNCTION_BLOCK

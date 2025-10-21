@@ -11,6 +11,8 @@
       </Group>
       <Selector ID="JerkFilter" Value="NotUsed" />
       <Selector ID="ZeroVibrationFilter" Value="NotUsed" />
+      <Selector ID="GeneralPurposeAxisInterface" Value="NotUsed" />
+      <Group ID="AxisFeatures" />
     </Group>
   </Element>
 </Configuration>

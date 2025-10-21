@@ -7,9 +7,10 @@
         <Property ID="WebServerPort" Value="81" />
       </Selector>
       <Property ID="MaxClientConnections" Value="10" />
-      <Property ID="MaxBRClientConnections" Value="0" />
-      <Selector ID="AuthenticationMode" Value="AuthenticationModeMpUserX">
-        <Property ID="MpUserXUserPreferences" Value="TRUE" />
+      <Property ID="MpUserXUserPreferences" Value="FALSE" />
+      <Selector ID="StartupUser" Value="StartupUserDefaultUser">
+        <Property ID="StartupUserDefaultUserName" Value="Admin" />
+        <Property ID="MVEncryptedPassword" Value="GmmKwwpa17VUB8ZHRkHmyg==" />
       </Selector>
       <Group ID="TcpProxyConf">
         <Selector ID="InsecureMode" Value="1" />
@@ -17,6 +18,7 @@
       <Group ID="DiagnosticPageConf">
         <Selector ID="DiagnosticPageSelection" Value="2">
           <Property ID="DiagnosticPageRole[1]" Value="Administrators" />
+          <Property ID="DiagnosticPageRole[2]" Value="Service" />
         </Selector>
       </Group>
       <Selector ID="Deployment" Value="DeploymentPLC" />
@@ -45,6 +47,7 @@
       <Property ID="defaultVisu" Value="mappFrameworkVis" />
       <Group ID="Widget">
         <Selector ID="renderingPolicy" Value="1" />
+        <Selector ID="securityPolicy" Value="1" />
       </Group>
     </Group>
   </Element>

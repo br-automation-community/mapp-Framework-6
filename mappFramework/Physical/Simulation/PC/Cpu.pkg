@@ -19,12 +19,12 @@
     <Object Type="Package">mappCockpit</Object>
   </Objects>
   <Configuration ModuleId="PC_any">
-    <AutomationRuntime Version="6.0.7000" />
+    <AutomationRuntime Version="6.1.0" />
     <Build GccVersion="11.3.0" />
     <DefaultTargetMemory Tasks="UserROM" />
     <Safety SafetyRelease="0.0" />
     <Transfer AddToUserPart="True" AdditionalUserDir="\Logical\UserPartition" AllowDowngrade="False" AllowInitialTransfer="False" AllowPartitioning="False" ExecuteInitExitProgram="False" ForceInitialTransfer="False" IdentificationTypeValue="" IgnoreVersion="False" KeepNonVolatileMemory="False" ModuleSystemForPip="" PreserveVariableValues="True" ProjectConsistent="True" RebootDuringTransfer="False" SavedOfflineInstallationFolder="" SavedPipDestinationFolder="" SavedRuntimeUtilityCenterPackagePath="" TargetIdentificationType="Always" TryToBootInRunMode="False" UserFilesIgnoreDifference="False" />
-    <Vc FirmwareVersion="6.0.7000" />
+    <Vc FirmwareVersion="6.0.0" />
     <OnlineConfiguration Name="mappFramework Simulation connection to ArSim" DeviceType="TCPIP" DeviceParameters="/IF=tcpip /LOPO=11159 /SA=1" ConnectionParameters="/COMT=2500 /COMT=1000 /AM=* /IP=127.0.0.1 /PT=11169 /ANSL=1 /PT=11169" Description="" />
   </Configuration>
 </Cpu>

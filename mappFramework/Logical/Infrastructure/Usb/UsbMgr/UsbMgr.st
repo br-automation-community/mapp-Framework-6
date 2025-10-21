@@ -90,7 +90,7 @@ PROGRAM _CYCLIC
 			// --------------------------------------------------------------------------------------------------------------------
 			// Success
 			IF GetUsbNode.status = 0 THEN
-				// Make sure we have enough space to store USB data, proceed with next StateMachine when all devices are detetced
+				// Make sure we have enough space to store USB data, proceed with next StateMachine when all devices are detected
 				IF (Node = GetUsbNodeList.listNodes) OR (Node = MAX_IDX_USB_DEV_LIST) THEN
 					Node := 1;
 					StateMachine := USB_CHECK_LINKED;

@@ -14,7 +14,7 @@ PROGRAM _INIT
 	WHILE (DirCreateUser.status = ERR_FUB_BUSY) DO
 		DirCreateUser();
 	END_WHILE
-	
+
 	// Check if folder already exist and if so disabled the function block call
 	IF DirCreateUser.status = fiERR_DIR_ALREADY_EXIST OR (DirCreateUser.status = ERR_OK) THEN
 		DirCreateUser(enable := FALSE);
@@ -67,7 +67,7 @@ PROGRAM _CYCLIC
 
 	// Call all cyclic actions
 	HMIAction;
-	
+
 	// Saving last status of UserXMgrUIconnect
 	HmiUserX.Status.LastMgrConnectStatus := UserXMgrUIConnect.Status;
 
@@ -88,7 +88,7 @@ END_PROGRAM
 
 PROGRAM _EXIT
 
-	// Disable the function blocls to unlink the MpLinks
+	// Disable the function blocks to unlink the MpLinks
 	MpUserXManagerUISys.Enable := FALSE;
 	MpUserXLoginUISys.Enable := FALSE;
 	MpUserXLoginSys.Enable := FALSE;

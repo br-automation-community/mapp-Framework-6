@@ -8,8 +8,7 @@
         <Property ID="Message" Value="{$mappFramework/AlarmX/MachineAlarms/EmergencyStop.0}" />
         <Property ID="Code" Value="1" />
         <Property ID="Severity" Value="29" />
-        <Selector ID="Behavior" Value="DiscreteValueMonitoring">
-          <Property ID="AutoReset" Value="TRUE" />
+        <Selector ID="Behavior" Value="DiscreteValueMonitoring">       
           <Property ID="Acknowledge" Value="1" />
           <Property ID="Confirm" Value="0" />
           <Property ID="MultipleInstances" Value="TRUE" />
@@ -44,7 +43,6 @@
         <Property ID="Code" Value="2" />
         <Property ID="Severity" Value="1" />
         <Selector ID="Behavior" Value="DiscreteValueMonitoring">
-          <Property ID="AutoReset" Value="TRUE" />
           <Property ID="Acknowledge" Value="1" />
           <Property ID="Confirm" Value="0" />
           <Property ID="MultipleInstances" Value="TRUE" />
@@ -79,7 +77,7 @@
         <Property ID="Code" Value="3" />
         <Property ID="Severity" Value="1" />
         <Selector ID="Behavior" Value="DiscreteValueMonitoring">
-          <Property ID="AutoReset" Value="TRUE" />
+          
           <Property ID="Acknowledge" Value="1" />
           <Property ID="Confirm" Value="0" />
           <Property ID="MultipleInstances" Value="TRUE" />
@@ -114,7 +112,6 @@
         <Property ID="Code" Value="11" />
         <Property ID="Severity" Value="29" />
         <Selector ID="Behavior" Value="DiscreteValueMonitoring">
-          <Property ID="AutoReset" Value="TRUE" />
           <Property ID="Acknowledge" Value="1" />
           <Property ID="Confirm" Value="0" />
           <Property ID="MultipleInstances" Value="TRUE" />
@@ -149,7 +146,6 @@
         <Property ID="Code" Value="12" />
         <Property ID="Severity" Value="29" />
         <Selector ID="Behavior" Value="DiscreteValueMonitoring">
-          <Property ID="AutoReset" Value="TRUE" />
           <Property ID="Acknowledge" Value="1" />
           <Property ID="Confirm" Value="0" />
           <Property ID="MultipleInstances" Value="TRUE" />
@@ -184,7 +180,6 @@
         <Property ID="Code" Value="13" />
         <Property ID="Severity" Value="29" />
         <Selector ID="Behavior" Value="DiscreteValueMonitoring">
-          <Property ID="AutoReset" Value="TRUE" />
           <Property ID="Acknowledge" Value="1" />
           <Property ID="Confirm" Value="0" />
           <Property ID="MultipleInstances" Value="TRUE" />
@@ -219,7 +214,6 @@
         <Property ID="Code" Value="14" />
         <Property ID="Severity" Value="29" />
         <Selector ID="Behavior" Value="DiscreteValueMonitoring">
-          <Property ID="AutoReset" Value="TRUE" />
           <Property ID="Acknowledge" Value="1" />
           <Property ID="Confirm" Value="0" />
           <Property ID="MultipleInstances" Value="TRUE" />
@@ -254,7 +248,6 @@
         <Property ID="Code" Value="15" />
         <Property ID="Severity" Value="29" />
         <Selector ID="Behavior" Value="DiscreteValueMonitoring">
-          <Property ID="AutoReset" Value="TRUE" />
           <Property ID="Acknowledge" Value="1" />
           <Property ID="Confirm" Value="0" />
           <Property ID="MultipleInstances" Value="TRUE" />
@@ -289,7 +282,6 @@
         <Property ID="Code" Value="16" />
         <Property ID="Severity" Value="29" />
         <Selector ID="Behavior" Value="DiscreteValueMonitoring">
-          <Property ID="AutoReset" Value="TRUE" />
           <Property ID="Acknowledge" Value="1" />
           <Property ID="Confirm" Value="0" />
           <Property ID="MultipleInstances" Value="TRUE" />

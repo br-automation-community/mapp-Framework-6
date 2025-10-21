@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* McPureVAx 6.0.7001 */
+/* McPureVAx 6.4.1 */
 
 #ifndef _MCPUREVAX_
 #define _MCPUREVAX_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _McPureVAx_VERSION
-#define _McPureVAx_VERSION 6.0.7001
+#define _McPureVAx_VERSION 6.4.1
 #endif
 
 #include <bur/plctypes.h>
@@ -90,7 +90,9 @@ typedef enum McPVAZVFEnum
 typedef enum McPVAGPAIEnum
 {	mcPVAGPAI_NOT_USE = 0,
 	mcPVAGPAI_USE = 1,
-	mcPVAGPAI_EXT_ENC = 2
+	mcPVAGPAI_EXT_ENC = 2,
+	mcPVAGPAI_DS402_CSP = 3,
+	mcPVAGPAI_DS402_VL = 4
 } McPVAGPAIEnum;
 
 typedef enum McPVAMActModSimOnPLCEnum
@@ -109,7 +111,8 @@ typedef enum McPVAELOEPosEncEnum
 
 typedef enum McPVAELOEExtPosTypEnum
 {	mcPVAELOEEPT_ABS = 0,
-	mcPVAELOEEPT_INCR = 1
+	mcPVAELOEEPT_INCR = 1,
+	mcPVAELOEEPT_ABS_SINGLETURN = 2
 } McPVAELOEExtPosTypEnum;
 
 typedef enum McPVAELOEExtPosSrcEnum
@@ -247,10 +250,51 @@ typedef enum McPVACOSetSpdEnum
 	mcPVACOSS_USE = 1
 } McPVACOSetSpdEnum;
 
+typedef enum McPVACOSetPosEnum
+{	mcPVACOSP_NOT_USE = 0,
+	mcPVACOSP_USE_INCR = 1
+} McPVACOSetPosEnum;
+
 typedef enum McPVAGPAIUseSimLdSimModEnum
 {	mcPVAGPAIUSLSM_NOT_USE = 0,
 	mcPVAGPAIUSLSM_SET_VAL_GEN = 1
 } McPVAGPAIUseSimLdSimModEnum;
+
+typedef enum McPVAESPosTypEnum
+{	mcPVAESPT_ABS = 0,
+	mcPVAESPT_ABS_SINGLETURN = 2
+} McPVAESPosTypEnum;
+
+typedef enum McPVAAPSEnum
+{	mcPVAAPS_VAR = 0,
+	mcPVAAPS_IO_CH = 1
+} McPVAAPSEnum;
+
+typedef enum McPVAAPVREnum
+{	mcPVAAPVR_DEF = 0,
+	mcPVAAPVR_SET_MAN = 1
+} McPVAAPVREnum;
+
+typedef enum McPVACODCCtrlWordEnum
+{	mcPVACODCCW_USE = 1
+} McPVACODCCtrlWordEnum;
+
+typedef enum McPVACODCTgtPosEnum
+{	mcPVACODCTP_USE = 1
+} McPVACODCTgtPosEnum;
+
+typedef enum McPVAVASEnum
+{	mcPVAVAS_VAR = 0,
+	mcPVAVAS_IO_CH = 1
+} McPVAVASEnum;
+
+typedef enum McPVACODVCtrlWordEnum
+{	mcPVACODVCW_USE = 1
+} McPVACODVCtrlWordEnum;
+
+typedef enum McPVACODVTgtVelEnum
+{	mcPVACODVTV_USE = 1
+} McPVACODVTgtVelEnum;
 
 typedef enum McPVASSimLdSimModEnum
 {	mcPVASSLSM_NOT_USE = 0,
@@ -273,6 +317,7 @@ typedef struct McPureVAxControlOutputsPvIfType
 	plcbit ErrorReset;
 	plcbit BrakeControl;
 	float SetSpeed;
+	signed long SetPosition;
 } McPureVAxControlOutputsPvIfType;
 
 typedef struct McPureVAxGeneralPvInterfaceType
@@ -280,6 +325,26 @@ typedef struct McPureVAxGeneralPvInterfaceType
 	struct McPureVAxStatusInputsPvIfType StatusInputs;
 	struct McPureVAxControlOutputsPvIfType ControlOutputs;
 } McPureVAxGeneralPvInterfaceType;
+
+typedef struct McPureVAxDS402CspAdapterPvType
+{	struct McDigitalInputsPvIfType DigitalInputs;
+	signed long ActualPosition;
+	plcbit ModuleOk;
+	unsigned short StatusWord;
+	unsigned short ErrorCode;
+	unsigned short ControlWord;
+	signed long TargetPosition;
+} McPureVAxDS402CspAdapterPvType;
+
+typedef struct McPureVAxDS402VlAdapterPvType
+{	struct McDigitalInputsPvIfType DigitalInputs;
+	signed short ActualVelocity;
+	plcbit ModuleOk;
+	unsigned short StatusWord;
+	unsigned short ErrorCode;
+	unsigned short ControlWord;
+	signed short TargetVelocity;
+} McPureVAxDS402VlAdapterPvType;
 
 typedef struct McPureVAxRestorePosType
 {	signed long Data[18];
@@ -440,9 +505,14 @@ typedef struct McPVAELOEExtPosTypAbsType
 {	struct McPVAELOEExtPosTypAbsPosRngType PositionRange;
 } McPVAELOEExtPosTypAbsType;
 
+typedef struct McPVAELOEExtPosTypAbsSType
+{	struct McPVAELOEExtPosTypAbsPosRngType PositionRange;
+} McPVAELOEExtPosTypAbsSType;
+
 typedef struct McPVAELOEExtPosTypType
 {	enum McPVAELOEExtPosTypEnum Type;
 	struct McPVAELOEExtPosTypAbsType Absolute;
+	struct McPVAELOEExtPosTypAbsSType AbsoluteSingleturn;
 } McPVAELOEExtPosTypType;
 
 typedef struct McPVAELOEExtPosSrcIOChDINTType
@@ -952,11 +1022,21 @@ typedef struct McPVACOSetSpdType
 	struct McPVACOSetSpdUseType Used;
 } McPVACOSetSpdType;
 
+typedef struct McPVACOSetPosUseIncrType
+{	struct McPVACOAllDestType Destination;
+} McPVACOSetPosUseIncrType;
+
+typedef struct McPVACOSetPosType
+{	enum McPVACOSetPosEnum Type;
+	struct McPVACOSetPosUseIncrType UsedIncrements;
+} McPVACOSetPosType;
+
 typedef struct McPVACOType
 {	struct McPVACOPwrOnType PowerOn;
 	struct McPVACOErrRstType ErrorReset;
 	struct McPVACOBrkCtrlType BrakeControl;
 	struct McPVACOSetSpdType SetSpeed;
+	struct McPVACOSetPosType SetPosition;
 } McPVACOType;
 
 typedef struct McPVAGPAIUseSimLdSimModType
@@ -986,10 +1066,152 @@ typedef struct McPVAGPAIExtEncType
 	struct McPVADIType DigitalInputs;
 } McPVAGPAIExtEncType;
 
+typedef struct McPVAESPosTypType
+{	enum McPVAESPosTypEnum Type;
+} McPVAESPosTypType;
+
+typedef struct McPVAESType
+{	signed long IncrementsPerRevolution;
+	struct McPVAESPosTypType PositionType;
+} McPVAESType;
+
+typedef struct McPVAAPSVarType
+{	plcstring PVMapping[251];
+} McPVAAPSVarType;
+
+typedef struct McPVAAPSIOChType
+{	plcstring ChannelMapping[251];
+} McPVAAPSIOChType;
+
+typedef struct McPVAAPSType
+{	enum McPVAAPSEnum Type;
+	struct McPVAAPSVarType Variable;
+	struct McPVAAPSIOChType IOChannel;
+} McPVAAPSType;
+
+typedef struct McPVAAPVRSetManType
+{	signed long LowerLimit;
+	signed long UpperLimit;
+} McPVAAPVRSetManType;
+
+typedef struct McPVAAPVRType
+{	enum McPVAAPVREnum Type;
+	struct McPVAAPVRSetManType SetManually;
+} McPVAAPVRType;
+
+typedef struct McPVAPAVType
+{	struct McPVAAPSType Source;
+	struct McPVAAPVRType ValueRange;
+} McPVAPAVType;
+
+typedef struct McPVASIDModOkType
+{	struct McPVASIAllSrcType Source;
+} McPVASIDModOkType;
+
+typedef struct McPVASIDStatWordType
+{	struct McPVASIAllSrcType Source;
+} McPVASIDStatWordType;
+
+typedef struct McPVASIDErrCType
+{	struct McPVASIAllSrcType Source;
+} McPVASIDErrCType;
+
+typedef struct McPVASIDType
+{	struct McPVASIDModOkType ModuleOk;
+	struct McPVASIDStatWordType StatusWord;
+	struct McPVASIDErrCType ErrorCode;
+} McPVASIDType;
+
+typedef struct McPVACODCCtrlWordUseType
+{	struct McPVACOAllDestType Destination;
+} McPVACODCCtrlWordUseType;
+
+typedef struct McPVACODCCtrlWordType
+{	enum McPVACODCCtrlWordEnum Type;
+	struct McPVACODCCtrlWordUseType Used;
+} McPVACODCCtrlWordType;
+
+typedef struct McPVACODCTgtPosUseType
+{	struct McPVACOAllDestType Destination;
+} McPVACODCTgtPosUseType;
+
+typedef struct McPVACODCTgtPosType
+{	enum McPVACODCTgtPosEnum Type;
+	struct McPVACODCTgtPosUseType Used;
+} McPVACODCTgtPosType;
+
+typedef struct McPVACODCType
+{	struct McPVACODCCtrlWordType ControlWord;
+	struct McPVACODCTgtPosType TargetPosition;
+} McPVACODCType;
+
+typedef struct McPVAGPAIDS402CSPType
+{	struct McPVAMEType MechanicalElements;
+	struct McPVAESType EncoderSettings;
+	struct McPVAPAVType PositionActualValue;
+	struct McPVADIType DigitalInputs;
+	struct McPVASIDType StatusInputs;
+	struct McPVACODCType ControlOutputs;
+} McPVAGPAIDS402CSPType;
+
+typedef struct McPVAVASVarType
+{	plcstring PVMapping[251];
+} McPVAVASVarType;
+
+typedef struct McPVAVASIOChType
+{	plcstring ChannelMapping[251];
+} McPVAVASIOChType;
+
+typedef struct McPVAVASType
+{	enum McPVAVASEnum Type;
+	struct McPVAVASVarType Variable;
+	struct McPVAVASIOChType IOChannel;
+} McPVAVASType;
+
+typedef struct McPVAVAVType
+{	struct McPVAVASType Source;
+} McPVAVAVType;
+
+typedef struct McPVACODVCtrlWordUseType
+{	struct McPVACOAllDestType Destination;
+} McPVACODVCtrlWordUseType;
+
+typedef struct McPVACODVCtrlWordType
+{	enum McPVACODVCtrlWordEnum Type;
+	struct McPVACODVCtrlWordUseType Used;
+} McPVACODVCtrlWordType;
+
+typedef struct McPVACODVTgtVelUseType
+{	struct McPVACOAllDestType Destination;
+} McPVACODVTgtVelUseType;
+
+typedef struct McPVACODVTgtVelType
+{	enum McPVACODVTgtVelEnum Type;
+	struct McPVACODVTgtVelUseType Used;
+} McPVACODVTgtVelType;
+
+typedef struct McPVACODVType
+{	struct McPVACODVCtrlWordType ControlWord;
+	struct McPVACODVTgtVelType TargetVelocity;
+} McPVACODVType;
+
+typedef struct McPVAGPAIDS402VLType
+{	struct McPVAMEType MechanicalElements;
+	struct McPVAELType EncoderLink;
+	struct McPVACType Controller;
+	struct McPVAMELType MovementErrorLimits;
+	struct McPVAVAVType VelocityActualValue;
+	struct McPVADIType DigitalInputs;
+	struct McPVASIDType StatusInputs;
+	struct McPVACODVType ControlOutputs;
+} McPVAGPAIDS402VLType;
+
 typedef struct McPVAGPAIType
 {	enum McPVAGPAIEnum Type;
 	struct McPVAGPAIUseType Used;
 	struct McPVAGPAIExtEncType ExternalEncoder;
+	struct McPVAGPAIDS402CSPType DS402CSP;
+	struct McPVAGPAIDS402VLType DS402VL;
 } McPVAGPAIType;
 
 typedef struct McPVAFType
@@ -1076,6 +1298,30 @@ typedef struct McCfgPureVAxModType
 typedef struct McCfgPureVAxZeroVibFltrType
 {	struct McPVAZVFType ZeroVibrationFilter;
 } McCfgPureVAxZeroVibFltrType;
+
+typedef struct McCfgPureVAxEncSetType
+{	struct McPVAESType EncoderSettings;
+} McCfgPureVAxEncSetType;
+
+typedef struct McCfgPureVAxPosActValType
+{	struct McPVAPAVType PositionActualValue;
+} McCfgPureVAxPosActValType;
+
+typedef struct McCfgPureVAxStatInDs402Type
+{	struct McPVASIDType StatusInputs;
+} McCfgPureVAxStatInDs402Type;
+
+typedef struct McCfgPureVAxCtrlOutDs402CSPType
+{	struct McPVACODCType ControlOutputs;
+} McCfgPureVAxCtrlOutDs402CSPType;
+
+typedef struct McCfgPureVAxCtrlOutDs402VLType
+{	struct McPVACODVType ControlOutputs;
+} McCfgPureVAxCtrlOutDs402VLType;
+
+typedef struct McCfgPureVAxVelActValType
+{	struct McPVAVAVType VelocityActualValue;
+} McCfgPureVAxVelActValType;
 
 
 

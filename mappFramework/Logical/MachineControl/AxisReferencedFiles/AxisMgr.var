@@ -7,6 +7,7 @@ VAR
 	ManualState : {REDUND_UNREPLICABLE} ManualStateEnum; (*Manual handling state*)
 	AxisControl : {REDUND_UNREPLICABLE} AxisControlType := (Status:=(StatusPointControl:=[0,1])); (*Single axis control type*)
 	AxisSettings : {REDUND_UNREPLICABLE} AxisSettingsType; (*Single axis settings *)
+	AcknowledgeAll : {REDUND_UNREPLICABLE} BOOL; (*Acknowledge all alarms*)
 END_VAR
 (*Function Blocks*)
 VAR

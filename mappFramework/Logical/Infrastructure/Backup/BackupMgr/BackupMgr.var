@@ -1,30 +1,30 @@
 (*Function Blocks*)
 VAR
-	MpBackupCoreSys : MpBackupCore; (*MpBackupCore instance*)
-	FixItFB : BOOL; (*MpBackupCoreConfigSys : MpBackupCoreConfig;*) (*MpBackupCoreConfig instance*)
-	MpFileManagerUIBackup : MpFileManagerUI; (*MpFileManagerUI instance*)
-	DirCreateBackup : DirCreate; (*DirCreate instance*)
+    MpBackupCoreSys : MpBackupCore; (*MpBackupCore instance*)
+    MpBackupCoreConfigSys : MpComConfigBasic; (*MpComConfigBasic instance for configuring MpBackup at runtime*)
+    MpFileManagerUIBackup : MpFileManagerUI; (*MpFileManagerUI instance*)
+    DirCreateBackup : DirCreate; (*DirCreate instance*)
 END_VAR
 (*Constants*)
 VAR CONSTANT
-	MAX_IDX_FILE_DEV : USINT := MAX_IDX_USB_DEV_LIST + 1; (*Maximum number of  file devices *)
+    MAX_IDX_FILE_DEV : USINT := MAX_IDX_USB_DEV_LIST + 1; (*Maximum number of  file devices *)
 END_VAR
 (*Structure Types*)
 VAR
-	FixIt: BOOL; (*MpBackupConfiguration : MpBackupCoreConfigType;*) (*MpBackup configuration*)
-	MpFileManagerUIConnect : MpFileManagerUIConnectType; (*MpFile connection to the HMI*)
-	HmiBackup : BackupHmiInterfaceType; (*HMI interface structure*)
+    MpFileManagerUIConnect : MpFileManagerUIConnectType; (*MpFile connection to the HMI*)
+    HmiBackup : BackupHmiInterfaceType; (*HMI interface structure*)
+    MpBackupConfiguration : MpBackupCfgCoreType;
 END_VAR
 (*Enumerations*)
 VAR
-	BackupState : BackupStateEnum; (*States for backup state machine*)
+    BackupState : BackupStateEnum; (*States for backup state machine*)
 END_VAR
 (*Variables*)
 VAR
-	i : USINT; (*Index for loops*)
-	DeviceCount : USINT; (*Counter for available file devices*)
-	ItemCount : UDINT;
+    i : USINT; (*Index for loops*)
+    DeviceCount : USINT; (*Counter for available file devices*)
+    ItemCount : UDINT;
 END_VAR
 VAR RETAIN
-	AutomaticBackupRetain : AutomaticBackupType;
+    AutomaticBackupRetain : AutomaticBackupType;
 END_VAR

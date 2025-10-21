@@ -16,28 +16,47 @@ TYPE
 
 	McPlcopenParEnum :
 	(
-		mcPAR_COMMANDED_AX_POSITION := 1, 	 (*Target position for the movement [Measurement units]*)
-		mcPAR_SW_LIMIT_POSITIVE,		 (*Currently not available*)
-		mcPAR_SW_LIMIT_NEGATIVE,		 (*Currently not available*)
-		mcPAR_ENABLE_LIMIT_POSITIVE,	 (*Currently not available*)
-		mcPAR_ENABLE_LIMIT_NEGATIVE,	 (*Currently not available*)
-		mcPAR_ENABLE_POS_LAG_MONITORING, (*Currently not available*)
-		mcPAR_MAX_AX_POSITION_LAG,		 (*Currently not available*)
-		mcPAR_MAX_AX_VELOCITY_SYSTEM,	 (*Currently not available*)
-		mcPAR_MAX_AX_VELOCITY_APPL,		 (*Currently not available*)
-		mcPAR_ACTUAL_AX_VELOCITY,  		 (*Current speed [Measurement units/s]*)
-		mcPAR_COMMANDED_AX_VELOCITY,	 (*Currently not available*)
-		mcPAR_MAX_AX_ACCELERATION_SYSTEM,	 (*Currently not available*)
-		mcPAR_MAX_AX_ACCELERATION_APPL,	 (*Currently not available*)
-		mcPAR_MAX_AX_DECELERATION_SYSTEM,	 (*Currently not available*)
-		mcPAR_MAX_AX_DECELERATION_APPL,	 (*Currently not available*)
-		mcPAR_MAX_AX_JERK,			(*Maximum jerk of the axis*)
-		mcPAR_AX_PERIOD := 1008,     (*The range of values of the axis position is [0, period] in [Measurement units]*)
-		mcPAR_SW_END_IGNORE := 1014,     (*Status of the SW end position monitoring*)
-		mcPAR_HOMING_OFFSET := 1019, 	 (*Homing offset [Measurement units]. Cannot be read before the first homing procedure*)
-		mcPAR_AX_MEASUREMENT_RESOLUTION := 1020,   (*Defines the possible resolution of [Measurement units] that can be met*)
-		mcPAR_REFERENCE_PULSE_DISTANCE := 1021,   (*Reference pulse distance [Measurement units]. Cannot be read before the first homing procedure*)
-		mcPAR_DISTANCE_PER_ENCODER_REV := 1022   (*Distance of one encoder revolution [Measurement units]*)
+		mcPAR_COMMANDED_AX_POSITION := 1, (*Target position for the movement [Measurement units]*)
+		mcPAR_SW_LIMIT_POSITIVE := 2, (*Positive position software limit [Measurement units]*)
+		mcPAR_SW_LIMIT_NEGATIVE := 3, (*Negative position software limit [Measurement units]*)
+		mcPAR_ENABLE_LIMIT_POSITIVE := 4, (*Currently not available*)
+		mcPAR_ENABLE_LIMIT_NEGATIVE := 5,	 (*Currently not available*)
+		mcPAR_ENABLE_POS_LAG_MONITORING := 6, (*Currently not functional*)
+		mcPAR_MAX_AX_POSITION_LAG := 7, (*Maximum position lag error [Measurement units]*)
+		mcPAR_MAX_AX_VELOCITY_SYSTEM := 8, (*Currently not available*)
+		mcPAR_MAX_AX_VELOCITY_APPL := 9, (*Currently not available*)
+		mcPAR_ACTUAL_AX_VELOCITY := 10, (*Actual velocity [Measurement units/s]*)
+		mcPAR_COMMANDED_AX_VELOCITY := 11, (*Target velocity [Measurement units/s] *)
+		mcPAR_MAX_AX_ACCELERATION_SYSTEM := 12, (*Currently not available*)
+		mcPAR_MAX_AX_ACCELERATION_APPL := 13, (*Currently not available*)
+		mcPAR_MAX_AX_DECELERATION_SYSTEM := 14, (*Currently not available*)
+		mcPAR_MAX_AX_DECELERATION_APPL := 15, (*Currently not available*)
+		mcPAR_MAX_AX_JERK := 16, (*Maximum jerk of the axis [Measurement units/s^3]*)
+		mcPAR_OVERRIDE := 1000, (*Velocity (and acceleration) override (0.0 .. 2.0)*)
+		mcPAR_MOVE_VELOCITY_POS := 1001, (*Currently not available*)
+		mcPAR_MOVE_VELOCITY_NEG := 1002, (*Currently not available*)
+		mcPAR_MOVE_ACCELERATION_POS := 1003, (*Currently not available*)
+		mcPAR_MOVE_DECELERATION_POS := 1004, (*Currently not available*)
+		mcPAR_MOVE_ACCELERATION_NEG := 1005, (*Currently not available*)
+		mcPAR_MOVE_DECELERATION_NEG := 1006, (*Currently not available*)
+		mcPAR_AX_PERIOD := 1008, (*The range of values of the axis position is [0, period] in [Measurement units]*)
+		mcPAR_AUT_POS_TOLERANCE := 1009, (*Currently not available*)
+		mcPAR_MOVE_CYCL_POS_IPL_MODE := 1010, (*Currently not available*)
+		mcPAR_MOVE_CYCL_VEL_IPL_MODE := 1011, (*Currently not available*)
+		mcPAR_DEFAULT_MOVE_PARAMETERS := 1012, (*Currently not available*)
+		mcPAR_STOP_INDEX := 1013, (*Currently not available*)
+		mcPAR_SW_END_IGNORE := 1014, (*Status of the SW end position monitoring*)
+		mcPAR_MAX_LOAD_SYSTEM := 1015, (*Maximum possible torque that can be achieved through the combination of motor and drive [Nm]*)
+		mcPAR_MAX_POSITION_CHANGE := 1016, (*Maximum permissible movement distance of the axis in a voltage-free state for which it is still possible to correctly restore the position*)
+		mcPAR_NETWORK_CYCLE_TIME := 1017, (*Network cycle time in which the axis communicates [s]*)
+		mcPAR_AXIS_NETWORK_CYCLE_TIME := 1018, (*Cycle time of the POWERLINK network on which the axis is operated [s]*)
+		mcPAR_HOMING_OFFSET := 1019, (*Homing offset [Measurement units]. Cannot be read before the first homing procedure*)
+		mcPAR_AX_MEASUREMENT_RESOLUTION := 1020, (*Defines the possible resolution of [Measurement units] that can be met*)
+		mcPAR_REFERENCE_PULSE_DISTANCE := 1021, (*Reference pulse distance [Measurement units]. Cannot be read before the first homing procedure*)
+		mcPAR_DISTANCE_PER_ENCODER_REV := 1022, (*Distance of one encoder revolution [Measurement units]*)
+		mcPAR_CURRENT_POS_LAG_ERROR := 1023, (*Current position lag error value [Measurement units]*)
+		mcPAR_CURRENT_MDC_POS_DIFFERENCE := 1024, (*Current MDC position difference [Measurement units]*)
+		mcPAR_CAM_AUTOMAT_SET_POSITION := 1025 (*Cam automat set position [Measurement units]*)
 	);
 
 	McCamIplModeEnum :
@@ -393,7 +412,9 @@ TYPE
 	 	mcAX_TYPE_PURE_VIRT_GPAI,	(*Purely virtual axis with activated general purpose axis interface*)
 	 	mcAX_TYPE_DS402_SERVO,	(*DS402 conform servo drive axis*)
 	 	mcAX_TYPE_DS402_INV,	(*DS402 conform inverter axis*)
-	 	mcAX_TYPE_PURE_VIRT_EXT_ENC	(*Purely virtual axis with activated external encoder axis interface*)
+	 	mcAX_TYPE_PURE_VIRT_EXT_ENC,	(*Purely virtual axis with activated external encoder axis interface*)
+	 	mcAX_TYPE_PURE_VIRT_DS402_CSP,	(*Purely virtual axis with activated DS402 CSP*)
+	 	mcAX_TYPE_PURE_VIRT_DS402_VL	(*Purely virtual axis with activated DS402 VL*)
 	);
 
 	McAcpAxAutoTuneFeedFwdModeEnum:
@@ -581,6 +602,8 @@ TYPE
 		UseAxisPeriod : BOOL; (*Use axis period for window period*)
 		UpdatePeriod : BOOL; (*Detect and adapt to change of input "Period"*)
 		ReadTriggerWidth : BOOL; (*Enable reading and updating the "TriggerInfo.Width" value*)
+		SubstituteValueWindowPosition : BOOL; (*If the window area is exceeded with no valid trigger received, the latch value is substituted for the window position*)
+		IncreaseTriggerCountNoTrigger : BOOL; (*ValidTriggerCount output is also increased if the expected trigger does not occur*)
 	END_STRUCT;
 
 	McBrTriggerInfoType : STRUCT
@@ -735,11 +758,20 @@ TYPE
 		mcLL_WITHOUT_FEED_FORWARD  (*control deviation torque only is limited; feed forward torque component is not limited *)
 		);
 
+	McLimitLoadStopModeEnum :
+		(
+		mcLLSM_DEFAULT := 0, (*The limit values are not switched when the movement is aborted.*)
+		mcLLSM_USER_DEFINED := 1, (*When the movement is aborted, a switchover is made to the limit value in the StopTorque parameter.*)
+		mcLLSM_MAX_TORQUE := 2 (*A switchover to the maximum torque value takes place when the movement is aborted.*)
+		);
+
 	McAdvBrLimitLoadCamParType : STRUCT
 		PositionFactorPos : DINT; (*Multiplication factor of the axis position for the positive direction *)
 		LoadFactorPos : DINT; (*Multiplication factor of the torque for the positive direction *)
 		PositionFactorNeg : DINT; (*Multiplication factor of the axis position for the negative direction *)
 		LoadFactorNeg : DINT; (*Multiplication factor of the torque for the negative direction *)
+		StopMode : McLimitLoadStopModeEnum; (*Mode defines how and if limits are switched when movement is aborted*)
+		StopTorque : REAL; (*If Stop mode is mcLLSM_USER_DEFINED, switch over to limit value contained in StopTorque is performed*)
 	END_STRUCT;
 
 	McAcpAxAutoTuneOrientationEnum:
@@ -919,4 +951,34 @@ TYPE
 	    Common : McCamAutCommonParType; (*General parameter for all states of the cam automat*)
 	    State : ARRAY[0..14] OF McCamAutStateParType; (*Parameter for the states of the cam automat*)
 	END_STRUCT;
+
+	McCheckAutCompModeEnum :
+	(
+		mcCAC_CHECK_ALL := 1, (*Check all parameters.*)
+		mcCAC_CALC_MASTER_COMP_DIST := 2, (*Calculate the minimum master compensation path.*)
+		mcCAC_CALC_SLAVE_COMP_DIST_POS := 3, (*Calculate the maximum positive slave compensation path.*)
+		mcCAC_CALC_SLAVE_COMP_DIST_NEG := 4 (*Calculate the maximum negative slave compensation path*)
+	);
+
+	McCheckAutCompDataType : STRUCT
+		MaxMasterVelocity : REAL; (*Maximum master speed during compensating movement [Measurement units of master / s].*)
+		MasterCompDistance : LREAL; (* Effective compensation distance of the master axis [Measurement units of master].*)
+		SlaveCompDistance : LREAL; (*Effective compensation distance of the slave axis [Measurement units of slave].*)
+		StartSlope : REAL; (*Slope when entering compensation [Measurement units of slave / Measurement units of master].*)
+		EndSlope : REAL; (*Slope when exiting compensation [Measurement units of slave / Measurement units of master].*)
+		MaxSlaveCompVelocity : REAL; (*Maximum speed of the slave during the compensating movement [Measurement units of slave / s].*)
+		MinSlaveCompVelocity : REAL; (*Minimum speed of the slave during the compensating movement [Measurement units of slave / s].*)
+		MaxSlaveAccelComp1 : REAL; (*Maximum acceleration of the slave during compensation phase 1 [Measurement units of slave / s^2].*)
+		MaxSlaveAccelComp2 : REAL; (*Maximum acceleration of the slave during compensation phase 2 [Measurement units of slave / s^2].*)
+	END_STRUCT;
+
+	McAdvCheckAutCompType : STRUCT
+		MaxSlaveJerk : REAL := 0.0; (*Maximum jerk value of slave axis for jerk limited movement parameter checking / calculation [Measurement units of slave / s^3].*)
+	END_STRUCT;
+
+	McCheckAutCompResultType : STRUCT
+		LimitsExceeded : BOOL := FALSE; (*Logical result of the Check or Calculate function.*)
+		CalculatedValue : LREAL := 0.0; (*Calculated Master or Slave compensation distance value [Measurement units of master] or [Measurement units of slave].*)
+	END_STRUCT;
+
 END_TYPE

@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* MpAlarmX 6.0.7003 */
+/* MpAlarmX 6.4.0 */
 
 #ifndef _MPALARMX_
 #define _MPALARMX_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _MpAlarmX_VERSION
-#define _MpAlarmX_VERSION 6.0.7003
+#define _MpAlarmX_VERSION 6.4.0
 #endif
 
 #include <bur/plctypes.h>
@@ -18,18 +18,18 @@ extern "C"
 #define _BUR_PUBLIC
 #endif
 #ifdef _SG3
-		#include "MpBase.h"
 		#include "astime.h"
+		#include "MpBase.h"
 #endif
 
 #ifdef _SG4
-		#include "MpBase.h"
 		#include "astime.h"
+		#include "MpBase.h"
 #endif
 
 #ifdef _SGC
-		#include "MpBase.h"
 		#include "astime.h"
+		#include "MpBase.h"
 #endif
 
 
@@ -51,19 +51,6 @@ typedef enum MpAlarmXStateEnum
 	mpALARMX_STATE_CONFIRMED = 5,
 	mpALARMX_STATE_UNCONFIRMED = 6
 } MpAlarmXStateEnum;
-
-typedef enum MpAlarmXAcknowledgeConfigEnum
-{	mpALARMX_ACK_DISABLED = 0,
-	mpALARMX_ACK_REQ = 1,
-	mpALARMX_ACK_REQ_RESETTABLE = 2
-} MpAlarmXAcknowledgeConfigEnum;
-
-typedef enum MpAlarmXConfirmConfigEnum
-{	mpALARMX_CONFIRM_DISABLED = 0,
-	mpALARMX_CONFIRM_REQ = 1,
-	mpALARMX_CONFIRM_AFTER_RESET = 3,
-	mpALARMX_CONFIRM_REQ_RESETTABLE = 3
-} MpAlarmXConfirmConfigEnum;
 
 typedef enum MpAlarmXHistoryUIStatusEnum
 {	mpALARMX_HISTORY_UI_STATUS_IDLE = 0,
@@ -112,19 +99,21 @@ typedef enum MpAlarmXErrorEnum
 } MpAlarmXErrorEnum;
 
 typedef enum MpAlarmXCfgEnum
-{	mpALARMX_CFG_ALARMS = 140,
-	mpALARMX_CFG_HISTORY = 120,
-	mpALARMX_CFG_SNIPPET = 142,
-	mpALARMX_CFG_ALARM = 141,
+{	mpALARMX_CFG_QUERIES = 180,
+	mpALARMX_CFG_MAPPINGS = 101,
+	mpALARMX_CFG_DEFAULTMAPPINGS = 103,
 	mpALARMX_CFG_QUERY = 181,
+	mpALARMX_CFG_SNIPPET = 142,
+	mpALARMX_CFG_DEFAULTACTION = 104,
+	mpALARMX_CFG_ALARMLINK = 105,
 	mpALARMX_CFG_CATEGORY = 161,
-	mpALARMX_CFG_DEFAULTACTION = 102,
-	mpALARMX_CFG_QUERIES = 180,
-	mpALARMX_CFG_CATEGORIES = 160,
-	mpALARMX_CFG_MAPPING = 101,
 	mpALARMX_CFG_CORE = 100,
-	mpALARMX_CFG_CATEGORYLINK = 104,
-	mpALARMX_CFG_ALARMLINK = 103
+	mpALARMX_CFG_CATEGORIES = 160,
+	mpALARMX_CFG_ALARM = 141,
+	mpALARMX_CFG_HISTORY = 120,
+	mpALARMX_CFG_ALARMS = 140,
+	mpALARMX_CFG_MAPPING = 102,
+	mpALARMX_CFG_CATEGORYLINK = 106
 } MpAlarmXCfgEnum;
 
 typedef enum MpAlarmXCfgCategoryDefinedByEnum
@@ -137,8 +126,8 @@ typedef enum MpAlarmXCfgCoreMappingActionEnum
 	mpALARMX_CFG_CORE_REACTION = 1,
 	mpALARMX_CFG_CORE_ESCALATE_ALARM = 2,
 	mpALARMX_CFG_CORE_ESC_REACTION = 3,
-	mpALARMX_CFG_CORE_AGGREGATEESC = 4,
-	mpALARMX_CFG_CORE_AGGREGATE = 5,
+	mpALARMX_CFG_CORE_AGGREGATE_ESC = 4,
+	mpALARMX_CFG_CORE_AGGREGATE_LOC = 5,
 	mpALARMX_CFG_CORE_REMAIN = 6
 } MpAlarmXCfgCoreMappingActionEnum;
 
@@ -153,10 +142,10 @@ typedef enum MpAlarmXCfgCoreTaskClassEnum
 	mpALARMX_CFG_CORE_TC_CYCLIC_8 = 8
 } MpAlarmXCfgCoreTaskClassEnum;
 
-typedef enum MpAlarmXCfgCoreUncfgAlarmsEnum
+typedef enum MpAlarmXCfgCoreUnconfAlarmsEnum
 {	mpALARMX_CFG_CORE_DISABLED = 0,
 	mpALARMX_CFG_CORE_ENABLED = 1
-} MpAlarmXCfgCoreUncfgAlarmsEnum;
+} MpAlarmXCfgCoreUnconfAlarmsEnum;
 
 typedef enum MpAlarmXCfgCoreMemoryEnum
 {	mpALARMX_CFG_CORE_MEM_DISABLED = 0,
@@ -182,12 +171,6 @@ typedef enum MpAlarmXCfgListLimitSelectorEnum
 	mpALARMX_CFG_LIST_LIMIT_DYNAMIC = 2
 } MpAlarmXCfgListLimitSelectorEnum;
 
-typedef enum MpAlarmXCfgListLimitSeleRateEnum
-{	mpALARMX_CFG_LIST_RATE_DISABLED = 0,
-	mpALARMX_CFG_LIST_RATE_STATIC = 1,
-	mpALARMX_CFG_LIST_RATE_DYNAMIC = 2
-} MpAlarmXCfgListLimitSeleRateEnum;
-
 typedef enum MpAlarmXCfgListAckValueListEnum
 {	mpALARMX_CFG_LIST_ACK_DISABLED = 0,
 	mpALARMX_CFG_LIST_ACK_REQ = 1,
@@ -201,18 +184,28 @@ typedef enum MpAlarmXCfgListConfValueListEnum
 	mpALARMX_CFG_LIST_CFM_REQ_AND_RE = 3
 } MpAlarmXCfgListConfValueListEnum;
 
-typedef enum MpAlarmXCfgListSettingsEnum
+typedef enum MpAlarmXCfgListLimSettingsEnum
 {	mpALARMX_CFG_LIST_STATIC = 0,
 	mpALARMX_CFG_LIST_DYNAMIC = 1
-} MpAlarmXCfgListSettingsEnum;
+} MpAlarmXCfgListLimSettingsEnum;
+
+typedef enum MpAlarmXCfgListTimSettingsEnum
+{	mpALARMX_CFG_LIST_TIM_STATIC = 0,
+	mpALARMX_CFG_LIST_TIM_DYNAMIC = 1
+} MpAlarmXCfgListTimSettingsEnum;
+
+typedef enum MpAlarmXCfgListDlySettingsEnum
+{	mpALARMX_CFG_LIST_DLY_STATIC = 0,
+	mpALARMX_CFG_LIST_DLY_DYNAMIC = 1
+} MpAlarmXCfgListDlySettingsEnum;
 
 typedef enum MpAlarmXCfgListBehaviorEnum
 {	mpALARMX_CFG_LIST_EDGE = 0,
 	mpALARMX_CFG_LIST_PERSISTENT = 1,
 	mpALARMX_CFG_LIST_USER_DEFINED = 2,
-	mpALARMX_CFG_LIST_LEVEL_MONITOR = 3,
-	mpALARMX_CFG_LIST_DEVIAT_MONITOR = 4,
-	mpALARMX_CFG_LIST_ROC_MONITOR = 5,
+	mpALARMX_CFG_LIST_LEVEL_MON = 3,
+	mpALARMX_CFG_LIST_DEVN_MON = 4,
+	mpALARMX_CFG_LIST_ROC_MON = 5,
 	mpALARMX_CFG_LIST_DISCRETE_MON = 6
 } MpAlarmXCfgListBehaviorEnum;
 
@@ -225,7 +218,7 @@ typedef enum MpAlarmXCfgListValueEnum
 {	mpALARMX_CFG_LIST_SNIPPET_PV = 0
 } MpAlarmXCfgListValueEnum;
 
-typedef enum MpAlarmXCfgQueryColumnsEnum
+typedef enum MpAlarmXCfgQueryHistColumnsEnum
 {	mpALARMX_CFG_QUERY_NAME = 0,
 	mpALARMX_CFG_QUERY_MESSAGE = 1,
 	mpALARMX_CFG_QUERY_INSTANCEID = 2,
@@ -236,7 +229,7 @@ typedef enum MpAlarmXCfgQueryColumnsEnum
 	mpALARMX_CFG_QUERY_TIMESTAMP = 7,
 	mpALARMX_CFG_QUERY_ADDINFO1 = 8,
 	mpALARMX_CFG_QUERY_ADDINFO2 = 9
-} MpAlarmXCfgQueryColumnsEnum;
+} MpAlarmXCfgQueryHistColumnsEnum;
 
 typedef enum MpAlarmXCfgQueryOperatorsEnum
 {	mpALARMX_CFG_QUERY_LT = 0,
@@ -257,7 +250,7 @@ typedef enum MpAlarmXCfgQueryPendColumnsEnum
 	mpALARMX_CFG_QUERY_PEND_SCOPE = 5,
 	mpALARMX_CFG_QUERY_PEND_STATEACT = 6,
 	mpALARMX_CFG_QUERY_PEND_STATEACK = 7,
-	mpALARMX_CFG_QUERY_PEND_STATECMF = 8,
+	mpALARMX_CFG_QUERY_PEND_STATECFM = 8,
 	mpALARMX_CFG_QUERY_PEND_TIME = 9,
 	mpALARMX_CFG_QUERY_PEND_TIME_ACK = 10,
 	mpALARMX_CFG_QUERY_PEND_ADDINFO1 = 11,
@@ -453,10 +446,10 @@ typedef struct MpAlarmXCfgCategoryDefinedByType
 	struct MpAlarmXCfgCategoryCodeType Code;
 } MpAlarmXCfgCategoryDefinedByType;
 
-typedef struct MpAlarmXCfgCategoryCategoryType
+typedef struct MpAlarmXCfgCategorySingleType
 {	plcstring Name[51];
 	struct MpAlarmXCfgCategoryDefinedByType DefinedBy;
-} MpAlarmXCfgCategoryCategoryType;
+} MpAlarmXCfgCategorySingleType;
 
 typedef struct MpAlarmXCfgCategoryAlarmCatType
 {	struct MpBaseCfgArrayType Category;
@@ -466,24 +459,26 @@ typedef struct MpAlarmXCfgCategoryType
 {	struct MpAlarmXCfgCategoryAlarmCatType AlarmCategories;
 } MpAlarmXCfgCategoryType;
 
-typedef struct MpAlarmXCfgCoreActparamType
+typedef struct MpAlarmXCfgCoreActionParamType
 {	plcstring Name[101];
-} MpAlarmXCfgCoreActparamType;
+} MpAlarmXCfgCoreActionParamType;
 
 typedef struct MpAlarmXCfgCoreMappingActionType
 {	enum MpAlarmXCfgCoreMappingActionEnum Type;
-	struct MpAlarmXCfgCoreActparamType Data;
+	struct MpAlarmXCfgCoreActionParamType Data;
 } MpAlarmXCfgCoreMappingActionType;
 
 typedef struct MpAlarmXCfgCoreGeneralType
 {	plcbit Enable;
+	plcbit EnableCockpit;
 	enum MpAlarmXCfgCoreTaskClassEnum CyclicTaskClass;
+	plcstring Parent[51];
 } MpAlarmXCfgCoreGeneralType;
 
-typedef struct MpAlarmXCfgCoreMappingIType
+typedef struct MpAlarmXCfgCoreMappingsType
 {	plcstring Alarm[101];
 	struct MpAlarmXCfgCoreMappingActionType Action;
-} MpAlarmXCfgCoreMappingIType;
+} MpAlarmXCfgCoreMappingsType;
 
 typedef struct MpAlarmXCfgCoreMappingType
 {	struct MpBaseCfgArrayType Mapping;
@@ -498,15 +493,11 @@ typedef struct MpAlarmXCfgCoreAlarmMappingType
 	struct MpAlarmXCfgCoreDefaultType Default;
 } MpAlarmXCfgCoreAlarmMappingType;
 
-typedef struct MpAlarmXCfgCoreArgumentsType
-{	unsigned long NumberOfElements;
-	plcstring Arguments[9][256];
-} MpAlarmXCfgCoreArgumentsType;
-
 typedef struct MpAlarmXCfgCoreListsType
 {	plcstring List[51];
 	signed long CodeOffset;
-	struct MpAlarmXCfgCoreArgumentsType Arguments;
+	unsigned long NumberOfArguments;
+	plcstring Arguments[9][256];
 } MpAlarmXCfgCoreListsType;
 
 typedef struct MpAlarmXCfgCoreAlarmListsType
@@ -517,10 +508,10 @@ typedef struct MpAlarmXCfgCoreEnabledType
 {	plcstring Alarm[101];
 } MpAlarmXCfgCoreEnabledType;
 
-typedef struct MpAlarmXCfgCoreUncfgAlarmsType
-{	enum MpAlarmXCfgCoreUncfgAlarmsEnum Type;
+typedef struct MpAlarmXCfgCoreUnconfAlarmsType
+{	enum MpAlarmXCfgCoreUnconfAlarmsEnum Type;
 	struct MpAlarmXCfgCoreEnabledType Enabled;
-} MpAlarmXCfgCoreUncfgAlarmsType;
+} MpAlarmXCfgCoreUnconfAlarmsType;
 
 typedef struct MpAlarmXCfgCoreDataType
 {	unsigned long Size;
@@ -537,26 +528,29 @@ typedef struct MpAlarmXCfgCoreRetainType
 {	struct MpAlarmXCfgCoreMemoryType Memory;
 } MpAlarmXCfgCoreRetainType;
 
-typedef struct MpAlarmXCfgCoreCategoriesType
+typedef struct MpAlarmXCfgCoreCatListType
 {	plcstring List[51];
-} MpAlarmXCfgCoreCategoriesType;
+} MpAlarmXCfgCoreCatListType;
 
 typedef struct MpAlarmXCfgCoreAlarmCatType
-{	struct MpBaseCfgArrayType Categories;
+{	unsigned long NumberOfCategories;
+	struct MpAlarmXCfgCoreCatListType Categories[10];
 } MpAlarmXCfgCoreAlarmCatType;
 
 typedef struct MpAlarmXCfgCoreType
 {	struct MpAlarmXCfgCoreGeneralType General;
 	struct MpAlarmXCfgCoreAlarmMappingType AlarmMapping;
 	struct MpAlarmXCfgCoreAlarmListsType AlarmLists;
-	struct MpAlarmXCfgCoreUncfgAlarmsType UnconfiguredAlarms;
+	struct MpAlarmXCfgCoreUnconfAlarmsType UnconfiguredAlarms;
 	struct MpAlarmXCfgCoreRetainType Retain;
 	struct MpAlarmXCfgCoreAlarmCatType AlarmCategories;
 } MpAlarmXCfgCoreType;
 
 typedef struct MpAlarmXCfgHistoryGeneralType
 {	plcbit Enable;
+	plcbit EnableCockpit;
 	plcbit EnableAuditing;
+	plcstring Parent[51];
 } MpAlarmXCfgHistoryGeneralType;
 
 typedef struct MpAlarmXCfgHistoryExportType
@@ -576,31 +570,25 @@ typedef struct MpAlarmXCfgHistoryMemoryType
 	struct MpAlarmXCfgHistoryDataType Data;
 } MpAlarmXCfgHistoryMemoryType;
 
-typedef struct MpAlarmXCfgHistoryHistoryType
+typedef struct MpAlarmXCfgHistorySettingsType
 {	struct MpAlarmXCfgHistoryExportType Export;
 	struct MpAlarmXCfgHistoryMemoryType Memory;
 	enum MpAlarmXCfgHistoryScopeEnum Scope;
-} MpAlarmXCfgHistoryHistoryType;
+} MpAlarmXCfgHistorySettingsType;
 
 typedef struct MpAlarmXCfgHistoryType
 {	struct MpAlarmXCfgHistoryGeneralType General;
-	struct MpAlarmXCfgHistoryHistoryType AlarmHistory;
+	struct MpAlarmXCfgHistorySettingsType AlarmHistory;
 } MpAlarmXCfgHistoryType;
 
 typedef struct MpAlarmXCfgListStaticType
 {	double Limit;
 	plcstring LimitText[101];
-	float Delay;
-	double Hysteresis;
-	float TimeConstant;
 } MpAlarmXCfgListStaticType;
 
 typedef struct MpAlarmXCfgListDynamicType
 {	plcstring LimitPv[256];
 	plcstring LimitText[101];
-	plcstring DelayPv[256];
-	plcstring HysteresisPv[256];
-	plcstring TimeConstantPv[256];
 } MpAlarmXCfgListDynamicType;
 
 typedef struct MpAlarmXCfgListLimitSelectorType
@@ -608,12 +596,6 @@ typedef struct MpAlarmXCfgListLimitSelectorType
 	struct MpAlarmXCfgListStaticType LimitStatic;
 	struct MpAlarmXCfgListDynamicType LimitDynamic;
 } MpAlarmXCfgListLimitSelectorType;
-
-typedef struct MpAlarmXCfgListLimitSeleRateType
-{	enum MpAlarmXCfgListLimitSeleRateEnum Type;
-	struct MpAlarmXCfgListStaticType RateStatic;
-	struct MpAlarmXCfgListDynamicType RateDynamic;
-} MpAlarmXCfgListLimitSeleRateType;
 
 typedef struct MpAlarmXCfgListRecordingType
 {	plcbit InactiveToActive;
@@ -625,11 +607,21 @@ typedef struct MpAlarmXCfgListRecordingType
 	plcbit Update;
 } MpAlarmXCfgListRecordingType;
 
-typedef struct MpAlarmXCfgListSettingsType
-{	enum MpAlarmXCfgListSettingsEnum Type;
-	struct MpAlarmXCfgListStaticType Static;
-	struct MpAlarmXCfgListDynamicType Dynamic;
-} MpAlarmXCfgListSettingsType;
+typedef struct MpAlarmXCfgListLimStaticType
+{	float Delay;
+	double Hysteresis;
+} MpAlarmXCfgListLimStaticType;
+
+typedef struct MpAlarmXCfgListLimDynamicType
+{	plcstring DelayPv[256];
+	plcstring HysteresisPv[256];
+} MpAlarmXCfgListLimDynamicType;
+
+typedef struct MpAlarmXCfgListLimSettingsType
+{	enum MpAlarmXCfgListLimSettingsEnum Type;
+	struct MpAlarmXCfgListLimStaticType Static;
+	struct MpAlarmXCfgListLimDynamicType Dynamic;
+} MpAlarmXCfgListLimSettingsType;
 
 typedef struct MpAlarmXCfgListActivationType
 {	plcbit Timestamp;
@@ -640,13 +632,13 @@ typedef struct MpAlarmXCfgListDataUpdateType
 {	struct MpAlarmXCfgListActivationType Activation;
 } MpAlarmXCfgListDataUpdateType;
 
-typedef struct MpAlarmXCfgListRecedgeType
+typedef struct MpAlarmXCfgListRecEdgeType
 {	plcbit InactiveToActive;
 	plcbit UnacknowledgedToAcknowledged;
 	plcbit AcknowledgedToUnacknowledged;
 	plcbit UnconfirmedToConfirmed;
 	plcbit ConfirmedToUnconfirmed;
-} MpAlarmXCfgListRecedgeType;
+} MpAlarmXCfgListRecEdgeType;
 
 typedef struct MpAlarmXCfgListEdgeAlarmType
 {	enum MpAlarmXCfgListConfValueListEnum Confirm;
@@ -655,10 +647,10 @@ typedef struct MpAlarmXCfgListEdgeAlarmType
 	plcbit Retain;
 	plcbit Asynchronous;
 	struct MpAlarmXCfgListDataUpdateType DataUpdate;
-	struct MpAlarmXCfgListRecedgeType HistoryReport;
+	struct MpAlarmXCfgListRecEdgeType HistoryReport;
 } MpAlarmXCfgListEdgeAlarmType;
 
-typedef struct MpAlarmXCfgListRecpersType
+typedef struct MpAlarmXCfgListHistoryReportType
 {	plcbit InactiveToActive;
 	plcbit ActiveToInactive;
 	plcbit UnacknowledgedToAcknowledged;
@@ -666,7 +658,7 @@ typedef struct MpAlarmXCfgListRecpersType
 	plcbit UnconfirmedToConfirmed;
 	plcbit ConfirmedToUnconfirmed;
 	plcbit Update;
-} MpAlarmXCfgListRecpersType;
+} MpAlarmXCfgListHistoryReportType;
 
 typedef struct MpAlarmXCfgListPersAlarmType
 {	enum MpAlarmXCfgListAckValueListEnum Acknowledge;
@@ -676,7 +668,7 @@ typedef struct MpAlarmXCfgListPersAlarmType
 	plcbit Retain;
 	plcbit Asynchronous;
 	struct MpAlarmXCfgListDataUpdateType DataUpdate;
-	struct MpAlarmXCfgListRecpersType HistoryReport;
+	struct MpAlarmXCfgListHistoryReportType HistoryReport;
 } MpAlarmXCfgListPersAlarmType;
 
 typedef struct MpAlarmXCfgListUserDefinedType
@@ -691,93 +683,119 @@ typedef struct MpAlarmXCfgListUserDefinedType
 	struct MpAlarmXCfgListRecordingType HistoryReport;
 } MpAlarmXCfgListUserDefinedType;
 
-typedef struct MpAlarmXCfgListLevelmonType
+typedef struct MpAlarmXCfgListLevelMonType
 {	plcstring MonitoredPv[256];
 	plcbit Exclusive;
 	struct MpAlarmXCfgListLimitSelectorType LowLimit;
-	struct MpAlarmXCfgListLimitSelectorType LowlowLimit;
+	struct MpAlarmXCfgListLimitSelectorType LowLowLimit;
 	struct MpAlarmXCfgListLimitSelectorType HighLimit;
-	struct MpAlarmXCfgListLimitSelectorType HighhighLimit;
-	struct MpAlarmXCfgListSettingsType Settings;
-} MpAlarmXCfgListLevelmonType;
+	struct MpAlarmXCfgListLimitSelectorType HighHighLimit;
+	struct MpAlarmXCfgListLimSettingsType Settings;
+} MpAlarmXCfgListLevelMonType;
 
-typedef struct MpAlarmXCfgListLevelMonitorType
+typedef struct MpAlarmXCfgListLevelType
 {	enum MpAlarmXCfgListAckValueListEnum Acknowledge;
 	enum MpAlarmXCfgListConfValueListEnum Confirm;
 	plcbit ReactionWhilePending;
 	struct MpAlarmXCfgListRecordingType HistoryReport;
-	struct MpAlarmXCfgListLevelmonType Monitoring;
-} MpAlarmXCfgListLevelMonitorType;
+	struct MpAlarmXCfgListLevelMonType Monitoring;
+} MpAlarmXCfgListLevelType;
 
-typedef struct MpAlarmXCfgListMonitoringType
+typedef struct MpAlarmXCfgListDevnMonType
 {	plcstring MonitoredPv[256];
 	plcstring SetpointPv[256];
 	plcbit Exclusive;
 	struct MpAlarmXCfgListLimitSelectorType LowLimit;
-	struct MpAlarmXCfgListLimitSelectorType LowlowLimit;
+	struct MpAlarmXCfgListLimitSelectorType LowLowLimit;
 	struct MpAlarmXCfgListLimitSelectorType HighLimit;
-	struct MpAlarmXCfgListLimitSelectorType HighhighLimit;
-	struct MpAlarmXCfgListSettingsType Settings;
-} MpAlarmXCfgListMonitoringType;
+	struct MpAlarmXCfgListLimitSelectorType HighHighLimit;
+	struct MpAlarmXCfgListLimSettingsType Settings;
+} MpAlarmXCfgListDevnMonType;
 
-typedef struct MpAlarmXCfgListDeviatMonitorType
+typedef struct MpAlarmXCfgListDeviationType
 {	enum MpAlarmXCfgListAckValueListEnum Acknowledge;
 	enum MpAlarmXCfgListConfValueListEnum Confirm;
 	plcbit ReactionWhilePending;
 	struct MpAlarmXCfgListRecordingType HistoryReport;
-	struct MpAlarmXCfgListMonitoringType Monitoring;
-} MpAlarmXCfgListDeviatMonitorType;
+	struct MpAlarmXCfgListDevnMonType Monitoring;
+} MpAlarmXCfgListDeviationType;
 
-typedef struct MpAlarmXCfgListRocmonType
+typedef struct MpAlarmXCfgListTimStaticType
+{	float Delay;
+	float TimeConstant;
+} MpAlarmXCfgListTimStaticType;
+
+typedef struct MpAlarmXCfgListTimDynamicType
+{	plcstring DelayPv[256];
+	plcstring TimeConstantPv[256];
+} MpAlarmXCfgListTimDynamicType;
+
+typedef struct MpAlarmXCfgListTimSettingsType
+{	enum MpAlarmXCfgListTimSettingsEnum Type;
+	struct MpAlarmXCfgListTimStaticType Static;
+	struct MpAlarmXCfgListTimDynamicType Dynamic;
+} MpAlarmXCfgListTimSettingsType;
+
+typedef struct MpAlarmXCfgListRocMonType
 {	plcstring MonitoredPv[256];
 	plcbit Exclusive;
-	struct MpAlarmXCfgListLimitSeleRateType LowLimit;
-	struct MpAlarmXCfgListLimitSeleRateType LowlowLimit;
-	struct MpAlarmXCfgListLimitSeleRateType HighLimit;
-	struct MpAlarmXCfgListLimitSeleRateType HighhighLimit;
-	struct MpAlarmXCfgListSettingsType Settings;
-} MpAlarmXCfgListRocmonType;
+	struct MpAlarmXCfgListLimitSelectorType LowLimit;
+	struct MpAlarmXCfgListLimitSelectorType LowLowLimit;
+	struct MpAlarmXCfgListLimitSelectorType HighLimit;
+	struct MpAlarmXCfgListLimitSelectorType HighHighLimit;
+	struct MpAlarmXCfgListTimSettingsType Settings;
+} MpAlarmXCfgListRocMonType;
 
-typedef struct MpAlarmXCfgListRocMonitorType
+typedef struct MpAlarmXCfgListRocType
 {	enum MpAlarmXCfgListAckValueListEnum Acknowledge;
 	enum MpAlarmXCfgListConfValueListEnum Confirm;
 	plcbit ReactionWhilePending;
 	struct MpAlarmXCfgListRecordingType HistoryReport;
-	struct MpAlarmXCfgListRocmonType Monitoring;
-} MpAlarmXCfgListRocMonitorType;
+	struct MpAlarmXCfgListRocMonType Monitoring;
+} MpAlarmXCfgListRocType;
 
-typedef struct MpAlarmXCfgListTrgvalueType
-{	unsigned long NumberOfElements;
-	plcstring AlarmTriggerValueI[4][51];
-} MpAlarmXCfgListTrgvalueType;
+typedef struct MpAlarmXCfgListTrgValuesType
+{	unsigned long NumberOfAlarmValues;
+	plcstring AlarmValues[4][51];
+} MpAlarmXCfgListTrgValuesType;
 
-typedef struct MpAlarmXCfgListTrgvaluesType
-{	struct MpAlarmXCfgListTrgvalueType AlarmTriggerValueI;
-} MpAlarmXCfgListTrgvaluesType;
+typedef struct MpAlarmXCfgListDlyStaticType
+{	float Delay;
+} MpAlarmXCfgListDlyStaticType;
+
+typedef struct MpAlarmXCfgListDlyDynamicType
+{	plcstring DelayPv[256];
+} MpAlarmXCfgListDlyDynamicType;
+
+typedef struct MpAlarmXCfgListDlySettingsType
+{	enum MpAlarmXCfgListDlySettingsEnum Type;
+	struct MpAlarmXCfgListDlyStaticType Static;
+	struct MpAlarmXCfgListDlyDynamicType Dynamic;
+} MpAlarmXCfgListDlySettingsType;
 
 typedef struct MpAlarmXCfgListDiscMonType
 {	plcstring MonitoredPv[256];
-	struct MpAlarmXCfgListTrgvaluesType TriggerValues;
-	struct MpAlarmXCfgListSettingsType Settings;
+	struct MpAlarmXCfgListTrgValuesType Trigger;
+	struct MpAlarmXCfgListDlySettingsType Settings;
 } MpAlarmXCfgListDiscMonType;
 
-typedef struct MpAlarmXCfgListDiscreteMonType
+typedef struct MpAlarmXCfgListDiscretType
 {	enum MpAlarmXCfgListAckValueListEnum Acknowledge;
 	enum MpAlarmXCfgListConfValueListEnum Confirm;
 	plcbit ReactionWhilePending;
 	struct MpAlarmXCfgListRecordingType HistoryReport;
 	struct MpAlarmXCfgListDiscMonType Monitoring;
-} MpAlarmXCfgListDiscreteMonType;
+} MpAlarmXCfgListDiscretType;
 
 typedef struct MpAlarmXCfgListBehaviorType
 {	enum MpAlarmXCfgListBehaviorEnum Type;
 	struct MpAlarmXCfgListEdgeAlarmType Edge;
 	struct MpAlarmXCfgListPersAlarmType Persistent;
 	struct MpAlarmXCfgListUserDefinedType UserDefined;
-	struct MpAlarmXCfgListLevelMonitorType LevelMonitor;
-	struct MpAlarmXCfgListDeviatMonitorType DeviatMonitor;
-	struct MpAlarmXCfgListRocMonitorType RocMonitor;
-	struct MpAlarmXCfgListDiscreteMonType DiscreteMon;
+	struct MpAlarmXCfgListLevelType Level;
+	struct MpAlarmXCfgListDeviationType Deviation;
+	struct MpAlarmXCfgListRocType RateOfChange;
+	struct MpAlarmXCfgListDiscretType Discrete;
 } MpAlarmXCfgListBehaviorType;
 
 typedef struct MpAlarmXCfgListAlarmType
@@ -830,19 +848,15 @@ typedef struct MpAlarmXCfgListType
 	struct MpAlarmXCfgListTextSnippetsType TextSnippets;
 } MpAlarmXCfgListType;
 
-typedef struct MpAlarmXCfgQueryPendColItemType
+typedef struct MpAlarmXCfgQueryPendColType
 {	enum MpAlarmXCfgQueryPendColumnsEnum Column;
 	plcstring ProcessVariable[256];
-} MpAlarmXCfgQueryPendColItemType;
-
-typedef struct MpAlarmXCfgQueryPendColType
-{	unsigned long NumberOfElements;
-	struct MpAlarmXCfgQueryPendColItemType Columns[15];
 } MpAlarmXCfgQueryPendColType;
 
-typedef struct MpAlarmXCfgQuerySelectpType
-{	struct MpAlarmXCfgQueryPendColType Columns;
-} MpAlarmXCfgQuerySelectpType;
+typedef struct MpAlarmXCfgQueryPendSelectType
+{	unsigned long NumberOfColumns;
+	struct MpAlarmXCfgQueryPendColType Columns[15];
+} MpAlarmXCfgQueryPendSelectType;
 
 typedef struct MpAlarmXCfgQueryValueType
 {	plcstring Value[256];
@@ -853,98 +867,78 @@ typedef struct MpAlarmXCfgQueryCompareToType
 	struct MpAlarmXCfgQueryValueType Value;
 } MpAlarmXCfgQueryCompareToType;
 
-typedef struct MpAlarmXCfgQueryPendCondItemType
+typedef struct MpAlarmXCfgQueryPendCondType
 {	enum MpAlarmXCfgQueryPendColumnsEnum Column;
 	enum MpAlarmXCfgQueryOperatorsEnum Operator;
 	struct MpAlarmXCfgQueryCompareToType CompareTo;
-} MpAlarmXCfgQueryPendCondItemType;
-
-typedef struct MpAlarmXCfgQueryPendCondType
-{	unsigned long NumberOfElements;
-	struct MpAlarmXCfgQueryPendCondItemType WhereFilter[5];
 } MpAlarmXCfgQueryPendCondType;
 
-typedef struct MpAlarmXCfgQueryWherepType
+typedef struct MpAlarmXCfgQueryPendWhereType
 {	plcstring Connect[256];
-	struct MpAlarmXCfgQueryPendCondType WhereFilter;
-} MpAlarmXCfgQueryWherepType;
+	unsigned long NumberOfWhereFilter;
+	struct MpAlarmXCfgQueryPendCondType WhereFilter[5];
+} MpAlarmXCfgQueryPendWhereType;
 
 typedef struct MpAlarmXCfgQueryPendingType
 {	plcstring Component[51];
-	struct MpAlarmXCfgQuerySelectpType Select;
-	struct MpAlarmXCfgQueryWherepType Where;
+	struct MpAlarmXCfgQueryPendSelectType Select;
+	struct MpAlarmXCfgQueryPendWhereType Where;
 } MpAlarmXCfgQueryPendingType;
 
-typedef struct MpAlarmXCfgQueryConfColItemType
+typedef struct MpAlarmXCfgQueryConfColType
 {	enum MpAlarmXCfgQueryConfColumnsEnum Column;
 	plcstring ProcessVariable[256];
-} MpAlarmXCfgQueryConfColItemType;
-
-typedef struct MpAlarmXCfgQueryConfColType
-{	unsigned long NumberOfElements;
-	struct MpAlarmXCfgQueryConfColItemType Columns[10];
 } MpAlarmXCfgQueryConfColType;
 
-typedef struct MpAlarmXCfgQuerySelectcType
-{	struct MpAlarmXCfgQueryConfColType Columns;
-} MpAlarmXCfgQuerySelectcType;
+typedef struct MpAlarmXCfgQueryConfSelectType
+{	unsigned long NumberOfColumns;
+	struct MpAlarmXCfgQueryConfColType Columns[10];
+} MpAlarmXCfgQueryConfSelectType;
 
-typedef struct MpAlarmXCfgQueryConfCondItemType
+typedef struct MpAlarmXCfgQueryConfCondType
 {	enum MpAlarmXCfgQueryConfColumnsEnum Column;
 	enum MpAlarmXCfgQueryOperatorsEnum Operator;
 	struct MpAlarmXCfgQueryCompareToType CompareTo;
-} MpAlarmXCfgQueryConfCondItemType;
-
-typedef struct MpAlarmXCfgQueryConfCondType
-{	unsigned long NumberOfElements;
-	struct MpAlarmXCfgQueryConfCondItemType WhereFilter[5];
 } MpAlarmXCfgQueryConfCondType;
 
-typedef struct MpAlarmXCfgQueryWherecType
+typedef struct MpAlarmXCfgQueryConfWhereType
 {	plcstring Connect[256];
-	struct MpAlarmXCfgQueryConfCondType WhereFilter;
-} MpAlarmXCfgQueryWherecType;
+	unsigned long NumberOfWhereFilter;
+	struct MpAlarmXCfgQueryConfCondType WhereFilter[5];
+} MpAlarmXCfgQueryConfWhereType;
 
 typedef struct MpAlarmXCfgQueryConfiguredType
 {	plcstring Component[51];
-	struct MpAlarmXCfgQuerySelectcType Select;
-	struct MpAlarmXCfgQueryWherecType Where;
+	struct MpAlarmXCfgQueryConfSelectType Select;
+	struct MpAlarmXCfgQueryConfWhereType Where;
 } MpAlarmXCfgQueryConfiguredType;
 
-typedef struct MpAlarmXCfgQueryHistColItemType
-{	enum MpAlarmXCfgQueryColumnsEnum Column;
-	plcstring ProcessVariable[256];
-} MpAlarmXCfgQueryHistColItemType;
-
 typedef struct MpAlarmXCfgQueryHistColType
-{	unsigned long NumberOfElements;
-	struct MpAlarmXCfgQueryHistColItemType Columns[15];
+{	enum MpAlarmXCfgQueryHistColumnsEnum Column;
+	plcstring ProcessVariable[256];
 } MpAlarmXCfgQueryHistColType;
 
-typedef struct MpAlarmXCfgQuerySelectqType
-{	struct MpAlarmXCfgQueryHistColType Columns;
-} MpAlarmXCfgQuerySelectqType;
-
-typedef struct MpAlarmXCfgQueryHistCondItemType
-{	enum MpAlarmXCfgQueryColumnsEnum Column;
-	enum MpAlarmXCfgQueryOperatorsEnum Operator;
-	struct MpAlarmXCfgQueryCompareToType CompareTo;
-} MpAlarmXCfgQueryHistCondItemType;
+typedef struct MpAlarmXCfgQueryHistSelectType
+{	unsigned long NumberOfColumns;
+	struct MpAlarmXCfgQueryHistColType Columns[15];
+} MpAlarmXCfgQueryHistSelectType;
 
 typedef struct MpAlarmXCfgQueryHistCondType
-{	unsigned long NumberOfElements;
-	struct MpAlarmXCfgQueryHistCondItemType WhereFilter[5];
+{	enum MpAlarmXCfgQueryHistColumnsEnum Column;
+	enum MpAlarmXCfgQueryOperatorsEnum Operator;
+	struct MpAlarmXCfgQueryCompareToType CompareTo;
 } MpAlarmXCfgQueryHistCondType;
 
-typedef struct MpAlarmXCfgQueryWhereqType
+typedef struct MpAlarmXCfgQueryHistWhereType
 {	plcstring Connect[256];
-	struct MpAlarmXCfgQueryHistCondType WhereFilter;
-} MpAlarmXCfgQueryWhereqType;
+	unsigned long NumberOfWhereFilter;
+	struct MpAlarmXCfgQueryHistCondType WhereFilter[5];
+} MpAlarmXCfgQueryHistWhereType;
 
 typedef struct MpAlarmXCfgQueryHistoricalType
 {	plcstring Component[51];
-	struct MpAlarmXCfgQuerySelectqType Select;
-	struct MpAlarmXCfgQueryWhereqType Where;
+	struct MpAlarmXCfgQueryHistSelectType Select;
+	struct MpAlarmXCfgQueryHistWhereType Where;
 } MpAlarmXCfgQueryHistoricalType;
 
 typedef struct MpAlarmXCfgQuerySourceType
@@ -954,12 +948,12 @@ typedef struct MpAlarmXCfgQuerySourceType
 	struct MpAlarmXCfgQueryHistoricalType Historical;
 } MpAlarmXCfgQuerySourceType;
 
-typedef struct MpAlarmXCfgQueryQueryType
+typedef struct MpAlarmXCfgQuerySingleType
 {	plcstring Name[101];
 	plcstring UpdateCount[256];
 	enum MpAlarmXCfgQueryUpdateModeEnum UpdateMode;
 	struct MpAlarmXCfgQuerySourceType QuerySource;
-} MpAlarmXCfgQueryQueryType;
+} MpAlarmXCfgQuerySingleType;
 
 typedef struct MpAlarmXCfgQueryDataQueriesType
 {	struct MpBaseCfgArrayType Query;
@@ -999,7 +993,7 @@ typedef struct MpAlarmXListUI
 	/* VAR_INPUT (analog) */
 	struct MpComIdentType* MpLink;
 	struct MpAlarmXListUISetupType UISetup;
-	plcstring (*Language);
+	plcstring *Language;
 	enum MpAlarmXMeasurementSystemEnum MeasurementSystem;
 	struct MpAlarmXListUIConnectType* UIConnect;
 	/* VAR_OUTPUT (analog) */
@@ -1021,7 +1015,7 @@ typedef struct MpAlarmXHistoryUI
 	/* VAR_INPUT (analog) */
 	struct MpComIdentType* MpLink;
 	struct MpAlarmXHistoryUISetupType UISetup;
-	plcstring (*Language);
+	plcstring *Language;
 	enum MpAlarmXMeasurementSystemEnum MeasurementSystem;
 	struct MpAlarmXHistoryUIConnectType* UIConnect;
 	/* VAR_OUTPUT (analog) */
@@ -1042,9 +1036,9 @@ typedef struct MpAlarmXHistory
 {
 	/* VAR_INPUT (analog) */
 	struct MpComIdentType* MpLink;
-	plcstring (*DeviceName);
-	plcstring (*FileName);
-	plcstring (*Language);
+	plcstring *DeviceName;
+	plcstring *FileName;
+	plcstring *Language;
 	enum MpAlarmXMeasurementSystemEnum MeasurementSystem;
 	/* VAR_OUTPUT (analog) */
 	signed long StatusID;
@@ -1071,8 +1065,8 @@ typedef struct MpAlarmXQuery
 	/* VAR_INPUT (analog) */
 	struct MpComIdentType* MpLink;
 	enum MpAlarmXQueryModeEnum Mode;
-	plcstring (*Name);
-	plcstring (*Language);
+	plcstring *Name;
+	plcstring *Language;
 	enum MpAlarmXMeasurementSystemEnum MeasurementSystem;
 	/* VAR_OUTPUT (analog) */
 	signed long StatusID;
@@ -1096,7 +1090,7 @@ typedef struct MpAlarmXAlarmControl
 {
 	/* VAR_INPUT (analog) */
 	struct MpComIdentType* MpLink;
-	plcstring (*Name);
+	plcstring *Name;
 	unsigned long ID;
 	/* VAR_OUTPUT (analog) */
 	signed long StatusID;

@@ -28,6 +28,11 @@ TYPE
 		mpCOM_CONFIG_TARGET_PAR := 0, (*Apply values to actual parameters*)
 		mpCOM_CONFIG_TARGET_CFG := 1 (*Apply values to configuration*)
 		);
+	MpComDataSourceEnum : 
+		(
+		mpCOM_DATA_SOURCE_PAR := 0, (*Data source: Parameter*)
+		mpCOM_DATA_SOURCE_CFG := 1 (*Data source: Configuration*)
+		);
 	MpComStatusIDType : 	STRUCT 
 		ID : MpComErrorEnum; (*Status ID*)
 		Severity : MpComSeveritiesEnum; (*Status severity*)
@@ -61,7 +66,6 @@ TYPE
 	MpComLoggerUILoggerListType : 	STRUCT 
 		Message : ARRAY[0..19]OF WSTRING[255]; (*List of logger entries: message*)
 		StatusID : ARRAY[0..19]OF DINT; (*List of logger entries: status ID*)
-		ErrorNumber : ARRAY[0..19]OF UINT; (*List of logger entries: error code as part of Status ID*)
 		Time : ARRAY[0..19]OF MpComLoggerUIDateTimeType; (*List of logger entries: date, time and microseconds*)
 		Component : ARRAY[0..19]OF STRING[50]; (*List of logger entries: component name*)
 		Facility : ARRAY[0..19]OF MpComFacilitiesEnum; (*List of logger entries: facility as part of Status ID*)

@@ -18,6 +18,7 @@ PROGRAM _INIT
 
 	// Call initialization variables
 	RestorePosition_AppAxis_1;
+	gMpLinkAppAxis_1;
 
 	// Initialize homing mode
 	MpAxisParameters.Homing.Mode := mcHOMING_DEFAULT;
@@ -43,6 +44,7 @@ PROGRAM _CYCLIC
 	// Assign MpLink
 	MpAlarmXCoreAxis.MpLink := ADR(gMpLinkAlarmXCoreAppAxis_1);
 
+	MpAlarmXCoreAxis.AcknowledgeAll := AcknowledgeAll;
 	// Call function block
 	MpAlarmXCoreAxis();
 
@@ -50,7 +52,7 @@ END_PROGRAM
 
 PROGRAM _EXIT
 
-	// Disable the function blocls to unlink the MpLinks.
+	// Disable the function blocks to unlink the MpLinks.
 	// Do NOT disable MpAxisBasic, as this can cause problems during project transfer.
 	MpRecipeRegParPar.Enable := FALSE;
 	MpRecipeRegParCfg.Enable := FALSE;

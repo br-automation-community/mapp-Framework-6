@@ -2,20 +2,7 @@
 <?AutomationStudio FileVersion="6.0"?>
 <OpcUaSource FileVersion="10" ArVersion="6.0.7000">
   <Aliases>
-    <ACLAliases>
-      <ACL Id="1">
-        <ACE RoleName="Operators" Access="0x005F" />
-        <ACE RoleName="Service" Access="0x005F" />
-        <ACE RoleName="Everyone" Access="0x005F" />
-        <ACE RoleName="Administrators" Access="0x017F" />
-      </ACL>
-      <ACL Id="2">
-        <ACE RoleName="Operators" Access="0x017F" />
-        <ACE RoleName="Service" Access="0x017F" />
-        <ACE RoleName="Everyone" Access="0x017F" />
-        <ACE RoleName="Administrators" Access="0x017F" />
-      </ACL>
-    </ACLAliases>
+    <ACLAliases />
     <EURangeViolationAliases />
     <EURangesAliases />
     <EngineeringUnitAliases />

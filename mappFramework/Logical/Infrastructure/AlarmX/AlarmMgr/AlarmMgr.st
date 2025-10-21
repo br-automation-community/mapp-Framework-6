@@ -14,13 +14,13 @@ PROGRAM _INIT
 	WHILE (DirCreateAlarm.status = ERR_FUB_BUSY) DO
 		DirCreateAlarm();
 	END_WHILE
-	
+
 	// Check if folder already exist and if so disabled the function block call
 	IF DirCreateAlarm.status = fiERR_DIR_ALREADY_EXIST OR (DirCreateAlarm.status = ERR_OK) THEN
 		DirCreateAlarm(enable := FALSE);
 	END_IF
 
-	// Call action to intialize alarm samples
+	// Call action to initialize alarm samples
 	AlarmSampleInit;
 
 	// Initialize mapp function blocks
@@ -43,7 +43,7 @@ PROGRAM _INIT
 	MpAlarmXListUIMain.UISetup.AlarmListSize := 50;
 	MpAlarmXListUIMain.UISetup.TimeStampPattern := '%Y-%m-%d %H:%M:%S:%L';
 	MpAlarmXListUIMain();
-	
+
 
 	MpAlarmXHistoryUIMain.Enable := TRUE;
 	MpAlarmXHistoryUIMain.MpLink := ADR(gMpLinkAlarmXHistory);
@@ -79,7 +79,7 @@ PROGRAM _CYCLIC
 	ELSIF MpAlarmXCheckReaction(gMpLinkAlarmXCore, 'Warning') THEN
 		// Warning is active. Add code here to respond to warning situation.
 	ELSIF MpAlarmXCheckReaction(gMpLinkAlarmXCore, 'Info') THEN
-		// Info is active. Add code here to resond to info situation.
+		// Info is active. Add code here to respond to info situation.
 	END_IF
 
 	// Error reset
@@ -102,6 +102,8 @@ PROGRAM _CYCLIC
 	MpAlarmXListUIMain.UIConnect := ADR(MpAlarmXListUIConnect);
 	MpAlarmXHistoryMain.MpLink := ADR(gMpLinkAlarmXHistory);
 	MpAlarmXHistoryMain.DeviceName := ADR('mappAlarmXFiles');
+	MpAlarmXHistoryMain.FileName := ADR(HmiAlarmX.Parameters.FileName);
+	MpAlarmXHistoryMain.Language := ADR(HmiAlarmX.Parameters.Language);
 	MpAlarmXHistoryUIMain.MpLink := ADR(gMpLinkAlarmXHistory);
 	MpAlarmXHistoryUIMain.UIConnect := ADR(MpAlarmXHistoryUIConnect);
 
@@ -115,7 +117,7 @@ END_PROGRAM
 
 PROGRAM _EXIT
 
-	// Disable the function blocls to unlink the MpLinks
+	// Disable the function blocks to unlink the MpLinks
 	MpAlarmXCoreMain.Enable := FALSE;
 	MpAlarmXListUIMain.Enable := FALSE;
 	MpAlarmXHistoryMain.Enable := FALSE;

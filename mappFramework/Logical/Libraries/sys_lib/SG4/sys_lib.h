@@ -16,65 +16,87 @@ extern "C"
 #endif
 
 /* Error codes of the BURTRAP/SYS_LIB services */
-#define ERR_BUR_MO_NOTFOUND		3019	/* module not found */
-#define ERR_BUR_ILLSTATE		3302	/* illegal state of object */
-#define ERR_BUR_ILLTYP			3311	/* SYSreset - invalid input value for mode */
-#define ERR_BUR_ILLPAR			3317	/* illegal parameter */
-#define ERR_BUR_ILLOBJ			3324	/* object does not exist */
-#define ERR_BUR_NOENTRY			3332	/* no entry */
+#define ERR_BUR_MO_NOTFOUND     3019    /* module not found */
+#define ERR_BUR_ILLSTATE        3302    /* illegal state of object */
+#define ERR_BUR_ILLTYP          3311    /* SYSreset - invalid input value for mode */
+#define ERR_BUR_ILLPAR          3317    /* illegal parameter */
+#define ERR_BUR_ILLOBJ          3324    /* object does not exist */
+#define ERR_BUR_NOENTRY         3332    /* no entry */
 #define	ERR_BUR_TOOLONG_PVNAME	3333	/* too long PV name */
-#define ERR_BUR_ILLIDENT		3336	/* illegal ident */
-#define ERR_BUR_NOTIME			3584	/* time not available */
-#define ERR_BUR_TMP_ALLOC		3601	/* not enough continuous memory */
-#define ERR_BUR_TMP_FREE		3701	/* invalid pointer/length */
+#define ERR_BUR_ILLIDENT        3336    /* illegal ident */
+#define ERR_BUR_NOTIME          3584    /* time not available */
+#define ERR_BUR_TMP_ALLOC       3601    /* not enough continuous memory */
+#define ERR_BUR_TMP_FREE        3701    /* invalid pointer/length */
 
 /* State for object PLC task */
-#define		Z_ST_created		1
-#define		Z_ST_running		2
-#define		Z_ST_blocked		3
-#define		Z_ST_exist			0x00
-#define		Z_ST_installed		0x82
-#define		Z_ST_PVinstalled	0x83
-#define		Z_ST_IOinstalled	0x84
-#define		Z_ST_IOdeinstalled	0x85
-#define		Z_ST_PVdeinstalled	0x86
-#define		Z_ST_delete			0x87
-#define		Z_ST_stdebug		0x88
-#define		Z_ST_tmp_suspended	0x90
+#define     Z_ST_created        1
+#define     Z_ST_running        2
+#define     Z_ST_blocked        3
+#define     Z_ST_exist          0x00
+#define     Z_ST_installed      0x82
+#define     Z_ST_PVinstalled    0x83
+#define     Z_ST_IOinstalled    0x84
+#define     Z_ST_IOdeinstalled  0x85
+#define     Z_ST_PVdeinstalled  0x86
+#define     Z_ST_delete         0x87
+#define     Z_ST_stdebug        0x88
+#define     Z_ST_tmp_suspended  0x90
+
+/* elementary data types */
+#define 	SYSLIB_IEC_TYPE_USER_DEFINED	0	/* User-defined data type */
+#define 	SYSLIB_IEC_TYPE_USER_DEFINED_2	15 	/* User-defined data type (legacy: array of structs) */
+#define 	SYSLIB_IEC_TYPE_BOOL			1   /* 8 Bit containing a boolean value FALSE=0 or TRUE=1 */
+#define 	SYSLIB_IEC_TYPE_SINT			2   /* 8 Bit signed integer */
+#define 	SYSLIB_IEC_TYPE_INT				3   /* 16 Bit signed integer */
+#define 	SYSLIB_IEC_TYPE_DINT			4   /* 32 Bit signed integer */
+#define 	SYSLIB_IEC_TYPE_USINT			5   /* 8 Bit unsigned integer */
+#define 	SYSLIB_IEC_TYPE_UINT			6   /* 16 Bit unsigned integer */
+#define 	SYSLIB_IEC_TYPE_UDINT			7   /* 32 Bit unsigned integer */
+#define 	SYSLIB_IEC_TYPE_REAL			8   /* 32 Bit floating point number */
+#define 	SYSLIB_IEC_TYPE_STRING			9   /* Variable-length single-byte character string */
+#define 	SYSLIB_IEC_TYPE_DATE_AND_TIME	11 	/* 32 Bit of Date in Seconds since 01.01.1970 00:00:00 */
+#define 	SYSLIB_IEC_TYPE_TIME			12 	/* 32 Bit of Time in ms */
+#define 	SYSLIB_IEC_TYPE_DATE			13 	/* 32 Bit of Date (only) */
+#define 	SYSLIB_IEC_TYPE_LREAL			14 	/* 64 Bit floating point number */
+#define 	SYSLIB_IEC_TYPE_TIME_OF_DAY		16 	/* 32 Bit Time of day (only) */
+#define		SYSLIB_IEC_TYPE_BYTE			17 	/* Bit string of length 8 */
+#define		SYSLIB_IEC_TYPE_WORD			18 	/* Bit string of length 16 */
+#define		SYSLIB_IEC_TYPE_DWORD			19 	/* Bit string of length 32 */
+#define		SYSLIB_IEC_TYPE_WSTRING			21	/* Variable-length double-byte character string */
 
 /* shutdown / reboot types */
-#define		SYSLIB_WARMSTART			0x01	/*WARMSTART(with restart)*/
-#define		SYSLIB_COLDSTART			0x02	/*COLDSTART(with restart)*/
-#define		SYSLIB_WARMSTART_NO_REBOOT	0x11	/*WARMSTART(no restart, only shutdown)*/
-#define		SYSLIB_COLDSTART_NO_REBOOT	0x12	/*COLDSTART(no restart, only shutdown)*/
-#define		SYSLIB_DIAGNOSTICS			0x20	/*DIAGNOSTICS(with restart)*/
-#define		SYSLIB_SERVICE				0x40	/*SERVICE(with restart) */
+#define     SYSLIB_WARMSTART			0x01	/*WARMSTART(with restart)*/
+#define     SYSLIB_COLDSTART			0x02	/*COLDSTART(with restart)*/
+#define     SYSLIB_WARMSTART_NO_REBOOT	0x11	/*WARMSTART(no restart, only shutdown)*/
+#define     SYSLIB_COLDSTART_NO_REBOOT  0x12	/*COLDSTART(no restart, only shutdown)*/
+#define     SYSLIB_DIAGNOSTICS          0x20	/*DIAGNOSTICS(with restart)*/
+#define     SYSLIB_SERVICE				0x40	/*SERVICE(with restart) */
 
 typedef struct RTCtime_typ {
 			/* 1. UDINT */
-			UINT	 year;		 /* year, starting with zero */
-			USINT	 month;		 /* month: 1 - 12 */
-			USINT	 day;		 /* day:   1 - 31 */
+			UINT     year;       /* year, starting with zero */
+			USINT    month;      /* month: 1 - 12 */
+			USINT    day;        /* day:   1 - 31 */
 			/* 2. UDINT */
-			USINT	 reserve;
-			USINT	 hour;		 /* hour:	0 - 23 */
-			USINT	 minute;	 /* minute: 0 - 59 */
-			USINT	 second;	 /* second: 0 - 59 */
+			USINT    reserve;
+			USINT    hour;       /* hour:   0 - 23 */
+			USINT    minute;     /* minute: 0 - 59 */
+			USINT    second;     /* second: 0 - 59 */
 			/* 3. UDINT */
-			UINT	 millisec;	 /* millisecond: 0 - 999 */
-			UINT	 microsec;	 /* microsecond: 0 - 999 */
+			UINT     millisec;   /* millisecond: 0 - 999 */
+			UINT     microsec;   /* microsecond: 0 - 999 */
 		} RTCtime_typ;
 
 /* structure for MO_list */
 typedef struct MO_List_typ {
-		char	name[14];		 /* name of the module (ASCII) */
-		USINT	grp;			 /* groups */
-		USINT	type;			 /* module type */
-		USINT	state;			 /* state of the module */
-		USINT	reserve;
-		UDINT	adress;			 /* physical address of the module */
-		UDINT	memtype;		 /* memory type (0=OTP,1=RAM,2=EPROM,3=FLASH */
-		} MO_List_typ;			 /* 5=FIXRAM) */
+		char    name[14];        /* name of the module (ASCII) */
+		USINT   grp;             /* groups */
+		USINT   type;            /* module type */
+		USINT   state;           /* state of the module */
+		USINT   reserve;
+		UDINT   adress;          /* physical address of the module */
+		UDINT   memtype;         /* memory type (0=OTP,1=RAM,2=EPROM,3=FLASH */
+		} MO_List_typ;           /* 5=FIXRAM) */
 		
 /* structure for slMoList */
 typedef struct slMoList {
@@ -118,7 +140,7 @@ typedef struct MO_info
 /* structue for PV_xlist */
 typedef struct PV_xList_typ {
 
-		char		name[33];	 /* name of PV (ASCII)		*/
+		char		name[33];    /* name of PV (ASCII)		*/
 		USINT		data_typ;	 /* data type of PV			*/
 		UDINT		data_len;	 /* data length of PV		*/
 		UDINT		dimension;	 /* dimension of PV			*/
@@ -127,39 +149,39 @@ typedef struct PV_xList_typ {
 
 /* structure for MO_ver */
 typedef struct MoVerStruc_typ {
-		USINT	version[10];		/* Version of the BR Module */
-		UINT	year;
-		USINT	month;
-		USINT	day;
-		USINT	reserve;
-		USINT	hour;
-		USINT	minute;
-		USINT	second;
+		USINT   version[10];		/* Version of the BR Module */
+		UINT    year;
+		USINT   month;
+		USINT   day;
+		USINT   reserve;
+		USINT   hour;
+		USINT   minute;
+		USINT   second;
 		} MoVerStruc_typ;
 
 /* structure for the FUB Bit2Byte */
 typedef struct Bit2Byte {
 		/* non boolean input parameter */
-		UDINT	bitadr;
-		UINT	length;
+		UDINT   bitadr;
+		UINT    length;
 		/* non boolean output parameter*/
-		UDINT	byteadr;
+		UDINT   byteadr;
 		/* non boolean static local */
 		USINT	byte_00;
-		USINT	byte_01;
-		USINT	byte_02;
-		USINT	byte_03;
-		USINT	byte_04;
-		USINT	byte_05;
-		USINT	byte_06;
-		USINT	byte_07;
-		USINT	byte_08;
-		USINT	byte_09;
-		USINT	byte_10;
-		USINT	byte_11;
-		USINT	byte_12;
-		USINT	byte_13;
-		USINT	byte_14;
+		USINT   byte_01;
+		USINT   byte_02;
+		USINT   byte_03;
+		USINT   byte_04;
+		USINT   byte_05;
+		USINT   byte_06;
+		USINT   byte_07;
+		USINT   byte_08;
+		USINT   byte_09;
+		USINT   byte_10;
+		USINT   byte_11;
+		USINT   byte_12;
+		USINT   byte_13;
+		USINT   byte_14;
 		USINT	byte_15;
 		/* boolean input parameter */
 		/* boolean output parameter */
@@ -310,9 +332,9 @@ typedef struct Bit2Byte {
 typedef struct Byte2Bit {
 		/* non boolean input parameter */
 		UDINT	byteadr;
-		UINT	length;
+		UINT    length;
 		/* non boolean output parameter*/
-		UDINT	bitadr;
+		UDINT   bitadr;
 		/* non boolean static local */
 		/* boolean input parameter */
 		/* boolean output parameter */
@@ -475,7 +497,7 @@ _BUR_PUBLIC void slMoList		(slMoList_typ * pInst);
 
 _BUR_PUBLIC UINT ST_ident		(char *st_name_p, USINT st_grp, UDINT *st_ident);
 _BUR_PUBLIC UINT ST_tmp_suspend	(UDINT st_ident);
-_BUR_PUBLIC UINT ST_tmp_resume	(UDINT st_ident);
+_BUR_PUBLIC UINT ST_tmp_resume  (UDINT st_ident);
 _BUR_PUBLIC UINT ST_allsuspend	(void);
 _BUR_PUBLIC UINT ST_info		(UDINT st_ident, USINT *state, SINT *tcnr);
 _BUR_PUBLIC UINT ST_name		(UDINT st_ident, char *st_name_p, USINT *st_grp);

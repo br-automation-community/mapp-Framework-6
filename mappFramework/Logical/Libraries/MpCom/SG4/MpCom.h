@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* MpCom 6.0.7003 */
+/* MpCom 6.4.0 */
 
 #ifndef _MPCOM_
 #define _MPCOM_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _MpCom_VERSION
-#define _MpCom_VERSION 6.0.7003
+#define _MpCom_VERSION 6.4.0
 #endif
 
 #include <bur/plctypes.h>
@@ -60,6 +60,11 @@ typedef enum MpComConfigTargetEnum
 	mpCOM_CONFIG_TARGET_CFG = 1
 } MpComConfigTargetEnum;
 
+typedef enum MpComDataSourceEnum
+{	mpCOM_DATA_SOURCE_PAR = 0,
+	mpCOM_DATA_SOURCE_CFG = 1
+} MpComDataSourceEnum;
+
 typedef enum MpComLoggerUIStatusEnum
 {	mpCOM_LOGGERUI_IDLE = 0,
 	mpCOM_LOGGERUI_REFRESH = 1,
@@ -88,7 +93,8 @@ typedef enum MpComErrorEnum
 	mpCOM_ERR_CONFIG_NOT_OPEN = -1064238836,
 	mpCOM_ERR_CONFIG_COPY_FAILED = -1064238835,
 	mpCOM_ERR_CONFIG_INVALID_COPY = -1064238834,
-	mpCOM_ERR_CONFIG_INVALID_DATA = -1064238833
+	mpCOM_ERR_CONFIG_INVALID_DATA = -1064238833,
+	mpCOM_WRN_CONFIG_PARAM_ACTIVE = -2137980656
 } MpComErrorEnum;
 
 typedef struct MpComStatusIDType
@@ -122,7 +128,6 @@ typedef struct MpComLoggerUIDateTimeType
 typedef struct MpComLoggerUILoggerListType
 {	plcwstring Message[20][256];
 	signed long StatusID[20];
-	unsigned short ErrorNumber[20];
 	struct MpComLoggerUIDateTimeType Time[20];
 	plcstring Component[20][51];
 	MpComFacilitiesEnum Facility[20];
@@ -165,8 +170,8 @@ typedef struct MpComConfigManager
 {
 	/* VAR_INPUT (analog) */
 	struct MpComIdentType* MpLink;
-	plcstring (*DeviceName);
-	plcstring (*FileName);
+	plcstring *DeviceName;
+	plcstring *FileName;
 	enum MpComConfigScopeEnum Scope;
 	/* VAR_OUTPUT (analog) */
 	signed long StatusID;
@@ -190,7 +195,7 @@ typedef struct MpComLoggerUI
 	/* VAR_INPUT (analog) */
 	struct MpComIdentType* MpLink;
 	enum MpComConfigScopeEnum Scope;
-	plcstring (*EntryFilter);
+	plcstring *EntryFilter;
 	unsigned short BufferSize;
 	struct MpComLoggerUISetupType UISetup;
 	struct MpComLoggerUIConnectType* UIConnect;
@@ -230,7 +235,7 @@ typedef struct MpComDump
 typedef struct MpComGetLink
 {
 	/* VAR_INPUT (analog) */
-	plcstring (*ComponentName);
+	plcstring *ComponentName;
 	/* VAR_OUTPUT (analog) */
 	struct MpComIdentType MpLink;
 	signed long StatusID;
@@ -252,9 +257,10 @@ typedef struct MpComConfigBasic
 	enum MpComConfigWriteModeEnum WriteMode;
 	enum MpComConfigBasicSourceEnum ReadFrom;
 	enum MpComConfigTargetEnum ApplyTo;
-	plcstring (*Path);
+	plcstring *Path;
 	/* VAR_OUTPUT (analog) */
 	signed long StatusID;
+	enum MpComDataSourceEnum CurrentDataSource;
 	struct MpComConfigBasicInfoType Info;
 	/* VAR (analog) */
 	unsigned char InternalState;
@@ -281,9 +287,10 @@ typedef struct MpComConfigAdvanced
 	enum MpComConfigWriteModeEnum WriteMode;
 	enum MpComConfigAdvancedSourceEnum ReadFrom;
 	enum MpComConfigTargetEnum ApplyTo;
-	plcstring (*Path);
+	plcstring *Path;
 	/* VAR_OUTPUT (analog) */
 	signed long StatusID;
+	enum MpComDataSourceEnum CurrentDataSource;
 	struct MpComConfigAdvancedInfoType Info;
 	/* VAR (analog) */
 	unsigned char InternalState;

@@ -1,2 +1,0 @@
-(*Structure types*)
-(*Enumerations*)

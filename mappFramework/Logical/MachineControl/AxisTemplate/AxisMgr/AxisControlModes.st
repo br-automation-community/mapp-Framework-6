@@ -4,6 +4,12 @@ END_ACTION
 
 ACTION AxisCyclic:
 	// Cyclic action call
+	AlarmSpeedNotSet.MpLink := ADR(gMpLinkAlarmXCoreAppAxis_1);
+	AlarmSpeedNotSet.Enable := TRUE;
+	AlarmSpeedNotSet.Name := ADR('AppAxis_1SpeedNotSet');
+	AlarmSpeedNotSet();
+	AlarmSpeedNotSet.Reset := FALSE;
+
 END_ACTION
 
 ACTION AxisManual:
@@ -25,11 +31,12 @@ ACTION AxisManual:
 				MpAxisBasicAppAxis.MoveAbsolute := AxisControl.Command.MoveAbsolute;
 				MpAxisBasicAppAxis.MoveAdditive := AxisControl.Command.MoveAdditive;
 				MpAxisBasicAppAxis.MoveVelocity := AxisControl.Command.MoveVelocity;
+				AlarmSpeedNotSet.Set := (MpAxisParameters.Velocity = 0);
 				AxisControl.Command.MoveAbsolute := FALSE;
 				AxisControl.Command.MoveAdditive := FALSE;
 				ManualState := MANUAL_STATE_MOVE;
 			ELSE
-				State := STATE_READY;	
+				State := STATE_READY;
 			END_IF
 			// Jog state
 		MANUAL_STATE_JOG:
@@ -90,6 +97,7 @@ ACTION AxisAutomatic:
 	CASE AutomaticState OF
 		AUTOMATIC_STATE_IDLE:
 			IF (AxisControl.Command.Start) THEN
+				AlarmSpeedNotSet.Set := (AxisControl.Parameters.Velocity = 0);
 				AutomaticState := AUTOMATIC_STATE_RUNNING;
 			END_IF
 
@@ -112,6 +120,7 @@ ACTION AxisAutomatic:
 				AutomaticState := AUTOMATIC_STATE_IDLE;
 			ELSIF (AxisControl.Command.UpdateVelocity) THEN
 				AxisControl.Command.UpdateVelocity := FALSE;
+				AlarmSpeedNotSet.Set := (MpAxisParameters.Velocity = 0);
 				MpAxisBasicAppAxis.Update := TRUE;
 			ELSIF (MpAxisBasicAppAxis.UpdateDone) THEN
 				MpAxisBasicAppAxis.Update := FALSE;

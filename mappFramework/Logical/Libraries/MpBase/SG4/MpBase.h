@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* MpBase 6.0.7000 */
+/* MpBase 6.4.0 */
 
 #ifndef _MPBASE_
 #define _MPBASE_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _MpBase_VERSION
-#define _MpBase_VERSION 6.0.7000
+#define _MpBase_VERSION 6.4.0
 #endif
 
 #include <bur/plctypes.h>
@@ -70,10 +70,14 @@ typedef struct MpBaseCfgArrayType
 	unsigned long NumberOfElements;
 } MpBaseCfgArrayType;
 
+typedef struct MpBaseCfgPasswordType
+{	plcbit Valid;
+	plcstring Data[101];
+} MpBaseCfgPasswordType;
 
 
-/* Prototyping of functions and function blocks */
-_BUR_PUBLIC unsigned long MpComHandle(void);
+
+
 
 
 /* Constants */

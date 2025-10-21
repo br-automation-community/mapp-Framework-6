@@ -70,8 +70,7 @@ _TEARDOWN_TEST(void)
 	if ((AxisControl.Status.ErrorActive == true) || (MpAlarmXCoreAxis.PendingAlarms > 0))
 	{
 		AxisControl.Command.Reset = true;
-#warning "Fix me!"
-		//MpAlarmXAcknowledgeAll_0.Execute = true;
+		MpAlarmXAcknowledgeAll = true;
 	}
 	TEST_BUSY_CONDITION(AxisControl.Status.ErrorActive);
 	AxisControl.Command.Reset = false;

@@ -1,3 +1,0 @@
-
-FUNCTION MpComHandle : UDINT
-END_FUNCTION

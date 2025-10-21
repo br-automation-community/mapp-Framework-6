@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* MpRecipe 6.0.7003 */
+/* MpRecipe 6.4.0 */
 
 #ifndef _MPRECIPE_
 #define _MPRECIPE_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _MpRecipe_VERSION
-#define _MpRecipe_VERSION 6.0.7003
+#define _MpRecipe_VERSION 6.4.0
 #endif
 
 #include <bur/plctypes.h>
@@ -238,8 +238,8 @@ typedef struct MpRecipeRegParSync
 {
 	/* VAR_INPUT (analog) */
 	struct MpComIdentType* MpLink;
-	plcstring (*PVName);
-	plcstring (*Category);
+	plcstring *PVName;
+	plcstring *Category;
 	/* VAR_OUTPUT (analog) */
 	signed long StatusID;
 	struct MpRecipeRegParSyncInfoType Info;
@@ -260,8 +260,8 @@ typedef struct MpRecipeRegPar
 {
 	/* VAR_INPUT (analog) */
 	struct MpComIdentType* MpLink;
-	plcstring (*PVName);
-	plcstring (*Category);
+	plcstring *PVName;
+	plcstring *Category;
 	/* VAR_OUTPUT (analog) */
 	signed long StatusID;
 	struct MpRecipeRegParInfoType Info;
@@ -280,17 +280,17 @@ typedef struct MpRecipeXml
 {
 	/* VAR_INPUT (analog) */
 	struct MpComIdentType* MpLink;
-	plcstring (*DeviceName);
-	plcstring (*FileName);
+	plcstring *DeviceName;
+	plcstring *FileName;
 	struct MpRecipeHeaderType* Header;
-	plcstring (*Category);
+	plcstring *Category;
 	enum MpRecipeXmlLoadEnum LoadType;
 	/* VAR_OUTPUT (analog) */
 	signed long StatusID;
 	struct MpRecipeXmlInfoType Info;
 	/* VAR (analog) */
 	unsigned char InternalState;
-	unsigned long InternalData[24];
+	unsigned long InternalData[25];
 	/* VAR_INPUT (digital) */
 	plcbit Enable;
 	plcbit ErrorReset;
@@ -309,8 +309,8 @@ typedef struct MpRecipeUI
 	/* VAR_INPUT (analog) */
 	struct MpComIdentType* MpLink;
 	struct MpRecipeUISetupType UISetup;
-	plcstring (*DeviceName);
-	plcstring (*Category);
+	plcstring *DeviceName;
+	plcstring *Category;
 	struct MpRecipeHeaderType* Header;
 	struct MpRecipeUIConnectType* UIConnect;
 	/* VAR_OUTPUT (analog) */
@@ -331,17 +331,17 @@ typedef struct MpRecipeCsv
 {
 	/* VAR_INPUT (analog) */
 	struct MpComIdentType* MpLink;
-	plcstring (*DeviceName);
-	plcstring (*FileName);
+	plcstring *DeviceName;
+	plcstring *FileName;
 	struct MpRecipeHeaderType* Header;
-	plcstring (*Category);
+	plcstring *Category;
 	enum MpRecipeCsvLoadEnum LoadType;
 	/* VAR_OUTPUT (analog) */
 	signed long StatusID;
 	struct MpRecipeCsvInfoType Info;
 	/* VAR (analog) */
 	unsigned char InternalState;
-	unsigned long InternalData[24];
+	unsigned long InternalData[25];
 	/* VAR_INPUT (digital) */
 	plcbit Enable;
 	plcbit ErrorReset;

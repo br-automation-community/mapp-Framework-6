@@ -1,85 +1,76 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<?AutomationStudio FileVersion="6.0.1.886"?>
-<OpcUaSource FileVersion="10" ArVersion="6.0.7000">
+<?AutomationStudio FileVersion="6.0"?>
+<OpcUaSource FileVersion="10">
   <Aliases>
-    <ACLAliases>
-      <ACL Id="1">
-        <ACE RoleName="Service" Access="0x015F" />
-        <ACE RoleName="Administrators" Access="0x017F" />
-        <ACE RoleName="Operators" Access="0x015F" />
-        <ACE RoleName="Everyone" Access="0x015F" />
-      </ACL>
-      <ACL Id="3">
-        <ACE RoleName="Service" Access="0x01FF" />
-        <ACE RoleName="Administrators" Access="0x01FF" />
-        <ACE RoleName="Operators" Access="0x01FF" />
-        <ACE RoleName="Everyone" Access="0x017F" />
-      </ACL>
-    </ACLAliases>
+    <ACLAliases />
     <EURangeViolationAliases />
     <EURangesAliases />
     <EngineeringUnitAliases />
   </Aliases>
-  <DefaultView AclId="3">
-    <Module Name="&lt;Default&gt;">
-      <Task Name="RecipeMgr">
-        <Variable Name="MpRecipeUIConnect">
-          <Variable Name="Recipe">
-            <Variable Name="List">
-              <Variable Name="Names" RecursiveEnable="1" />
-              <Variable Name="SelectedIndex" />
-              <Variable Name="LastModified" RecursiveEnable="1" />
-              <Variable Name="PageUp" />
-              <Variable Name="PageDown" />
-              <Variable Name="RangeStart" />
-              <Variable Name="RangeEnd" />
-            </Variable>
-            <Variable Name="Load" />
-            <Variable Name="Save" />
-            <Variable Name="Delete" />
-            <Variable Name="Rename" />
-            <Variable Name="NewFileName" />
-            <Variable Name="Filter" />
-            <Variable Name="Refresh" />
+  <Module Name="&lt;Default&gt;">
+    <GlobalVariables Name="Global Variables">
+      <Variable Name="gUSBAvailable" />
+    </GlobalVariables>
+    <Task Name="RecipeMgr">
+      <Variable Name="MpRecipeUIConnect" RecursiveEnable="2">
+        <Variable Name="Recipe">
+          <Variable Name="List">
+            <Variable Name="Names" RecursiveEnable="2" />
+            <Variable Name="SelectedIndex" />
+            <Variable Name="LastModified" RecursiveEnable="2" />
+            <Variable Name="PageUp" />
+            <Variable Name="PageDown" />
+            <Variable Name="RangeStart" />
+            <Variable Name="RangeEnd" />
+            <Variable Name="Sizes" RecursiveEnable="2" />
           </Variable>
-          <Variable Name="New">
-            <Variable Name="FileName" />
-            <Variable Name="Create" />
-          </Variable>
-          <Variable Name="MessageBox" RecursiveEnable="1">
-            <Variable Name="Confirm" />
-            <Variable Name="Cancel" />
-          </Variable>
+          <Variable Name="Load" />
+          <Variable Name="Save" />
+          <Variable Name="Delete" />
+          <Variable Name="Rename" />
+          <Variable Name="NewFileName" />
+          <Variable Name="Filter" />
+          <Variable Name="Refresh" />
+          <Variable Name="SortOrder" />
         </Variable>
-        <Variable Name="MpRecipeUISys">
-          <Variable Name="ErrorReset" />
-          <Variable Name="Error" />
-          <Variable Name="Active" />
+        <Variable Name="New">
+          <Variable Name="FileName" />
+          <Variable Name="Create" />
         </Variable>
-        <Variable Name="Parameters" RecursiveEnable="1" />
-        <Variable Name="MachineSettings" RecursiveEnable="1" />
-        <Variable Name="MachineSettingsPreview" RecursiveEnable="1" />
-        <Variable Name="ParametersPreview" RecursiveEnable="1" />
-        <Variable Name="ParametersEdit" RecursiveEnable="1" />
-        <Variable Name="MachineSettingsEdit" RecursiveEnable="1" />
-        <Variable Name="MpRecipeSys">
-          <Variable Name="ErrorReset" />
-          <Variable Name="UpdateNotification" />
-          <Variable Name="Error" />
-          <Variable Name="Info">
-            <Variable Name="LastLoadedRecipe" />
-          </Variable>
-          <Variable Name="Active" />
+        <Variable Name="MessageBox" RecursiveEnable="2">
+          <Variable Name="Confirm" />
+          <Variable Name="Cancel" />
         </Variable>
-        <Variable Name="MACHINE_CONFIGURATION_RECIPE" />
-        <Variable Name="PARAMETERS_RECIPE" />
-        <Variable Name="HmiRecipe" RecursiveEnable="1">
-          <Variable Name="Parameters" />
-          <Variable Name="Status">
-            <Variable Name="DeviceDataProvider" RecursiveEnable="1" />
-          </Variable>
+      </Variable>
+      <Variable Name="MpRecipeUISys">
+        <Variable Name="ErrorReset" />
+        <Variable Name="Error" />
+      </Variable>
+      <Variable Name="Parameters" RecursiveEnable="2" />
+      <Variable Name="MachineSettings" RecursiveEnable="2" />
+      <Variable Name="MachineSettingsPreview" RecursiveEnable="2" />
+      <Variable Name="ParametersPreview" RecursiveEnable="2" />
+      <Variable Name="ParametersEdit" RecursiveEnable="2" />
+      <Variable Name="MachineSettingsEdit" RecursiveEnable="2" />
+      <Variable Name="MpRecipeSys">
+        <Variable Name="ErrorReset" />
+        <Variable Name="UpdateNotification" />
+        <Variable Name="Error" />
+        <Variable Name="Info">
+          <Variable Name="LastLoadedRecipe" />
         </Variable>
-      </Task>
-    </Module>
-  </DefaultView>
+        <Variable Name="Active" />
+      </Variable>
+      <Variable Name="MACHINE_CONFIGURATION_RECIPE" />
+      <Variable Name="PARAMETERS_RECIPE" />
+      <Variable Name="HmiRecipe">
+        <Variable Name="Parameters" RecursiveEnable="2" />
+        <Variable Name="Status" RecursiveEnable="2">
+          <Variable Name="DeviceDataProvider" />
+        </Variable>
+        <Variable Name="Commands" RecursiveEnable="2" />
+      </Variable>
+      <Variable Name="HmiRecipeRetain" RecursiveEnable="2" />
+    </Task>
+  </Module>
 </OpcUaSource>

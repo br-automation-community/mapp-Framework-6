@@ -3,7 +3,7 @@
 <Package SubType="mappViewControl" PackageType="mappViewControl" xmlns="http://br-automation.co.at/AS/Package">
   <Objects>
     <Object Type="File" Reference="true">\Physical\Simulation\PC\mappView\Config.mappviewcfg</Object>
-    <Object Type="File" Reference="true">\Physical\Simulation\PC\mappView\Visualization.vis</Object>
+    <Object Type="File" Reference="true">\Physical\Simulation\PC\mappView\mappFrameworkVis.vis</Object>
     <Object Type="File" Reference="true">\Physical\Simulation\PC\mappView\AlarmX.vis</Object>
     <Object Type="File" Reference="true">\Physical\Simulation\PC\mappView\Audit.vis</Object>
     <Object Type="File" Reference="true">\Physical\Simulation\PC\mappView\Axis.vis</Object>
@@ -22,6 +22,6 @@
     <Object Type="Package" Description="mapp Framework UserX  mapp View Files">UserX</Object>
     <Object Type="Package" Description="mapp Framework Audit  mapp View Files">Audit</Object>
     <Object Type="Package" Description="mapp Framework Report  mapp View Files">Report</Object>
-    <Object Type="Package">PackML</Object>
+    <Object Type="Package" Description="mapp Framework PackML  mapp View Files">PackML</Object>
   </Objects>
 </Package>

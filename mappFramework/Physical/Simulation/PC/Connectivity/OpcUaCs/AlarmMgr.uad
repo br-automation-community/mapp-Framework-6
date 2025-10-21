@@ -1,62 +1,64 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <?AutomationStudio FileVersion="6.0"?>
-<OpcUaSource FileVersion="10" ArVersion="6.0.7000">
+<OpcUaSource FileVersion="10">
   <Aliases>
-    <ACLAliases>
-      <ACL Id="1">
-        <ACE RoleName="Everyone" Access="0x005F" />
-        <ACE RoleName="Operators" Access="0x005F" />
-        <ACE RoleName="Service" Access="0x005F" />
-        <ACE RoleName="Administrators" Access="0x017F" />
-      </ACL>
-    </ACLAliases>
+    <ACLAliases />
     <EURangeViolationAliases />
     <EURangesAliases />
     <EngineeringUnitAliases />
   </Aliases>
-  <DefaultView AclId="1">
-    <Module Name="&lt;Default&gt;">
-      <Task Name="AlarmMgr">
-        <Variable Name="HmiAlarmX" RecursiveEnable="2">
-          <Variable Name="Status">
-            <Variable Name="TableConfig" RecursiveEnable="2" />
-            <Variable Name="Query">
-              <Variable Name="Active" RecursiveEnable="2" />
-              <Variable Name="Acknowledged" RecursiveEnable="2" />
-              <Variable Name="Scope" RecursiveEnable="2" />
-              <Variable Name="Name" RecursiveEnable="2" />
-              <Variable Name="Message" RecursiveEnable="2" />
-              <Variable Name="AdditionalInfo" RecursiveEnable="2" />
-              <Variable Name="TimeStamp" RecursiveEnable="2" />
-              <Variable Name="Code" RecursiveEnable="2" />
-              <Variable Name="Severity" RecursiveEnable="2" />
-              <Variable Name="State" RecursiveEnable="2" />
-            </Variable>
+  <Module Name="&lt;Default&gt;">
+    <Task Name="AlarmMgr">
+      <Variable Name="MpAlarmXCoreMain">
+        <Variable Name="ActiveAlarms" />
+        <Variable Name="PendingAlarms" />
+        <Variable Name="ErrorReset" />
+        <Variable Name="Error" />
+        <Variable Name="Active" />
+      </Variable>
+      <Variable Name="MpAlarmXHistoryMain">
+        <Variable Name="ErrorReset" />
+        <Variable Name="Error" />
+      </Variable>
+      <Variable Name="MpAlarmXHistoryUIMain">
+        <Variable Name="ErrorReset" />
+        <Variable Name="Error" />
+      </Variable>
+      <Variable Name="MpAlarmXListUIMain">
+        <Variable Name="ErrorReset" />
+        <Variable Name="Error" />
+      </Variable>
+      <Variable Name="MpAlarmXListUIConnect">
+        <Variable Name="Details">
+          <Variable Name="Backtrace" RecursiveEnable="2">
+            <Variable Name="RecordID" RecursiveEnable="2" />
+            <Variable Name="LogbookName" RecursiveEnable="2" />
+            <Variable Name="EventID" RecursiveEnable="2" />
+            <Variable Name="Description" RecursiveEnable="2" />
           </Variable>
         </Variable>
-        <Variable Name="MpAlarmXCoreMain">
-          <Variable Name="ErrorReset" />
-          <Variable Name="Active" />
-          <Variable Name="ActiveAlarms" />
-          <Variable Name="PendingAlarms" />
-          <Variable Name="UnacknowledgedAlarms" />
-          <Variable Name="UnconfirmedAlarms" />
-        </Variable>
-        <Variable Name="MpAlarmXHistoryMain">
-          <Variable Name="ErrorReset" />
-          <Variable Name="Active" />
-        </Variable>
-        <Variable Name="MpAlarmXListUIConnect">
-          <Variable Name="Details">
-            <Variable Name="Backtrace" RecursiveEnable="2">
-              <Variable Name="RecordID" RecursiveEnable="2" />
-              <Variable Name="LogbookName" RecursiveEnable="2" />
-              <Variable Name="EventID" RecursiveEnable="2" />
-              <Variable Name="Description" RecursiveEnable="2" />
-            </Variable>
+      </Variable>
+      <Variable Name="HmiAlarmX" RecursiveEnable="2">
+        <Variable Name="Status">
+          <Variable Name="TableConfig" RecursiveEnable="2" />
+          <Variable Name="Query">
+            <Variable Name="Active" RecursiveEnable="2" />
+            <Variable Name="Acknowledged" RecursiveEnable="2" />
+            <Variable Name="Scope" RecursiveEnable="2" />
+            <Variable Name="Name" RecursiveEnable="2" />
+            <Variable Name="Message" RecursiveEnable="2" />
+            <Variable Name="AdditionalInfo" RecursiveEnable="2" />
+            <Variable Name="TimeStamp" RecursiveEnable="2" />
+            <Variable Name="Code" RecursiveEnable="2" />
+            <Variable Name="Severity" RecursiveEnable="2" />
+            <Variable Name="State" RecursiveEnable="2" />
           </Variable>
         </Variable>
-      </Task>
-    </Module>
-  </DefaultView>
+      </Variable>
+      <Variable Name="QueryActiveAlarms" />
+      <Variable Name="AlarmQuery">
+        <Variable Name="Alarms" />
+      </Variable>
+    </Task>
+  </Module>
 </OpcUaSource>

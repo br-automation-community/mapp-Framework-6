@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* MpAxis 6.0.7001 */
+/* MpAxis 6.4.1 */
 
 #ifndef _MPAXIS_
 #define _MPAXIS_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _MpAxis_VERSION
-#define _MpAxis_VERSION 6.0.7001
+#define _MpAxis_VERSION 6.4.1
 #endif
 
 #include <bur/plctypes.h>
@@ -50,7 +50,9 @@ typedef enum MpAxisErrorEnum
 	mcAXIS_ERR_MPLINK_CHANGED = -1064239100,
 	mcAXIS_ERR_MPLINK_CORRUPT = -1064239099,
 	mcAXIS_ERR_MPLINK_IN_USE = -1064239098,
-	mcAXIS_ERR_PAR_NULL = -1064239097
+	mcAXIS_ERR_PAR_NULL = -1064239097,
+	mcAXIS_ERR_CONFIG_NULL = -1064239096,
+	mcAXIS_ERR_CONFIG_CMD_FAILED = -1067278070
 } MpAxisErrorEnum;
 
 typedef enum MpAxisGetCamPositionModeEnum
@@ -126,32 +128,104 @@ typedef enum MpAxisMoveCyclicVelocityModeEnum
 } MpAxisMoveCyclicVelocityModeEnum;
 
 typedef enum MpAxisBasicConfigSectionEnum
-{	mcAXIS_BASIC_SEC_ALL,
-	mcAXIS_BASIC_SEC_DRIVE_CTRL
+{	mcAXB_CFG_SEC_ALL,
+	mcAXB_CFG_SEC_DRIVE_CTRL,
+	mcAXB_CFG_SEC_MOVE_LIMITS,
+	mcAXB_CFG_SEC_ALL_WITH_FEAT
 } MpAxisBasicConfigSectionEnum;
 
 typedef enum MpAxisBasicConfigCmdEnum
 {	mcAXIS_BASIC_CFG_READ,
 	mcAXIS_BASIC_CFG_WRITE,
-	mcAXIS_BASIC_CFG_LOAD_FROM_CFG,
 	mcAXIS_BASIC_CFG_LOAD,
 	mcAXIS_BASIC_CFG_SAVE,
-	mcAXIS_BASIC_CFG_WRITE_AND_SAVE,
 	mcAXIS_BASIC_CFG_CREATE,
 	mcAXIS_BASIC_CFG_DELETE
 } MpAxisBasicConfigCmdEnum;
 
-typedef enum MpAXBHWModuleChannelEnum
-{	mcAXIS_BASIC_CFG_HW_CHANNEL1,
-	mcAXIS_BASIC_CFG_HW_CHANNEL2,
-	mcAXIS_BASIC_CFG_HW_CHANNEL3
-} MpAXBHWModuleChannelEnum;
+typedef enum MpAXBModuleChannelEnum
+{	mcAXB_CFG_HW_CHANNEL1,
+	mcAXB_CFG_HW_CHANNEL2,
+	mcAXB_CFG_HW_CHANNEL3
+} MpAXBModuleChannelEnum;
 
-typedef enum MpAXBHWModuleAxTypeEnum
-{	mcAXIS_BASIC_CFG_HW_AXIS_REAL,
-	mcAXIS_BASIC_CFG_HW_AXIS_VIRT,
-	mcAXIS_BASIC_CFG_HW_AXIS_EXT_ENC
-} MpAXBHWModuleAxTypeEnum;
+typedef enum MpAXBModuleAxTypeEnum
+{	mcAXB_CFG_AX_REAL,
+	mcAXB_CFG_AX_VIRT,
+	mcAXB_CFG_AX_EXT_ENC,
+	mcAXB_CFG_AX_PUREVAX,
+	mcAXB_CFG_AX_PUREVAX_GPAI,
+	mcAXB_CFG_AX_PUREVAX_EXT_ENC,
+	mcAXB_CFG_AX_POWER_SUPPLY,
+	mcAXB_CFG_AX_PUREVAX_DS402_CSP,
+	mcAXB_CFG_AX_PUREVAX_DS402_VL
+} MpAXBModuleAxTypeEnum;
+
+typedef enum MpAXBMotorDataTypeEnum
+{	mcAXB_CFG_MOTOR_NOT_USE,
+	mcAXB_CFG_MOTOR_SYNC_ANY = 10500,
+	mcAXB_CFG_MOTOR_IND_ANY = 10501,
+	mcAXB_CFG_MOTOR_STP = 13013
+} MpAXBMotorDataTypeEnum;
+
+typedef enum MpAXBEncPlInCrdSubslotEnum
+{	mcAXB_ENC_SUB_SLOT_NOT_USE = 0,
+	mcAXB_ENC_SUB_SLOT_1 = 1,
+	mcAXB_ENC_SUB_SLOT_2 = 2,
+	mcAXB_ENC_SUB_SLOT_3 = 3
+} MpAXBEncPlInCrdSubslotEnum;
+
+typedef enum MpAXBEncModuleEnum
+{	mcAXB_ENC_ACP_ONBOARD = 0,
+	mcAXB_ENC_ACP_ENC_CRD = 1,
+	mcAXB_ENC_ACP_MUL_ENC_CRD = 2,
+	mcAXB_ENC_ACP_P3_ENC_CRD = 3,
+	mcAXB_ENC_ACP_P3_SNG_ENC_CRD = 4,
+	mcAXB_ENC_STP_ONBOARD = 5
+} MpAXBEncModuleEnum;
+
+typedef enum MpAXBEncTypeEnum
+{	mcAXB_ENC_TYP_NOT_USE = 0,
+	mcAXB_ENC_TYP_ENDAT = 1,
+	mcAXB_ENC_TYP_HIPERFACE = 2,
+	mcAXB_ENC_TYP_HIPERFACE_DSL = 3,
+	mcAXB_ENC_TYP_TFORMAT = 4,
+	mcAXB_ENC_TYP_BISS = 5,
+	mcAXB_ENC_TYP_SSI = 6,
+	mcAXB_ENC_TYP_SSI_SINE = 7,
+	mcAXB_ENC_TYP_SINE = 8,
+	mcAXB_ENC_TYP_SINE_W_DCM = 9,
+	mcAXB_ENC_TYP_INCR = 10,
+	mcAXB_ENC_TYP_INCR_WITH_DCM = 11,
+	mcAXB_ENC_TYP_RES = 12,
+	mcAXB_ENC_TYP_LINMOT = 13,
+	mcAXB_ENC_TYP_ENDAT_3 = 14,
+	mcAXB_ENC_TYP_ENDAT_SAFE_MOTION = 15,
+	mcAXB_ENC_TYP_MOT_DAT_IF = 16
+} MpAXBEncTypeEnum;
+
+typedef enum MpAXBEncInterfaceEnum
+{	mcAXB_ENC_PI_NOT_USE = 0,
+	mcAXB_ENC_PI_ACP_ONB_ENC = 1,
+	mcAXB_ENC_PI_ACP_P3_ONB_X41 = 2,
+	mcAXB_ENC_PI_ACP_P3_ONB_X42 = 3,
+	mcAXB_ENC_PI_ACP_P3_ONB_X43 = 4,
+	mcAXB_ENC_PI_ACP_P3_PLIN_X41X = 5,
+	mcAXB_ENC_PI_ACP_P3_PLIN_X42X = 6,
+	mcAXB_ENC_PI_ACP_P3_PLIN_X43X = 7,
+	mcAXB_ENC_PI_ACP_PLIN_X11 = 8,
+	mcAXB_ENC_PI_ACP_MIC_ONB_X6A = 9,
+	mcAXB_ENC_PI_ACP_MIC_ONB_X6B = 10,
+	mcAXB_ENC_PI_ACPM_PLIN_X11 = 11,
+	mcAXB_ENC_PI_ACPR_ONB_X11A = 12,
+	mcAXB_ENC_PI_ACP_MOT_ONB = 13,
+	mcAXB_ENC_PI_STP_MOD_ONB = 14,
+	mcAXB_ENC_PI_ACP_MIC_STP_ONB_X6 = 15,
+	mcAXB_ENC_PI_ACP_MIC_STP_ONB_X6A = 16,
+	mcAXB_ENC_PI_ACP_MIC_STP_ONB_X6B = 17,
+	mcAXB_ENC_PI_STP_ONB_X3 = 18,
+	mcAXB_ENC_PI_STP_ONB_X4 = 19
+} MpAXBEncInterfaceEnum;
 
 typedef enum MpAXBAxBaseTypEnum
 {	mcAXB_BASE_TYPE_LIN_BD = 0,
@@ -190,7 +264,8 @@ typedef enum MpAXBDrvCtrlModEnum
 	mcAXB_CTRL_MODE_POS_MDL_BASED = 3,
 	mcAXB_CTRL_MODE_V_FREQ = 2,
 	mcAXB_CTRL_MODE_STP_CUR = 4,
-	mcAXB_CTRL_MODE_STP_POS_AND_CUR = 5
+	mcAXB_CTRL_MODE_STP_POS_AND_CUR = 5,
+	mcAXB_CTRL_MODE_NOT_USE = 6
 } MpAXBDrvCtrlModEnum;
 
 typedef enum MpAXBDrvCtrlFFwdModEnum
@@ -205,6 +280,12 @@ typedef enum MpAXBDrvCtrlFdbkModEnum
 	mcAXB_CTLR_FEED_TWO_MASS_MDL = 2,
 	mcAXB_CTLR_FEED_TWO_ENC_SPD = 3
 } MpAXBDrvCtrlFdbkModEnum;
+
+typedef enum MpAXBDrvCtrlVFreqCtrlTypEnum
+{	mcAXB_VF_TYP_LIN = 129,
+	mcAXB_VF_TYP_CONST_LD_TORQ = 131,
+	mcAXB_VF_TYP_QUAD = 130
+} MpAXBDrvCtrlVFreqCtrlTypEnum;
 
 typedef enum MpAXBDrvCtrlVFreqCtrlAutCfgEnum
 {	mcAXB_VF_AUTO_CFG_NOT_USE = 0,
@@ -264,14 +345,170 @@ typedef enum MpAXBDrvDigInLevelEnum
 	mcAXB_DI_LEVEL_LOW = 1
 } MpAXBDrvDigInLevelEnum;
 
+typedef enum MpAXBDrvDigInSrcEnum
+{	mcAXBDI_NOT_USE = 0,
+	mcAXBDI_ACP_DIG_IN_X8TRG_1 = 1,
+	mcAXBDI_ACP_DIG_IN_X8TRG_2 = 2,
+	mcAXBDI_ACP_DIG_IN_SS1X41X1 = 3,
+	mcAXBDI_ACP_DIG_IN_SS1X41X2 = 4,
+	mcAXBDI_ACP_DIG_IN_SS1X41X3 = 5,
+	mcAXBDI_ACP_DIG_IN_SS1X41X4 = 6,
+	mcAXBDI_ACP_DIG_IN_SS1X41X5 = 7,
+	mcAXBDI_ACP_DIG_IN_SS1X41X6 = 8,
+	mcAXBDI_ACP_DIG_IN_SS1X41X7 = 9,
+	mcAXBDI_ACP_DIG_IN_SS1X41X8 = 10,
+	mcAXBDI_ACP_DIG_IN_SS1X41X9 = 11,
+	mcAXBDI_ACP_DIG_IN_SS1X41X10 = 12,
+	mcAXBDI_ACP_DIG_IN_X23ATRG_1 = 13,
+	mcAXBDI_ACP_DIG_IN_X23ATRG_2 = 14,
+	mcAXBDI_ACP_DIG_IN_X24ATRG_2 = 15,
+	mcAXBDI_ACP_DIG_IN_X2TRG_1 = 16,
+	mcAXBDI_ACP_DIG_IN_X2TRG_2 = 17,
+	mcAXBDI_ACP_DIG_IN_X1TRG_1 = 18,
+	mcAXBDI_ACP_DIG_IN_X1TRG_2 = 19,
+	mcAXBDI_ACP_DIG_IN_X1REF_SW = 20,
+	mcAXBDI_ACP_DIG_IN_X1POS_HW_LIM = 21,
+	mcAXBDI_ACP_DIG_IN_X1NEG_HW_LIM = 22,
+	mcAXBDI_FORCED_BY_FUN_BLK = 23,
+	mcAXBDI_VAR = 24,
+	mcAXBDI_IO_CH = 40,
+	mcAXBDI_STP_DIG_IN_TRG_1 = 41,
+	mcAXBDI_STP_DIG_IN_TRG_2 = 42,
+	mcAXBDI_STP_DIG_IN_1 = 43,
+	mcAXBDI_STP_DIG_IN_2 = 44,
+	mcAXBDI_STP_DIG_IN_3 = 45,
+	mcAXBDI_STP_DIG_IN_4 = 46,
+	mcAXBDI_STP_DIG_IN_5 = 47,
+	mcAXBDI_STP_DIG_IN_6 = 48
+} MpAXBDrvDigInSrcEnum;
+
+typedef enum MpAXBDrvDigTimeStampTypeEnum
+{	mcAXB_DI_TIME_STAMP_NOT_USE = 0,
+	mcAXB_DI_TIME_STAMP_USE = 1,
+	mcAXB_DI_TIME_STAMP_RIS_FALL_EDG = 2
+} MpAXBDrvDigTimeStampTypeEnum;
+
 typedef enum MpAXBDrvDigInQstopInEnum
 {	mcAXB_QSTOP_IN_TRG_2 = 0,
 	mcAXB_QSTOP_IN_TRG_1 = 1,
 	mcAXB_QSTOP_IN_POS_LIM_SW = 2,
 	mcAXB_QSTOP_IN_NEG_LIM_SW = 3,
 	mcAXB_QSTOP_IN_HOME_SW = 4,
-	mcAXB_QSTOP_IN_NOT_USE = 5
+	mcAXB_QSTOP_IN_NOT_USE = 5,
+	mcAXB_QSTOP_IN_VAR = 6,
+	mcAXB_QSTOP_IN_IO_CH = 7
 } MpAXBDrvDigInQstopInEnum;
+
+typedef enum MpAXBDrvEncLinkTypEnum
+{	mcAXB_ENC_ONE_ENC = 0,
+	mcAXB_ENC_TWO_ENC = 1,
+	mcAXB_ENC_NO_ENC = 2
+} MpAXBDrvEncLinkTypEnum;
+
+typedef enum MpAXBEncSrcEnum
+{	mcAXB_ENC_SRC_ACP_ENC_X6A = 0,
+	mcAXB_ENC_SRC_ACP_ENC_X6B = 1,
+	mcAXB_ENC_SRC_ACP_ENC = 2,
+	mcAXB_ENC_SRC_ACP_ENC_SS1X11 = 3,
+	mcAXB_ENC_SRC_ACP_ENC_SS2X11 = 4,
+	mcAXB_ENC_SRC_ACP_ENC_X11A = 5,
+	mcAXB_ENC_SRC_ACP_ENC_SS3X11 = 6,
+	mcAXB_ENC_SRC_ACP_ENC_SS4X11 = 7,
+	mcAXB_ENC_SRC_ACP_ENC_X41 = 8,
+	mcAXB_ENC_SRC_ACP_ENC_SS1X41X = 9,
+	mcAXB_ENC_SRC_ACP_ENC_X42 = 10,
+	mcAXB_ENC_SRC_ACP_ENC_SS1X42X = 11,
+	mcAXB_ENC_SRC_ACP_ENC_X43 = 12,
+	mcAXB_ENC_SRC_ACP_ENC_SS1X43X = 13,
+	mcAXB_ENC_SRC_STP_STEP_CNT = 30,
+	mcAXB_ENC_SRC_STP_ENC = 31,
+	mcAXB_ENC_SRC_STP_ENC_X6 = 32,
+	mcAXB_ENC_SRC_STP_ENC_X6A = 33,
+	mcAXB_ENC_SRC_STP_ENC_X6B = 34,
+	mcAXB_ENC_SRC_STP_ENC_X3 = 35,
+	mcAXB_ENC_SRC_STP_ENC_X4 = 36,
+	mcAXB_ENC_SRC_ENC_EXT = 40
+} MpAXBEncSrcEnum;
+
+typedef enum MpAXBEncLinkEncParSetEnum
+{	mcAXB_ENC_PAR_SET_AUT = 0,
+	mcAXB_ENC_PAR_SET_ENCOD1 = 1,
+	mcAXB_ENC_PAR_SET_ENCOD2 = 2
+} MpAXBEncLinkEncParSetEnum;
+
+typedef enum MpAXBEncLinkStpCntRefPSrcEnum
+{	mcAXB_ENC_SC_REF_P_DIG_IN_1 = 0,
+	mcAXB_ENC_SC_REF_P_DIG_IN_2 = 1,
+	mcAXB_ENC_SC_REF_P_DIG_IN_3 = 2,
+	mcAXB_ENC_SC_REF_P_DIG_IN_5 = 3,
+	mcAXB_ENC_SC_REF_P_DIG_IN_6 = 4,
+	mcAXB_ENC_SC_REF_P_R_IN_OF_X6A = 5,
+	mcAXB_ENC_SC_REF_P_R_IN_OF_X6B = 6
+} MpAXBEncLinkStpCntRefPSrcEnum;
+
+typedef enum MpAXBEncLinkStpCntRefPEdgEnum
+{	mcAXB_ENC_SC_REF_P_POS_EDG = 0,
+	mcAXB_ENC_SC_REF_P_NEG_EDG = 1
+} MpAXBEncLinkStpCntRefPEdgEnum;
+
+typedef enum MpAXBEncExtPosTypEnum
+{	mcAXB_ENC_EXT_POS_ABS = 0,
+	mcAXB_ENC_EXT_POS_INCR = 1
+} MpAXBEncExtPosTypEnum;
+
+typedef enum MpAXBEncLinkExtPosEnum
+{	mcAXB_ENC_EXT_SRC_IO_CH_DINT = 0,
+	mcAXB_ENC_EXT_SRC_IO_CH_UDINT = 1,
+	mcAXB_ENC_EXT_SRC_IO_CH_INT = 2,
+	mcAXB_ENC_EXT_SRC_IO_CH_UINT = 3,
+	mcAXB_ENC_EXT_SRC_VAR_DINT = 4,
+	mcAXB_ENC_EXT_SRC_VAR_UDINT = 5,
+	mcAXB_ENC_EXT_SRC_VAR_INT = 6,
+	mcAXB_ENC_EXT_SRC_VAR_UINT = 7
+} MpAXBEncLinkExtPosEnum;
+
+typedef enum MpAXBEncLinkEncExtModOkTypEnum
+{	mcAXB_ENC_EXT_MOD_OK_POS_SRC_DEV = 0,
+	mcAXB_ENC_EXT_MOD_OK_IO_CH = 1,
+	mcAXB_ENC_EXT_MOD_OK_VAR = 2,
+	mcAXB_ENC_EXT_MOD_OK_NOT_USE = 3
+} MpAXBEncLinkEncExtModOkTypEnum;
+
+typedef enum MpAXBEncLinkEncExtStDatTypEnum
+{	mcAXB_ENC_EXT_ST_DAT_POS_SRC_DEV = 0,
+	mcAXB_ENC_EXT_ST_DAT_IO_CH = 1,
+	mcAXB_ENC_EXT_ST_DAT_VAR = 2,
+	mcAXB_ENC_EXT_ST_DAT_NOT_USE = 3
+} MpAXBEncLinkEncExtStDatTypEnum;
+
+typedef enum MpAXBEncLinkEncExtNetTimeTypEnum
+{	mcAXB_ENC_EXT_NET_TIME_NOT_USE = 0,
+	mcAXB_ENC_EXT_NET_TIME_IO_CH = 1,
+	mcAXB_ENC_EXT_NET_TIME_VAR = 2
+} MpAXBEncLinkEncExtNetTimeTypEnum;
+
+typedef enum MpAXBEncLinkEncExtEncOkTypEnum
+{	mcAXB_ENC_EXT_ENC_OK_NOT_USE = 0,
+	mcAXB_ENC_EXT_ENC_OK_IO_CH = 1,
+	mcAXB_ENC_EXT_ENC_OK_VAR = 2
+} MpAXBEncLinkEncExtEncOkTypEnum;
+
+typedef enum MpAXBEncLinkEncExtRefPTypEnum
+{	mcAXB_ENC_EXT_REF_P_NOT_USE = 0,
+	mcAXB_ENC_EXT_REF_P_IO_CH_INT = 1,
+	mcAXB_ENC_EXT_REF_P_VAR_INT = 2,
+	mcAXB_ENC_EXT_REF_P_IO_CH_DINT = 3,
+	mcAXB_ENC_EXT_REF_P_VAR_DINT = 4
+} MpAXBEncLinkEncExtRefPTypEnum;
+
+typedef enum MpAXBEncLinkEncExtPosFltrTypEnum
+{	mcAXB_ENC_EXT_POS_FL_EXTPOL_DIST = 0
+} MpAXBEncLinkEncExtPosFltrTypEnum;
+
+typedef enum MpAXBEncLinkCntDirEnum
+{	mcAXB_ENC_COUNT_DIR_AUT = 0,
+	mcAXB_ENC_COUNT_DIR_INV = 1
+} MpAXBEncLinkCntDirEnum;
 
 typedef struct MpAxisHomingAddTorqLimParType
 {	float PositiveDirection;
@@ -323,6 +560,7 @@ typedef struct MpAxisStopAtPositionType
 {	plcbit Activate;
 	float Deceleration;
 	double Position;
+	float Acceleration;
 } MpAxisStopAtPositionType;
 
 typedef struct MpAxisStopType
@@ -628,18 +866,43 @@ typedef struct MpAxisCyclicSetParType
 	struct MpAxisTorqueFFParType TorqueFeedForward;
 } MpAxisCyclicSetParType;
 
-typedef struct MpAXBHWModuleType
-{	plcstring OrderNumber[251];
-	plcstring Address[251];
-	enum MpAXBHWModuleChannelEnum Channel;
-	enum MpAXBHWModuleAxTypeEnum AxisType;
-} MpAXBHWModuleType;
+typedef struct MpAXBMotorType
+{	enum MpAXBMotorDataTypeEnum Type;
+	unsigned long Data;
+} MpAXBMotorType;
+
+typedef struct MpAXBEncPlInCrdType
+{	plcstring Card[51];
+	enum MpAXBEncPlInCrdSubslotEnum Subslot;
+} MpAXBEncPlInCrdType;
+
+typedef struct MpAXBEncoderType
+{	enum MpAXBEncModuleEnum Module;
+	struct MpAXBEncPlInCrdType PlugInCard;
+	unsigned long Data;
+	unsigned char NumberOfEncoders;
+} MpAXBEncoderType;
+
+typedef struct MpAXBModuleType
+{	plcstring ModelNumber[251];
+	plcstring Location[251];
+	enum MpAXBModuleAxTypeEnum AxisType;
+	enum MpAXBModuleChannelEnum Channel;
+	struct MpAXBMotorType Motor;
+	struct MpAXBEncoderType Encoder;
+} MpAXBModuleType;
+
+typedef struct MpAXBEncDatType
+{	enum MpAXBEncInterfaceEnum Interface;
+	enum MpAXBEncTypeEnum Type;
+	unsigned long Data;
+} MpAXBEncDatType;
 
 typedef struct MpAxisBasicConfigParType
 {	struct MpAxisBasicConfigType* Data;
 	enum MpAxisBasicConfigSectionEnum Section;
 	plcstring AxisName[251];
-	struct MpAXBHWModuleType HWModule;
+	struct MpAXBModuleType Module;
 } MpAxisBasicConfigParType;
 
 typedef struct MpAXBAxMoveLimPosType
@@ -737,7 +1000,8 @@ typedef struct MpAXBDrvCtrlMdlType
 } MpAXBDrvCtrlMdlType;
 
 typedef struct MpAXBDrvCtrlVFreqCtrlType
-{	enum MpAXBDrvCtrlVFreqCtrlAutCfgEnum AutomaticConfiguration;
+{	enum MpAXBDrvCtrlVFreqCtrlTypEnum Type;
+	enum MpAXBDrvCtrlVFreqCtrlAutCfgEnum AutomaticConfiguration;
 	float SlipCompensation;
 	float TotalDelayTime;
 	float BoostVoltage;
@@ -870,26 +1134,51 @@ typedef struct MpAXBDrvJerkFilterType
 
 typedef struct MpAXBDrvDigInHomeSwType
 {	enum MpAXBDrvDigInLevelEnum Level;
+	enum MpAXBDrvDigInSrcEnum Source;
+	plcstring SourceMapping[251];
 } MpAXBDrvDigInHomeSwType;
 
 typedef struct MpAXBDrvDigInPosLimSwType
 {	enum MpAXBDrvDigInLevelEnum Level;
+	enum MpAXBDrvDigInSrcEnum Source;
+	plcstring SourceMapping[251];
 } MpAXBDrvDigInPosLimSwType;
 
 typedef struct MpAXBDrvDigInNegLimSwType
 {	enum MpAXBDrvDigInLevelEnum Level;
+	enum MpAXBDrvDigInSrcEnum Source;
+	plcstring SourceMapping[251];
 } MpAXBDrvDigInNegLimSwType;
+
+typedef struct MpAXBDrvDigTimeStampEdgType
+{	plcstring CountSourceMapping[251];
+	plcstring TimeStampSourceMapping[251];
+} MpAXBDrvDigTimeStampEdgType;
+
+typedef struct MpAXBDrvDigTimeStampType
+{	enum MpAXBDrvDigTimeStampTypeEnum Type;
+	plcstring TimeStampSourceMapping[251];
+	struct MpAXBDrvDigTimeStampEdgType RisingEdge;
+	struct MpAXBDrvDigTimeStampEdgType FallingEdge;
+} MpAXBDrvDigTimeStampType;
 
 typedef struct MpAXBDrvDigInTrg1Type
 {	enum MpAXBDrvDigInLevelEnum Level;
+	enum MpAXBDrvDigInSrcEnum Source;
+	plcstring SourceMapping[251];
+	struct MpAXBDrvDigTimeStampType TimeStamp;
 } MpAXBDrvDigInTrg1Type;
 
 typedef struct MpAXBDrvDigInTrg2Type
 {	enum MpAXBDrvDigInLevelEnum Level;
+	enum MpAXBDrvDigInSrcEnum Source;
+	plcstring SourceMapping[251];
+	struct MpAXBDrvDigTimeStampType TimeStamp;
 } MpAXBDrvDigInTrg2Type;
 
 typedef struct MpAXBDrvDigInQstopType
 {	enum MpAXBDrvDigInQstopInEnum Input;
+	plcstring SourceMapping[251];
 } MpAXBDrvDigInQstopType;
 
 typedef struct MpAXBDrvDigInType
@@ -901,6 +1190,101 @@ typedef struct MpAXBDrvDigInType
 	struct MpAXBDrvDigInQstopType Quickstop;
 } MpAXBDrvDigInType;
 
+typedef struct MpAXBEncLinkStpCntType
+{	enum MpAXBEncLinkStpCntRefPSrcEnum ReferencePulseSource;
+	enum MpAXBEncLinkStpCntRefPEdgEnum ReferencePulseEdge;
+} MpAXBEncLinkStpCntType;
+
+typedef struct MpAXBEncLinkExtAbsPosRngType
+{	signed long LowerLimit;
+	unsigned long UpperLimit;
+} MpAXBEncLinkExtAbsPosRngType;
+
+typedef struct MpAXBEncLinkEncExtModOkType
+{	enum MpAXBEncLinkEncExtModOkTypEnum Type;
+	plcstring SourceMapping[251];
+} MpAXBEncLinkEncExtModOkType;
+
+typedef struct MpAXBEncLinkEncExtStDatType
+{	enum MpAXBEncLinkEncExtStDatTypEnum Type;
+	plcstring SourceMapping[251];
+} MpAXBEncLinkEncExtStDatType;
+
+typedef struct MpAXBEncLinkEncExtNetTimeType
+{	enum MpAXBEncLinkEncExtNetTimeTypEnum Type;
+	plcstring SourceMapping[251];
+} MpAXBEncLinkEncExtNetTimeType;
+
+typedef struct MpAXBEncLinkEncExtEncOkType
+{	enum MpAXBEncLinkEncExtEncOkTypEnum Type;
+	plcstring SourceMapping[251];
+} MpAXBEncLinkEncExtEncOkType;
+
+typedef struct MpAXBEncLinkEncExtValCkType
+{	struct MpAXBEncLinkEncExtModOkType ModuleOk;
+	struct MpAXBEncLinkEncExtStDatType StaleData;
+	struct MpAXBEncLinkEncExtNetTimeType NetTime;
+	struct MpAXBEncLinkEncExtEncOkType EncoderOk;
+} MpAXBEncLinkEncExtValCkType;
+
+typedef struct MpAXBEncLinkEncExtRefPType
+{	enum MpAXBEncLinkEncExtRefPTypEnum Type;
+	plcstring PositionSourceMapping[251];
+	plcstring CountSourceMapping[251];
+} MpAXBEncLinkEncExtRefPType;
+
+typedef struct MpAXBEncLinkEncExtPosFltrType
+{	enum MpAXBEncLinkEncExtPosFltrTypEnum Type;
+	float TimeConstant;
+	float ExtrapolationTime;
+} MpAXBEncLinkEncExtPosFltrType;
+
+typedef struct MpAXBDrvEncLinkPosEncExtType
+{	unsigned long LinesPerEncoderRevolution;
+	enum MpAXBEncExtPosTypEnum PositionType;
+	struct MpAXBEncLinkExtAbsPosRngType AbsolutePositionRange;
+	enum MpAXBEncLinkExtPosEnum PositionSource;
+	plcstring PositionSourceMapping[251];
+	struct MpAXBEncLinkEncExtValCkType ValidityCheck;
+	struct MpAXBEncLinkEncExtRefPType ReferencePulse;
+	struct MpAXBEncLinkEncExtPosFltrType PositionFilter;
+} MpAXBDrvEncLinkPosEncExtType;
+
+typedef struct MpAXBDrvEncLinkMotAndPosEncType
+{	enum MpAXBEncSrcEnum Source;
+	enum MpAXBEncLinkEncParSetEnum EncoderParameterSet;
+	struct MpAXBEncLinkStpCntType StepCounter;
+	struct MpAXBDrvEncLinkPosEncExtType External;
+} MpAXBDrvEncLinkMotAndPosEncType;
+
+typedef struct MpAXBDrvEncLinkPosEncScGBType
+{	signed long Input;
+	signed long Output;
+} MpAXBDrvEncLinkPosEncScGBType;
+
+typedef struct MpAXBEncLinkRotToLinTrfType
+{	double ReferenceDistance;
+} MpAXBEncLinkRotToLinTrfType;
+
+typedef struct MpAXBDrvEncLinkPosEncScType
+{	struct MpAXBDrvEncLinkPosEncScGBType Gearbox;
+	struct MpAXBEncLinkRotToLinTrfType RotaryToLinearTransformation;
+	enum MpAXBEncLinkCntDirEnum CountDirection;
+} MpAXBDrvEncLinkPosEncScType;
+
+typedef struct MpAXBDrvEncLinkPosEncType
+{	enum MpAXBEncSrcEnum Source;
+	struct MpAXBDrvEncLinkPosEncScType Scaling;
+	enum MpAXBEncLinkEncParSetEnum EncoderParameterSet;
+	float PositionDifferenceLimit;
+} MpAXBDrvEncLinkPosEncType;
+
+typedef struct MpAXBDrvEncLinkType
+{	enum MpAXBDrvEncLinkTypEnum Type;
+	struct MpAXBDrvEncLinkMotAndPosEncType MotorAndPositionEncoder;
+	struct MpAXBDrvEncLinkPosEncType PositionEncoder;
+} MpAXBDrvEncLinkType;
+
 typedef struct MpAXBDrvType
 {	struct MpAXBDrvMechElmType MechanicalElements;
 	struct MpAXBDrvCtrlType Controller;
@@ -909,11 +1293,31 @@ typedef struct MpAXBDrvType
 	struct MpAXBDrvMovementErrorLimitsType MovementErrorLimits;
 	struct MpAXBDrvJerkFilterType JerkFilter;
 	struct MpAXBDrvDigInType DigitalInputs;
+	struct MpAXBDrvEncLinkType EncoderLink;
 } MpAXBDrvType;
+
+typedef struct MpAXBFeatRefType
+{	enum McCfgTypeEnum ConfigType;
+	plcstring Name[251];
+} MpAXBFeatRefType;
+
+typedef struct MpAXBFeatAxFeatType
+{	struct MpAXBFeatRefType Reference[10];
+} MpAXBFeatAxFeatType;
+
+typedef struct MpAXBFeatChFeatType
+{	struct MpAXBFeatRefType Reference[10];
+} MpAXBFeatChFeatType;
+
+typedef struct MpAXBFeatType
+{	struct MpAXBFeatAxFeatType AxisFeatures;
+	struct MpAXBFeatChFeatType ChannelFeatures;
+} MpAXBFeatType;
 
 typedef struct MpAxisBasicConfigType
 {	struct MpAXBAxType Axis;
 	struct MpAXBDrvType Drive;
+	struct MpAXBFeatType Features;
 } MpAxisBasicConfigType;
 
 typedef struct MpAxisBasic

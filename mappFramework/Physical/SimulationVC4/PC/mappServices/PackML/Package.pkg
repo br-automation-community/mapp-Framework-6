@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<?AutomationStudio FileVersion="4.9"?>
-<Package xmlns="http://br-automation.co.at/AS/Package">
-  <Objects>
-    <Object Type="File" Description="Migrated from PackMLCfg.mppackmlcore (mapp Services Version 5)">PackMLCf_1.mppackmlstandaloneunit</Object>
-  </Objects>
-</Package>

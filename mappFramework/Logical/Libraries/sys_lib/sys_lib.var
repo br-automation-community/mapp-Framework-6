@@ -30,6 +30,30 @@ VAR CONSTANT
 	Z_ST_tmp_suspended			: UINT	:= 16#90;	(*object temporarily stopped*)
 END_VAR
 
+(*elementary data types*)
+VAR CONSTANT
+	SYSLIB_IEC_TYPE_USER_DEFINED	: USINT	:= 0;	(*User-defined data type*)
+	SYSLIB_IEC_TYPE_USER_DEFINED_2	: USINT	:= 15;	(*User-defined data type (legacy: array of structs)*)
+	SYSLIB_IEC_TYPE_BOOL			: USINT	:= 1;	(*8 Bit containing a boolean value FALSE=0 or TRUE=1*)
+	SYSLIB_IEC_TYPE_SINT			: USINT	:= 2;	(*8 Bit signed integer*)
+	SYSLIB_IEC_TYPE_INT				: USINT	:= 3;	(*16 Bit signed integer*)
+	SYSLIB_IEC_TYPE_DINT			: USINT	:= 4;	(*32 Bit signed integer*)
+	SYSLIB_IEC_TYPE_USINT			: USINT	:= 5;	(*8 Bit unsigned integer*)
+	SYSLIB_IEC_TYPE_UINT			: USINT	:= 6;	(*16 Bit unsigned integer*)
+	SYSLIB_IEC_TYPE_UDINT			: USINT	:= 7;	(*32 Bit unsigned integer*)
+	SYSLIB_IEC_TYPE_REAL			: USINT	:= 8;	(*32 Bit floating point number*)
+	SYSLIB_IEC_TYPE_STRING			: USINT	:= 9;	(*Variable-length single-byte character string*)
+	SYSLIB_IEC_TYPE_DATE_AND_TIME	: USINT	:= 11;	(*32 Bit of Date in Seconds since 01.01.1970 00:00:00*)
+	SYSLIB_IEC_TYPE_TIME			: USINT	:= 12;	(*32 Bit of Time in ms*)
+	SYSLIB_IEC_TYPE_DATE			: USINT	:= 13;	(*32 Bit of Date (only)*)
+	SYSLIB_IEC_TYPE_LREAL			: USINT	:= 14;	(*64 Bit floating point number*)
+	SYSLIB_IEC_TYPE_TIME_OF_DAY		: USINT	:= 16;	(*32 Bit Time of day (only)*)
+	SYSLIB_IEC_TYPE_BYTE			: USINT	:= 17;	(*Bit string of length 8*)
+	SYSLIB_IEC_TYPE_WORD			: USINT	:= 18;	(*Bit string of length 16*)
+	SYSLIB_IEC_TYPE_DWORD			: USINT	:= 19;	(*Bit string of length 32*)
+	SYSLIB_IEC_TYPE_WSTRING			: USINT	:= 21;	(*Variable-length double-byte character string*)
+END_VAR
+
 (*shutdown/reboot types*)
 VAR CONSTANT
 	SYSLIB_WARMSTART				: USINT	:= 16#01;	(*WARMSTART (with restart)*)

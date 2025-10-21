@@ -70,8 +70,7 @@ _TEARDOWN_TEST(void)
 	if ((AxisControl.Status.ErrorActive == true) || (MpAlarmXCoreAxis.PendingAlarms > 0))
 	{
 		AxisControl.Command.Reset = true;
-#warning "Fix me!" 
-//		MpAlarmXAcknowledgeAll_0.Execute = true;
+		MpAlarmXAcknowledgeAll = true;
 	}
 	TEST_BUSY_CONDITION(AxisControl.Status.ErrorActive);
 	AxisControl.Command.Reset = false;
@@ -80,7 +79,7 @@ _TEARDOWN_TEST(void)
 	TEST_BUSY_CONDITION(abs(AxisControl.Status.Velocity > 0.01));
 	TEST_BUSY_CONDITION(AxisControl.Status.Busy);
 	AxisControl.Command.Stop = false;
-
+	MpAlarmXAcknowledgeAll = false;
 	TEST_DONE;
 }
 
@@ -95,13 +94,6 @@ _CYCLIC_SET(void)
 	MpAlarmXListUI_0.UISetup.AlarmListSize = 50;
 	strcpy(MpAlarmXListUI_0.UISetup.TimeStampPattern, "%Y %m %d %H:%M:%S");
 	MpAlarmXListUI(&MpAlarmXListUI_0);
-
-#warning "Fix me!"
-//    MpAlarmXAcknowledgeAll_0.MpLink = &gMpLinkAlarmXCoreAppAxis_1;
-//    MpAlarmXAcknowledgeAll_0.Enable = true;
-//    MpAlarmXAcknowledgeAll(&MpAlarmXAcknowledgeAll_0);
-//    TEST_BUSY_CONDITION(MpAlarmXAcknowledgeAll_0.CommandBusy);
-//    MpAlarmXAcknowledgeAll_0.Execute = false;
 
 }
 
@@ -122,6 +114,10 @@ _TEST PowerOn(void)
 					ActSubState = 1;
 					break;
 				case 1:
+					TEST_BUSY_CONDITION(AxisControl.Status.Busy == false);
+					ActSubState = 2;
+					break;
+				case 2:
 					TEST_BUSY_CONDITION(AxisControl.Status.Busy == true);
 					TestState = TEST_ASSERT;
 					break;
@@ -619,7 +615,7 @@ _TEST ResetAlarm(void)
 					// wait until the command is received by the axis task
 					TEST_BUSY_CONDITION(State != STATE_RESETTING);
 					AxisControl.Command.Reset = true;
-#warning "Fix me!" 
+#warning "Fix me!"
 //				MpAlarmXAcknowledgeAll_0.Execute = true;
 					ActSubState = 3;
 					break;

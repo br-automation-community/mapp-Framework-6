@@ -44,15 +44,16 @@ ACTION SaveAuditConfiguration:
  END_ACTION
 
 ACTION LoadAuditConfiguration:
+	#warning "USER WRN: TODO: replace config FB"
 
 	// Assign current parameters from the configuration to the HMI structure
-	HmiAudit.Parameters.ArchiveSettings.Hour := UDINT_TO_USINT(TOD_TO_UDINT(AuditTrailConfig.Archive.Time) / 1000 / 60 / 60);
-	HmiAudit.Parameters.ArchiveSettings.Minute := UDINT_TO_USINT(TOD_TO_UDINT(AuditTrailConfig.Archive.Time) / 1000 / 60) -
-													(HmiAudit.Parameters.ArchiveSettings.Hour * 60);
-	HmiAudit.Parameters.ArchiveSettings.Enable := AuditTrailConfig.Archive.Enable;
-	HmiAudit.Parameters.ArchiveSettings.MaxSize := AuditTrailConfig.Archive.MaxSize;
-	HmiAudit.Parameters.ArchiveSettings.Mode := AuditTrailConfig.Archive.Mode;
-	HmiAudit.Parameters.ArchiveSettings.FileType := AuditTrailConfig.Export.FileType;
+//    HmiAudit.Parameters.ArchiveSettings.Hour := UDINT_TO_USINT(TOD_TO_UDINT(AuditTrailConfig.Archive.Time) / 1000 / 60 / 60);
+//    HmiAudit.Parameters.ArchiveSettings.Minute := UDINT_TO_USINT(TOD_TO_UDINT(AuditTrailConfig.Archive.Time) / 1000 / 60) -
+//                                                    (HmiAudit.Parameters.ArchiveSettings.Hour * 60);
+//    HmiAudit.Parameters.ArchiveSettings.Enable := AuditTrailConfig.Archive.Enable;
+//    HmiAudit.Parameters.ArchiveSettings.MaxSize := AuditTrailConfig.Archive.MaxSize;
+//    HmiAudit.Parameters.ArchiveSettings.Mode := AuditTrailConfig.Archive.Mode;
+	//    HmiAudit.Parameters.ArchiveSettings.FileType := AuditTrailConfig.Export.FileType;
 
 END_ACTION
 

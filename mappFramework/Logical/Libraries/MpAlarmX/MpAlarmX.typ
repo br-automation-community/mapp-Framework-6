@@ -18,19 +18,6 @@ TYPE
 		mpALARMX_STATE_CONFIRMED := 5, (*Confirmed state, according OPC UA state model*)
 		mpALARMX_STATE_UNCONFIRMED := 6 (*Unconfirmed state, according OPC UA state model*)
 		);
-	MpAlarmXAcknowledgeConfigEnum : 
-		(
-		mpALARMX_ACK_DISABLED := 0, (*No acknowledgement required, inactive alarms disappear from current alarm list automatically.*)
-		mpALARMX_ACK_REQ := 1, (*The alarm must be acknowledged, can be done at any time.*)
-		mpALARMX_ACK_REQ_RESETTABLE := 2 (*The alarm must be acknowledged (can be done at any time). Acknowledge-state is reset when alarm is re-activated.*)
-		);
-	MpAlarmXConfirmConfigEnum : 
-		(
-		mpALARMX_CONFIRM_DISABLED := 0, (*No confirm required, inactive alarms disappear from current alarm list automatically.*)
-		mpALARMX_CONFIRM_REQ := 1, (*The alarm must be acknowledged, can be done at any time.*)
-		mpALARMX_CONFIRM_AFTER_RESET := 3, (*The alarm must be confirmed, can only be done when the alarm is inactive.*)
-		mpALARMX_CONFIRM_REQ_RESETTABLE := 3 (*The alarm must be confirmed (can only be done when the alarm is inactive). Confirm-state is reset when alarm is re-activated.*)
-		);
 	MpAlarmXHistoryUIStatusEnum : 
 		(
 		mpALARMX_HISTORY_UI_STATUS_IDLE := 0, (*Indicates that no process is currently active*)
@@ -192,4 +179,3 @@ TYPE
 		TimeStampPattern : STRING[50] := '%Y-%m-%d %H:%M:%S:%L'; (*Format pattern for the timestamp shown in the UIConnect structure. See MpAlarmXHistory configuration for details about the pattern syntax.*)
 	END_STRUCT;
 END_TYPE
-

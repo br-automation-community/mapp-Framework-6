@@ -21,10 +21,10 @@ ACTION FormatDeviceDataProvider:
 		END_IF
 	END_FOR
 
-	//Check initilized folder for existance and remove any from the device list that don't exist
+	//Check initialized folder for existence and remove any from the device list that don't exist
 	MaxDeviceNameIndex := ((SIZEOF(MpFileManagerUIConnect.DeviceList.DeviceNames) / SIZEOF(MpFileManagerUIConnect.DeviceList.DeviceNames[0])) - 1);
 	NextOpenIndex := 0;
-	FOR TempIdx := 0 TO MaxDeviceNameIndex DO	
+	FOR TempIdx := 0 TO MaxDeviceNameIndex DO
 		IdentStatus := ST_ident(ADR(PathCheck.PrgName[TempIdx]),0,ADR(Ident));
 		//Assign device name to next available slot in table according to if the path is valid
 		IF (IdentStatus = 0) THEN		//path is valid
@@ -34,7 +34,7 @@ ACTION FormatDeviceDataProvider:
 		//Clear the remaining index slots with invalid path checks
 		IF TempIdx > NextOpenIndex THEN
 			MpFileManagerUIConnect.DeviceList.DeviceNames[TempIdx] := '';
-		END_IF	
+		END_IF
 	END_FOR;
 
 	// Configure visible device list
@@ -62,7 +62,7 @@ ACTION FormatDeviceDataProvider:
 			brsstrcat(ADR(HmiFile.Status.DeviceDataProvider[i]), ADR(MpFileManagerUIConnect.DeviceList.DeviceNames[i]));
 			brsstrcat(ADR(HmiFile.Status.DeviceDataProvider[i]), ADR('"}'));
 		ELSE
-			HmiFile.Status.DeviceDataProvider[i] := '{"value":"Disable","text":"Disable FIFO"}';	
+			HmiFile.Status.DeviceDataProvider[i] := '{"value":"Disable","text":"Disable FIFO"}';
 			EXIT;
 		END_IF
 	END_FOR
@@ -132,7 +132,7 @@ ACTION FileManager:
 	END_IF
 
 	HmiFile.Status.BackButton := (FolderDepthCount > 0);
-	HmiFile.Status.DefaultFileSelected := ((MpFileManagerUIConnect.File.List.Items[HmiFile.Status.SelectedIndex].Name = CONCAT(DEFAULT_PARAMETERS,PARAMETERS_FILE_EXTENSION)) OR 
+	HmiFile.Status.DefaultFileSelected := ((MpFileManagerUIConnect.File.List.Items[HmiFile.Status.SelectedIndex].Name = CONCAT(DEFAULT_PARAMETERS,PARAMETERS_FILE_EXTENSION)) OR
 																				(MpFileManagerUIConnect.File.List.Items[HmiFile.Status.SelectedIndex].Name = CONCAT(DEFAULT_MACHINE_CONFIGURATION,
 																				MACHINE_CONFIG_FILE_EXTENSION))) AND MpFileManagerUIConnect.DeviceList.SelectedIndex = 0;
 

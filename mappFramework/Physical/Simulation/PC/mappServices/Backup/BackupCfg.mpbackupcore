@@ -4,12 +4,14 @@
   <Element ID="gMpLinkBackupCore" Type="mpbackupcore">
     <Group ID="mapp.Gen">
       <Property ID="Enable" Value="TRUE" />
+      <Property ID="EnableCockpit" Value="TRUE" />
       <Property ID="Audit" Value="TRUE" />
+      <Property ID="Parent" />
     </Group>
     <Group ID="Backup">
       <Selector ID="AutomaticBackup" Value="Enabled">
         <Property ID="NamePrefix" Value="myBackupPrefix" />
-        <Property ID="DeviceName" Value="USB1" />
+        <Property ID="DeviceName" Value="mappBackupFiles" />
         <Selector ID="Mode" Value="Weekly">
           <Property ID="Day" Value="4" />
           <Property ID="Time" Value="0" />
@@ -21,7 +23,7 @@
       <Selector ID="AutomaticUpdate" Value="Notify">
         <Property ID="DeviceName" Value="mappBackupFiles" />
         <Selector ID="Check" Value="Daily">
-          <Property ID="Time" Value="57600000" />
+          <Property ID="Time" Value="57600" />
         </Selector>
       </Selector>
     </Group>

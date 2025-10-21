@@ -1,15 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<?AutomationStudio FileVersion="6.0.1.886"?>
-<OpcUaSource FileVersion="10" ArVersion="6.0.7000">
+<?AutomationStudio FileVersion="6.0"?>
+<OpcUaSource FileVersion="10">
   <Aliases>
-    <ACLAliases>
-      <ACL Id="1">
-        <ACE RoleName="Operators" Access="0x005F" />
-        <ACE RoleName="Service" Access="0x005F" />
-        <ACE RoleName="Everyone" Access="0x005F" />
-        <ACE RoleName="Administrators" Access="0x017F" />
-      </ACL>
-    </ACLAliases>
+    <ACLAliases />
     <EURangeViolationAliases />
     <EURangesAliases />
     <EngineeringUnitAliases>
@@ -20,32 +13,30 @@
       <EngineeringUnit Id="5" UnitId="4408652" NameSpaceUri="http://www.opcfoundation.org/UA/units/un/cefact" Name="degree Celsius" Symbol="°C" />
     </EngineeringUnitAliases>
   </Aliases>
-  <DefaultView AclId="1">
-    <Module Name="&lt;Default&gt;">
-      <Task Name="AppAxis_1">
-        <Variable Name="AxisControl" RecursiveEnable="1">
-          <Variable Name="Parameters">
-            <Variable Name="Position" EngineeringUnitId="1" />
-            <Variable Name="Distance" EngineeringUnitId="1" />
-            <Variable Name="HomePosition" EngineeringUnitId="1" />
-            <Variable Name="Acceleration" EngineeringUnitId="2" />
-            <Variable Name="Deceleration" EngineeringUnitId="2" />
-            <Variable Name="Velocity" EngineeringUnitId="3" />
-          </Variable>
-          <Variable Name="Status">
-            <Variable Name="LagError" EngineeringUnitId="1" />
-            <Variable Name="Position" EngineeringUnitId="1" />
-            <Variable Name="Velocity" EngineeringUnitId="3" />
-            <Variable Name="Current" EngineeringUnitId="4" />
-            <Variable Name="MotorTemperature" EngineeringUnitId="5" />
-          </Variable>
-          <Variable Name="Command" />
+  <Module Name="&lt;Default&gt;">
+    <Task Name="AppAxis_1">
+      <Variable Name="AxisControl" RecursiveEnable="2">
+        <Variable AclInherit="2" Name="Parameters">
+          <Variable Name="Position" EngineeringUnitId="1" />
+          <Variable Name="Distance" EngineeringUnitId="1" />
+          <Variable Name="HomePosition" EngineeringUnitId="1" />
+          <Variable Name="Acceleration" EngineeringUnitId="2" />
+          <Variable Name="Deceleration" EngineeringUnitId="2" />
+          <Variable Name="Velocity" EngineeringUnitId="3" />
         </Variable>
-        <Variable Name="AxisRecipe" RecursiveEnable="1" />
-        <Variable Name="MpAxisBasicAppAxis">
-          <Variable Name="Active" />
+        <Variable AclInherit="1" Name="Status">
+          <Variable Name="LagError" EngineeringUnitId="1" />
+          <Variable Name="Position" EngineeringUnitId="1" />
+          <Variable Name="Velocity" EngineeringUnitId="3" />
+          <Variable Name="Current" EngineeringUnitId="4" />
+          <Variable Name="MotorTemperature" EngineeringUnitId="5" />
         </Variable>
-      </Task>
-    </Module>
-  </DefaultView>
+        <Variable AclInherit="2" Name="Command" />
+      </Variable>
+      <Variable AclInherit="2" Name="AxisRecipe" RecursiveEnable="2" />
+      <Variable Name="MpAxisBasicAppAxis">
+        <Variable AclInherit="1" Name="Active" />
+      </Variable>
+    </Task>
+  </Module>
 </OpcUaSource>

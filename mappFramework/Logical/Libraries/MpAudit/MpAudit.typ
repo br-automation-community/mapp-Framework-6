@@ -60,9 +60,11 @@ TYPE
 	END_STRUCT;
 	MpAuditTrailUIInfoType : 	STRUCT 
 		Diag : MpAuditDiagType; (*Diagnostic structure for the status ID*)
+		GeneratedFileName : STRING[255]; (*Generated file name*)
 	END_STRUCT;
 	MpAuditExportInfoType : 	STRUCT 
 		Diag : MpAuditDiagType; (*Diagnostic structure for the status ID*)
+		GeneratedFileName : STRING[255]; (*Generated file name*)
 	END_STRUCT;
 	MpAuditQueryInfoType : 	STRUCT 
 		AvailableSpace : UDINT; (*Number of available "rows" in the PV configured for the query*)

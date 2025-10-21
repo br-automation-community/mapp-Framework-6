@@ -1,41 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<?AutomationStudio FileVersion="6.0.1.886"?>
-<OpcUaSource FileVersion="10" ArVersion="E4.91">
+<?AutomationStudio FileVersion="6.0"?>
+<OpcUaSource FileVersion="10">
   <Aliases>
-    <ACLAliases>
-      <ACL Id="1">
-        <ACE RoleName="Administrators" Access="0x017F" />
-        <ACE RoleName="Operators" Access="0x005F" />
-        <ACE RoleName="Service" Access="0x005F" />
-        <ACE RoleName="Everyone" Access="0x005F" />
-      </ACL>
-    </ACLAliases>
+    <ACLAliases />
     <EURangeViolationAliases />
     <EURangesAliases />
     <EngineeringUnitAliases>
       <EngineeringUnit Id="1" UnitId="4408652" NameSpaceUri="http://www.opcfoundation.org/UA/units/un/cefact" Name="degree Celsius" Symbol="°C" />
     </EngineeringUnitAliases>
   </Aliases>
-  <DefaultView AclId="1">
-    <Module Name="&lt;Default&gt;">
-      <Task Name="AuditMgr">
-        <Variable Name="MpAuditTrailSys">
-          <Variable Name="Active" />
+  <Module Name="&lt;Default&gt;">
+    <Task Name="AuditMgr">
+      <Variable Name="MpAuditTrailSys">
+        <Variable Name="Active" />
+      </Variable>
+      <Variable Name="HmiAudit" RecursiveEnable="2">
+        <Variable Name="Parameters">
+          <Variable Name="QuerySelection" RecursiveEnable="2" />
         </Variable>
-        <Variable Name="HmiAudit" RecursiveEnable="1">
-          <Variable Name="Status">
-            <Variable Name="TableConfig" RecursiveEnable="1" />
-            <Variable Name="Query">
-              <Variable Name="EvTime" RecursiveEnable="1" />
-              <Variable Name="Text" RecursiveEnable="1" />
-              <Variable Name="DText" RecursiveEnable="1" />
-              <Variable Name="Op" RecursiveEnable="1" />
-            </Variable>
-            <Variable Name="DeviceDataProvider" />
-          </Variable>
-          <Variable Name="Parameters" />
+        <Variable Name="Status">
+          <Variable Name="TableConfig" RecursiveEnable="2" />
+          <Variable Name="DeviceDataProvider" RecursiveEnable="2" />
         </Variable>
-      </Task>
-    </Module>
-  </DefaultView>
+      </Variable>
+    </Task>
+  </Module>
 </OpcUaSource>

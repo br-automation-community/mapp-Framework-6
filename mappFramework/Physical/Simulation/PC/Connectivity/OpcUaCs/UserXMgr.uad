@@ -1,60 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<?AutomationStudio FileVersion="6.0.1.886"?>
-<OpcUaSource FileVersion="10" ArVersion="6.0.7000">
+<?AutomationStudio FileVersion="6.0"?>
+<OpcUaSource FileVersion="10">
   <Aliases>
-    <ACLAliases>
-      <ACL Id="1">
-        <ACE RoleName="Service" Access="0x015F" />
-        <ACE RoleName="Administrators" Access="0x017F" />
-        <ACE RoleName="Operators" Access="0x015F" />
-        <ACE RoleName="Everyone" Access="0x015F" />
-      </ACL>
-      <ACL Id="3">
-        <ACE RoleName="Service" Access="0x01FF" />
-        <ACE RoleName="Administrators" Access="0x01FF" />
-        <ACE RoleName="Operators" Access="0x01FF" />
-        <ACE RoleName="Everyone" Access="0x017F" />
-      </ACL>
-    </ACLAliases>
+    <ACLAliases />
     <EURangeViolationAliases />
     <EURangesAliases />
     <EngineeringUnitAliases />
   </Aliases>
-  <DefaultView AclId="3">
-    <Module Name="&lt;Default&gt;">
-      <Task Name="UserXMgr">
-        <Variable Name="UserXMgrUIConnect" RecursiveEnable="1">
-          <Variable Name="User">
+  <Module Name="&lt;Default&gt;">
+    <Task Name="UserXMgr">
+      <Variable Name="UserXMgrUIConnect" RecursiveEnable="2">
+        <Variable Name="User">
+          <Variable Name="List">
+            <Variable Name="UserNames" RecursiveEnable="2" />
+          </Variable>
+          <Variable Name="Info">
+            <Variable Name="Roles" RecursiveEnable="2" />
+            <Variable Name="AdditionalData" />
+          </Variable>
+        </Variable>
+        <Variable Name="Import">
+          <Variable Name="Dialog">
             <Variable Name="List">
-              <Variable Name="UserNames" RecursiveEnable="1" />
-            </Variable>
-            <Variable Name="Info">
-              <Variable Name="Roles" RecursiveEnable="1" />
-              <Variable Name="AdditionalData" RecursiveEnable="1" />
-            </Variable>
-          </Variable>
-          <Variable Name="Import">
-            <Variable Name="Dialog">
-              <Variable Name="List">
-                <Variable Name="FileNames" RecursiveEnable="1" />
-              </Variable>
+              <Variable Name="FileNames" RecursiveEnable="2" />
             </Variable>
           </Variable>
         </Variable>
-        <Variable Name="MpUserXManagerUISys">
-          <Variable Name="ErrorReset" />
-          <Variable Name="Error" />
-          <Variable Name="Active" />
-        </Variable>
-        <Variable Name="UserXLoginUIConnect" RecursiveEnable="1" />
-        <Variable Name="MpUserXLoginUISys">
-          <Variable Name="Error" />
-        </Variable>
-        <Variable Name="MpUserXLoginSys">
-          <Variable Name="Error" />
-        </Variable>
-        <Variable Name="HmiUserX" RecursiveEnable="1" />
-      </Task>
-    </Module>
-  </DefaultView>
+      </Variable>
+      <Variable Name="MpUserXManagerUISys">
+        <Variable Name="ErrorReset" />
+        <Variable Name="Error" />
+        <Variable Name="Active" />
+      </Variable>
+      <Variable Name="UserXLoginUIConnect" />
+      <Variable Name="MpUserXLoginUISys">
+        <Variable Name="Error" />
+      </Variable>
+      <Variable Name="MpUserXLoginSys">
+        <Variable Name="Error" />
+      </Variable>
+      <Variable Name="HmiUserX" RecursiveEnable="2" />
+    </Task>
+  </Module>
 </OpcUaSource>

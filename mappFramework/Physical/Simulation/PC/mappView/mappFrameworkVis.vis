@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<vdef:Visualization id="mappFrameworkVis" autoUpdate="true" xmlns:vdef="http://www.br-automation.com/iat2015/visualizationDefinition/v2">
+  <StartPage pageRefId="Demo" />
+  <Pages>
+    <Page refId="Demo" />
+  </Pages>
+  <Navigations />
+  <BindingsSets>
+    <BindingsSet refId="Navigation" />
+    <BindingsSet refId="AlarmXCurrent" />
+    <BindingsSet refId="AlarmXHistory" />
+    <BindingsSet refId="AlarmXQuery" />
+    <BindingsSet refId="Axis" />
+    <BindingsSet refId="AxisAuto" />
+    <BindingsSet refId="AxisManual" />
+    <BindingsSet refId="BackupDialogCreate" />
+    <BindingsSet refId="Backup" />
+    <BindingsSet refId="BackupDialogAutoSettings" />
+    <BindingsSet refId="BackupDialogUpdate" />
+    <BindingsSet refId="File" />
+    <BindingsSet refId="FileDialogMessage" />
+    <BindingsSet refId="FileDialogFIFO" />
+    <BindingsSet refId="Recipe" />
+    <BindingsSet refId="RecipeDialogNewPars" />
+    <BindingsSet refId="RecipeDialogNewMachConfig" />
+    <BindingsSet refId="RecipeMachConfig" />
+    <BindingsSet refId="RecipePars" />
+    <BindingsSet refId="UserX" />
+    <BindingsSet refId="UserXDialogExport" />
+    <BindingsSet refId="UserXDialogImport" />
+    <BindingsSet refId="UserXDialogError" />
+    <BindingsSet refId="UserXDialogDuplicate" />
+    <BindingsSet refId="AuditTrail" />
+    <BindingsSet refId="CustomEvents" />
+    <BindingsSet refId="AuditQuery" />
+    <BindingsSet refId="AuditDialogArchiveSettings" />
+    <BindingsSet refId="Report" />
+    <BindingsSet refId="ReportDialogView" />
+    <BindingsSet refId="ReportDialogCreate" />
+    <BindingsSet refId="PackML" />
+  </BindingsSets>
+  <EventBindingsSets>
+    <EventBindingsSet refId="Navigation" />
+    <EventBindingsSet refId="AlarmXCurrent" />
+    <EventBindingsSet refId="AlarmXHistory" />
+    <EventBindingsSet refId="AxisRecipe" />
+    <EventBindingsSet refId="AxisRecipeDialogNew" />
+    <EventBindingsSet refId="AxisRecipeDialogEdit" />
+    <EventBindingsSet refId="Backup" />
+    <EventBindingsSet refId="BackupDialogCreate" />
+    <EventBindingsSet refId="BackupDialogDelete" />
+    <EventBindingsSet refId="BackupDialogRestore" />
+    <EventBindingsSet refId="BackupDialogAutoSettings" />
+    <EventBindingsSet refId="BackupDialogUpdate" />
+    <EventBindingsSet refId="File" />
+    <EventBindingsSet refId="FileDialogMessage" />
+    <EventBindingsSet refId="FileDialogFIFO" />
+    <EventBindingsSet refId="Recipe" />
+    <EventBindingsSet refId="RecipeDialogNew" />
+    <EventBindingsSet refId="RecipeDialogEdit" />
+    <EventBindingsSet refId="UserList" />
+    <EventBindingsSet refId="UserXDialogExport" />
+    <EventBindingsSet refId="UserXDialogImport" />
+    <EventBindingsSet refId="UserXDialogDuplicate" />
+    <EventBindingsSet refId="UserXDialogDisabled" />
+    <EventBindingsSet refId="AuditTrail" />
+    <EventBindingsSet refId="CustomEvents" />
+    <EventBindingsSet refId="AuditDialogArchiveSettings" />
+    <EventBindingsSet refId="ReportDialogCreate" />
+    <EventBindingsSet refId="ReportDialogDelete" />
+    <EventBindingsSet refId="Report" />
+    <EventBindingsSet refId="ReportDialogView" />
+    <EventBindingsSet refId="PackML" />
+  </EventBindingsSets>
+  <Dialogs>
+    <Dialog refId="BackupCreate" />
+    <Dialog refId="BackupDelete" />
+    <Dialog refId="BackupRestore" />
+    <Dialog refId="BackupAutoSettings" />
+    <Dialog refId="BackupUpdate" />
+    <Dialog refId="FileMessage" />
+    <Dialog refId="FileFIFO" />
+    <Dialog refId="NewRecipe" />
+    <Dialog refId="EditRecipe" />
+    <Dialog refId="UserXLogin" />
+    <Dialog refId="UserXError" />
+    <Dialog refId="UserXExport" />
+    <Dialog refId="UserXImport" />
+    <Dialog refId="UserXDuplicate" />
+    <Dialog refId="UserXDisabled" />
+    <Dialog refId="AuditArchiveSettings" />
+    <Dialog refId="ReportCreate" />
+    <Dialog refId="ReportDelete" />
+    <Dialog refId="ReportView" />
+  </Dialogs>
+  <Contents>
+    <Content refId="AlarmXCurrent" />
+    <Content refId="AlarmXHistory" />
+    <Content refId="AlarmXQuery" />
+    <Content refId="AlarmX" />
+    <Content refId="Help" />
+    <Content refId="Navigation" />
+    <Content refId="Axis" />
+    <Content refId="AxisAuto" />
+    <Content refId="AxisManual" />
+    <Content refId="Backup" />
+    <Content refId="File" />
+    <Content refId="RecipeMachConfig" />
+    <Content refId="RecipeDialogEditMachConfig" />
+    <Content refId="RecipeDialogEditPars" />
+    <Content refId="RecipeDialogNewMachConfig" />
+    <Content refId="RecipeDialogNewPars" />
+    <Content refId="RecipePars" />
+    <Content refId="Recipe" />
+    <Content refId="UserX" />
+    <Content refId="UserList" />
+    <Content refId="UserXDialogLogin" />
+    <Content refId="UserXDialogError" />
+    <Content refId="UserXDialogDuplicate" />
+    <Content refId="UserXDialogDisabled" />
+    <Content refId="Audit" />
+    <Content refId="AuditTrail" />
+    <Content refId="AuditQuery" />
+    <Content refId="CustomEvents" />
+    <Content refId="Report" />
+    <Content refId="ReportDialogCreate" />
+    <Content refId="ReportDialogDelete" />
+    <Content refId="ReportDialogView" />
+    <Content refId="PackML" />
+  </Contents>
+  <SnippetsSets>
+    <SnippetsSet refId="PLCopenState" />
+    <SnippetsSet refId="Recipe" />
+    <SnippetsSet refId="User" />
+  </SnippetsSets>
+  <VariablesSets>
+    <VariablesSet refId="File" />
+    <VariablesSet refId="Recipe" />
+    <VariablesSet refId="UserX" />
+    <VariablesSet refId="Report" />
+    <VariablesSet refId="Navigation" />
+  </VariablesSets>
+  <ExpressionsSets>
+    <ExpressionsSet refId="Axis" />
+    <ExpressionsSet refId="Recipe" />
+  </ExpressionsSets>
+  <StartTheme themeRefId="BuRThemeFlat1" />
+  <Themes>
+    <Theme refId="BuRThemeFlat1" />
+  </Themes>
+  <Configurations>
+    <Configuration key="activityCount" value="false" />
+    <Configuration key="bootLogo" value="Media/mappFrameworkSymbols/Logos/BnR_Logo.svg" />
+    <Configuration key="bootColor" value="rgba(255, 255, 255, 1)" />
+    <Configuration key="favicon" value="Media/mappFrameworkSymbols/Logos/BnR_Logo.ico" />
+    <Configuration key="bootProgressBar" value="true" />
+    <Configuration key="zoom" value="true" />
+    <Gestures>
+      <!--<SystemGesture1 touchPoints="2" />
+			<SystemGesture2 touchPoints="2" />
+			<SystemGesture3 touchPoints="2" />-->
+    </Gestures>
+    <VirtualKeyboards>
+      <!--<InputProcessing onKeyDown="true" />-->
+    </VirtualKeyboards>
+  </Configurations>
+</vdef:Visualization>

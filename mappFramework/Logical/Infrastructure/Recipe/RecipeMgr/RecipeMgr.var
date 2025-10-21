@@ -33,7 +33,8 @@ VAR
 	MpRecipeUIConnect : MpRecipeUIConnectType; (*MpRecipeUI connection to the HMI*) (*ParameterFileStep : INT;*)
 	MpRecipeUISetup : MpRecipeUISetupType; (*MpRecipeUI setup connection to the HMI*) (*ParameterFileStep : INT;*)
 	MpFileManagerUIConnect : MpFileManagerUIConnectType; (*File manager connection to the HMI*)
-	Header : MpRecipeUIHeaderType; (*Header information*)
+	UIHeader : MpRecipeUIHeaderType; (*Header information*)
+	Header : MpRecipeHeaderType; (*Header information*)
 END_VAR
 (*Variables*)
 VAR

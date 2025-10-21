@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Styles id="BuRThemeFlat1containerStyles" xmlns="http://www.br-automation.com/iat2015/styles/engineering/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+
+	<!--fly out-->
+
+	<Style id="transparent" xsi:type="widgets.brease.FlyOut"
+	backColor="transparent"
+		borderStyle="none"
+		borderWidth="0px"
+		buttonBorderWidth="0px"
+		buttonBackColor="transparent" />
+
+	<!--group box-->
+
+	<Style id="transparent" xsi:type="widgets.brease.GroupBox"
+		borderWidth="0px"
+		backColor="transparent"
+		fontSize="16px"
+		bold="false" />
+
+	<Style id="GroupBox1" xsi:type="widgets.brease.GroupBox"
+		headerBackColor="#646464"
+		bold="false"
+		fontSize="16px"
+		textColor="#ffffff"
+		cornerRadius="0px"
+		borderWidth="0px"
+		backColor="#d6d6d6"
+		borderColor="transparent"  />
+
+
+	<Style id="modified" xsi:type="widgets.brease.DropDownBox"
+		fontSize="16px"
+		bold="false"
+		textColor="#646464"
+		backColor="#FFF"
+		mouseDownBackColor="#646464"
+		disabledBackColor="rgba(255, 224, 192, 1)"
+		mouseDownTextColor="#FFFFFF"
+		cornerRadius="0px"
+		listBackColor="#d6d6d6"
+		listTextColor="#646464"
+		borderWidth="0px 6px 0px 0px"
+		mouseDownBorderWidth="0px 3px 0px 0px"
+		borderColor="#ff8800"
+		mouseDownBorderColor="#ff8800"
+		activeTextColor="#FFFFFF"
+		activeBackColor="#FF8800"
+		listBorderWidth="0px"
+		textAlign="center" />
+</Styles>

@@ -14,7 +14,7 @@ PROGRAM _INIT
 	WHILE (DirCreateBackup.status = ERR_FUB_BUSY) DO
 		DirCreateBackup();
 	END_WHILE
-	
+
 	// Check if folder already exist and if so disabled the function block call
 	IF DirCreateBackup.status = fiERR_DIR_ALREADY_EXIST OR (DirCreateBackup.status = ERR_OK) THEN
 		DirCreateBackup(enable := FALSE);
@@ -22,6 +22,7 @@ PROGRAM _INIT
 
 	// Initialize mapp function blocks
 	MpBackupCoreSys.MpLink := ADR(gMpLinkBackupCore);
+	MpBackupCoreSys.Name := ADR(HmiBackup.Parameters.Name);
 	MpBackupCoreSys.Enable := TRUE;
 	MpBackupCoreSys();
 
@@ -30,37 +31,38 @@ PROGRAM _INIT
 		MpFileManagerUIConnect.DeviceList.DeviceNames[i] := '';
 	END_FOR
 	MpFileManagerUIConnect.DeviceList.DeviceNames[0] := 'mappBackupFiles';
-	
+
 	MpFileManagerUIBackup.MpLink := ADR(gMpLinkFileManagerUIBackup);
 	MpFileManagerUIBackup.UIConnect := ADR(MpFileManagerUIConnect);
 	MpFileManagerUIBackup.Enable := TRUE;
 	MpFileManagerUIBackup();
-	#warning "USER WRN: TODO: replace config FB"
-//	  MpBackupCoreConfigSys.Enable := TRUE;
-//	  MpBackupCoreConfigSys.MpLink := ADR(gMpLinkBackupCore);
-//	  MpBackupCoreConfigSys.Configuration := ADR(MpBackupConfiguration);
-//
-//	  MpBackupCoreConfigSys.Load := NOT(DiagCpuIsARsim() OR DiagCpuIsSimulated());
-//
-//	  MpBackupCoreConfigSys();
+
+	MpBackupCoreConfigSys.Enable := TRUE;
+	MpBackupCoreConfigSys.MpLink := ADR(gMpLinkBackupCore);
+	MpBackupCoreConfigSys.Data := ADR(MpBackupConfiguration);
+	MpBackupCoreConfigSys.DataType := mpBACKUP_CFG_CORE;
+	MpBackupCoreConfigSys.ReadFrom := mpCOM_CONFIGBASIC_SOURCE_CFG;
+
+	MpBackupCoreConfigSys.CmdRead := NOT(DiagCpuIsARsim() OR DiagCpuIsSimulated());
+
+	MpBackupCoreConfigSys();
 
 	HmiBackup.Status.DeviceDataProvider[0] := '{"value":"mappBackupFiles","text":"CF/PLC"}';
 
 	// Restored the retained values to the backup settings
-	#warning "USER WRN: TODO: Fix back up type"
-	//HmiBackup.Parameters.AutomaticBackup := AutomaticBackupRetain;
+	HmiBackup.Parameters.AutomaticBackup := AutomaticBackupRetain;
 
 END_PROGRAM
 
 PROGRAM _CYCLIC
-	
+
 	// Call all cyclic actions
 	FileManager;
 	IF NOT DiagCpuIsARsim() THEN
 		ChangeConfiguration;
 	END_IF
 	FormatDeviceDataProvider;
-	
+
 	CASE BackupState OF
 		BACKUP_IDLE:
 			HmiBackup.Status.CreateAllowed := NOT(MpBackupCoreSys.Info.Automatic.Backup.InProgress) AND NOT HmiBackup.Status.SimulationActive;
@@ -84,7 +86,7 @@ PROGRAM _CYCLIC
 				HmiBackup.Status.Busy := TRUE;
 				HmiBackup.Status.CreateAllowed := FALSE;
 				HmiBackup.Status.RestoreAllowed := FALSE;
-				BackupState := BACKUP_AUTOCREATE;	
+				BackupState := BACKUP_AUTOCREATE;
 			ELSIF (HmiBackup.Commands.Restore) THEN
 				HmiBackup.Commands.Restore := FALSE;
 				MpBackupCoreSys.Install := TRUE;
@@ -109,8 +111,7 @@ PROGRAM _CYCLIC
 			ELSIF (HmiBackup.Commands.SaveConfig) THEN
 				HmiBackup.Commands.SaveConfig := FALSE;
 				SaveBackupConfiguration;
-			 #warning "USER WRN: TODO: replace config FB"
-				//MpBackupCoreConfigSys.Save := TRUE;
+				MpBackupCoreConfigSys.CmdWrite := TRUE;
 			ELSIF ((HmiBackup.Status.SelectedIndex <> HmiBackup.Status.LastSelectedIndex) AND (MpBackupCoreSys.CommandBusy <> TRUE)) THEN
 				HmiBackup.Status.LastSelectedIndex := HmiBackup.Status.SelectedIndex;
 				MpBackupCoreSys.Name := ADR(MpFileManagerUIConnect.File.List.Items[HmiBackup.Status.SelectedIndex].Name);
@@ -129,7 +130,7 @@ PROGRAM _CYCLIC
 			ELSIF (MpBackupCoreSys.Error) THEN
 				BackupState := BACKUP_ERROR;
 			END_IF
-			
+
 		BACKUP_AUTOCREATE:
 			IF NOT MpBackupCoreSys.Info.Automatic.Backup.InProgress THEN
 				MpBackupCoreSys.Install := FALSE;
@@ -138,7 +139,7 @@ PROGRAM _CYCLIC
 				BackupState := BACKUP_REFRESHING_LIST;
 			ELSIF (MpBackupCoreSys.Error) THEN
 				BackupState := BACKUP_ERROR;
-			END_IF	
+			END_IF
 
 		BACKUP_REFRESHING_LIST:
 			IF MpFileManagerUIConnect.Status = mpFILE_UI_STATUS_REFRESH THEN
@@ -213,6 +214,7 @@ PROGRAM _CYCLIC
 	END_IF
 
 	MpBackupCoreSys.MpLink := ADR(gMpLinkBackupCore);
+	MpBackupCoreSys.Name := ADR(HmiBackup.Parameters.Name);
 	MpBackupCoreSys.DeviceName := ADR(MpFileManagerUIConnect.DeviceList.DeviceNames[MpFileManagerUIConnect.DeviceList.SelectedIndex]);
 	MpBackupCoreSys();
 
@@ -233,15 +235,15 @@ PROGRAM _CYCLIC
 	MpBackupCoreSys.MpLink := ADR(gMpLinkBackupCore);
 	MpFileManagerUIBackup.MpLink := ADR(gMpLinkFileManagerUIBackup);
 	MpFileManagerUIBackup.UIConnect := ADR(MpFileManagerUIConnect);
-	#warning "USER WRN: TODO: replace config FB"
-//	  MpBackupCoreConfigSys.MpLink := ADR(gMpLinkBackupCore);
-//	  MpBackupCoreConfigSys.Configuration := ADR(MpBackupConfiguration);
+	MpBackupCoreConfigSys.MpLink := ADR(gMpLinkBackupCore);
+	MpBackupCoreConfigSys.Data := ADR(MpBackupConfiguration);
+	MpBackupCoreConfigSys.DataType := mpBACKUP_CFG_CORE;
 
 	// Call function blocks
 	MpBackupCoreSys();
 	MpFileManagerUIBackup();
-//	  MpBackupCoreConfigSys();
-	
+	MpBackupCoreConfigSys();
+
 END_PROGRAM
 
 PROGRAM _EXIT
@@ -249,14 +251,12 @@ PROGRAM _EXIT
 	// Disable the function blocks to unlink the MpLinks
 	MpBackupCoreSys.Enable := FALSE;
 	MpFileManagerUIBackup.Enable := FALSE;
-#warning "USER WRN: TODO: replace config FB"
-//	  MpBackupCoreConfigSys.Enable := FALSE;
+	MpBackupCoreConfigSys.Enable := FALSE;
 
 	// Call function blocks
 	MpBackupCoreSys();
 	MpFileManagerUIBackup();
-#warning "USER WRN: TODO: replace config FB"
-//	  MpBackupCoreConfigSys();
+	MpBackupCoreConfigSys();
 
 END_PROGRAM
 

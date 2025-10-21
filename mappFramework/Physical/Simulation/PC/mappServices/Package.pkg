@@ -5,8 +5,8 @@
     <Object Type="Package" Description="mapp Framework AlarmX files">AlarmX</Object>
     <Object Type="Package" Description="mapp Framework AppAxis_1 files">AppAxis_1</Object>
     <Object Type="Package" Description="mapp Framework Backup files">Backup</Object>
+    <Object Type="Package" Description="mapp Framework Recipe files" TransferedForTargetSourceCompare="true">Recipe</Object>
     <Object Type="Package" Description="mapp Framework File files">File</Object>
-    <Object Type="Package" Description="mapp Framework Recipe files">Recipe</Object>
     <Object Type="Package" Description="mapp Framework UserX files">UserX</Object>
     <Object Type="Package" Description="mapp Framework Audit files">Audit</Object>
     <Object Type="Package" Description="mapp Framework Report files">Report</Object>

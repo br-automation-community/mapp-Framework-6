@@ -47,4 +47,8 @@ TYPE
 		Capacity : UDINT;
 		NumberOfElements : UDINT;
 	END_STRUCT;
+	MpBaseCfgPasswordType : 	STRUCT 
+		Valid : BOOL;
+		Data : STRING[100];
+	END_STRUCT;
 END_TYPE

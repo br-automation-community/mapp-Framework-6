@@ -127,4 +127,4 @@ unsigned long DiffDT(plcdt DT2, plcdt DT1);
 #endif
 #endif /* _ASTIME_ */
 
-                                                           
+														   

@@ -1,5 +1,5 @@
 ACTION ConfigurationInit:
-	// Initalize drive configuration
+	// Initialize drive configuration
 	AxisSettings.DriveConfiguration.PureVirtualAxis.AxisFeatures.FeatureReference.DataAddress := ADR(AxisSettings.AxisFeatures);
 	AxisSettings.DriveConfiguration.PureVirtualAxis.AxisFeatures.FeatureReference.NumberOfArrayElements := SIZEOF(AxisSettings.AxisFeatures)/SIZEOF(AxisSettings.AxisFeatures[0]);
 	AxisSettings.DriveConfiguration.PureVirtualAxis.AxisFeatures.FeatureReference.NumberOfElements := 0;
@@ -61,7 +61,7 @@ ACTION ChangeConfiguration:
 		CONFIG_STATE_READY:
 
 	END_CASE
-	
+
 	// Cyclic function block calls
 	AxisSettings.DriveConfiguration.PureVirtualAxis.AxisFeatures.FeatureReference.DataAddress := ADR(AxisSettings.AxisFeatures);
 	ProcessConfigAX.DataAddress := ADR(AxisSettings.BaseConfiguration);
@@ -72,7 +72,7 @@ ACTION ChangeConfiguration:
 END_ACTION
 
 ACTION ParameterInit:
-	// Initalize drive parameter
+	// Initialize drive parameter
 	ProcessParamAX.DataAddress := ADR(AxisSettings.BaseParam);
 	ProcessParamAX.DataType := mcCFG_AX_MOVE_LIM;
 

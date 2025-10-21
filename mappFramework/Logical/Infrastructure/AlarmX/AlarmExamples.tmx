@@ -84,13 +84,15 @@
     </tu>
     <tu tuid="SnippetExample">
       <tuv xml:lang="de">
-        <seg>{&amp;snippet1}</seg>
+        <seg>{&amp;SnippetValue}</seg>
       </tuv>
       <tuv xml:lang="zh">
-        <seg>{&amp;snippet1}</seg>
+        <seg>{&amp;SnippetValue}
+</seg>
       </tuv>
       <tuv xml:lang="en">
-        <seg>{&amp;snippet1}</seg>
+        <seg>{&amp;SnippetValue}
+</seg>
       </tuv>
     </tu>
     <tu tuid="MpAlarmXControlExample">
@@ -106,13 +108,13 @@
     </tu>
     <tu tuid="LimitText">
       <tuv xml:lang="de">
-        <seg>{&amp;LimitText}</seg>
+        <seg>{&amp;limittext}</seg>
       </tuv>
       <tuv xml:lang="zh">
-        <seg>{&amp;LimitText}</seg>
+        <seg>{&amp;limittext}</seg>
       </tuv>
       <tuv xml:lang="en">
-        <seg>{&amp;LimitText}</seg>
+        <seg>{&amp;limittext}</seg>
       </tuv>
     </tu>
   </body>

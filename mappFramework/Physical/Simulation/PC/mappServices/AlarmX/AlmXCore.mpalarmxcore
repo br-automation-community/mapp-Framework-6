@@ -4,7 +4,9 @@
   <Element ID="gMpLinkAlarmXCore" Type="mpalarmxcore">
     <Group ID="mapp.Gen">
       <Property ID="Enable" Value="TRUE" />
+      <Property ID="EnableCockpit" Value="TRUE" />
       <Property ID="TaskClass" Value="8" />
+      <Property ID="Parent" />
     </Group>
     <Group ID="mapp.AlarmX.List">
       <Group ID="[0]">

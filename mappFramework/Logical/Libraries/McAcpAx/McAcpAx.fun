@@ -729,3 +729,44 @@ FUNCTION_BLOCK MC_BR_GetCyclicDataInfo_AcpAx (*This function block provides admi
  	END_VAR
 END_FUNCTION_BLOCK
 
+FUNCTION_BLOCK MC_BR_SctrlLimitLoad_AcpAx (*Limits the motor torque using the velocity controller current reference value*)
+	VAR_INPUT
+		Axis : REFERENCE TO McAxisType; (*Axis reference.*)
+		Enable : BOOL; (*The FB is active as long as this input is set.*)
+		InitData : BOOL; (*Initialize new parameters.*)
+		LoadPositive : REAL; (*Positive load (torque) limit value [Nm].*)
+		LoadNegative : REAL; (*Negative load (torque) limit value [Nm].*)
+		Mode : McAcpAxSctrlLimitLoadModeEnum; (*Torque limitation mode.*)
+		AdvancedParameters : McAcpAxAdvSctrlLimitLoadParType; (*Additional advanced parameters.*)
+    END_VAR
+    VAR_OUTPUT
+		Ready : BOOL; (*Torque limitation function on the axis is ready.*)
+		Busy : BOOL; (*FB is active and needs to be called.*)
+		Error : BOOL; (*Error occurred during operation.*)
+		ErrorID : DINT; (*Error number.*)
+		DataInitialized : BOOL; (*New parameters are initialized.*)
+		LimitPositiveActive : BOOL; (*Positive load (torque) limitation is active.*)
+		LimitNegativeActive : BOOL; (*Negative load (torque) limitation is active.*)
+    END_VAR
+    VAR
+		Internal : McInternalType; (*internal variable*)
+    END_VAR
+END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK MC_BR_SetParIDText_AcpAx (*Set (write) a single ACOPOS parameter in text format.*)
+	VAR_INPUT
+		Axis : REFERENCE TO McAxisType; (*Axis reference.*)
+		Execute : BOOL; (*execution of this FB is started on rising edge of the input*)
+		ParID : UINT; (*ACOPOS parameter ID to be set (read)*)
+		DataText : STRING[32];
+	END_VAR
+	VAR_OUTPUT
+		Done : BOOL; (*execution successful. FB finished*)
+		Busy : BOOL; (*FB is active and needs to be called*)
+		Error : BOOL; (*error occurred during operation*)
+		ErrorID : DINT; (*error number*)
+	END_VAR
+	VAR
+		Internal : McInternalType; (*internal variable*)
+	END_VAR
+END_FUNCTION_BLOCK

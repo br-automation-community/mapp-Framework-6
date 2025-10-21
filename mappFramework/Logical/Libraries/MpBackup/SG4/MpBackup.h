@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* MpBackup 6.0.7003 */
+/* MpBackup 6.4.0 */
 
 #ifndef _MPBACKUP_
 #define _MPBACKUP_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _MpBackup_VERSION
-#define _MpBackup_VERSION 6.0.7003
+#define _MpBackup_VERSION 6.4.0
 #endif
 
 #include <bur/plctypes.h>
@@ -62,6 +62,31 @@ typedef enum MpBackupAlarmEnum
 	mpBACKUP_ALM_INSTALL_FAILED = 1,
 	mpBACKUP_ALM_UPDATE_CHECK_FAILED = 2
 } MpBackupAlarmEnum;
+
+typedef enum MpBackupCfgEnum
+{	mpBACKUP_CFG_CORE = 100
+} MpBackupCfgEnum;
+
+typedef enum MpBackupCfgCoreModeEnum
+{	mpBACKUP_CFG_CORE_DISABLED = 0,
+	mpBACKUP_CFG_CORE_ENABLED = 1
+} MpBackupCfgCoreModeEnum;
+
+typedef enum MpBackupCfgCoreWeekDayEnum
+{	mpBACKUP_CFG_CORE_MONDAY = 0,
+	mpBACKUP_CFG_CORE_TUESDAY = 1,
+	mpBACKUP_CFG_CORE_WEDNESDAY = 2,
+	mpBACKUP_CFG_CORE_THURSDAY = 3,
+	mpBACKUP_CFG_CORE_FRIDAY = 4,
+	mpBACKUP_CFG_CORE_SATURDAY = 5,
+	mpBACKUP_CFG_CORE_SUNDAY = 6
+} MpBackupCfgCoreWeekDayEnum;
+
+typedef enum MpBackupCfgCoreScheduleModeEnum
+{	mpBACKUP_CFG_CORE_DAILY = 0,
+	mpBACKUP_CFG_CORE_WEEKLY = 1,
+	mpBACKUP_CFG_CORE_ON_ENABLE = 2
+} MpBackupCfgCoreScheduleModeEnum;
 
 typedef struct MpBackupLastBackupType
 {	plcstring Name[256];
@@ -117,12 +142,70 @@ typedef struct MpBackupCoreInfoType
 	struct MpBackupAutoInfoType Automatic;
 } MpBackupCoreInfoType;
 
+typedef struct MpBackupCfgCoreGeneralType
+{	plcbit Enable;
+	plcbit EnableCockpit;
+	plcbit EnableAuditing;
+	plcstring Parent[51];
+} MpBackupCfgCoreGeneralType;
+
+typedef struct MpBackupCfgCoreScheduleType
+{	enum MpBackupCfgCoreWeekDayEnum Day;
+	unsigned long Time;
+} MpBackupCfgCoreScheduleType;
+
+typedef struct MpBackupCfgCoreScheduleModeType
+{	enum MpBackupCfgCoreScheduleModeEnum Type;
+	struct MpBackupCfgCoreScheduleType Schedule;
+} MpBackupCfgCoreScheduleModeType;
+
+typedef struct MpBackupCfgCoreOvrEnableType
+{	unsigned short MaximumBackups;
+} MpBackupCfgCoreOvrEnableType;
+
+typedef struct MpBackupCfgCoreOvrOldestType
+{	enum MpBackupCfgCoreModeEnum Type;
+	struct MpBackupCfgCoreOvrEnableType Overwrite;
+} MpBackupCfgCoreOvrOldestType;
+
+typedef struct MpBackupCfgCoreAutoEnabledType
+{	plcstring NamePrefix[256];
+	plcstring DeviceName[51];
+	struct MpBackupCfgCoreScheduleModeType Mode;
+	struct MpBackupCfgCoreOvrOldestType OverwriteOldest;
+} MpBackupCfgCoreAutoEnabledType;
+
+typedef struct MpBackupCfgCoreAutoBackupType
+{	enum MpBackupCfgCoreModeEnum Type;
+	struct MpBackupCfgCoreAutoEnabledType Data;
+} MpBackupCfgCoreAutoBackupType;
+
+typedef struct MpBackupCfgCoreUpdateEnabledType
+{	plcstring DeviceName[51];
+	struct MpBackupCfgCoreScheduleModeType Check;
+} MpBackupCfgCoreUpdateEnabledType;
+
+typedef struct MpBackupCfgCoreAutoUpdateType
+{	enum MpBackupCfgCoreModeEnum Type;
+	struct MpBackupCfgCoreUpdateEnabledType Data;
+} MpBackupCfgCoreAutoUpdateType;
+
+typedef struct MpBackupCfgCoreBackupType
+{	struct MpBackupCfgCoreAutoBackupType AutomaticBackup;
+	struct MpBackupCfgCoreAutoUpdateType AutomaticUpdate;
+} MpBackupCfgCoreBackupType;
+
+typedef struct MpBackupCfgCoreType
+{	struct MpBackupCfgCoreGeneralType General;
+	struct MpBackupCfgCoreBackupType Backup;
+} MpBackupCfgCoreType;
+
 typedef struct MpBackupCore
 {
 	/* VAR_INPUT (analog) */
 	struct MpComIdentType* MpLink;
-	plcstring (*DeviceName);
-	plcstring (*Name);
+	plcstring *DeviceName;
+	plcstring *Name;
 	/* VAR_OUTPUT (analog) */
 	signed long StatusID;
 	struct MpBackupCoreInfoType Info;
