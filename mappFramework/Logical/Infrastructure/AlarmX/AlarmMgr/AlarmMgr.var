@@ -29,4 +29,5 @@ VAR
 	CommissioningModeActive : {REDUND_UNREPLICABLE} BOOL; (*Boolean value to enable commissioning mode. By default, this inhibits the Alarms[0] alarm*)
 	i : USINT; (*Index for loops*)
 	MaxIndex : USINT; (*Maximum index for the alarm list*)
+	TmpTableConfig : STRING[120]; (*Temporary variable for composing query table configuration*)
 END_VAR

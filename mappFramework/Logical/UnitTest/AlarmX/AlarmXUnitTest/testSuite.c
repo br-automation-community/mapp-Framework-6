@@ -27,7 +27,7 @@ void _INIT initTestSuite(void)
     utInit(&CommonTestsuite);
     
     strcpy((char*)&FileDeviceName, "mappAlarmXFiles");
-    strcpy((char*)&TextNameSpace, "mappFramework/AlarmX/Alarms");
+    strcpy((char*)&TextNameSpace, "mappFramework/AlarmX/MachineAlarms");
     strcpy((char*)&TextID, "EmergencyStop.0");
 }
 
