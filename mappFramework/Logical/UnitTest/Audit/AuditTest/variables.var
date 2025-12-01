@@ -22,10 +22,10 @@ VAR
 	ArrangeDelay : USINT;
 	AssertDelay : USINT;
 	DTSetTime_0 : DTSetTime;
-	HOUR : USINT := 16;
+	HOUR : USINT := 0;
 	MINUTE : USINT := 0;
-	SET_TIME : DATE_AND_TIME := DT#2023-01-01-15:59:59;
-	MAX_FILE_SIZE : UDINT := 100; (*Maximum file size for automatic archiving (Kb)*)
+	SET_TIME : DATE_AND_TIME := DT#2023-01-01-23:59:59;
+	MAX_FILE_SIZE : UDINT := 200; (*Maximum file size for automatic archiving (Kb)*)
 	SAMPLE_TEMP_VALUE : REAL := 5;
 	DEFAULT_TEMP_VALUE : REAL := 6;
 	TON_0 : TON;
@@ -33,4 +33,6 @@ VAR
 	MpAuditTrailCmdDone : BOOL;
 	MpAuditTrailError : BOOL;
 	DelayCycles : USINT := 10;
+	MpAuditTrailConfigSysCmdDone : BOOL;
+	MpAuditTrailConfigSysError : BOOL;
 END_VAR

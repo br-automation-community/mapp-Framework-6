@@ -6,20 +6,23 @@ VAR
 	MpAuditTrailCEvents : MpAuditTrail; (*AuditTrail for custom events*)
 	QueryUserEvents : {REDUND_UNREPLICABLE} MpAuditQuery; (*MpAlarmXQuery instance*)
 	MpAuditTrailUISys : MpAuditTrailUI; (*AuditTrail UI interface*)
+	MpAuditTrailConfigSys : MpComConfigBasic; (*MpComConfigBasic instance for configuring mapp component at runtime*)
 END_VAR
 (*Constants*)
 VAR CONSTANT
 	MAX_QUERY_RESULTS : USINT := 19; (*Maximum number of query results (Value+1)*)
 	MAX_CUSTOM_EVENTS : USINT := 9; (*Maximum number of custom events*)
 	MAX_QUERIES : USINT := 2; (*Maximum number of configured queries*)
+	MAX_TRAIL_EVENTS_M1 : UDINT := 99; (*Maximum number of trail events*)
+	MAX_TRAIL_EVENTS : UDINT := 100; (*Maximum number of trail events*)
 END_VAR
 (*Structure Types*)
 VAR
 	HmiAudit : AuditHmiInterfaceType; (*HMI interface structure*)
 	CustomEvent : ARRAY[0..MAX_CUSTOM_EVENTS] OF AuditCustomEventType; (*Custom events*)
 	AuditQuery : {REDUND_UNREPLICABLE} AuditQueryType; (*Query results and status*)
-	FixIt : BOOL; (*AuditTrailConfig : MpAuditTrailConfigType;*) (*Configuration structure for changing archiving setup*)
 	MpAuditTrailUIConnect : MpAuditTrailUIConnectType; (*MpAuditUI connection to the HMI*)
+	MpAuditTrailConfiguration : MpAuditCfgTrailType; (*AuditTrailConfig : MpAuditCfgTrailType;*)
 END_VAR
 (*Variables*)
 VAR
@@ -29,4 +32,8 @@ VAR
 END_VAR
 VAR RETAIN
 	ArchiveSettingsRetain : AuditArchiveParType; (*Store settings in retain memory to be applied after boot*)
+END_VAR
+VAR
+	EventsIdent : MpBaseCfgArrayType; (*Identifier of an array of events*)
+	Events : ARRAY[0..MAX_TRAIL_EVENTS_M1] OF UINT; (*Array of numbers identifying events to be recorded*)
 END_VAR

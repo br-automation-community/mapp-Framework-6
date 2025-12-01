@@ -145,13 +145,21 @@ _TEST AutomaticArchive(void)
 					HmiAudit.Parameters.ArchiveSettings.Minute = MINUTE;
 					ArrangeSubState = 1;
 					break;
-					
+				
 				case 1:
-					TestComparisonNumber = HmiAudit.Status.NumberOfArchives;
+					HmiAudit.Commands.SaveConfig = 1;
+					TEST_ABORT_CONDITION(MpAuditTrailConfigSysError);
+					TEST_BUSY_CONDITION(!MpAuditTrailConfigSysCmdDone);
+					HmiAudit.Commands.SaveConfig = 0;
 					ArrangeSubState = 2;
 					break;
-						
+					
 				case 2:
+					TestComparisonNumber = HmiAudit.Status.NumberOfArchives;
+					ArrangeSubState = 3;
+					break;
+						
+				case 3:
 					ArrangeDelay += 1;
 					TEST_BUSY_CONDITION(ArrangeDelay <= DelayCycles);
 					TestState = TEST_ACT;
