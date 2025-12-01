@@ -15,7 +15,7 @@ PROGRAM _INIT
 		DirCreateAudit();
 	END_WHILE
 	
-	// Check if folder already exist and if so disabled the function block call
+	// Check if folder already exist and if so disable the function block call
 	IF DirCreateAudit.status = fiERR_DIR_ALREADY_EXIST OR (DirCreateAudit.status = ERR_OK) THEN
 		DirCreateAudit(enable := FALSE);
 	END_IF
@@ -29,12 +29,17 @@ PROGRAM _INIT
 	MpAuditTrailSys.DeviceName := ADR('mappAuditFiles');
 	MpAuditTrailSys();
 	
-#warning "USER WRN: TODO: replace config FB"
-//	  MpAuditTrailConfigSys.Enable := TRUE;
-//	  MpAuditTrailConfigSys.MpLink := ADR(gMpLinkAuditTrail);
-//	  MpAuditTrailConfigSys.Configuration := ADR(AuditTrailConfig);
-//	  MpAuditTrailConfigSys.Load := TRUE;
-//	  MpAuditTrailConfigSys();
+	MpAuditTrailConfiguration.Audit.EventList.Event.Capacity := SIZEOF(Events);
+	MpAuditTrailConfiguration.Audit.EventList.Event.DataAddress := ADR(Events);
+	MpAuditTrailConfiguration.Audit.EventList.Event.NumberOfElements := MAX_TRAIL_EVENTS;
+	MpAuditTrailConfigSys.Enable := TRUE;
+	MpAuditTrailConfigSys.MpLink := ADR(gMpLinkAuditTrail);
+	MpAuditTrailConfigSys.Data := ADR(MpAuditTrailConfiguration);
+	MpAuditTrailConfigSys.DataType := mpAUDIT_CFG_TRAIL;
+	MpAuditTrailConfigSys.ReadFrom := mpCOM_CONFIGBASIC_SOURCE_CFG;
+	MpAuditTrailConfigSys.ApplyTo := mpCOM_CONFIG_TARGET_CFG;
+	MpAuditTrailConfigSys.CmdRead := TRUE;
+	MpAuditTrailConfigSys();
 
 	MpAuditTrailCEvents.Enable := TRUE;
 	MpAuditTrailCEvents.MpLink := ADR(gMpLinkCustomEvents);
@@ -113,17 +118,15 @@ PROGRAM _CYCLIC
 	MpAuditTrailSys.DeviceName := ADR('mappAuditFiles');
 	MpAuditTrailSys.FileName := ADR(HmiAudit.Parameters.FileName); 
 	MpAuditTrailSys.Language := ADR('en');
-	#warning "USER WRN: TODO: replace config FB"
-   // MpAuditTrailConfigSys.MpLink := ADR(gMpLinkAuditTrail);
-	//MpAuditTrailConfigSys.Configuration := ADR(AuditTrailConfig);
+	MpAuditTrailConfigSys.MpLink := ADR(gMpLinkAuditTrail);
+	MpAuditTrailConfigSys.Data := ADR(MpAuditTrailConfiguration);
 	MpAuditTrailCEvents.MpLink := ADR(gMpLinkCustomEvents);
 	MpAuditTrailUISys.MpLink := ADR(gMpLinkAuditTrail);
 	MpAuditTrailUISys.UIConnect := ADR(MpAuditTrailUIConnect);
 
 	// Call function blocks
 	MpAuditTrailSys();
-	#warning "USER WRN: TODO: replace config FB"
-	//MpAuditTrailConfigSys();
+	MpAuditTrailConfigSys();
 	MpAuditTrailCEvents();
 	MpAuditTrailUISys();
 
@@ -133,15 +136,13 @@ PROGRAM _EXIT
 
 	// Disable the function blocks to unlink the MpLinks
 	MpAuditTrailSys.Enable := FALSE;
-	#warning "USER WRN: TODO: replace config FB"
-	//MpAuditTrailConfigSys.Enable := FALSE;
+	MpAuditTrailConfigSys.Enable := FALSE;
 	MpAuditTrailCEvents.Enable := FALSE;
 	MpAuditTrailUISys.Enable := FALSE;
 
 	// Call function blocks
 	MpAuditTrailSys();
-	#warning "USER WRN: TODO: replace config FB"
-	//MpAuditTrailConfigSys();
+	MpAuditTrailConfigSys();
 	MpAuditTrailCEvents();
 	MpAuditTrailUISys();
 

@@ -14,61 +14,62 @@ END_ACTION
 ACTION ArchiveSettings:
 
 	// Audit Trail Config implementation
-	#warning "USER WRN: TODO: replace config FB"
-//	  IF (HmiAudit.Commands.SaveConfig) THEN
-//		  HmiAudit.Commands.SaveConfig := FALSE;
-//		  SaveAuditConfiguration;
-//		  MpAuditTrailConfigSys.Save := TRUE;
-//	  END_IF
-//
-//	  // After the configuration has been changed the AuditTrail is reset (disabled). This re-enables the component
-//	  IF NOT MpAuditTrailSys.Active THEN
-//		  MpAuditTrailSys.Enable := TRUE;
-//	  END_IF
+	MpAuditTrailConfigSys.CmdWrite := HmiAudit.Commands.SaveConfig;
+	IF (HmiAudit.Commands.SaveConfig) THEN
+		SaveAuditConfiguration;
+	END_IF
+	IF (HmiAudit.Commands.SaveConfig AND MpAuditTrailConfigSys.CommandDone) THEN
+		HmiAudit.Commands.SaveConfig := FALSE;
+	END_IF
 
 END_ACTION
 
 ACTION SaveAuditConfiguration:
-#warning "USER WRN: TODO: replace config FB"
 	// Assign current parameters from the HMI structure to AuditTrail configuration before saving it
-//	  AuditTrailConfig.Archive.Time := UDINT_TO_TOD((((USINT_TO_UDINT(HmiAudit.Parameters.ArchiveSettings.Hour) * 60) +
-//	  HmiAudit.Parameters.ArchiveSettings.Minute) * 60) * 1000);
-//	  AuditTrailConfig.Archive.Enable := HmiAudit.Parameters.ArchiveSettings.Enable;
-//	  AuditTrailConfig.Archive.MaxSize := HmiAudit.Parameters.ArchiveSettings.MaxSize;
-//	  AuditTrailConfig.Archive.Mode := HmiAudit.Parameters.ArchiveSettings.Mode;
-//	  AuditTrailConfig.Export.FileType := HmiAudit.Parameters.ArchiveSettings.FileType;
+	MpAuditTrailConfiguration.Audit.Archive.On.Time := (((USINT_TO_UDINT(HmiAudit.Parameters.ArchiveSettings.Hour) * 60) +
+	USINT_TO_UDINT(HmiAudit.Parameters.ArchiveSettings.Minute)) * 60) * 1;
+	IF HmiAudit.Parameters.ArchiveSettings.Enable THEN
+		MpAuditTrailConfiguration.Audit.Archive.Type := mpAUDIT_CFG_TRAIL_ARCHIVE_ON;
+	ELSE
+		MpAuditTrailConfiguration.Audit.Archive.Type := mpAUDIT_CFG_TRAIL_ARCHIVE_OFF;
+	END_IF;
+	MpAuditTrailConfiguration.Audit.Archive.On.MaximumSize := HmiAudit.Parameters.ArchiveSettings.MaxSize;
+	MpAuditTrailConfiguration.Audit.Archive.On.Mode := HmiAudit.Parameters.ArchiveSettings.Mode;
+	MpAuditTrailConfiguration.Audit.Export.FileType := HmiAudit.Parameters.ArchiveSettings.FileType;
 
 	// Save current archive setings to retain variable
-//	 ArchiveSettingsRetain := HmiAudit.Parameters.ArchiveSettings;
+	ArchiveSettingsRetain := HmiAudit.Parameters.ArchiveSettings;
 
  END_ACTION
 
 ACTION LoadAuditConfiguration:
-	#warning "USER WRN: TODO: replace config FB"
-
 	// Assign current parameters from the configuration to the HMI structure
-//    HmiAudit.Parameters.ArchiveSettings.Hour := UDINT_TO_USINT(TOD_TO_UDINT(AuditTrailConfig.Archive.Time) / 1000 / 60 / 60);
-//    HmiAudit.Parameters.ArchiveSettings.Minute := UDINT_TO_USINT(TOD_TO_UDINT(AuditTrailConfig.Archive.Time) / 1000 / 60) -
-//                                                    (HmiAudit.Parameters.ArchiveSettings.Hour * 60);
-//    HmiAudit.Parameters.ArchiveSettings.Enable := AuditTrailConfig.Archive.Enable;
-//    HmiAudit.Parameters.ArchiveSettings.MaxSize := AuditTrailConfig.Archive.MaxSize;
-//    HmiAudit.Parameters.ArchiveSettings.Mode := AuditTrailConfig.Archive.Mode;
-	//    HmiAudit.Parameters.ArchiveSettings.FileType := AuditTrailConfig.Export.FileType;
+	HmiAudit.Parameters.ArchiveSettings.Hour := UDINT_TO_USINT(MpAuditTrailConfiguration.Audit.Archive.On.Time / 1 / 60 / 60);
+	HmiAudit.Parameters.ArchiveSettings.Minute := UDINT_TO_USINT(MpAuditTrailConfiguration.Audit.Archive.On.Time / 1 / 60) -
+	(HmiAudit.Parameters.ArchiveSettings.Hour * 60);
+	CASE MpAuditTrailConfiguration.Audit.Archive.Type OF
+		mpAUDIT_CFG_TRAIL_ARCHIVE_ON : HmiAudit.Parameters.ArchiveSettings.Enable := TRUE;
+		mpAUDIT_CFG_TRAIL_ARCHIVE_OFF : HmiAudit.Parameters.ArchiveSettings.Enable := FALSE;
+	END_CASE;
+	HmiAudit.Parameters.ArchiveSettings.MaxSize := MpAuditTrailConfiguration.Audit.Archive.On.MaximumSize;
+	HmiAudit.Parameters.ArchiveSettings.Mode := MpAuditTrailConfiguration.Audit.Archive.On.Mode;
+	HmiAudit.Parameters.ArchiveSettings.FileType := MpAuditTrailConfiguration.Audit.Export.FileType;
 
 END_ACTION
 
 ACTION QueryTableConfig:
 
 	// Configure visible list
-	HmiAudit.Status.TableConfig[0] := '{ "specRows": [{"from":';
+	TmpTableConfig := '{ "specRows": [{"from":';
 	HmiAudit.Status.Query.QueryCount := 0;
 	FOR i := 0 TO 9 DO
 		IF HmiAudit.Status.Query.Text[i] <> "" THEN
 			HmiAudit.Status.Query.QueryCount := i + 1;
 		END_IF
 	END_FOR
-	brsitoa((HmiAudit.Status.Query.QueryCount), ADR(HmiAudit.Status.TableConfig[0]) + brsstrlen(ADR(HmiAudit.Status.TableConfig[0])));
-	brsstrcat(ADR(HmiAudit.Status.TableConfig[0]), ADR(',"to":19, "visible":false}]'));
+	brsitoa((HmiAudit.Status.Query.QueryCount), ADR(TmpTableConfig) + brsstrlen(ADR(TmpTableConfig)));
+	brsstrcat(ADR(TmpTableConfig), ADR(',"to":19, "visible":false}]'));
+	brsstrcpy(ADR(HmiAudit.Status.TableConfig[0]), ADR(TmpTableConfig));
 
 	// Hide operator column for the recipe query
 	IF (HmiAudit.Status.Query.Option = 0) THEN

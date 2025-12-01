@@ -1,32 +1,27 @@
-ACTION ChangeConfiguration:
+ACTION ChangeConfiguration:	
+	MpAuditTrailConfigSys.MpLink := ADR(gMpLinkAuditTrail);
+	MpAuditTrailConfigSys.Data := ADR(MpAuditTrailConfiguration);
+	MpAuditTrailConfigSys.DataType := mpAUDIT_CFG_TRAIL;
+	MpAuditTrailConfigSys.ReadFrom := mpCOM_CONFIGBASIC_SOURCE_CFG;
+	MpAuditTrailConfigSys.ApplyTo := mpCOM_CONFIG_TARGET_CFG;
 
-
-#warning "USER WRN: TODO: replace config FB"
-//	  MpAuditTrailConfigSys.MpLink := ADR(gMpLinkAuditTrail);
-//	  MpAuditTrailConfigSys.Configuration := ADR(AuditTrailConfig);
-//
-//	  IF (MpAuditTrailConfigSys.Error) THEN
-//		  IF (MpAuditTrailConfigSys.StatusID = mpAUDIT_ERR_CONFIG_LOAD) THEN
-//			  LoadAuditConfiguration;
-//		  END_IF
-//		  MpAuditTrailConfigSys.Load := FALSE;
-//		  MpAuditTrailConfigSys.Save := FALSE;
-//		  MpAuditTrailConfigSys.ErrorReset := TRUE;
-//	  END_IF
-//
-//	  MpAuditTrailConfigSys();
-//	  MpAuditTrailConfigSys.ErrorReset := FALSE;
-//
-//	  IF (MpAuditTrailConfigSys.CommandDone) THEN
-//		  IF (MpAuditTrailConfigSys.Load) THEN
-//			  LoadAuditConfiguration;
-//		  END_IF
-//		  // after save the AuditTrail needs to restart
-//		  IF (MpAuditTrailConfigSys.Save) THEN
-//			  MpAuditTrailSys.Enable := FALSE;
-//		  END_IF
-//		  MpAuditTrailConfigSys.Load := FALSE;
-//		  MpAuditTrailConfigSys.Save := FALSE;
-//	  END_IF
+	IF (MpAuditTrailConfigSys.Error) THEN
+		
+		IF (MpAuditTrailConfigSys.StatusID = mpAUDIT_ERR_CONFIG_LOAD) THEN
+			LoadAuditConfiguration;
+		END_IF
+		
+		MpAuditTrailConfigSys.CmdRead := FALSE;
+		MpAuditTrailConfigSys.CmdWrite := FALSE;
+		MpAuditTrailConfigSys.ErrorReset := TRUE;
+	END_IF
+	MpAuditTrailConfigSys();
+	MpAuditTrailConfigSys.ErrorReset := FALSE;
+	IF (MpAuditTrailConfigSys.CommandDone) THEN
+		IF (MpAuditTrailConfigSys.CmdRead) THEN
+			LoadAuditConfiguration;
+			MpAuditTrailConfigSys.CmdRead := FALSE;
+		END_IF
+	END_IF
 
 END_ACTION

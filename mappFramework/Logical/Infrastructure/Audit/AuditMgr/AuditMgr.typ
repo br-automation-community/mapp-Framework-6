@@ -53,10 +53,10 @@ TYPE
 	AuditArchiveParType : 	STRUCT  (*Automatic archive settings*)
 		Enable : BOOL; (*Enable automatic archive feature*)
 		MaxSize : UDINT; (*Name prefix for each automatic backup file*)
-		Mode : MpAuditArchiveModeEnum; (*Mode (daily, Mo-Fr or by batch)*)
+		Mode : MpAuditCfgTrailArchiveModeEnum; (*Mode (daily, Mo-Fr or by batch)*)
 		Hour : USINT; (*Time (hour)*)
 		Minute : USINT; (*Time (minutes)*)
-		FileType : MpAuditFileTypeEnum := mpAUDIT_FILE_TYPE_XML; (*File type selection (XML, TXT, PDF)*)
+		FileType : MpAuditCfgTrailFileTypeEnum := mpAUDIT_CFG_TRAIL_XML; (*File type selection (XML, TXT, PDF)*)
 	END_STRUCT;
 	AuditType : 	STRUCT  (*Structure to hold the Audit data for the query results*)
 		EvTime : DATE_AND_TIME; (*ActiveAudits query, Event-Time column*)
