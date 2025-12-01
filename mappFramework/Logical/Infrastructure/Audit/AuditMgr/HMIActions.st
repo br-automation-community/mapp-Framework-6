@@ -60,15 +60,16 @@ END_ACTION
 ACTION QueryTableConfig:
 
 	// Configure visible list
-	HmiAudit.Status.TableConfig[0] := '{ "specRows": [{"from":';
+	TmpTableConfig := '{ "specRows": [{"from":';
 	HmiAudit.Status.Query.QueryCount := 0;
 	FOR i := 0 TO 9 DO
 		IF HmiAudit.Status.Query.Text[i] <> "" THEN
 			HmiAudit.Status.Query.QueryCount := i + 1;
 		END_IF
 	END_FOR
-	brsitoa((HmiAudit.Status.Query.QueryCount), ADR(HmiAudit.Status.TableConfig[0]) + brsstrlen(ADR(HmiAudit.Status.TableConfig[0])));
-	brsstrcat(ADR(HmiAudit.Status.TableConfig[0]), ADR(',"to":19, "visible":false}]'));
+	brsitoa((HmiAudit.Status.Query.QueryCount), ADR(TmpTableConfig) + brsstrlen(ADR(TmpTableConfig)));
+	brsstrcat(ADR(TmpTableConfig), ADR(',"to":19, "visible":false}]'));
+	brsstrcpy(ADR(HmiAudit.Status.TableConfig[0]), ADR(TmpTableConfig));
 
 	// Hide operator column for the recipe query
 	IF (HmiAudit.Status.Query.Option = 0) THEN
