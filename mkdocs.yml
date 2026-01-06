@@ -1,0 +1,112 @@
+site_name: mapp Framework
+site_description: Public documentation for mapp Framework 6
+site_author: B&R Community
+
+repo_url: https://github.com/br-automation-community/mapp-Framework-6
+
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.indexes
+
+nav:
+  - 📘 Table of contents:
+      - 📘 mapp Framework: index.md
+
+      - ℹ️ 1. General Information:
+          - General: general/index.md
+          - 📄Introduction: general/introduction.md
+          - 📄Support/Community project: general/Support.md
+          - 📄System Requirements: general/system_requirement.md
+          - 📄Prerequisites: general/Prerequisities.md
+          - 📄Launching the Importer: general/launching.md
+          - 📄User Partition Handling: general/user_partition.md
+          - 📄Visualization Consideration: general/visualization_consideration.md
+          - 📁 Version Information:
+              - 📄Overview: general/Version_information/index.md
+              - 📄Version 1.5: general/Version_information/version_1_5.md
+              - 📄Version 1.4: general/Version_information/version_1_4.md
+              - 📄Version 1.3: general/Version_information/version_1_3.md
+              - 📄Version 1.2: general/Version_information/version_1_2.md
+              - 📄Version 1.1: general/Version_information/version_1_1.md
+              - 📄Version 1.0: general/Version_information/version_1_0.md
+
+      - 🚨 2. mapp AlarmX:
+          - General: alarmx/index.md
+          - 📄Features: alarmx/features.md
+          - 📄Task Overview: alarmx/task_overview.md
+          - 📄Script: alarmx/script.md
+          - 📄Required Modification: alarmx/required_modification.md
+          - 📁 Optional Modification:
+              - 📄Overview: alarmx/Optional_Modification/index.md
+              - 📄Add or Delete Alarms: alarmx/Optional_Modification/add_alarm.md
+              - 📄Alarm Mapping: alarmx/Optional_Modification/alarm_mapping.md
+              - 📄Inhibit Alarms: alarmx/Optional_Modification/inhibit.md
+              - 📄Add Queries: alarmx/Optional_Modification/add_queries.md
+
+      - 🧭 3. mapp Axis / Cockpit:
+          - General: axis_cockpit/index.md
+          - 📄Features: axis_cockpit/features.md
+          - 📄Task Overview: axis_cockpit/task_overview.md
+          - 📄Required Modification: axis_cockpit/required_modification.md
+          - 📁 Optional Modification:
+              - 📄Overview: axis_cockpit/Optional_Modification/index.md
+              - 📄Add Additional Axis: axis_cockpit/Optional_Modification/page1.md
+              - 📄Rename AppAxis_1: axis_cockpit/Optional_Modification/page2.md
+              - 📄SLO Trace Configuration: axis_cockpit/Optional_Modification/page3.md
+
+      - 💾 4. mapp Backup:
+          - General: backup/index.md
+          - 📄Features: backup/features.md
+          - 📄Task Overview: backup/task_overview.md
+          - 📄Required Modification: backup/required_modification.md
+          - 📄Optional Modification: backup/optional_modification.md
+
+      - 📂 5. mapp File:
+          - General: file/index.md
+          - 📄Features: file/features.md
+          - 📄Task Overview: file/task_overview.md
+          - 📄Required Modification: file/required_modification.md
+          - 📄Optional Modification: file/optional_modification.md
+          - 📄FIFO: file/fifo.md
+
+      - 📝 6. mapp Recipe:
+          - General: recipe/index.md
+          - 📄Features: recipe/features.md
+          - 📄Recipe System Design: recipe/system.md
+          - 📄Task Overview: recipe/task_overview.md
+          - 📄Required Modification: recipe/required_modification.md
+          - 📁 Optional Modification:
+              - 📄Overview: recipe/Optional_Modification/index.md
+              - 📄Change Recipe Format: recipe/Optional_Modification/page1.md
+
+      - 👥 7. mapp UserX:
+          - General: userx/index.md
+          - 📄Features: userx/features.md
+          - 📄Task Overview: userx/task_overview.md
+          - 📄Required Modification: userx/required_modification.md
+          - 📄Optional Modification: userx/optional_modification.md
+
+      - 🛡️ 8. mapp Audit:
+          - General: audit/index.md
+          - 📄Features: audit/features.md
+          - 📄Task Overview: audit/task_overview.md
+          - 📄Required Modification: audit/required_modification.md
+          - 📄Optional Modification: audit/optional_modification.md
+
+      - 📊 9. mapp Report:
+          - General: report/index.md
+          - 📄Features: report/features.md
+          - 📄Task Overview: report/task_overview.md
+          - 📄Required Modification: report/required_modification.md
+          - 📄Optional Modification: report/optional_modification.md
+
+      - 🔁 10. mapp PackML:
+          - General: packml/index.md
+          - 📄Features: packml/features.md
+          - 📄Task Overview: packml/task_overview.md
+          - 📄Required Modification: packml/required_modification.md
+          - 📁 Optional Modification:
+              - 📄Overview: packml/Optional_Modification/index.md
+              - 📄Change PackML Format: packml/Optional_Modification/page1.md
