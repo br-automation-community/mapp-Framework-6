@@ -1,15 +1,15 @@
 
-### v6.0.0
+### v6.0.0 - Migration from AS4 to AS6
 
 | Framework / Component | Description |
 |----------------------|-------------|
-| **mapp AlarmX** | Migration to AS6 <br> **Key changes:** <br> **Bugfixes:** <br> **New behavior:**  |
-| **mapp Axis / Cockpit** | Migration to AS6 <br> **Key changes:** <br> **Bugfixes:** <br> **New behavior:**  |
-| **mapp Backup** | Migration to AS6 <br> **Key changes:** <br> **Bugfixes:** <br> **New behavior:**  |
-| **mapp File** | Migration to AS6 <br> **Key changes:** <br> **Bugfixes:** <br> **New behavior:** |
-| **mapp Recipe** | Migration to AS6 <br> **Key changes:** <br> **Bugfixes:** <br> **New behavior:**  |
-| **mapp UserX** | Migration to AS6 <br> **Key changes:** <br> **Bugfixes:** <br> **New behavior:** |
-| **Import Tool** | Migration to AS6 <br> **Key changes:** <br> **Bugfixes:** <br> **New behavior:**  |
-| **Documentation** | Migration to AS6 <br> **Key changes:** Help documentation moved to gitHub   |
- | **Miscellaneous** | Migration to AS6 <br> **Key changes:** <br> **Bugfixes:** <br> **New behavior:**  |
+| **mapp AlarmX** | **Key changes:** TBD <br> **Bugfixes:** TBD <br> **New behavior:** TBD  |
+| **mapp Axis / Cockpit** | **Key changes:** TBD <br> **Bugfixes:** TBD <br> **New behavior:** TBD |
+| **mapp Backup** | **Key changes:** TBD <br> **Bugfixes:** TBD <br> **New behavior:** TBD  |
+| **mapp File** | **Key changes:** TBD <br> **Bugfixes:** TBD <br> **New behavior:** TBD |
+| **mapp Recipe** | **Key changes:** TBD <br> **Bugfixes:** TBD <br> **New behavior:** TBD  |
+| **mapp UserX** | **Key changes:** TBD <br> **Bugfixes:** TBD <br> **New behavior:** TBD |
+| **Import Tool** | **Key changes:** TBD <br> **Bugfixes:** TBD <br> **New behavior:** TBD  |
+| **Documentation** |  **Key changes:** Help documentation moved to gitHub   |
+ | **Miscellaneous** | **Key changes:** TBD <br> **Bugfixes:** TBD <br> **New behavior:** TBD  |
 

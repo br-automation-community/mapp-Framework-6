@@ -19,8 +19,8 @@ Example: HmiRecipe
 >Note:  
 >The only exception is the Axis framework, where the HMI is linked directly to the AxisCommands structure.
 >
->This is because:
->  * in manual mode the commands come from the HMI
+>This is because:<br>
+>  * in manual mode the commands come from the HMI<br>
 >  * in automatic mode the commands are triggered directly in the application 
 >
 >To avoid creating an intermediate structure just for the sake of the HMI, the HMI interacts directly with AxisCommands.

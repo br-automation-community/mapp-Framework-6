@@ -6,6 +6,6 @@ The **mapp Framework 6** is supported in the following versions.
 
 | mapp Technologies | Automation Studio |
 |-------------------|-------------------|
-| 6.1 or later     | 6.3 or  later |
+| 6.0 or later     | 6.0 or  later |
 
 Note that the framework uses some retained variables.
