@@ -4,7 +4,7 @@ mapp Technology is the overarching term for the ready-made, modular software pro
 
 By using mapp Technology you can complete your application development up to three times faster, with significantly less code than if you wrote it entirely with PLCopen.
 
-The mapp Framework takes mapp Technology one step further to provide the user with a universal starting point for mapp Technology. This even further reduces the amount of application code that must be written by the application engineer.
+The **mapp Framework 6** takes mapp Technology one step further to provide the user with a universal starting point for mapp Technology. This even further reduces the amount of application code that must be written by the application engineer.
 
 The Framework includes programming tasks and supporting configuration files with built-in best practices and application know-how. It is designed to be modular, so the user can easily add the specific parts that are relevant to the machine to an existing project.
 
@@ -12,7 +12,7 @@ The Framework includes programming tasks and supporting configuration files with
 
 ## Motivation and Goals
 
-The overall goal of the mapp Framework is to streamline and simplify your mapp Services and Axis implementation.
+The overall goal of the **mapp Framework 6** is to streamline and simplify your mapp Services and Axis implementation.
 
 More specifically, the goals are:
 
@@ -26,7 +26,7 @@ More specifically, the goals are:
 - Quicker time to market
 
 **Simplicity**
-- The mapp Framework is modular without being overly complex
+- The **mapp Framework 6** is modular without being overly complex
 - With a standardized approach to mapp Technology, application support, hand-off, and code maintenance become more straightforward
 - The framework is scalable according to the needs of the application
 
@@ -37,7 +37,7 @@ More specifically, the goals are:
 
 ## YouTube Tutorial Videos
 
-Short tutorial videos for each component of the mapp Framework are available in a dedicated playlist on the B&R YouTube channel - [link](https://www.youtube.com/c/brautomation).
+Short tutorial videos for each component of the **mapp Framework 6** are available in a dedicated playlist on the B&R YouTube channel - [link](https://www.youtube.com/c/brautomation).
 
 These tutorial videos supplement the written documentation.
 
@@ -45,7 +45,7 @@ These tutorial videos supplement the written documentation.
 
 ## Availability
 
-A mapp Framework is currently available for the following mapp Technologies:
+A **mapp Framework 6** is currently available for the following mapp Technologies:
 
 - mapp AlarmX
 - mapp Audit
@@ -57,19 +57,19 @@ A mapp Framework is currently available for the following mapp Technologies:
 - mapp Report
 - mapp UserX
 
-A corresponding HMI is available in mapp View and VC4.
+A corresponding HMI is available in mapp View.
 
 ---
 
 ## Framework Contents
 
-Each mapp Framework contains the following:
+Each **mapp Framework 6** contains the following:
 
 - Logical View task(s)
 - Configuration file(s)
 - Help files
 
-The supporting Help pages are individualized for each mapp Framework. These pages identify what is included in the framework and any changes that are necessary to properly embed the framework into an existing application.
+The supporting Help pages are individualized for each **mapp Framework 6**. These pages identify what is included in the framework and any changes that are necessary to properly embed the framework into an existing application.
 
 The documentation focuses on the Framework itself and not on the fundamentals of mapp Services or mapp Motion.
 
@@ -78,7 +78,7 @@ For details on the fundamentals of mapp Technology, refer to the respective Help
 - Motion control → mapp Motion
 
 > IMPORTANT:  
-> Every mapp Framework Help section contains a page titled "Required Modifications".  
+> Every **mapp Framework 6** Help section contains a page titled **"Required Modifications"**.  
 > The steps on this page must be executed to bring the Framework into a functional state.
 
 ---

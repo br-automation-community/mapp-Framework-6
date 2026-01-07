@@ -1,4 +1,4 @@
-site_name: mapp Framework
+site_name: mapp Framework 6
 site_description: Public documentation for mapp Framework 6
 site_author: B&R Community
 
@@ -12,12 +12,12 @@ theme:
 
 nav:
   - 📘 Table of contents:
-      - 📘 mapp Framework: index.md
+      - 📘 mapp Framework 6: index.md
 
       - ℹ️ 1. General Information:
           - General: general/index.md
           - 📄Introduction: general/introduction.md
-          - 📄Support/Community project: general/Support.md
+          - 📄Support/Community: general/Support.md
           - 📄System Requirements: general/system_requirement.md
           - 📄Prerequisites: general/Prerequisities.md
           - 📄Launching the Importer: general/launching.md
