@@ -481,7 +481,7 @@ TYPE
 		ACOPOSParID : McAFAVSValSrcAcpParIDType; (*Type mcAFAVSVS_ACP_PARID settings*)
 	END_STRUCT;
 	McCfgAxFeatAltValSrcType : STRUCT (*Main data type corresponding to McCfgTypeEnum mcCFG_AX_FEAT_ALT_VAL_SRC*)
-		ValueSource : McCfgUnboundedArrayType; (*Selection of the value source*)
+		ValueSource : McCfgUnboundedArrayType; (*Selection of the value source (Connect array of type McAFAVSValSrcType)*)
 	END_STRUCT;
 	McAFBBrkCtrlTypEnum :
 		( (*Brake control type selector setting*)

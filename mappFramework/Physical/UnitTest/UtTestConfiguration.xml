@@ -2,12 +2,13 @@
 <testconfiguration>
 <tests />
 <config-def id="AS_Test_Configuration">
-<test name="AlarmMgr" timeout="60" />
-<test name="AuditMgr" timeout="60" />
-<test name="BackupMgr" timeout="60" />
-<test name="FileMgr" timeout="120" />
-<test name="RecipeMgr" timeout="60" />
-<test name="UserMgr" timeout="60" /></config-def>
-<settings id="AS_Test_Setting" timeout="60" host="http://127.0.0.1" port="80" communication-protocol="http" />
-<run configuration="AS_Test_Configuration" setting="AS_Test_Setting" StartTestsAfterTransfer="false" />
+<test timeout="60" name="AlarmMgr" />
+<test timeout="60" name="AuditMgr" />
+<test timeout="60" name="BackupMgr" />
+<test timeout="120" name="FileMgr" />
+<test timeout="60" name="RecipeMgr" />
+<test timeout="60" name="UserMgr" /></config-def>
+<settings id="AS_Test_Setting" timeout="60" communication-protocol="http" port="80" host="127.0.0.1" />
+<run StartTestsAfterTransfer="false" setting="AS_Test_Setting" configuration="AS_Test_Configuration" />
+<filter result="true" failed="true" passed="false" info="false" skipped="true" timeoutdisabled="false" saveToConfig="true" />
 </testconfiguration>

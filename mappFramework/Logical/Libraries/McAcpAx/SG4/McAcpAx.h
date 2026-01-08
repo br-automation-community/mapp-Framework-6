@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* McAcpAx 6.4.1 */
+/* McAcpAx 6.5.1 */
 
 #ifndef _MCACPAX_
 #define _MCACPAX_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _McAcpAx_VERSION
-#define _McAcpAx_VERSION 6.4.1
+#define _McAcpAx_VERSION 6.5.1
 #endif
 
 #include <bur/plctypes.h>
@@ -761,6 +761,11 @@ typedef enum McBRMntEnum
 	mcBRM_HORIZONTAL = 1
 } McBRMntEnum;
 
+typedef enum McVUTmpMdlEnum
+{	mcVUTM_CURBASED = 1,
+	mcVUTM_NOT_USE = 2
+} McVUTmpMdlEnum;
+
 typedef enum McAELEnum
 {	mcAEL_ONE_ENC = 0,
 	mcAEL_TWO_ENC = 1,
@@ -799,7 +804,8 @@ typedef enum McACModEnum
 {	mcACM_POS_CTRL = 0,
 	mcACM_POS_CTRL_TORQ_FF = 1,
 	mcACM_POS_CTRL_MDL_BASED = 3,
-	mcACM_V_FREQ_CTRL = 2
+	mcACM_V_FREQ_CTRL = 2,
+	mcACM_VIB_CTRL = 4
 } McACModEnum;
 
 typedef enum McACLFSEnum
@@ -866,6 +872,26 @@ typedef enum McACMVFCVFAutCfgEnum
 	mcACMVFCVFAC_NOT_USE = 0
 } McACMVFCVFAutCfgEnum;
 
+typedef enum McACMVCFreqAdptEnum
+{	mcACMVCFA_NOT_USE = 0,
+	mcACMVCFA_USE = 1
+} McACMVCFreqAdptEnum;
+
+typedef enum McACMVCAmpAdptEnum
+{	mcACMVCAA_NOT_USE = 0,
+	mcACMVCAA_USE = 1
+} McACMVCAmpAdptEnum;
+
+typedef enum McACMVCCurCtrlEnum
+{	mcACMVCCC_DEF = 0,
+	mcACMVCCC_USR_DEF = 1
+} McACMVCCurCtrlEnum;
+
+typedef enum McACMVCOptParAmpScEnum
+{	mcACMVCOPAS_NOT_USE = 0,
+	mcACMVCOPAS_USE = 1
+} McACMVCOptParAmpScEnum;
+
 typedef enum McAHModEnum
 {	mcAHM_DIR = 0,
 	mcAHM_ABS_SW = 1,
@@ -923,15 +949,25 @@ typedef enum McAHModBlkLagErrAddTorqLimEnum
 	mcAHMBLEATL_NEG_DIR = 2
 } McAHModBlkLagErrAddTorqLimEnum;
 
+typedef enum McAHMRPAPCEnum
+{	mcAHMRPAPC_NOT_USE = 0,
+	mcAHMRPAPC_USE = 1
+} McAHMRPAPCEnum;
+
 typedef enum McASRQstopEnum
 {	mcASRQ_DEC_LIM = 0,
 	mcASRQ_DEC_LIM_W_JERK_FLTR = 1,
 	mcASRQ_TORQ_LIM = 2,
+	mcASRQ_TORQ_LIM_W_JERK_FLTR = 4,
+	mcASRQ_VEL_CTRL = 5,
 	mcASRQ_INDUCT_HALT = 3
 } McASRQstopEnum;
 
 typedef enum McASRDrvErrEnum
 {	mcASRDE_DEC_LIM = 0,
+	mcASRDE_TORQ_LIM = 4,
+	mcASRDE_TORQ_LIM_W_JERK_FLTR = 5,
+	mcASRDE_VEL_CTRL = 6,
 	mcASRDE_INDUCT_HALT = 1,
 	mcASRDE_COAST_TO_STANDSTILL = 2,
 	mcASRDE_CYC_DEC_FROM_AX_GRP = 3
@@ -2130,12 +2166,69 @@ typedef struct McACMVFCType
 {	struct McACMVFCVFType VoltageFrequency;
 } McACMVFCType;
 
+typedef struct McACMVCFreqAdptUseType
+{	float ProportionalGain;
+	float IntegrationTime;
+	float ReferenceValue;
+} McACMVCFreqAdptUseType;
+
+typedef struct McACMVCFreqAdptType
+{	enum McACMVCFreqAdptEnum Type;
+	struct McACMVCFreqAdptUseType Used;
+} McACMVCFreqAdptType;
+
+typedef struct McACMVCAmpAdptUseType
+{	float ProportionalGain;
+	float IntegrationTime;
+	float ReferenceValue;
+} McACMVCAmpAdptUseType;
+
+typedef struct McACMVCAmpAdptType
+{	enum McACMVCAmpAdptEnum Type;
+	struct McACMVCAmpAdptUseType Used;
+} McACMVCAmpAdptType;
+
+typedef struct McACMVCCurCtrlUsrDefType
+{	float ProportionalGain;
+	float IntegrationTime;
+} McACMVCCurCtrlUsrDefType;
+
+typedef struct McACMVCCurCtrlType
+{	enum McACMVCCurCtrlEnum Type;
+	struct McACMVCCurCtrlUsrDefType UserDefined;
+} McACMVCCurCtrlType;
+
+typedef struct McACMVCOptParAmpScType
+{	enum McACMVCOptParAmpScEnum Type;
+} McACMVCOptParAmpScType;
+
+typedef struct McACMVCOptParType
+{	float BoostGain;
+	float BoostTime;
+	float BrakeTime;
+	float AmplitudeLimit;
+	struct McACMVCOptParAmpScType AmplitudeScaling;
+} McACMVCOptParType;
+
+typedef struct McACMVCType
+{	float ExcitationFrequency;
+	float ExcitationAmplitude;
+	float AmplificationFactorFirstHarmonic;
+	float AmplificationFactorThirdHarmonic;
+	struct McACMVCFreqAdptType FrequencyAdaption;
+	struct McACMVCAmpAdptType AmplitudeAdaption;
+	struct McACMVCCurCtrlType CurrentController;
+	struct McACMVCOptParType OptionalParameters;
+	struct McACCTMType CycleTimeMode;
+} McACMVCType;
+
 typedef struct McACModType
 {	enum McACModEnum Type;
 	struct McACMPCType PositionController;
 	struct McACMPCFFType PositionControllerTorqueFf;
 	struct McACMPCMBCType PositionControllerModelBased;
 	struct McACMVFCType VoltageFrequencyControl;
+	struct McACMVCType VibrationControl;
 } McACModType;
 
 typedef struct McACType
@@ -2859,6 +2952,78 @@ typedef struct McAcpAxAdvSctrlLimitLoadParType
 	unsigned short LoadNegativeParID;
 } McAcpAxAdvSctrlLimitLoadParType;
 
+typedef struct McAcpAxSafeOutDataType
+{	plcbit Control_Reset;
+	plcbit Control_Activate;
+	plcbit Control_STO;
+	plcbit Control_SBC;
+	plcbit Control_SS1;
+	plcbit reserved_bit5;
+	plcbit Control_STO1;
+	plcbit reserved_bit7;
+	plcbit Control_SOS;
+	plcbit Control_SS2;
+	plcbit Control_SLA;
+	plcbit Control_SLS1;
+	plcbit Control_SLS2;
+	plcbit reserved_bit13;
+	plcbit Control_SLS3;
+	plcbit Control_SLS4;
+	plcbit Control_SDI_P;
+	plcbit Control_SDI_N;
+	plcbit Control_SLI;
+	plcbit Control_SBT;
+	plcbit reserved_bit20;
+	plcbit Control_SLT;
+	plcbit Control_SwitchUserData;
+	plcbit reserved_bit23;
+	plcbit reserved_bit24;
+	plcbit Control_Homing;
+	plcbit Control_RefSwitch;
+	plcbit Control_SLP;
+	plcbit reserved_bit28;
+	plcbit reserved_bit29;
+	plcbit Control_SwitchHomingMode;
+	plcbit reserved_bit31;
+} McAcpAxSafeOutDataType;
+
+typedef struct McAcpAxSafeInDataType
+{	plcbit Status_NotErrFunc;
+	plcbit Status_Operational;
+	plcbit Status_STO;
+	plcbit Status_SBC;
+	plcbit Status_SS1;
+	plcbit Status_NotErrEnc;
+	plcbit Status_STO1;
+	plcbit Status_SDC;
+	plcbit Status_SOS;
+	plcbit Status_SS2;
+	plcbit Status_SLA;
+	plcbit Status_SLS1;
+	plcbit Status_SLS2;
+	plcbit reserved_bit13;
+	plcbit Status_SLS3;
+	plcbit Status_SLS4;
+	plcbit Status_SDI_P;
+	plcbit Status_SDI_N;
+	plcbit Status_SLI;
+	plcbit Status_SBT_Valid;
+	plcbit Status_SBT_Active;
+	plcbit Status_SLT;
+	plcbit Status_SFR;
+	plcbit Status_AllReqActive;
+	plcbit Status_NotErrEnc2;
+	plcbit Status_Homing;
+	plcbit Status_ReqHomingOK;
+	plcbit Status_SLP;
+	plcbit Status_SMP;
+	plcbit Status_SafeUserData;
+	plcbit Status_RSP_Valid;
+	plcbit Status_SetPosAlive;
+	signed long SafePosition;
+	signed long SafeUserData;
+} McAcpAxSafeInDataType;
+
 typedef struct McMSAMCMotDefVLimUseType
 {	float MaximumDCBusVoltage;
 } McMSAMCMotDefVLimUseType;
@@ -3474,6 +3639,27 @@ typedef struct McCfgBrkResType
 	struct McBRMntType Mounting;
 } McCfgBrkResType;
 
+typedef struct McVUTMCurBsdType
+{	float LimitTemperature;
+	float WindingCrossSection;
+	float ThermalTimeConstant;
+} McVUTMCurBsdType;
+
+typedef struct McVUTmpMdlType
+{	enum McVUTmpMdlEnum Type;
+	struct McVUTMCurBsdType CurrentBased;
+} McVUTmpMdlType;
+
+typedef struct McCfgVibrUnitType
+{	float MaximumMechanicalFrequency;
+	float NominalVoltage;
+	float NominalCurrent;
+	float PeakCurrent;
+	float StatorResistance;
+	float StatorInductance;
+	struct McVUTmpMdlType TemperatureModel;
+} McCfgVibrUnitType;
+
 typedef struct McAMEType
 {	struct McCfgGearBoxType Gearbox;
 	struct McCfgRotToLinTrfType RotaryToLinearTransformation;
@@ -3689,19 +3875,33 @@ typedef struct McAHModType
 	struct McAHModBlkLagErrType BlockLagError;
 } McAHModType;
 
+typedef struct McAHMRPAPCType
+{	enum McAHMRPAPCEnum Type;
+} McAHMRPAPCType;
+
 typedef struct McAHType
 {	struct McAHModType Mode;
 	plcstring RestorePositionVariable[251];
+	struct McAHMRPAPCType AxParCk;
 } McAHType;
 
 typedef struct McASRQstopDecLimWJerkFltrType
 {	float JerkTime;
 } McASRQstopDecLimWJerkFltrType;
 
+typedef struct McASRQstopTorqLimWJerkFltrType
+{	float JerkTime;
+} McASRQstopTorqLimWJerkFltrType;
+
 typedef struct McASRQstopType
 {	enum McASRQstopEnum Type;
 	struct McASRQstopDecLimWJerkFltrType DecelerationLimitWithJerkFilter;
+	struct McASRQstopTorqLimWJerkFltrType TorqueLimitWithJerkFilter;
 } McASRQstopType;
+
+typedef struct McASRDrvErrTorqLimWJerkFltrType
+{	float JerkTime;
+} McASRDrvErrTorqLimWJerkFltrType;
 
 typedef struct McASRDrvErrCycDecFromAxGrpType
 {	float DefaultDeceleration;
@@ -3709,12 +3909,14 @@ typedef struct McASRDrvErrCycDecFromAxGrpType
 
 typedef struct McASRDrvErrType
 {	enum McASRDrvErrEnum Type;
+	struct McASRDrvErrTorqLimWJerkFltrType TorqueLimitWithJerkFilter;
 	struct McASRDrvErrCycDecFromAxGrpType CyclicDecelerationFromAxesGroup;
 } McASRDrvErrType;
 
 typedef struct McASRType
 {	struct McASRQstopType Quickstop;
 	struct McASRDrvErrType DriveError;
+	float FilterTime;
 } McASRType;
 
 typedef struct McAMELVelErrMonUsrDefType
@@ -4393,6 +4595,7 @@ typedef struct McAVAVirtAxUseHomeModType
 typedef struct McAVAVirtAxUseHomeType
 {	struct McAVAVirtAxUseHomeModType Mode;
 	plcstring RestorePositionVariable[251];
+	struct McAHMRPAPCType AxParCk;
 } McAVAVirtAxUseHomeType;
 
 typedef struct McAVAVirtAxUseType
@@ -4428,6 +4631,7 @@ typedef struct McAVHHomeModType
 typedef struct McAVHHomeType
 {	struct McAVHHomeModType Mode;
 	plcstring RestorePositionVariable[251];
+	struct McAHMRPAPCType AxParCk;
 } McAVHHomeType;
 
 typedef struct McCfgAcpVirtHomeType
@@ -4820,6 +5024,7 @@ typedef struct McAEEAHModType
 typedef struct McAEEAHType
 {	struct McAEEAHModType Mode;
 	plcstring RestorePositionVariable[251];
+	struct McAHMRPAPCType AxParCk;
 } McAEEAHType;
 
 typedef struct McAEEAExtEncAxUseType
@@ -4925,24 +5130,6 @@ typedef struct McCfgAxFeatAcpSptChartType
 {	struct McCfgReferenceType ACOPOSSptChartReference;
 	enum McAFASPTCTranOrdEnum TransferOrder;
 } McCfgAxFeatAcpSptChartType;
-
-typedef struct MC_BR_GetParIDText_AcpAx
-{
-	/* VAR_INPUT (analog) */
-	struct McAxisType* Axis;
-	unsigned short ParID;
-	/* VAR_OUTPUT (analog) */
-	signed long ErrorID;
-	plcstring DataText[33];
-	/* VAR (analog) */
-	struct McInternalType Internal;
-	/* VAR_INPUT (digital) */
-	plcbit Execute;
-	/* VAR_OUTPUT (digital) */
-	plcbit Done;
-	plcbit Busy;
-	plcbit Error;
-} MC_BR_GetParIDText_AcpAx_typ;
 
 typedef struct MC_BR_InitHome_AcpAx
 {
@@ -5716,10 +5903,61 @@ typedef struct MC_BR_SetParIDText_AcpAx
 	plcbit Error;
 } MC_BR_SetParIDText_AcpAx_typ;
 
+typedef struct MC_BR_GetParIDText_AcpAx
+{
+	/* VAR_INPUT (analog) */
+	struct McAxisType* Axis;
+	unsigned short ParID;
+	/* VAR_OUTPUT (analog) */
+	signed long ErrorID;
+	plcstring DataText[33];
+	/* VAR (analog) */
+	struct McInternalType Internal;
+	/* VAR_INPUT (digital) */
+	plcbit Execute;
+	/* VAR_OUTPUT (digital) */
+	plcbit Done;
+	plcbit Busy;
+	plcbit Error;
+} MC_BR_GetParIDText_AcpAx_typ;
+
+typedef struct MC_BR_ReadSafeOutData_AcpAx
+{
+	/* VAR_INPUT (analog) */
+	struct McAxisType* Axis;
+	/* VAR_OUTPUT (analog) */
+	signed long ErrorID;
+	struct McAcpAxSafeOutDataType SafeOutData;
+	/* VAR (analog) */
+	struct McInternalType Internal;
+	/* VAR_INPUT (digital) */
+	plcbit Enable;
+	/* VAR_OUTPUT (digital) */
+	plcbit Valid;
+	plcbit Busy;
+	plcbit Error;
+} MC_BR_ReadSafeOutData_AcpAx_typ;
+
+typedef struct MC_BR_ReadSafeInData_AcpAx
+{
+	/* VAR_INPUT (analog) */
+	struct McAxisType* Axis;
+	/* VAR_OUTPUT (analog) */
+	signed long ErrorID;
+	struct McAcpAxSafeInDataType SafeInData;
+	/* VAR (analog) */
+	struct McInternalType Internal;
+	/* VAR_INPUT (digital) */
+	plcbit Enable;
+	/* VAR_OUTPUT (digital) */
+	plcbit Valid;
+	plcbit Busy;
+	plcbit Error;
+} MC_BR_ReadSafeInData_AcpAx_typ;
+
 
 
 /* Prototyping of functions and function blocks */
-_BUR_PUBLIC void MC_BR_GetParIDText_AcpAx(struct MC_BR_GetParIDText_AcpAx* inst);
 _BUR_PUBLIC void MC_BR_InitHome_AcpAx(struct MC_BR_InitHome_AcpAx* inst);
 _BUR_PUBLIC void MC_BR_ProcessDataBlock_AcpAx(struct MC_BR_ProcessDataBlock_AcpAx* inst);
 _BUR_PUBLIC void MC_BR_ProcessParID_AcpAx(struct MC_BR_ProcessParID_AcpAx* inst);
@@ -5759,6 +5997,9 @@ _BUR_PUBLIC void MC_BR_ReceiveParIDOnPLC_AcpAx(struct MC_BR_ReceiveParIDOnPLC_Ac
 _BUR_PUBLIC void MC_BR_GetCyclicDataInfo_AcpAx(struct MC_BR_GetCyclicDataInfo_AcpAx* inst);
 _BUR_PUBLIC void MC_BR_SctrlLimitLoad_AcpAx(struct MC_BR_SctrlLimitLoad_AcpAx* inst);
 _BUR_PUBLIC void MC_BR_SetParIDText_AcpAx(struct MC_BR_SetParIDText_AcpAx* inst);
+_BUR_PUBLIC void MC_BR_GetParIDText_AcpAx(struct MC_BR_GetParIDText_AcpAx* inst);
+_BUR_PUBLIC void MC_BR_ReadSafeOutData_AcpAx(struct MC_BR_ReadSafeOutData_AcpAx* inst);
+_BUR_PUBLIC void MC_BR_ReadSafeInData_AcpAx(struct MC_BR_ReadSafeInData_AcpAx* inst);
 
 
 #ifdef __cplusplus

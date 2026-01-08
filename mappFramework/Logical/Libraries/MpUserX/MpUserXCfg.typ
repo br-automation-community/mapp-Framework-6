@@ -30,6 +30,7 @@ TYPE
     MpUserXCfgAuthMethodEnum :
         ( (*Authentication method*)
         mpUSERX_CFG_LDAPS := 0, (*Secure connection via LDAP over SSL/ TLS*)
+        mpUSERX_CFG_LDAPSTARTTLS := 1, (*Secure connection via LDAP + StartTLS*)
         mpUSERX_CFG_LDAP := 2 (*Insecure connection via LDAP*)
         );
     MpUserXCfgHostType : STRUCT (*Host information*)

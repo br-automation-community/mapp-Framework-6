@@ -69,6 +69,7 @@ TYPE
 		Options : McAdvOffsetParType; (*Structure for using optional  functions
 Note:
 Parameters left at default values disable the associated optional functions.*)
+		ResetMode : MpAxisShiftResetModeEnum; (*Reset mode for command negative edge behavior in case of active shift movement*)
 	END_STRUCT;
 	MpAxisPhasingParType : 	STRUCT 
 		Shift : LREAL; (*Phase shift in the master position of the slave axis [Measurement units].*)
@@ -78,7 +79,13 @@ Parameters left at default values disable the associated optional functions.*)
 		Options : McAdvPhasingParType; (*Structure for using optional  functions
 Note:
 Parameters left at default values disable the associated optional functions.*)
+		ResetMode : MpAxisShiftResetModeEnum; (*Reset mode for command negative edge behavior in case of active shift movement*)
 	END_STRUCT;
+	MpAxisShiftResetModeEnum : 
+	(
+	mcSHIFT_RESET_MODE_END_OF_SHIFT, (*Shift ended at the end of shift movement*)
+	mcSHIFT_RESET_MODE_IMMEDIATE (*Shift aborted immediately. This might cause a velocity jump*)
+	);
 	MpAxisCouplingInfoType : 	STRUCT 
 		SlaveReady : BOOL; (*Slave axis ready for operation (Powered + IsHomed( when needed ))*)
 		MasterReady : BOOL; (*Master axis ready for operation (CommunicationReady)*)

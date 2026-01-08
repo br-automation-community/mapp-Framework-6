@@ -14,22 +14,22 @@ extern "C" {
 #endif
 /* Constants */
 #if defined(_REPLACE_CONST) || defined(BUILD_COTRACE)
-#define coTRACE_ERR_FILEIO_FAILED (-2124414950)		/*!< File-I/O operation failed*/
+#define coTRACE_ERR_FILEIO_FAILED (-2124414950) 	/*!< File-I/O operation failed*/
 #define coTRACE_ERR_END_REACHED (-2124414951)		/*!< no further suitable entry found*/
 #define coTRACE_ERR_NOT_EXISTS (-2124414952)		/*!< record not found; doesn't exist*/
-#define coTRACE_ERR_REF_NOT_FOUND (-2124414953)		/*!< Reference resource not found/configured*/
+#define coTRACE_ERR_REF_NOT_FOUND (-2124414953) 	/*!< Reference resource not found/configured*/
 #define coTRACE_ERR_INCOMPLETE_CONFIG (-2124414954) /*!< aborted due incomplete configuration*/
 #define coTRACE_ERR_UNSUPPORTED_TYPE (-2124414955)	/*!< unsupported variable-type or -size*/
-#define coTRACE_INF_ALREADY_DONE 1096810516			/*!< execution/task already performed*/
-#define coTRACE_ERR_NOT_AVAILABLE (-2124414957)		/*!< resource (provider) not available*/
+#define coTRACE_INF_ALREADY_DONE 1096810516 		/*!< execution/task already performed*/
+#define coTRACE_ERR_NOT_AVAILABLE (-2124414957) 	/*!< resource (provider) not available*/
 #define coTRACE_ERR_INVALID_DP_NAME (-2124414958)	/*!< invalid or unrecognized DP-name*/
 #define coTRACE_ERR_UNKNOWN_PROVIDER (-2124414959)	/*!< data-provider is not supported*/
 #define coTRACE_ERR_NOT_POSSIBLE (-2124414960)		/*!< action not (yet) possible; wrong state*/
-#define coTRACE_ERR_INVALID_IDENT (-2124414971)		/*!< Invalid Ident-argument detected*/
-#define coTRACE_ERR_ACCESS_DENIED (-2124414972)		/*!< Resource-access denied*/
+#define coTRACE_ERR_INVALID_IDENT (-2124414971) 	/*!< Invalid Ident-argument detected*/
+#define coTRACE_ERR_ACCESS_DENIED (-2124414972) 	/*!< Resource-access denied*/
 #define coTRACE_ERR_FAILED (-1050673149)			/*!< Internal processing failure*/
 #define coTRACE_ERR_INVALID_ARG (-2124414974)		/*!< One or more arguments are invalid*/
-#define coTRACE_ERR_OUT_OF_MEMORY (-1050673151)		/*!< Failed to allocate necessary memory*/
+#define coTRACE_ERR_OUT_OF_MEMORY (-1050673151) 	/*!< Failed to allocate necessary memory*/
 #else
 #ifndef _GLOBAL_CONST
 #define _GLOBAL_CONST _WEAK const

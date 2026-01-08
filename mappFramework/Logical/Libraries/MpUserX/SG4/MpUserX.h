@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* MpUserX 6.4.0 */
+/* MpUserX 6.5.1 */
 
 #ifndef _MPUSERX_
 #define _MPUSERX_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _MpUserX_VERSION
-#define _MpUserX_VERSION 6.4.0
+#define _MpUserX_VERSION 6.5.1
 #endif
 
 #include <bur/plctypes.h>
@@ -159,6 +159,7 @@ typedef enum MpUserXCfgUserMgmtSystemEnum
 
 typedef enum MpUserXCfgAuthMethodEnum
 {	mpUSERX_CFG_LDAPS = 0,
+	mpUSERX_CFG_LDAPSTARTTLS = 1,
 	mpUSERX_CFG_LDAP = 2
 } MpUserXCfgAuthMethodEnum;
 

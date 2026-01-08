@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* MpAxis 6.4.1 */
+/* MpAxis 6.5.1 */
 
 #ifndef _MPAXIS_
 #define _MPAXIS_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _MpAxis_VERSION
-#define _MpAxis_VERSION 6.4.1
+#define _MpAxis_VERSION 6.5.1
 #endif
 
 #include <bur/plctypes.h>
@@ -54,6 +54,11 @@ typedef enum MpAxisErrorEnum
 	mcAXIS_ERR_CONFIG_NULL = -1064239096,
 	mcAXIS_ERR_CONFIG_CMD_FAILED = -1067278070
 } MpAxisErrorEnum;
+
+typedef enum MpAxisShiftResetModeEnum
+{	mcSHIFT_RESET_MODE_END_OF_SHIFT,
+	mcSHIFT_RESET_MODE_IMMEDIATE
+} MpAxisShiftResetModeEnum;
 
 typedef enum MpAxisGetCamPositionModeEnum
 {	mcAXIS_GET_CAM_POSITION_SLAVE,
@@ -317,14 +322,19 @@ typedef enum MpAXBDrvStopReacQstopEnum
 {	mcAXB_QSTOP_RCT_DEC_LIM = 0,
 	mcAXB_QSTOP_RCT_DEC_LIM_W_JERK = 1,
 	mcAXB_QSTOP_RCT_TORQ_LIM = 2,
-	mcAXB_QSTOP_RCT_INDUCT_HALT = 3
+	mcAXB_QSTOP_RCT_INDUCT_HALT = 3,
+	mcAXB_QSTOP_RCT_TORQ_LIM_W_JERK = 4,
+	mcAXB_QSTOP_RCT_VEL_CTRL = 5
 } MpAXBDrvStopReacQstopEnum;
 
 typedef enum MpAXBDrvStopReacDrvErrEnum
 {	mcAXB_ERR_RCT_DEC_LIM = 0,
 	mcAXB_ERR_RCT_INDUCT_HALT = 1,
 	mcAXB_ERR_RCT_COAST_STANDSTILL = 2,
-	mcAXB_ERR_RCT_CYC_DEC_AXESGROUP = 3
+	mcAXB_ERR_RCT_CYC_DEC_AXESGROUP = 3,
+	mcAXB_ERR_RCT_TORQ_LIM = 4,
+	mcAXB_ERR_RCT_TORQ_LIM_W_JERK = 5,
+	mcAXB_ERR_RCT_VEL_CTRL = 6
 } MpAXBDrvStopReacDrvErrEnum;
 
 typedef enum MpAXBDrvMovVelErrMonEnum
@@ -645,6 +655,7 @@ typedef struct MpAxisOffsetParType
 	float Acceleration;
 	plcbit CmdIndependentActivation;
 	struct McAdvOffsetParType Options;
+	enum MpAxisShiftResetModeEnum ResetMode;
 } MpAxisOffsetParType;
 
 typedef struct MpAxisPhasingParType
@@ -653,6 +664,7 @@ typedef struct MpAxisPhasingParType
 	float Acceleration;
 	plcbit CmdIndependentActivation;
 	struct McAdvPhasingParType Options;
+	enum MpAxisShiftResetModeEnum ResetMode;
 } MpAxisPhasingParType;
 
 typedef struct MpAxisCamInfoType
@@ -1119,6 +1131,9 @@ typedef struct MpAXBDrvHomeType
 typedef struct MpAXBDrvStopReacType
 {	enum MpAXBDrvStopReacQstopEnum Quickstop;
 	enum MpAXBDrvStopReacDrvErrEnum DriveError;
+	float DriveErrorJerkTime;
+	float QuickstopJerkTime;
+	float FilterTime;
 } MpAXBDrvStopReacType;
 
 typedef struct MpAXBDrvMovementErrorLimitsType

@@ -51,6 +51,7 @@ TYPE
 		mcCFG_ACP_P3_SNG_PL_IN_CARD_ENC := 10513, (*Associated with data type McCfgAcpP3SngPlInCrdEncType*)
 		mcCFG_ACP_PL_IN_CARD_IO := 10514, (*Associated with data type McCfgAcpPlInCrdIOType*)
 		mcCFG_BRK_RES := 10530, (*Associated with data type McCfgBrkResType*)
+		mcCFG_VIBR_UNIT := 10540, (*Associated with data type McCfgVibrUnitType*)
 		mcCFG_ACP_AX := 11000, (*Associated with data type McCfgAcpAxType*)
 		mcCFG_ACP_AX_REF := 11011, (*Associated with data type McCfgAcpAxRefType*)
 		mcCFG_ACP_MECH_ELM := 11012, (*Associated with data type McCfgAcpMechElmType*)
@@ -85,7 +86,7 @@ TYPE
 		mcCFG_AX_FEAT_A_IN := 11103, (*Associated with data type McCfgAxFeatAInType*)
 		mcCFG_AX_FEAT_ACP_PAR_TBL := 11104, (*Associated with data type McCfgAxFeatAcpParTblType*)
 		mcCFG_AX_FEAT_ACP_SPT_CHART := 11105, (*Associated with data type McCfgAxFeatAcpSptChartType*)
-		mcCFG_ACP_SPT_CHART := 11120, (*Associated with data type McCfgAcpSptChartType*)
+		mcCFG_ACP_SPT_CHART := 11120, (**)
 		mcCFG_PURE_V_AX := 12000, (*Associated with data type McCfgPureVAxType*)
 		mcCFG_PURE_V_AX_REF := 12011, (*Associated with data type McCfgPureVAxRefType*)
 		mcCFG_PURE_V_AX_HOME := 12012, (*Associated with data type McCfgPureVAxHomeType*)
@@ -171,6 +172,7 @@ TYPE
 		mcCFG_AXGRP_FEAT_TRK := 21126, (*Associated with data type McCfgAxGrpFeatTrkType*)
 		mcCFG_AXGRP_FEAT_PIPE_CUT := 21127, (*Associated with data type McCfgAxGrpPipeCutType*)
 		mcCFG_AXGRP_FEAT_TRKFRM_SEL := 21128, (*Associated with data type McCfgAxGrpFeatTrkFrmSelType*)
+		mcCFG_AXGRP_FEAT_TRKFRM_SEL_AREA := 21129, (*Associated with data type McCfgAxGrpFeatTrkFrmSelAreaType*)
 		mcCFG_ASM := 31000, (*Associated with data type McCfgAsmType*)
 		mcCFG_ASM_COGG_COMP := 31001, (*Associated with data type McCfgAsmCoggComp*)
 		mcCFG_ASM_ELONG_COMP := 31002, (*Associated with data type McCfgAsmElongComp*)
@@ -202,6 +204,7 @@ TYPE
 		mcCFG_SH_STATE_TRANS := 31402, (*Associated with data type McCfgShStateTransType*)
 		mcCFG_SH_ZERO_VIB_FILTER := 31403, (*Associated with data type McCfgShZeroVibFilterType*)
 		mcCFG_SEG := 31500, (*Associated with data type McCfgSegType*)
+		mcCFG_VIRT_SEG := 31501, (*Associated with data type McCfgVirtSegType*)
 		mcCFG_MS_CUS_STD := 50001, (*Associated with data type McCfgMSCusStdType*)
 		mcCFG_MS_2AX_CNC_XY := 51201, (*Associated with data type McCfgMS2AxCncXYType*)
 		mcCFG_MS_2AX_CNC_XZ := 51202, (*Associated with data type McCfgMS2AxCncXZType*)
@@ -259,10 +262,10 @@ TYPE
 		mcMMCPECOA_USE := 1 (*Used - Explicit computation order of axes is used*)
 		);
 	McMMCPECOAUseAxCompB4AllOthType : STRUCT (*Explicit computation order for axis components that are computed before all others*)
-		AxisReference : McCfgUnboundedArrayType; (*Name of the referenced axis component*)
+		AxisReference : McCfgUnboundedArrayType; (*Name of the referenced axis component (Connect array of type McCfgReferenceType)*)
 	END_STRUCT;
 	McMMCPECOAUseAxCompAShType : STRUCT (*Explicit computation order for axis components that are computed after shuttles*)
-		AxisReference : McCfgUnboundedArrayType; (*Name of the referenced axis component*)
+		AxisReference : McCfgUnboundedArrayType; (*Name of the referenced axis component (Connect array of type McCfgReferenceType)*)
 	END_STRUCT;
 	McMMCPECOAUseType : STRUCT (*Type mcMMCPECOA_USE settings*)
 		AxesComputedBeforeAllOthers : McMMCPECOAUseAxCompB4AllOthType; (*Explicit computation order for axis components that are computed before all others*)
@@ -475,7 +478,7 @@ TYPE
 		Type : McOHGCSOTypType; (*Object type*)
 	END_STRUCT;
 	McOHGCSType : STRUCT (*Systemwide reference frame*)
-		Object : McCfgUnboundedArrayType;
+		Object : McCfgUnboundedArrayType; (*Connect array of type McOHGCSObjType*)
 	END_STRUCT;
 	McCfgObjHierGCSType : STRUCT (*Main data type corresponding to McCfgTypeEnum mcCFG_OBJ_HIER_GCS*)
 		GlobalCoordinateSystem : McOHGCSType; (*Systemwide reference frame*)
@@ -635,7 +638,7 @@ TYPE
 		Dimension : McWSCubeDimType; (*Dimension parameters*)
 	END_STRUCT;
 	McWSCubesType : STRUCT (*Defines cuboids*)
-		Cuboid : McCfgUnboundedArrayType;
+		Cuboid : McCfgUnboundedArrayType; (*Connect array of type McWSCubeType*)
 	END_STRUCT;
 	McWSHalfSpcPlEnum :
 		( (*Defines plane*)
@@ -650,7 +653,7 @@ TYPE
 		Plane : McWSHalfSpcPlEnum; (*Defines plane*)
 	END_STRUCT;
 	McWSHalfSpcsType : STRUCT (*Defines half-spaces*)
-		HalfSpace : McCfgUnboundedArrayType;
+		HalfSpace : McCfgUnboundedArrayType; (*Connect array of type McWSHalfSpcType*)
 	END_STRUCT;
 	McWSTcConeParType : STRUCT (*Object description parameters*)
 		BaseRadius : LREAL; (*Base radius of the cone [measurement units]*)
@@ -664,7 +667,7 @@ TYPE
 		Parameters : McWSTcConeParType; (*Object description parameters*)
 	END_STRUCT;
 	McWSTcConesType : STRUCT (*Defines truncated cones*)
-		TruncatedCone : McCfgUnboundedArrayType; (*Selects object type*)
+		TruncatedCone : McCfgUnboundedArrayType; (*Selects object type (Connect array of type McWSTcConeType)*)
 	END_STRUCT;
 	McWSWorkSpaceType : STRUCT (*Defines the WorkSpace*)
 		Cuboids : McWSCubesType; (*Defines cuboids*)
@@ -691,7 +694,7 @@ TYPE
 		Description : STRING[250];
 	END_STRUCT;
 	McCfgFrmTblType : STRUCT (*Main data type corresponding to McCfgTypeEnum mcCFG_FRMTBL*)
-		Row : McCfgUnboundedArrayType;
+		Row : McCfgUnboundedArrayType; (*Connect array of type McFTRowType*)
 	END_STRUCT;
 	McDPTRowType : STRUCT
 		BaseParameterIndex : UINT;
@@ -700,7 +703,7 @@ TYPE
 		Description : STRING[250];
 	END_STRUCT;
 	McCfgDynParTblType : STRUCT (*Main data type corresponding to McCfgTypeEnum mcCFG_DYNPARTBL*)
-		Row : McCfgUnboundedArrayType;
+		Row : McCfgUnboundedArrayType; (*Connect array of type McDPTRowType*)
 	END_STRUCT;
 	McLSPosEnum :
 		( (*Position selector setting*)
@@ -874,7 +877,7 @@ TYPE
 		Description : STRING[250];
 	END_STRUCT;
 	McCfgCamLstType : STRUCT (*Main data type corresponding to McCfgTypeEnum mcCFG_CAMLST*)
-		Row : McCfgUnboundedArrayType;
+		Row : McCfgUnboundedArrayType; (*Connect array of type McCLRowType*)
 	END_STRUCT;
 	McPPTypEnum :
 		( (*Type selector setting*)

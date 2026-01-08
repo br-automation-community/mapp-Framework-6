@@ -15,6 +15,9 @@
       <Group ID="TcpProxyConf">
         <Selector ID="InsecureMode" Value="1" />
       </Group>
+      <Group ID="FileDeviceWhitelist">
+        <Property ID="FileDeviceName[1]" Value="mappReportFiles" />
+      </Group>
       <Group ID="DiagnosticPageConf">
         <Selector ID="DiagnosticPageSelection" Value="2">
           <Property ID="DiagnosticPageRole[1]" Value="Administrators" />
@@ -49,6 +52,7 @@
         <Selector ID="renderingPolicy" Value="1" />
         <Selector ID="securityPolicy" Value="1" />
       </Group>
+      <Selector ID="EventbindingExecution" Value="1" />
     </Group>
   </Element>
 </Configuration>

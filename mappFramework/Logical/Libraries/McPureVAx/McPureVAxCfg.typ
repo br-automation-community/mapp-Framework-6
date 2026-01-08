@@ -132,9 +132,18 @@ TYPE
 		AbsoluteCorrection : McPVAHModAbsCorrType; (*Type mcPVAHM_ABS_CORR settings*)
 		BlockLagError : McPVAHModBlkLagErrType; (*Type mcPVAHM_BLK_LAG_ERR settings*)
 	END_STRUCT;
+	McPVAHPVAxParCkEnum :
+		( (*Restore position axis scaling check selector setting*)
+		mcAHMRPPVAPC_NOT_USE := 0, (*Not used - Axis parameterization check is not performed*)
+		mcAHMRPPVAPC_USE := 1 (*Used - Axis parameterization check is performed*)
+		);
+	McPVAHPVAxParCkType : STRUCT (*Activate check if axis parameterization has change for restore position*)
+		Type : McPVAHPVAxParCkEnum; (*Restore position axis scaling check selector setting*)
+	END_STRUCT;
 	McPVAHType : STRUCT (*Homing mode and parameters which can be used within the application program as preconfigured setting*)
 		Mode : McPVAHModType; (*Homing mode*)
 		RestorePositionVariable : STRING[250]; (*Remanent variable used for homing mode: Restore position*)
+		PVAxParCk : McPVAHPVAxParCkType; (*Activate check if axis parameterization has change for restore position*)
 	END_STRUCT;
 	McPVAJFEnum :
 		( (*Jerk filter selector setting*)
@@ -401,7 +410,7 @@ TYPE
 		);
 	McPVAELOEEPosFltrExtpolDistType : STRUCT (*Type mcPVAELOEEPF_EXTPOL_AND_DIST settings*)
 		PositionFilterTimeConstant : REAL; (*Time constant for actual position filter*)
-		ExtrapolationTime : REAL; (*Extrapolation time for actual position filter*)
+		ExtrapolationTime : REAL; (*Extrapolation time for actual position filter [s]*)
 	END_STRUCT;
 	McPVAELOEEPosFltrType : STRUCT (*Filter for the encoder position*)
 		Type : McPVAELOEEPosFltrEnum; (*Position filter selector setting*)
@@ -958,7 +967,7 @@ TYPE
 		DS402VL : McPVAGPAIDS402VLType; (*Type mcPVAGPAI_DS402_VL settings*)
 	END_STRUCT;
 	McPVAFType : STRUCT (*Features for an axis*)
-		FeatureReference : McCfgUnboundedArrayType; (*Name of the axis feature reference*)
+		FeatureReference : McCfgUnboundedArrayType; (*Name of the axis feature reference (Connect array of type McCfgReferenceType)*)
 	END_STRUCT;
 	McPVAType : STRUCT (*Parameters for the pure virtual axis*)
 		AxisReference : McCfgReferenceType; (*Name of the referenced axis component*)

@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* McBase 6.4.1 */
+/* McBase 6.5.1 */
 
 #ifndef _MCBASE_
 #define _MCBASE_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _McBase_VERSION
-#define _McBase_VERSION 6.4.1
+#define _McBase_VERSION 6.5.1
 #endif
 
 #include <bur/plctypes.h>
@@ -48,7 +48,8 @@ typedef enum McBufferModeEnum
 	mcBLENDING_LOW,
 	mcBLENDING_PREVIOUS,
 	mcBLENDING_NEXT,
-	mcBLENDING_HIGH
+	mcBLENDING_HIGH,
+	mcBLENDING
 } McBufferModeEnum;
 
 typedef enum McBrakeCmdEnum
@@ -105,7 +106,9 @@ typedef enum McErrorCmdEnum
 	mcERROR_STOP_DEC_CTRL_OFF_CMD,
 	mcERROR_V_STOP_DEC_CTRL_OFF_CMD,
 	mcERROR_ENCODER_CMD,
-	mcERROR_CHANNEL_CMD
+	mcERROR_CHANNEL_CMD,
+	mcERROR_STOP_TRQ_CMD,
+	mcERROR_STOP_TRQ_JERK_CMD
 } McErrorCmdEnum;
 
 typedef enum McEdgeEnum
@@ -119,7 +122,9 @@ typedef enum McNetworkTypeEnum
 } McNetworkTypeEnum;
 
 typedef enum McTransitionModeEnum
-{	mcTM_NONE
+{	mcTM_NONE,
+	mcTM_CORNER_DISTANCE,
+	mcTM_MAX_CORNER_DEVIATION
 } McTransitionModeEnum;
 
 typedef enum McExecutionModeEnum
@@ -264,6 +269,7 @@ typedef enum McCfgTypeEnum
 	mcCFG_ACP_P3_SNG_PL_IN_CARD_ENC = 10513,
 	mcCFG_ACP_PL_IN_CARD_IO = 10514,
 	mcCFG_BRK_RES = 10530,
+	mcCFG_VIBR_UNIT = 10540,
 	mcCFG_ACP_AX = 11000,
 	mcCFG_ACP_AX_REF = 11011,
 	mcCFG_ACP_MECH_ELM = 11012,
@@ -384,6 +390,7 @@ typedef enum McCfgTypeEnum
 	mcCFG_AXGRP_FEAT_TRK = 21126,
 	mcCFG_AXGRP_FEAT_PIPE_CUT = 21127,
 	mcCFG_AXGRP_FEAT_TRKFRM_SEL = 21128,
+	mcCFG_AXGRP_FEAT_TRKFRM_SEL_AREA = 21129,
 	mcCFG_ASM = 31000,
 	mcCFG_ASM_COGG_COMP = 31001,
 	mcCFG_ASM_ELONG_COMP = 31002,
@@ -415,6 +422,7 @@ typedef enum McCfgTypeEnum
 	mcCFG_SH_STATE_TRANS = 31402,
 	mcCFG_SH_ZERO_VIB_FILTER = 31403,
 	mcCFG_SEG = 31500,
+	mcCFG_VIRT_SEG = 31501,
 	mcCFG_MS_CUS_STD = 50001,
 	mcCFG_MS_2AX_CNC_XY = 51201,
 	mcCFG_MS_2AX_CNC_XZ = 51202,

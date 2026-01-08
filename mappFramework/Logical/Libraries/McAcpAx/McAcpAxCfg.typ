@@ -1397,6 +1397,29 @@ TYPE
 		ThermalCapacity : REAL; (*Thermal capacity [Ws/K]*)
 		Mounting : McBRMntType; (*Mounting variant*)
 	END_STRUCT;
+	McVUTmpMdlEnum :
+		( (*Temperature model selector setting*)
+		mcVUTM_CURBASED := 1, (*Current-based -*)
+		mcVUTM_NOT_USE := 2 (*Not used -*)
+		);
+	McVUTMCurBsdType : STRUCT (*Type mcVUTM_CURBASED settings*)
+		LimitTemperature : REAL; (*Maximum permissible winding temperature [°C]*)
+		WindingCrossSection : REAL; (*Phase conductor cross section [mm²]*)
+		ThermalTimeConstant : REAL; (*Thermal time constant [s]*)
+	END_STRUCT;
+	McVUTmpMdlType : STRUCT (*Model for winding temperature monitoring*)
+		Type : McVUTmpMdlEnum; (*Temperature model selector setting*)
+		CurrentBased : McVUTMCurBsdType; (*Type mcVUTM_CURBASED settings*)
+	END_STRUCT;
+	McCfgVibrUnitType : STRUCT (*Main data type corresponding to McCfgTypeEnum mcCFG_VIBR_UNIT*)
+		MaximumMechanicalFrequency : REAL; (*Maximum mechanical frequency of the unit [Hz]*)
+		NominalVoltage : REAL; (*Nominal voltage (RMS value, phase-phase) [V]*)
+		NominalCurrent : REAL; (*Phase current for generating the nominal torque at nominal speed (RMS value) [A]*)
+		PeakCurrent : REAL; (*Phase current for generating the peak torque (RMS value) [A]*)
+		StatorResistance : REAL; (*Stator resistance (phase-phase) [Ω]*)
+		StatorInductance : REAL; (*Stator inductance (phase-phase) [mH]*)
+		TemperatureModel : McVUTmpMdlType; (*Model for winding temperature monitoring*)
+	END_STRUCT;
 	McAMEType : STRUCT (*Parameter of hardware elements situated between motor encoder and load which influence the scaling*)
 		Gearbox : McCfgGearBoxType; (*Specifies a gearbox by defining the ratio between a gearbox input and output*)
 		RotaryToLinearTransformation : McCfgRotToLinTrfType; (*Specifies a transformation factor between the output of the gear and the actual load movement*)
@@ -1474,7 +1497,8 @@ TYPE
 		mcACM_POS_CTRL := 0, (*Position controller - Automatic speed feed-forward with prediction time > 0*)
 		mcACM_POS_CTRL_TORQ_FF := 1, (*Position controller torque ff - Torque feed-forward with specified parameters*)
 		mcACM_POS_CTRL_MDL_BASED := 3, (*Position controller model based - Model based control with specified parameters*)
-		mcACM_V_FREQ_CTRL := 2 (*Voltage frequency control - Voltage/frequency control of induction motor with specified parameters*)
+		mcACM_V_FREQ_CTRL := 2, (*Voltage frequency control - Voltage/frequency control of induction motor with specified parameters*)
+		mcACM_VIB_CTRL := 4 (*Vibration control - Vibration control with specified parameters*)
 		);
 	McACPCType : STRUCT (*Position controller parameters*)
 		ProportionalGain : REAL; (*Proportional amplification [1/s]*)
@@ -1762,12 +1786,80 @@ TYPE
 	McACMVFCType : STRUCT (*Type mcACM_V_FREQ_CTRL settings*)
 		VoltageFrequency : McACMVFCVFType; (*V/f control parameters*)
 	END_STRUCT;
+	McACMVCFreqAdptEnum :
+		( (*Frequency adaption selector setting*)
+		mcACMVCFA_NOT_USE := 0, (*Not used - The frequency adaption is not used*)
+		mcACMVCFA_USE := 1 (*Used - The frequency adaption is not used*)
+		);
+	McACMVCFreqAdptUseType : STRUCT (*Type mcACMVCFA_USE settings*)
+		ProportionalGain : REAL; (*Vibration control: Amplification factor frequency control [Hz/rad]*)
+		IntegrationTime : REAL; (*Vibration control: Integration time frequency control [s]*)
+		ReferenceValue : REAL; (*Vibration control: Reference value of 3rd harmonic phase shift [rad]*)
+	END_STRUCT;
+	McACMVCFreqAdptType : STRUCT (*Usage of the frequency adaption*)
+		Type : McACMVCFreqAdptEnum; (*Frequency adaption selector setting*)
+		Used : McACMVCFreqAdptUseType; (*Type mcACMVCFA_USE settings*)
+	END_STRUCT;
+	McACMVCAmpAdptEnum :
+		( (*Amplitude adaption selector setting*)
+		mcACMVCAA_NOT_USE := 0, (*Not used - The amplitude adaption is not used*)
+		mcACMVCAA_USE := 1 (*Used - The amplitude adaption is not used*)
+		);
+	McACMVCAmpAdptUseType : STRUCT (*Type mcACMVCAA_USE settings*)
+		ProportionalGain : REAL; (*Vibration control: Amplification factor amplitude control [A/V]*)
+		IntegrationTime : REAL; (*Vibration control: Integration time amplitude control [s]*)
+		ReferenceValue : REAL; (*Vibration control: Reference value of 3rd harmonic amplitude [V]*)
+	END_STRUCT;
+	McACMVCAmpAdptType : STRUCT (*Usage of the amplitude adaption*)
+		Type : McACMVCAmpAdptEnum; (*Amplitude adaption selector setting*)
+		Used : McACMVCAmpAdptUseType; (*Type mcACMVCAA_USE settings*)
+	END_STRUCT;
+	McACMVCCurCtrlEnum :
+		( (*Current controller selector setting*)
+		mcACMVCCC_DEF := 0, (*Default - Usage of the default values calculated on the drive*)
+		mcACMVCCC_USR_DEF := 1 (*User defined - The current controller parameters are set by the user*)
+		);
+	McACMVCCurCtrlUsrDefType : STRUCT (*Type mcACMVCCC_USR_DEF settings*)
+		ProportionalGain : REAL; (*Current controller Proportional gain [V/A]*)
+		IntegrationTime : REAL; (*Current controller Integration time [s]*)
+	END_STRUCT;
+	McACMVCCurCtrlType : STRUCT (*Current controller settings*)
+		Type : McACMVCCurCtrlEnum; (*Current controller selector setting*)
+		UserDefined : McACMVCCurCtrlUsrDefType; (*Type mcACMVCCC_USR_DEF settings*)
+	END_STRUCT;
+	McACMVCOptParAmpScEnum :
+		( (*Amplitude scaling selector setting*)
+		mcACMVCOPAS_NOT_USE := 0, (*Not used - Scaling is not used*)
+		mcACMVCOPAS_USE := 1 (*Used - Scaling is used*)
+		);
+	McACMVCOptParAmpScType : STRUCT (*Vibration control: Mode for scaling of amplitude of 3rd harmonic*)
+		Type : McACMVCOptParAmpScEnum; (*Amplitude scaling selector setting*)
+	END_STRUCT;
+	McACMVCOptParType : STRUCT (*Optional parameters*)
+		BoostGain : REAL; (*Vibration control: Boost gain*)
+		BoostTime : REAL; (*Vibration control: Boost time [s]*)
+		BrakeTime : REAL; (*Vibration control: Brake time [s]*)
+		AmplitudeLimit : REAL; (*Vibration control: Upper amplitude limit [A]*)
+		AmplitudeScaling : McACMVCOptParAmpScType; (*Vibration control: Mode for scaling of amplitude of 3rd harmonic*)
+	END_STRUCT;
+	McACMVCType : STRUCT (*Type mcACM_VIB_CTRL settings*)
+		ExcitationFrequency : REAL; (*Vibration control: Excitation frequency. Range 10..MOTOR_SPEED_MAX/60*0.5 [Hz]*)
+		ExcitationAmplitude : REAL; (*Vibration control Excitation amplitude [A]*)
+		AmplificationFactorFirstHarmonic : REAL; (*Vibration control Amplification factor fundamental first harmonic*)
+		AmplificationFactorThirdHarmonic : REAL; (*Vibration control Amplification factor third harmonic*)
+		FrequencyAdaption : McACMVCFreqAdptType; (*Usage of the frequency adaption*)
+		AmplitudeAdaption : McACMVCAmpAdptType; (*Usage of the amplitude adaption*)
+		CurrentController : McACMVCCurCtrlType; (*Current controller settings*)
+		OptionalParameters : McACMVCOptParType; (*Optional parameters*)
+		CycleTimeMode : McACCTMType; (*Controller cascade cycle time mode; Position/Speed/Current; Check documentation for limitations*)
+	END_STRUCT;
 	McACModType : STRUCT (*Mode of the axis controller*)
 		Type : McACModEnum; (*Mode selector setting*)
 		PositionController : McACMPCType; (*Type mcACM_POS_CTRL settings*)
 		PositionControllerTorqueFf : McACMPCFFType; (*Type mcACM_POS_CTRL_TORQ_FF settings*)
 		PositionControllerModelBased : McACMPCMBCType; (*Type mcACM_POS_CTRL_MDL_BASED settings*)
 		VoltageFrequencyControl : McACMVFCType; (*Type mcACM_V_FREQ_CTRL settings*)
+		VibrationControl : McACMVCType; (*Type mcACM_VIB_CTRL settings*)
 	END_STRUCT;
 	McACType : STRUCT (*Axis controller parameters*)
 		Mode : McACModType; (*Mode of the axis controller*)
@@ -1973,41 +2065,64 @@ TYPE
 		BlockTorque : McAHModBlkTorqType; (*Type mcAHM_BLK_TORQ settings*)
 		BlockLagError : McAHModBlkLagErrType; (*Type mcAHM_BLK_LAG_ERR settings*)
 	END_STRUCT;
+	McAHMRPAPCEnum :
+		( (*Restore position axis scaling check selector setting*)
+		mcAHMRPAPC_NOT_USE := 0, (*Not used - Axis parameterization check is not performed*)
+		mcAHMRPAPC_USE := 1 (*Used - Axis parameterization check is performed*)
+		);
+	McAHMRPAPCType : STRUCT (*Activate check if axis parameterization has change for restore position*)
+		Type : McAHMRPAPCEnum; (*Restore position axis scaling check selector setting*)
+	END_STRUCT;
 	McAHType : STRUCT (*Homing mode and parameters which can be used within the application program as preconfigured setting*)
 		Mode : McAHModType; (*Homing mode*)
 		RestorePositionVariable : STRING[250]; (*Remanent variable used for homing mode: Restore position*)
+		AxParCk : McAHMRPAPCType; (*Activate check if axis parameterization has change for restore position*)
 	END_STRUCT;
 	McASRQstopEnum :
 		( (*Quickstop selector setting*)
 		mcASRQ_DEC_LIM := 0, (*Deceleration limit - Stop with deceleration limits*)
 		mcASRQ_DEC_LIM_W_JERK_FLTR := 1, (*Deceleration limit with jerk filter - Stop with deceleration limits and jerk filter*)
 		mcASRQ_TORQ_LIM := 2, (*Torque limit - Stop with torque limits*)
+		mcASRQ_TORQ_LIM_W_JERK_FLTR := 4, (*Torque limit with jerk filter - Stop with torque limits and jerk filter*)
+		mcASRQ_VEL_CTRL := 5, (*Velocity control - Stop velocity controlled with axis limits*)
 		mcASRQ_INDUCT_HALT := 3 (*Induction halt - Stop with an induction halt*)
 		);
 	McASRQstopDecLimWJerkFltrType : STRUCT (*Type mcASRQ_DEC_LIM_W_JERK_FLTR settings*)
 		JerkTime : REAL; (*Jerk filter time, max. Axis Jerk time / 2 [s]*)
 	END_STRUCT;
+	McASRQstopTorqLimWJerkFltrType : STRUCT (*Type mcASRQ_TORQ_LIM_W_JERK_FLTR settings*)
+		JerkTime : REAL; (*Jerk filter time, max. Axis Jerk time / 2 [s]*)
+	END_STRUCT;
 	McASRQstopType : STRUCT (*Deceleration ramp / reaction in case of a quickstop which is caused by an active quickstop input*)
 		Type : McASRQstopEnum; (*Quickstop selector setting*)
 		DecelerationLimitWithJerkFilter : McASRQstopDecLimWJerkFltrType; (*Type mcASRQ_DEC_LIM_W_JERK_FLTR settings*)
+		TorqueLimitWithJerkFilter : McASRQstopTorqLimWJerkFltrType; (*Type mcASRQ_TORQ_LIM_W_JERK_FLTR settings*)
 	END_STRUCT;
 	McASRDrvErrEnum :
 		( (*Drive error selector setting*)
 		mcASRDE_DEC_LIM := 0, (*Deceleration limit - Stop with deceleration limits*)
+		mcASRDE_TORQ_LIM := 4, (*Torque limit - Stop with torque limits*)
+		mcASRDE_TORQ_LIM_W_JERK_FLTR := 5, (*Torque limit with jerk filter - Stop with torque limits and jerk filter*)
+		mcASRDE_VEL_CTRL := 6, (*Velocity control - Stop velocity controlled with axis limits*)
 		mcASRDE_INDUCT_HALT := 1, (*Induction halt - Stop with an induction halt*)
 		mcASRDE_COAST_TO_STANDSTILL := 2, (*Coast to standstill - Controller is deactivated*)
 		mcASRDE_CYC_DEC_FROM_AX_GRP := 3 (*Cyclic deceleration from axes group - The deceleration calculation is done by the axes group on the PLC and the value is forwarded to the axis*)
 		);
+	McASRDrvErrTorqLimWJerkFltrType : STRUCT (*Type mcASRDE_TORQ_LIM_W_JERK_FLTR settings*)
+		JerkTime : REAL; (*Jerk filter time, max. Axis Jerk time / 2 [s]*)
+	END_STRUCT;
 	McASRDrvErrCycDecFromAxGrpType : STRUCT (*Type mcASRDE_CYC_DEC_FROM_AX_GRP settings*)
-		DefaultDeceleration : REAL; (*Default deceleration value. If 0.0, the maximum allowed value is used [measurement units/s²]*)
+		DefaultDeceleration : REAL; (*Default deceleration value. If 0.0, the maximum allowed value is used [Measurement units/s²]*)
 	END_STRUCT;
 	McASRDrvErrType : STRUCT (*Deceleration ramp / Response in the event of ErrorStop caused by drive error*)
 		Type : McASRDrvErrEnum; (*Drive error selector setting*)
+		TorqueLimitWithJerkFilter : McASRDrvErrTorqLimWJerkFltrType; (*Type mcASRDE_TORQ_LIM_W_JERK_FLTR settings*)
 		CyclicDecelerationFromAxesGroup : McASRDrvErrCycDecFromAxGrpType; (*Type mcASRDE_CYC_DEC_FROM_AX_GRP settings*)
 	END_STRUCT;
 	McASRType : STRUCT (*Reactions of the axis in case of certain stop conditions*)
 		Quickstop : McASRQstopType; (*Deceleration ramp / reaction in case of a quickstop which is caused by an active quickstop input*)
 		DriveError : McASRDrvErrType; (*Deceleration ramp / Response in the event of ErrorStop caused by drive error*)
+		FilterTime : REAL; (*Filter time for stop reaction [s]*)
 	END_STRUCT;
 	McAMELVelErrMonEnum :
 		( (*Velocity error monitoring selector setting*)
@@ -2216,7 +2331,7 @@ TYPE
 		ModeOnACOPOS : McASAMType; (*Parameters for the motor and load simulation on the drive*)
 	END_STRUCT;
 	McAAFType : STRUCT (*Features for an axis*)
-		FeatureReference : McCfgUnboundedArrayType; (*Name of the axis feature reference*)
+		FeatureReference : McCfgUnboundedArrayType; (*Name of the axis feature reference (Connect array of type McCfgReferenceType)*)
 	END_STRUCT;
 	McCfgAcpAxType : STRUCT (*Main data type corresponding to McCfgTypeEnum mcCFG_ACP_AX*)
 		AxisReference : McCfgReferenceType; (*Name of the referenced axis component*)
@@ -3082,6 +3197,7 @@ TYPE
 	McAVAVirtAxUseHomeType : STRUCT (*Homing mode and parameters which can be used within the application program as preconfigured setting*)
 		Mode : McAVAVirtAxUseHomeModType; (*Homing mode*)
 		RestorePositionVariable : STRING[250]; (*Remanent variable used for homing mode: Restore position*)
+		AxParCk : McAHMRPAPCType; (*Activate check if axis parameterization has change for restore position*)
 	END_STRUCT;
 	McAVAVirtAxUseType : STRUCT (*Type mcAVAVA_USE settings*)
 		AxisReference : McCfgReferenceType; (*Name of the referenced axis component*)
@@ -3116,6 +3232,7 @@ TYPE
 	McAVHHomeType : STRUCT (*Homing mode and parameters which can be used within the application program as preconfigured setting*)
 		Mode : McAVHHomeModType; (*Homing mode*)
 		RestorePositionVariable : STRING[250]; (*Remanent variable used for homing mode: Restore position*)
+		AxParCk : McAHMRPAPCType; (*Activate check if axis parameterization has change for restore position*)
 	END_STRUCT;
 	McCfgAcpVirtHomeType : STRUCT (*Main data type corresponding to McCfgTypeEnum mcCFG_ACP_VIRT_HOME*)
 		Homing : McAVHHomeType; (*Homing mode and parameters which can be used within the application program as preconfigured setting*)
@@ -3130,7 +3247,7 @@ TYPE
 		ZeroVibrationFilter : McAZVFType; (*Zero vibration filter*)
 	END_STRUCT;
 	McACFChFeatType : STRUCT (*Features for the channel of a module*)
-		FeatureReference : McCfgUnboundedArrayType; (*Name of the axis feature reference*)
+		FeatureReference : McCfgUnboundedArrayType; (*Name of the axis feature reference (Connect array of type McCfgReferenceType)*)
 	END_STRUCT;
 	McCfgAcpChFeatType : STRUCT (*Main data type corresponding to McCfgTypeEnum mcCFG_ACP_CH_FEAT*)
 		ChannelFeatures : McACFChFeatType; (*Features for the channel of a module*)
@@ -3525,7 +3642,7 @@ TYPE
 		);
 	McAEEAUELOEPosFltrExtpolDistType : STRUCT (*Type mcAEEAUELOEPF_EXTPOL_AND_DIST settings*)
 		PositionFilterTimeConstant : REAL; (*Time constant for acutal position filter*)
-		ExtrapolationTime : REAL; (*Extrapolation time for acutal position filter*)
+		ExtrapolationTime : REAL; (*Extrapolation time for acutal position filter [s]*)
 	END_STRUCT;
 	McAEEAUELOneEncPosFltrType : STRUCT (*Filter for the encoder position*)
 		Type : McAEEAUELOneEncPosFltrEnum; (*Position filter selector setting*)
@@ -3570,6 +3687,7 @@ TYPE
 	McAEEAHType : STRUCT (*Homing mode and parameters which can be used within the application program as preconfigured setting*)
 		Mode : McAEEAHModType; (*Homing mode*)
 		RestorePositionVariable : STRING[250]; (*Remanent variable used for homing mode: Restore position*)
+		AxParCk : McAHMRPAPCType; (*Activate check if axis parameterization has change for restore position*)
 	END_STRUCT;
 	McAEEAExtEncAxUseType : STRUCT (*Type mcAEEAEEA_USE settings*)
 		AxisReference : McCfgReferenceType; (*Name of the referenced axis component*)
@@ -3634,7 +3752,7 @@ TYPE
 		Common : McAFAIACPAnInCmnType; (*Common settings for all Type values*)
 	END_STRUCT;
 	McAFAIACPType : STRUCT (*Type mcAFAIPF_ACP settings*)
-		AnalogInput : McCfgUnboundedArrayType;
+		AnalogInput : McCfgUnboundedArrayType; (*Connect array of type McAFAIACPAnInType*)
 	END_STRUCT;
 	McAFAIACPmultiAnInEnum :
 		( (*Analog input 1-4 selector setting*)
@@ -3651,7 +3769,7 @@ TYPE
 		Common : McAFAIACPmultiAnInCmnType; (*Common settings for all Type values*)
 	END_STRUCT;
 	McAFAIACPmultiType : STRUCT (*Type mcAFAIPF_ACPM settings*)
-		AnalogInput : McCfgUnboundedArrayType;
+		AnalogInput : McCfgUnboundedArrayType; (*Connect array of type McAFAIACPmultiAnInType*)
 	END_STRUCT;
 	McAFAIACPP3AnInEnum :
 		( (*Analog input 1-3 selector setting*)
@@ -3667,7 +3785,7 @@ TYPE
 		Common : McAFAIACPP3AnInCmnType; (*Common settings for all Type values*)
 	END_STRUCT;
 	McAFAIACPP3Type : STRUCT (*Type mcAFAIPF_ACP_P3 settings*)
-		AnalogInput : McCfgUnboundedArrayType;
+		AnalogInput : McCfgUnboundedArrayType; (*Connect array of type McAFAIACPP3AnInType*)
 	END_STRUCT;
 	McAFAIProdFamType : STRUCT
 		Type : McAFAIProdFamEnum; (*ACOPOS product family selector setting*)
