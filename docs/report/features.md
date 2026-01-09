@@ -1,6 +1,6 @@
-## 📊 mapp Report Framework Features
+## 📊 mapp Report Framework 6 - Features
 
-The following features and functionality are included in the **mapp Report Framework**:
+The following features and functionality are included in the **mapp Report Framework 6**:
 
 * **Two report configurations**: 
 

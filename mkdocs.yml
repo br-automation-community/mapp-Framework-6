@@ -4,6 +4,9 @@ site_author: B&R Community
 
 repo_url: https://github.com/br-automation-community/mapp-Framework-6
 
+extra_css:
+  - stylesheets/extra.css
+  
 theme:
   name: material
   features:
