@@ -1,4 +1,4 @@
-# mapp View
+## ℹ️ Visualization - mappView
 
 The **mapp Framework 6** offers a mapp View front end.Select your preference via the dropdown in the import tool.You can also select to import no visualization and just get the backend code.
 

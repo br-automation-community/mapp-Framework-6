@@ -1,4 +1,4 @@
-# Default User Partition Files
+## ℹ️ Default User Partition Files
 
 The Framework contains a few default files (e.g. recipe files) that need to be transferred to the user partition via an offline install or FTP access. These files are located in the Logical View within the "UserPartition" package.
 
@@ -7,4 +7,3 @@ The Framework contains a few default files (e.g. recipe files) that need to be t
 ![Visu import][def]
 
 [def]: images/userpartion1.png
-

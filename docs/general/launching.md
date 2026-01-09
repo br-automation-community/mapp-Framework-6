@@ -1,4 +1,4 @@
-## Launching the importer
+## ℹ️ Launching the importer
 
 >IMPORTANT:
 >
@@ -23,4 +23,4 @@ Notes:
 * You can only import **mapp Framework 6** components to the active configuration. 
 
 [def]: images/Importer1.png
-[def2]: images/Importer2.png
+[def2]: images/Importer2.png 

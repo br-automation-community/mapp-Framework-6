@@ -1,4 +1,4 @@
-**Supported Versions**
+## ℹ️ Supported Versions
 
 The **mapp Framework 6** is supported in the following versions.
 
