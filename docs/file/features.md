@@ -1,10 +1,9 @@
-## 📁 mapp File Framework Features
+## 📁 mapp File Framework 6 Features
 
-The following features and functionality are included in the **mapp File Framework**:  
+The following features and functionality are included in the **mapp File Framework 6**:  
 
 • **General file explorer functionality** on the **HMI**
-
-  o Create / delete / sort / rename / search / copy / etc
+   * Create / delete / sort / rename / search / copy / etc
 
 • The ability to **enable a FIFO** for one file device.For more details, see [here](fifo.md).
 

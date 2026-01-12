@@ -43,7 +43,19 @@
           <Method xsi:type="opcUa.NodeAction.GetValue" />
         </ReadTarget>
       </Operand>
+      <Operand datatype="ANY_INT" name="ErrorNumber">
+        <ReadTarget xsi:type="opcUa.NodeAction.Read" refId="::FileMgr:MpFileManagerUIConnect.MessageBox.ErrorNumber">
+          <Method xsi:type="opcUa.NodeAction.GetValue" />
+        </ReadTarget>
+      </Operand>
       <EventHandler condition="newValue = 0 AND MsgType = 1">
+        <Action>
+          <Target xsi:type="clientSystem.Action">
+            <Method xsi:type="clientSystem.Action.OpenDialog" dialogId="FileMessage" headerText="$IAT/mappFramework/File/FileManagerInfo" />
+          </Target>
+        </Action>
+      </EventHandler>
+      <EventHandler condition="newValue = 0 AND (MsgType = 4 OR MsgType = 5)">
         <Action>
           <Target xsi:type="clientSystem.Action">
             <Method xsi:type="clientSystem.Action.OpenDialog" dialogId="FileMessage" headerText="$IAT/mappFramework/File/FileManagerInfo" />

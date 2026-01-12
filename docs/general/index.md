@@ -1,4 +1,4 @@
-ℹ## ℹ️ mapp Framework 6
+## ℹ️ mapp Framework 6
 
 This section contains information that is relevant for all of the mapp Frameworks. 
 

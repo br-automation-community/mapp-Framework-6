@@ -5,6 +5,7 @@
     <Property ID="Password" Value="$argon2id$v=19$m=512,t=70,p=1$4lwiP++Fa9ha$I7V+QV4WFKivgLf0UPDfiWQEMTL+EDoE15DbJzmkJZs" />
     <Group ID="Roles">
       <Property ID="Role[1]" Value="Everyone" />
+      <Property ID="Role[2]" Value="BR_Engineer" />
     </Group>
   </Element>
   <Element ID="Admin" Type="User">
@@ -14,6 +15,7 @@
       <Property ID="Role[2]" Value="Everyone" />
       <Property ID="Role[3]" Value="Operators" />
       <Property ID="Role[4]" Value="Service" />
+      <Property ID="Role[5]" Value="BR_Engineer" />
     </Group>
   </Element>
   <Element ID="Operator" Type="User">
@@ -21,6 +23,7 @@
     <Group ID="Roles">
       <Property ID="Role[1]" Value="Operators" />
       <Property ID="Role[2]" Value="Everyone" />
+      <Property ID="Role[3]" Value="BR_Engineer" />
     </Group>
   </Element>
   <Element ID="Service_Tech" Type="User">
@@ -28,6 +31,7 @@
     <Group ID="Roles">
       <Property ID="Role[1]" Value="Service" />
       <Property ID="Role[2]" Value="Everyone" />
+      <Property ID="Role[3]" Value="BR_Engineer" />
     </Group>
   </Element>
 </Configuration>

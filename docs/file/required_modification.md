@@ -8,9 +8,10 @@ The Framework by default provides a solid foundation, but in order to integrate 
 >
 ---
 
-1. Change the passwords for the **Admin**, **Operator**, and **Service_Tech** users.  
-   This is done in the **User.user** file in the Configuration View (**AccessAndSecurity → UserRoleSystem → User.user**).  
-   Note that if you already had users in your project with these same names prior to import, your existing users will remain unchanged and you do not need to update the passwords.
+1. Change the passwords for the **Admin**, **Operator**, and **Service_Tech** users.  This is done in the **User.user** file in the Configuration View (AccessAndSecurity → UserRoleSystem → User.user).<br>
+
+>   Note that if you already had users in your project with these same names prior to import, your existing users will remain unchanged and you do not need to update the passwords.
+>
 
 2. The **File Framework** uses **retained variables**, which require **nonzero remanent memory**. This must be configured in the **CPU memory configuration** if it is not already configured.
 
@@ -18,6 +19,6 @@ The Framework by default provides a solid foundation, but in order to integrate 
 
      1. Assign the **mapp View content** (content ID = **File_content**) to an area on a page within your visualization.
 
-     2. The ability to **cut / delete a file** and **configure the FIFO** on the **mapp View HMI** is restricted to the **Administrators** or **Service** role. Therefore, add a way to **log in on the HMI** (for example, by importing the **mapp UserX** framework).
+     2. The ability to **cut / delete a file** and **configure the FIFO** on the mapp View HMI is restricted to the **Administrators** or **Service** role. Therefore, add a way to **log in on the HMI** (for example, by importing the **mapp UserX** framework).
 
 4. If you did **not** import the mapp View front end with the Framework, connect the **HmiFile** structure elements to your visualization accordingly.

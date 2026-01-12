@@ -1,6 +1,6 @@
-## 📂 mapp File Framework
+## 📂 mapp File Framework 6
 
-This section describes the **mapp File Framework**. For full details on **mapp File** itself, see [here](https://help.br-automation.com/#/en/4/mapptechnology%2Fmapp_services%2Fmpfile%2Fmpfile.html).
+This section describes the **mapp File Framework 6**. For full details on **mapp File** itself, see [here](https://help.br-automation.com/#/en/4/mapptechnology%2Fmapp_services%2Fmpfile%2Fmpfile.html).
 
 > IMPORTANT:
 > The steps on the **"Required Modifications"** page must be executed in order to get the Framework into a 

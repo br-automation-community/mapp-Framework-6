@@ -1,4 +1,4 @@
-# mapp Framework 6
+## 📘 Introduction
 
 To get started with the mapp Framework 6, proceed to the [General information section](general/index.md). 
 

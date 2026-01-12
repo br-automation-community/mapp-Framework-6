@@ -1,6 +1,6 @@
 ## 📁 FIFO (First-In-First-Out) Functionality
 
-The **mapp File Framework** comes with the option of enabling a **FIFO (first-in-first-out)** for a file device of your choosing. 
+The **mapp File Framework 6** comes with the option of enabling a **FIFO (first-in-first-out)** for a file device of your choosing. 
 
 There are a few key details regarding this feature:
 
