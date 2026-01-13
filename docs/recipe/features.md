@@ -1,6 +1,6 @@
-## 🧾 mapp Recipe Framework
+## 🧾 mapp Recipe Framework 6
 
-The following features and functionality are included in the **mapp Recipe Framework**:  
+The following features and functionality are included in the **mapp Recipe Framework 6**:  
 
 • The infrastructure to set up **two distinct recipe files**, with a structure variable registered to each  
 

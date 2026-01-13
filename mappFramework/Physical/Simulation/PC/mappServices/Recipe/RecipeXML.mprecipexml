@@ -4,8 +4,10 @@
   <Element ID="gMpLinkRecipeXml" Type="mprecipexml">
     <Group ID="mapp.Gen">
       <Property ID="Enable" Value="TRUE" />
+      <Property ID="EnableCockpit" Value="TRUE" />
       <Property ID="TaskClass" Value="8" />
       <Property ID="Audit" Value="TRUE" />
+      <Property ID="Parent" />
     </Group>
     <Group ID="mapp.Recipe.Xml">
       <Selector ID="AutoSave" Value="Standard" />

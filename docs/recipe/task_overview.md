@@ -1,4 +1,4 @@
-## 🧾 mapp Recipe Framework – Task Overview
+## 🧾 mapp Recipe Framework 6 – Task Overview
 
 The **RecipeMgr** task contains all of the provided Framework code for **mapp Recipe**. This task is located in the **Logical View** within the **Infrastructure package**.
 
