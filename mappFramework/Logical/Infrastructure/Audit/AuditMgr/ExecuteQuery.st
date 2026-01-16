@@ -9,7 +9,7 @@ ACTION ExecuteQuery:
 
 	CASE (AuditQuery.State) OF
 		ACTIVE_AUDIT_WAIT:
-			// Wait until the RunQuery command is triggered from the HMI.
+			// Wait until the command is triggered from the HMI.
 			// If you prefer that the query runs anytime new data is available, then uncomment line 15 and comment out line 16 and delete
 			// the "Run query" button from the HMI.
 			//IF (AuditQuery.LastUpdateCount <> AuditQuery.UpdateCount) THEN
@@ -27,32 +27,26 @@ ACTION ExecuteQuery:
 				END_IF
 
 				AuditQuery.State := ACTIVE_AUDIT_QUERY;
+				
+			ELSIF (HmiAudit.Commands.NextQuery) THEN
+				// By default, AuditQuery.Alarms has 20 elements, so it can hold 20 query results at a time (MAX_QUERY_RESULTS = 19).
+				// If QueryUserEvents.Info.HasMoreRows is true, this means the query result is more than 20 alarms.
+				// If you want to save the data for the first 20 alarms, add code here to copy AuditQuery.Alarms to another location.
+				// Otherwise, the older alarms in the query will get overwritten with the newest entries here.
+				brsmemset(ADR(AuditQuery.Audits[0]), 0, SIZEOF(AuditQuery.Audits));
+				HmiAudit.Commands.RunQuery := FALSE;
+				HmiAudit.Commands.NextQuery := FALSE;
+				QueryUserEvents.Next := TRUE;
+				AuditQuery.State := ACTIVE_AUDIT_QUERY;
 			END_IF
 
 		ACTIVE_AUDIT_QUERY:
-			// If the number of query results is less than MAX_QUERY_RESULTS, return to the wait state
-			IF ((QueryUserEvents.CommandDone) AND (NOT QueryUserEvents.Info.HasMoreRows)) THEN
+			IF (QueryUserEvents.CommandDone)  THEN
 				// Call the custom event function when the query execution is done
 				MpAuditCustomEvent(gMpLinkCustomEvents,"Cmd Done","Executing the query command has finished","For additional information check the logger.");
 				QueryUserEvents.Execute := FALSE;
 				QueryUserEvents.Next := FALSE;
 				AuditQuery.State := ACTIVE_AUDIT_WAIT;
-				// If the number of query results is more than MAX_QUERY_RESULTS, then query the next set of results
-			ELSIF ((QueryUserEvents.CommandDone) AND (QueryUserEvents.Info.HasMoreRows)) THEN
-				QueryUserEvents.Next := FALSE;
-				AuditQuery.State := ACTIVE_AUDIT_NEXT;
-			END_IF
-
-		ACTIVE_AUDIT_NEXT:
-			IF (AuditQuery.Next) THEN
-				// By default, AuditQuery.Alarms has 20 elements, so it can hold 20 query results at a time (MAX_QUERY_RESULTS = 19).
-				// If AuditQuery.Next is true, this means the query result is more than 20 alarms.
-				// If you want to save the data for the first 20 alarms, add code here to copy AuditQuery.Alarms to another location.
-				// Otherwise, the older alarms in the query will get overwritten with the newest entries here.
-				brsmemset(ADR(AuditQuery.Audits[0]), 0, SIZEOF(AuditQuery.Audits));
-				AuditQuery.Next := FALSE;
-				QueryUserEvents.Next := TRUE;
-				AuditQuery.State := ACTIVE_AUDIT_QUERY;
 			END_IF
 	END_CASE
 

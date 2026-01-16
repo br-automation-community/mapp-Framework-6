@@ -69,15 +69,15 @@ ACTION QueryTableConfig:
 	END_FOR
 	brsitoa((HmiAudit.Status.Query.QueryCount), ADR(TmpTableConfig) + brsstrlen(ADR(TmpTableConfig)));
 	brsstrcat(ADR(TmpTableConfig), ADR(',"to":19, "visible":false}]'));
-	brsstrcpy(ADR(HmiAudit.Status.TableConfig[0]), ADR(TmpTableConfig));
 
 	// Hide operator column for the recipe query
 	IF (HmiAudit.Status.Query.Option = 0) THEN
-		brsstrcat(ADR(HmiAudit.Status.TableConfig[0]), ADR(', "specColumns": [ {"from":2, "to":2, "visible":true}]'));
+		brsstrcat(ADR(TmpTableConfig), ADR(', "specColumns": [ {"from":2, "to":2, "visible":true}]'));
 	ELSIF (HmiAudit.Status.Query.Option = 1) THEN
-		brsstrcat(ADR(HmiAudit.Status.TableConfig[0]), ADR(', "specColumns": [ {"from":2, "to":2, "visible":false}]'));
+		brsstrcat(ADR(TmpTableConfig), ADR(', "specColumns": [ {"from":2, "to":2, "visible":false}]'));
 	END_IF
 
-	brsstrcat(ADR(HmiAudit.Status.TableConfig[0]), ADR('}'));
+	brsstrcat(ADR(TmpTableConfig), ADR('}'));
+	brsstrcpy(ADR(HmiAudit.Status.TableConfig[0]), ADR(TmpTableConfig));
 
 END_ACTION

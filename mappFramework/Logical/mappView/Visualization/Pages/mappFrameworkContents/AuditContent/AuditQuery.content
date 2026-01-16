@@ -10,5 +10,6 @@
     </Widget>
     <Widget xsi:type="widgets.brease.PushButton" id="PushBtnRunAuditQuery" top="20" left="940" width="150" zIndex="1" text="$IAT/mappFramework/Audit/RunQuery" permissionOperate="['Administrators', 'Service']" style="Operate" />
     <Widget xsi:type="widgets.brease.DropDownBox" id="DropDownAuditQuerySelect" top="20" left="715" width="200" zIndex="2" dataProvider="[{'value':'UserEvents','text':'User Events Query'},{'value':'RecipeEvents','text':'Recipe Events Query'}]" listPosition="center" listWidth="200" selectedValue="UserEvents" permissionOperate="['Administrators', 'Service']" style="ListBottom" />
+    <Widget xsi:type="widgets.brease.PushButton" id="PushBtnNextAuditQuery" top="554" left="990" zIndex="3" text="$IAT/mappFramework/Audit/Next" enable="false" permissionOperate="['Administrators', 'Service']" style="Operate" />
   </Widgets>
 </Content>

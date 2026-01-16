@@ -23,6 +23,11 @@
           <Variable Name="DeviceDataProvider" RecursiveEnable="2" />
         </Variable>
       </Variable>
+      <Variable Name="QueryUserEvents">
+        <Variable Name="Info">
+          <Variable Name="HasMoreRows" />
+        </Variable>
+      </Variable>
     </Task>
   </Module>
 </OpcUaSource>
