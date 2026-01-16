@@ -313,5 +313,16 @@
         <seg>Audit</seg>
       </tuv>
     </tu>
+    <tu tuid="Next">
+      <tuv xml:lang="de">
+        <seg>Weiter</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>下一步</seg>
+      </tuv>
+      <tuv xml:lang="en">
+        <seg>Next</seg>
+      </tuv>
+    </tu>
   </body>
 </tmx>

@@ -33,6 +33,7 @@ TYPE
 		ExportArchives : BOOL; (*Triggers an Audit export of the Audit history. Connected to a button on the HMI. *)
 		RunQuery : BOOL; (*Triggers the query to run. Connected to a button on the HMI. *)
 		SaveConfig : BOOL; (*Starts the configuration for archives*)
+		NextQuery : BOOL; (*Triggers the query to load the next volume of events. Connected to a button on the HMI. *)
 	END_STRUCT;
 	AuditStatusType : 	STRUCT  (*Structure to hold status information from the mapp View HMI. (This structure is not compatible/relevant if you are using a VC4 visualization)*)
 		AuditSortCfg : STRING[1000]; (*Sort configuration for the AuditList widget*)
@@ -72,7 +73,6 @@ TYPE
 	ActiveAuditStateEnum : 
 		( (*Enumeration for the state for the query state machine*)
 		ACTIVE_AUDIT_WAIT, (*Wait state*)
-		ACTIVE_AUDIT_QUERY, (*State to query the Audit data*)
-		ACTIVE_AUDIT_NEXT (*State to check if more Audits meet the query criteria and need to be queried*)
+		ACTIVE_AUDIT_QUERY (*State to query the Audit data*)
 		);
 END_TYPE
