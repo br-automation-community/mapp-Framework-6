@@ -17,6 +17,7 @@
 		<EventBindingsSet refId="CustomEvents" />
 		<EventBindingsSet refId="AuditDialogArchiveSettings" />
 		<EventBindingsSet refId="Navigation" />
+		<EventBindingsSet refId="AuditQuery" />
 	</EventBindingsSets>
 	<Dialogs>
 		<Dialog refId="AuditArchiveSettings" />
@@ -32,6 +33,7 @@
 	<SnippetsSets />
 	<VariablesSets>
 		<VariablesSet refId="Navigation" />
+		<VariablesSet refId="Audit" />
 	</VariablesSets>
 	<StartTheme themeRefId="BuRThemeFlat1" />
 	<Themes>
