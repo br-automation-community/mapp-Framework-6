@@ -7,6 +7,7 @@ VAR_CONFIG
 	::AppAxis_1:AxisControl.Status AT %Q.::AppAxisUni:AxisControl.Status; (*Insert your comment here...*)
 	::AppAxis_1:MpAlarmXCoreAxis AT %Q.::AppAxisUni:MpAlarmXCoreAxis; (*Insert your comment here...*)
 	::AppAxis_1:State AT %Q.::AppAxisUni:State; (*Insert your comment here...*)
+	::AppAxis_1:MpAxisBasicAppAxis.Update AT %Q.::AppAxisUni:MpAxisUpdate; (*Insert your comment here...*)
 END_VAR
 (*Outputs from the unit test*)
 VAR_CONFIG
