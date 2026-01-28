@@ -33,6 +33,7 @@ VAR CONSTANT
 	cfgERR_NTP_CLIENT 				: UINT		:= 29033;	(*error starting NTP client*)
 	cfgERR_ROUTE_TABLE				: UINT		:= 29034;	(*error updating network routing table*)
 	cfgERR_DST						: UINT		:= 29035;	(*could not enable or disable automatic daylight saving*)
+	cfgERR_PORT_INVALID             : UINT      := 29036;   (*FBK "port" parameter invalid*)
 
 	cfgETHBAUDRATE_AUTO				: UDINT		:= 0;		(*auto-detect*)
 	cfgETHBAUDRATE_10				: UDINT		:= 10;		(*10 MBaud, half-duplex*)
@@ -83,6 +84,7 @@ VAR CONSTANT
 	cfgSDM_COLOR_DEFAULT			: UDINT		:= 2147483648;	(*sdm default color*)
 	
 	cfgDHCP_OPTION_VENDOR_CLASS_ID	: USINT		:= 60; 		(*DHCP option vendor class identifier*)
+	cfgDHCP_OPTION_CLIENT_ID		: USINT		:= 61; 		(*DHCP option client identifier*)
 	
 	cfgSNMP_MODE_DISABLED			: UINT		:= 0;		(*SNMP disabled*)
 	cfgSNMP_MODE_READ_ONLY			: UINT		:= 1;		(*SNMP read only*)

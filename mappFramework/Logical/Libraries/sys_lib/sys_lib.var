@@ -12,6 +12,18 @@ VAR CONSTANT
 	ERR_BUR_NOTIME				: UINT	:= 3584;	(*time not available*)
 	ERR_BUR_TMP_ALLOC			: UINT	:= 3601;	(*not enough continuous memory*)
 	ERR_BUR_TMP_FREE			: UINT	:= 3701;	(*invalid pointer/length*)
+	ERR_EXC_NIL_POINTER			: UINT	:= 9133;	(*null pointer*)
+	ERR_BUR_PVNAME				: UINT	:= 14700;	(*Invalid name syntax*)
+	ERR_BUR_WRONG_ARRAY			: UINT	:= 14702;	(*Invalid array syntax*)
+	ERR_BUR_WRONG_ELEM			: UINT	:= 14703;	(*Invalid element syntax*)
+	ERR_BUR_WRONG_COMP			: UINT	:= 14704;	(*Invalid component separator*)
+	ERR_BUR_NOTFOUND			: UINT	:= 14710;	(*PV not found*)
+	ERR_BUR_ZEROLNG				: UINT	:= 14712;	(*PV size is zero (plausibility check)*)
+	ERR_BUR_NODETAIL			: UINT	:= 14713;	(*No type description (plausibility check)*)
+	ERR_BUR_AIXTOOBIG			: UINT	:= 14714;	(*Array index too big*)
+	ERR_BUR_WRONG_SDSR			: UINT	:= 14715;	(*Invalid address (plausibility check)*)
+	ERR_BUR_BUFLNG				: UINT	:= 14716;	(*Name buffer too small*)
+	ERR_BUR_WRONG_INDEX			: UINT	:= 14717;	(*Access via index/subindex is not supported*)
 END_VAR
 
 (*state for object PLC task*)

@@ -253,6 +253,14 @@ END_FUNCTION
 	END_VAR
 END_FUNCTION
 
+{REDUND_CONTEXT} {REDUND_UNREPLICABLE} FUNCTION PV_lkaddr : UINT 				(*looks for a process varaible name for the specified address*)
+	VAR_INPUT
+		pv_address			:UDINT;		(*PV address to look for*)
+		pv_name_buf			:UDINT;		(*pointer to name buffer for the name of the process variable*)
+		pv_name_buf_size	:UDINT;		(*size of name buffer in bytes*)
+	END_VAR
+END_FUNCTION
+
 {REDUND_CONTEXT} {REDUND_UNREPLICABLE} FUNCTION_BLOCK slMoList	 				(*browses the B&R modules on the target system*)
 	VAR_INPUT
 		enable			:BOOL;			(*enables execution*)

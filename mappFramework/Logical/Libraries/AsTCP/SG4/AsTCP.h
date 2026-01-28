@@ -16,6 +16,10 @@ extern "C"
 #define _BUR_PUBLIC
 #endif
 /* Datatypes and datatypes of function blocks */
+typedef enum AsTcpCipherVersionEnum
+{	asTCP_TLS_1_3 = 2
+} AsTcpCipherVersionEnum;
+
 typedef struct tcpLINGER_typ
 {	unsigned long lOnOff;
 	unsigned long lLinger;
@@ -25,6 +29,12 @@ typedef struct tcpSO_ADDRESS_typ
 {	unsigned long pPort;
 	unsigned long pIpAddr;
 } tcpSO_ADDRESS_typ;
+
+typedef struct AsTcpMcsType
+{	plcstring name[256];
+	enum AsTcpCipherVersionEnum tlsVersion;
+	plcbit trustListValidation;
+} AsTcpMcsType;
 
 typedef struct TcpOpen
 {
@@ -60,6 +70,24 @@ typedef struct TcpOpenSsl
 	/* VAR_INPUT (digital) */
 	plcbit enable;
 } TcpOpenSsl_typ;
+
+typedef struct TcpOpenMcs
+{
+	/* VAR_INPUT (analog) */
+	unsigned long pIfAddr;
+	unsigned short port;
+	struct AsTcpMcsType mcsStore;
+	unsigned long options;
+	/* VAR_OUTPUT (analog) */
+	unsigned short status;
+	unsigned long ident;
+	/* VAR (analog) */
+	unsigned short i_state;
+	unsigned short i_result;
+	unsigned long i_tmp;
+	/* VAR_INPUT (digital) */
+	plcbit enable;
+} TcpOpenMcs_typ;
 
 typedef struct TcpServer
 {
@@ -169,6 +197,7 @@ typedef struct TcpIoctl
 /* Prototyping of functions and function blocks */
 _BUR_PUBLIC void TcpOpen(struct TcpOpen* inst);
 _BUR_PUBLIC void TcpOpenSsl(struct TcpOpenSsl* inst);
+_BUR_PUBLIC void TcpOpenMcs(struct TcpOpenMcs* inst);
 _BUR_PUBLIC void TcpServer(struct TcpServer* inst);
 _BUR_PUBLIC void TcpClient(struct TcpClient* inst);
 _BUR_PUBLIC void TcpClose(struct TcpClose* inst);
@@ -212,6 +241,7 @@ _BUR_PUBLIC void TcpIoctl(struct TcpIoctl* inst);
  #define tcpERR_SYSTEM 32699U
  #define tcpERR_SSL_HANDSHAKE_FAILED 32698U
  #define tcpERR_INVALID_SSL_CONFIG 32697U
+ #define tcpERR_INVALID_MCS_CONFIG 32696U
  #define tcpERR_SOCKET_ACCEPT 32653U
  #define tcpERR_SOCKET_LISTEN 32652U
  #define tcpERR_SOCKET_BIND 32651U
@@ -264,6 +294,7 @@ _BUR_PUBLIC void TcpIoctl(struct TcpIoctl* inst);
  _GLOBAL_CONST unsigned short tcpERR_SYSTEM;
  _GLOBAL_CONST unsigned short tcpERR_SSL_HANDSHAKE_FAILED;
  _GLOBAL_CONST unsigned short tcpERR_INVALID_SSL_CONFIG;
+ _GLOBAL_CONST unsigned short tcpERR_INVALID_MCS_CONFIG;
  _GLOBAL_CONST unsigned short tcpERR_SOCKET_ACCEPT;
  _GLOBAL_CONST unsigned short tcpERR_SOCKET_LISTEN;
  _GLOBAL_CONST unsigned short tcpERR_SOCKET_BIND;
