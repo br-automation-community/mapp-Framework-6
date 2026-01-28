@@ -9,7 +9,7 @@
       <Property ID="MaxClientConnections" Value="10" />
       <Property ID="MpUserXUserPreferences" Value="FALSE" />
       <Selector ID="StartupUser" Value="StartupUserDefaultUser">
-        <Property ID="StartupUserDefaultUserName" Value="Admin" />
+        <Property ID="StartupUserDefaultUserName" Value="AdminDefault" />
         <Property ID="MVEncryptedPassword" Value="GmmKwwpa17VUB8ZHRkHmyg==" />
       </Selector>
       <Group ID="TcpProxyConf">

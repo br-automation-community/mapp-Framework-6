@@ -22,9 +22,9 @@
       </Selector>
     </Group>
     <Group ID="PasswordPolicy">
-      <Property ID="PasswordMaxAge" Value="7776000" />
-      <Property ID="PasswordExpirationNotification" Value="864000" />
-      <Property ID="PasswordHistory" Value="5" />
+      <Property ID="PasswordMaxAge" Value="0" />
+      <Property ID="PasswordExpirationNotification" Value="0" />
+      <Property ID="PasswordHistory" Value="0" />
       <Property ID="PasswordChangeReq" Value="FALSE" />
       <Property ID="PasswordCase" Value="TRUE" />
       <Property ID="PasswordAlpha" Value="TRUE" />
@@ -33,8 +33,8 @@
     </Group>
     <Group ID="UserAccount">
       <Property ID="InvalidPasswordAttempts" Value="5" />
-      <Property ID="UserExpirationTime" Value="31536000" />
-      <Property ID="AutoLogoutTime" Value="3600" />
+      <Property ID="UserExpirationTime" Value="0" />
+      <Property ID="AutoLogoutTime" Value="0" />
       <Property ID="UserNameLength" Value="3" />
       <Property ID="NoDelete" Value="FALSE" />
       <Property ID="AdminUnlockTime" Value="3600" />
@@ -44,30 +44,43 @@
       <Property ID="ImportUser" Value="2" />
       <Property ID="ImportRole" Value="2" />
       <Property ID="ImportUnchecked" Value="FALSE" />
+      <Property ID="FileChecksum" Value="2" />
     </Group>
     <Group ID="Users">
       <Group ID="DefUser#1">
         <Property ID="id" Value="Admin" />
         <Property ID="name" Value="Admin" />
-        <Property ID="lang" Value="en" />
+        <Property ID="lang" />
         <Property ID="measSystem" Value="0" />
       </Group>
       <Group ID="DefUser#2">
         <Property ID="id" Value="Anonymous" />
         <Property ID="name" Value="Anonymous" />
-        <Property ID="lang" Value="en" />
+        <Property ID="lang" />
         <Property ID="measSystem" Value="0" />
       </Group>
       <Group ID="DefUser#3">
         <Property ID="id" Value="Operator" />
         <Property ID="name" Value="Operator" />
-        <Property ID="lang" Value="en" />
+        <Property ID="lang" />
         <Property ID="measSystem" Value="0" />
       </Group>
       <Group ID="DefUser#4">
         <Property ID="id" Value="Service_Tech" />
         <Property ID="name" Value="Service_Tech" />
-        <Property ID="lang" Value="zh" />
+        <Property ID="lang" />
+        <Property ID="measSystem" Value="0" />
+      </Group>
+      <Group ID="DefUser#5">
+        <Property ID="id" Value="SystemUser" />
+        <Property ID="name" Value="SystemUser" />
+        <Property ID="lang" />
+        <Property ID="measSystem" Value="0" />
+      </Group>
+      <Group ID="DefUser#6">
+        <Property ID="id" Value="AdminDefault" />
+        <Property ID="name" Value="AdminDefault" />
+        <Property ID="lang" />
         <Property ID="measSystem" Value="0" />
       </Group>
     </Group>

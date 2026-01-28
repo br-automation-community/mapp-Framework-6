@@ -43,8 +43,9 @@ PROGRAM _INIT
 
 	MpUserXLoginSys.MpLink := ADR(gMpLinkUserXLogin);
 	MpUserXLoginSys.Enable := TRUE;
-	MpUserXLoginSys.UserName := ADR(HmiUserX.Parameters.UserName);
-	MpUserXLoginSys.Password := ADR(HmiUserX.Parameters.Password);
+	MpUserXLoginSys.UserName := ADR(SystemUserName);
+	MpUserXLoginSys.Password := ADR(SystemUserPassword);
+	MpUserXLoginSys.Login := TRUE;
 	MpUserXLoginSys();
 
 

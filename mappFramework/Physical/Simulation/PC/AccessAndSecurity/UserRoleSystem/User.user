@@ -8,6 +8,16 @@
       <Property ID="Role[2]" Value="BR_Engineer" />
     </Group>
   </Element>
+  <Element ID="AdminDefault" Type="User">
+    <Property ID="Password" Value="$argon2id$v=19$m=512,t=70,p=1$6lkQPrX0EaVC$5zEYt9zjgiZZ3orAwf0DYr80uLrih0di8W6Fjkc1Ebc" />
+    <Group ID="Roles">
+      <Property ID="Role[1]" Value="Administrators" />
+      <Property ID="Role[2]" Value="Everyone" />
+      <Property ID="Role[3]" Value="Operators" />
+      <Property ID="Role[4]" Value="Service" />
+      <Property ID="Role[5]" Value="BR_Engineer" />
+    </Group>
+  </Element>
   <Element ID="Admin" Type="User">
     <Property ID="Password" Value="$argon2id$v=19$m=512,t=70,p=1$6lkQPrX0EaVC$5zEYt9zjgiZZ3orAwf0DYr80uLrih0di8W6Fjkc1Ebc" />
     <Group ID="Roles">
@@ -32,6 +42,12 @@
       <Property ID="Role[1]" Value="Service" />
       <Property ID="Role[2]" Value="Everyone" />
       <Property ID="Role[3]" Value="BR_Engineer" />
+    </Group>
+  </Element>
+  <Element ID="SystemUser" Type="User">
+    <Property ID="Password" Value="$argon2id$v=19$m=512,t=70,p=1$oHI05uuEfRP3$b28Bc+XVULtfLdoT+MVZXSiuON/aNHgzKP/AzQY/tOk" />
+    <Group ID="Roles">
+      <Property ID="Role[1]" Value="Administrators" />
     </Group>
   </Element>
 </Configuration>

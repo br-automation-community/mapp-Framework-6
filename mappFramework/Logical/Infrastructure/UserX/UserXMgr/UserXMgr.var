@@ -21,5 +21,7 @@ END_VAR
 VAR
 	temp : STRING[255]; (*Temporary string holder for checking file names*)
 	i : USINT; (*Index*)
+	SystemUserName : {REDUND_UNREPLICABLE} WSTRING[100] := "SystemUser"; (*System User name*)
+	SystemUserPassword : {REDUND_UNREPLICABLE} WSTRING[100] := "123456ABCdef"; (*System User password*)
 END_VAR
 (*Enumerations*)
