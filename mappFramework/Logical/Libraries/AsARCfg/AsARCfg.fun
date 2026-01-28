@@ -394,6 +394,76 @@ END_FUNCTION_BLOCK
 	END_VAR
 END_FUNCTION_BLOCK
 
+{REDUND_CONTEXT} {REDUND_UNREPLICABLE} FUNCTION_BLOCK CfgGetFTPServerPort			(*gets the FTP server port; asynchronous execution*)
+	VAR_INPUT
+		enable			: BOOL;			(*enables execution*)
+	END_VAR
+
+	VAR_OUTPUT
+		status			: UINT;			(*execution status: ERR_OK, ERR_FUB_ENABLE_FALSE, 0xXXXX = see help*)
+		port            : UINT;			(*FTP server port*)
+	END_VAR
+
+	VAR
+        i_state			: UINT;			(*internal variable*)
+		i_result		: UINT;			(*internal variable*)
+        i_tmp			: UDINT;		(*internal variable*)
+	END_VAR
+END_FUNCTION_BLOCK
+
+{REDUND_CONTEXT} {REDUND_UNREPLICABLE} FUNCTION_BLOCK CfgSetFTPServerPort			(*sets the FTP server port; asynchronous execution*)
+	VAR_INPUT
+		enable			: BOOL;			(*enables execution*)
+		port            : UINT;			(*FTP server port*)
+		option			: UDINT;		(*options: cfgOPTION_VOLATILE, cfgOPTION_NON_VOLATILE*)
+	END_VAR
+
+	VAR_OUTPUT
+		status			: UINT;			(*execution status: ERR_OK, ERR_FUB_ENABLE_FALSE, 0xXXXX = see help*)
+	END_VAR
+
+	VAR
+        i_state			: UINT;			(*internal variable*)
+		i_result		: UINT;			(*internal variable*)
+        i_tmp			: UDINT;		(*internal variable*)
+	END_VAR
+END_FUNCTION_BLOCK
+
+{REDUND_CONTEXT} {REDUND_UNREPLICABLE} FUNCTION_BLOCK CfgGetFTPServerBaseDataPort			(*gets the FTP server base data port; asynchronous execution*)
+	VAR_INPUT
+		enable			: BOOL;			(*enables execution*)
+	END_VAR
+
+	VAR_OUTPUT
+		status			: UINT;			(*execution status: ERR_OK, ERR_FUB_ENABLE_FALSE, 0xXXXX = see help*)
+		port			: UINT;         (*FTP base data port, if using passive FTP*)
+	END_VAR
+
+	VAR
+        i_state			: UINT;			(*internal variable*)
+		i_result		: UINT;			(*internal variable*)
+        i_tmp			: UDINT;		(*internal variable*)
+	END_VAR
+END_FUNCTION_BLOCK
+
+{REDUND_CONTEXT} {REDUND_UNREPLICABLE} FUNCTION_BLOCK CfgSetFTPServerBaseDataPort			(*sets the FTP server base data port; asynchronous execution*)
+	VAR_INPUT
+		enable			: BOOL;			(*enables execution*)
+		port			: UINT;         (*FTP base data port, if using passive FTP*)
+		option			: UDINT;		(*options: cfgOPTION_VOLATILE, cfgOPTION_NON_VOLATILE*)
+	END_VAR
+
+	VAR_OUTPUT
+		status			: UINT;			(*execution status: ERR_OK, ERR_FUB_ENABLE_FALSE, 0xXXXX = see help*)
+	END_VAR
+
+	VAR
+        i_state			: UINT;			(*internal variable*)
+		i_result		: UINT;			(*internal variable*)
+        i_tmp			: UDINT;		(*internal variable*)
+	END_VAR
+END_FUNCTION_BLOCK
+
 {REDUND_CONTEXT} {REDUND_UNREPLICABLE} FUNCTION_BLOCK CfgGetTimeOffset			(*returns the configured time offset; asynchronous execution*)
 	VAR_INPUT
 		enable			: BOOL;			(*enables execution*)

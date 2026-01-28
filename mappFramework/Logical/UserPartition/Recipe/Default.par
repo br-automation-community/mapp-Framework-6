@@ -21,11 +21,11 @@
 	</Element>
 	<Element Name="RecipeMgr:ParametersPreview" Type="PvParameter">
 		<Group ID="RecipeMgr:ParametersPreview">
-			<Property ID="AddParametersHere1" DataType="BOOL" Value="false" />
-			<Property ID="AddParametersHere2" DataType="STRING" Value="" />
-			<Property ID="AddParametersHere3" DataType="REAL" Value="0" />
-			<Property ID="AddParametersHere4" DataType="REAL" Value="0" />
-			<Property ID="AddParametersHere5" DataType="REAL" Value="0" />
+			<Property ID="AddParametersHere1" DataType="BOOL" Value="true" />
+			<Property ID="AddParametersHere2" DataType="STRING" Value="two" />
+			<Property ID="AddParametersHere3" DataType="REAL" Value="3.3" />
+			<Property ID="AddParametersHere4" DataType="REAL" Value="4.4" />
+			<Property ID="AddParametersHere5" DataType="REAL" Value="5.5" />
 		</Group>
 	</Element>
 </DATA>

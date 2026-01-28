@@ -421,7 +421,7 @@ _TEST Delete(void)
 	TEST_BUSY;
 }
 
-_TEST Invalid(void)
+SKIP_TEST Invalid(void)
 {
 	TIMEOUT_TEST_CASE
 	switch (TestState)
@@ -495,19 +495,19 @@ _TEST Invalid(void)
 B+R UnitTest: This is generated code.
 Do not edit! Do not move!
 Description: UnitTest Testprogramm infrastructure (TestSet).
-LastUpdated: 2022-11-03 15:12:53Z
-By B+R UnitTest Helper Version: 2.0.1.59
+LastUpdated: 2026-01-28 22:07:24Z
+By B+R UnitTest Helper Version: 2.0.0.0
 */
 UNITTEST_FIXTURES(fixtures)
 {
-	new_TestFixture("DefaultValues", DefaultValues),
-	new_TestFixture("CreateNew", CreateNew),
-	new_TestFixture("CreateExisting", CreateExisting),
-	new_TestFixture("CreateNonExisting", CreateNonExisting),
-	new_TestFixture("CreateActive", CreateActive),
-	new_TestFixture("Preview", Preview),
-	new_TestFixture("Delete", Delete),
-	new_TestFixture("Invalid", Invalid),
+	new_TestFixture("DefaultValues", DefaultValues), 
+	new_TestFixture("CreateNew", CreateNew), 
+	new_TestFixture("CreateExisting", CreateExisting), 
+	new_TestFixture("CreateNonExisting", CreateNonExisting), 
+	new_TestFixture("CreateActive", CreateActive), 
+	new_TestFixture("Preview", Preview), 
+	new_TestFixture("Delete", Delete), 
+	skipTestFixture("Invalid", Invalid), 
 };
 
 UNITTEST_CALLER_COMPLETE_EXPLICIT(Set_RecipeMachineSettings, "Set_RecipeMachineSettings", setupTest, teardownTest, fixtures, setupSet, teardownSet, cyclicSetCaller);

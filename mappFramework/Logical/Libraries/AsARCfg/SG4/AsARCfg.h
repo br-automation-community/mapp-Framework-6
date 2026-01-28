@@ -357,6 +357,62 @@ typedef struct CfgSetFTPServer
 	plcbit enable;
 } CfgSetFTPServer_typ;
 
+typedef struct CfgGetFTPServerPort
+{
+	/* VAR_OUTPUT (analog) */
+	unsigned short status;
+	unsigned short port;
+	/* VAR (analog) */
+	unsigned short i_state;
+	unsigned short i_result;
+	unsigned long i_tmp;
+	/* VAR_INPUT (digital) */
+	plcbit enable;
+} CfgGetFTPServerPort_typ;
+
+typedef struct CfgSetFTPServerPort
+{
+	/* VAR_INPUT (analog) */
+	unsigned short port;
+	unsigned long option;
+	/* VAR_OUTPUT (analog) */
+	unsigned short status;
+	/* VAR (analog) */
+	unsigned short i_state;
+	unsigned short i_result;
+	unsigned long i_tmp;
+	/* VAR_INPUT (digital) */
+	plcbit enable;
+} CfgSetFTPServerPort_typ;
+
+typedef struct CfgGetFTPServerBaseDataPort
+{
+	/* VAR_OUTPUT (analog) */
+	unsigned short status;
+	unsigned short port;
+	/* VAR (analog) */
+	unsigned short i_state;
+	unsigned short i_result;
+	unsigned long i_tmp;
+	/* VAR_INPUT (digital) */
+	plcbit enable;
+} CfgGetFTPServerBaseDataPort_typ;
+
+typedef struct CfgSetFTPServerBaseDataPort
+{
+	/* VAR_INPUT (analog) */
+	unsigned short port;
+	unsigned long option;
+	/* VAR_OUTPUT (analog) */
+	unsigned short status;
+	/* VAR (analog) */
+	unsigned short i_state;
+	unsigned short i_result;
+	unsigned long i_tmp;
+	/* VAR_INPUT (digital) */
+	plcbit enable;
+} CfgSetFTPServerBaseDataPort_typ;
+
 typedef struct CfgGetTimeOffset
 {
 	/* VAR_OUTPUT (analog) */
@@ -1170,6 +1226,10 @@ _BUR_PUBLIC void CfgGetHostNameIf(struct CfgGetHostNameIf* inst);
 _BUR_PUBLIC void CfgSetHostNameIf(struct CfgSetHostNameIf* inst);
 _BUR_PUBLIC void CfgGetMacAddr(struct CfgGetMacAddr* inst);
 _BUR_PUBLIC void CfgSetFTPServer(struct CfgSetFTPServer* inst);
+_BUR_PUBLIC void CfgGetFTPServerPort(struct CfgGetFTPServerPort* inst);
+_BUR_PUBLIC void CfgSetFTPServerPort(struct CfgSetFTPServerPort* inst);
+_BUR_PUBLIC void CfgGetFTPServerBaseDataPort(struct CfgGetFTPServerBaseDataPort* inst);
+_BUR_PUBLIC void CfgSetFTPServerBaseDataPort(struct CfgSetFTPServerBaseDataPort* inst);
 _BUR_PUBLIC void CfgGetTimeOffset(struct CfgGetTimeOffset* inst);
 _BUR_PUBLIC void CfgSetTimeOffset(struct CfgSetTimeOffset* inst);
 _BUR_PUBLIC void CfgSetNtpServer(struct CfgSetNtpServer* inst);
@@ -1229,6 +1289,7 @@ _BUR_PUBLIC unsigned short CfgClearNV(void);
  #define cfgSNMP_MODE_READ_WRITE 2U
  #define cfgSNMP_MODE_READ_ONLY 1U
  #define cfgSNMP_MODE_DISABLED 0U
+ #define cfgDHCP_OPTION_CLIENT_ID 61U
  #define cfgDHCP_OPTION_VENDOR_CLASS_ID 60U
  #define cfgSDM_COLOR_DEFAULT 2147483648U
  #define cfgSTATUS_NTP_INACTIVE 0U
@@ -1265,6 +1326,7 @@ _BUR_PUBLIC unsigned short CfgClearNV(void);
  #define cfgETHBAUDRATE_10FD 11U
  #define cfgETHBAUDRATE_10 10U
  #define cfgETHBAUDRATE_AUTO 0U
+ #define cfgERR_PORT_INVALID 29036U
  #define cfgERR_DST 29035U
  #define cfgERR_ROUTE_TABLE 29034U
  #define cfgERR_NTP_CLIENT 29033U
@@ -1303,6 +1365,7 @@ _BUR_PUBLIC unsigned short CfgClearNV(void);
  _GLOBAL_CONST unsigned short cfgSNMP_MODE_READ_WRITE;
  _GLOBAL_CONST unsigned short cfgSNMP_MODE_READ_ONLY;
  _GLOBAL_CONST unsigned short cfgSNMP_MODE_DISABLED;
+ _GLOBAL_CONST unsigned char cfgDHCP_OPTION_CLIENT_ID;
  _GLOBAL_CONST unsigned char cfgDHCP_OPTION_VENDOR_CLASS_ID;
  _GLOBAL_CONST unsigned long cfgSDM_COLOR_DEFAULT;
  _GLOBAL_CONST unsigned short cfgSTATUS_NTP_INACTIVE;
@@ -1339,6 +1402,7 @@ _BUR_PUBLIC unsigned short CfgClearNV(void);
  _GLOBAL_CONST unsigned long cfgETHBAUDRATE_10FD;
  _GLOBAL_CONST unsigned long cfgETHBAUDRATE_10;
  _GLOBAL_CONST unsigned long cfgETHBAUDRATE_AUTO;
+ _GLOBAL_CONST unsigned short cfgERR_PORT_INVALID;
  _GLOBAL_CONST unsigned short cfgERR_DST;
  _GLOBAL_CONST unsigned short cfgERR_ROUTE_TABLE;
  _GLOBAL_CONST unsigned short cfgERR_NTP_CLIENT;

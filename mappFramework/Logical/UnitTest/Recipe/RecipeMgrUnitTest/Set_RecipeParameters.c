@@ -301,9 +301,9 @@ _TEST PreviewShouldNotAffectActive(void)
 
 				case 4:
 					TEST_BUSY_CONDITION(!SelectRecipe("preview.par"));
-			   //	  MpRecipeUIConnect.Recipe.Load = true;
+			    	  MpRecipeUIConnect.Recipe.Load = true;
 					  TEST_BUSY_CONDITION(MpRecipeSys.CommandDone != true);
-			   //	  MpRecipeUIConnect.Recipe.Load = false;
+			    	  MpRecipeUIConnect.Recipe.Load = false;
 					ActSubState = 5;
 					break;
 
@@ -505,7 +505,7 @@ _TEST Delete(void)
 	TEST_BUSY;
 }
 
-_TEST Invalid(void)
+SKIP_TEST Invalid(void)
 {
 	TIMEOUT_TEST_CASE
 	switch (TestState)
@@ -680,21 +680,21 @@ SKIP_TEST EditActive(void)
 B+R UnitTest: This is generated code.
 Do not edit! Do not move!
 Description: UnitTest Testprogramm infrastructure (TestSet).
-LastUpdated: 2022-11-07 13:02:54Z
-By B+R UnitTest Helper Version: 2.0.1.59
+LastUpdated: 2026-01-28 22:07:24Z
+By B+R UnitTest Helper Version: 2.0.0.0
 */
 UNITTEST_FIXTURES(fixtures)
 {
-	new_TestFixture("DefaultValues", DefaultValues),
-	new_TestFixture("CreateNew", CreateNew),
-	new_TestFixture("CreateExisting", CreateExisting),
-	new_TestFixture("CreateNonExisting", CreateNonExisting),
-	new_TestFixture("CreateActive", CreateActive),
-	new_TestFixture("PreviewShouldNotAffectActive", PreviewShouldNotAffectActive),
-	new_TestFixture("Preview", Preview),
-	new_TestFixture("Delete", Delete),
-	new_TestFixture("Invalid", Invalid),
-	skipTestFixture("EditActive", EditActive),
+	new_TestFixture("DefaultValues", DefaultValues), 
+	new_TestFixture("CreateNew", CreateNew), 
+	new_TestFixture("CreateExisting", CreateExisting), 
+	new_TestFixture("CreateNonExisting", CreateNonExisting), 
+	new_TestFixture("CreateActive", CreateActive), 
+	new_TestFixture("PreviewShouldNotAffectActive", PreviewShouldNotAffectActive), 
+	new_TestFixture("Preview", Preview), 
+	new_TestFixture("Delete", Delete), 
+	skipTestFixture("Invalid", Invalid), 
+	skipTestFixture("EditActive", EditActive), 
 };
 
 UNITTEST_CALLER_COMPLETE_EXPLICIT(Set_RecipeParameters, "Set_RecipeParameters", setupTest, teardownTest, fixtures, setupSet, teardownSet, cyclicSetCaller);

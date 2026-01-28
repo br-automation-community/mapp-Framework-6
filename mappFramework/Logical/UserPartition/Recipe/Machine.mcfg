@@ -14,11 +14,11 @@
 	</Element>
 	<Element Name="RecipeMgr:MachineSettingsPreview" Type="PvParameter">
 		<Group ID="RecipeMgr:MachineSettingsPreview">
-			<Property ID="AddMachineSettingsHere1" DataType="USINT" Value="0" />
-			<Property ID="AddMachineSettingsHere2" DataType="DINT" Value="0" />
-			<Property ID="AddMachineSettingsHere3" DataType="BOOL" Value="false" />
-			<Property ID="AddMachineSettingsHere4" DataType="REAL" Value="0" />
-			<Property ID="AddMachineSettingsHere5" DataType="UINT" Value="0" />
+			<Property ID="AddMachineSettingsHere1" DataType="USINT" Value="11" />
+			<Property ID="AddMachineSettingsHere2" DataType="DINT" Value="22" />
+			<Property ID="AddMachineSettingsHere3" DataType="BOOL" Value="true" />
+			<Property ID="AddMachineSettingsHere4" DataType="REAL" Value="3.3" />
+			<Property ID="AddMachineSettingsHere5" DataType="UINT" Value="44" />
 		</Group>
 	</Element>
 </DATA>
