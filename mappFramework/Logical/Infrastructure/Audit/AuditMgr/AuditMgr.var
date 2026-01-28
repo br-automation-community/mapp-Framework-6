@@ -2,7 +2,6 @@
 VAR
 	DirCreateAudit : DirCreate; (*DirCreate instance*)
 	MpAuditTrailSys : MpAuditTrail; (*AuditTrail for regular mapp events*)
-	FixItFB : BOOL; (*MpAuditTrailConfigSys : MpAuditTrailConfig;*) (*AuditTrail configuration*)
 	MpAuditTrailCEvents : MpAuditTrail; (*AuditTrail for custom events*)
 	QueryUserEvents : {REDUND_UNREPLICABLE} MpAuditQuery; (*MpAlarmXQuery instance*)
 	MpAuditTrailUISys : MpAuditTrailUI; (*AuditTrail UI interface*)
@@ -34,7 +33,6 @@ VAR RETAIN
 	ArchiveSettingsRetain : AuditArchiveParType; (*Store settings in retain memory to be applied after boot*)
 END_VAR
 VAR
-	EventsIdent : MpBaseCfgArrayType; (*Identifier of an array of events*)
 	Events : ARRAY[0..MAX_TRAIL_EVENTS_M1] OF UINT; (*Array of numbers identifying events to be recorded*)
 	TmpTableConfig : STRING[120]; (*Temporary variable for composing query table configuration*)
 END_VAR

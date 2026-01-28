@@ -32,12 +32,12 @@
     <BindingsSet refId="UserXDialogDuplicate" />
     <BindingsSet refId="AuditTrail" />
     <BindingsSet refId="CustomEvents" />
+    <BindingsSet refId="AuditQuery" />
     <BindingsSet refId="AuditDialogArchiveSettings" />
     <BindingsSet refId="Report" />
     <BindingsSet refId="ReportDialogView" />
     <BindingsSet refId="ReportDialogCreate" />
     <BindingsSet refId="PackML" />
-    <BindingsSet refId="AuditQuery" />
   </BindingsSets>
   <EventBindingsSets>
     <EventBindingsSet refId="Navigation" />
@@ -153,8 +153,6 @@
   </Themes>
   <Configurations>
     <Configuration key="activityCount" value="false" />
-    <Configuration key="bootLogo" value="Media/mappFrameworkSymbols/Logos/BnR_Logo.svg" />
-    <Configuration key="bootColor" value="rgba(255, 255, 255, 1)" />
     <Configuration key="favicon" value="Media/mappFrameworkSymbols/Logos/BnR_Logo.ico" />
     <Configuration key="bootProgressBar" value="true" />
     <Configuration key="zoom" value="true" />
