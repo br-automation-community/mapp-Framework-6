@@ -9,5 +9,6 @@
     <Object Type="File" TransferedForTargetSourceCompare="true">AuditQuery.binding</Object>
     <Object Type="File" TransferedForTargetSourceCompare="true">AuditDialogArchiveSettings.binding</Object>
     <Object Type="File" TransferedForTargetSourceCompare="true">AuditDialogArchiveSettings.eventbinding</Object>
+    <Object Type="File" TransferedForTargetSourceCompare="true">AuditQuery.eventbinding</Object>
   </Objects>
 </Package>
