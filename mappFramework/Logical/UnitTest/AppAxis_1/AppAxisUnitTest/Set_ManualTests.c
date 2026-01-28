@@ -615,8 +615,7 @@ _TEST ResetAlarm(void)
 					// wait until the command is received by the axis task
 					TEST_BUSY_CONDITION(State != STATE_RESETTING);
 					AxisControl.Command.Reset = true;
-#warning "Fix me!"
-//				MpAlarmXAcknowledgeAll_0.Execute = true;
+					MpAlarmXAcknowledgeAll = true;
 					ActSubState = 3;
 					break;
 				case 3:

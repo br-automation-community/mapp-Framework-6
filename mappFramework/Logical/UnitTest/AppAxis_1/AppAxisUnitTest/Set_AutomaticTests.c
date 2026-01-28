@@ -72,6 +72,10 @@ _TEARDOWN_TEST(void)
 		AxisControl.Command.Reset = true;
 		MpAlarmXAcknowledgeAll = true;
 	}
+	else
+	{
+		MpAlarmXAcknowledgeAll = false;
+	}
 	TEST_BUSY_CONDITION(AxisControl.Status.ErrorActive);
 	AxisControl.Command.Reset = false;
 	if (abs(AxisControl.Status.Velocity) > 0.01)
@@ -86,11 +90,6 @@ _TEARDOWN_TEST(void)
 _CYCLIC_SET(void)
 {
 	cycleCount++;
-#warning "Fix me!"
-//    MpAlarmXAcknowledgeAll_0.MpLink = &gMpLinkAlarmXCoreAppAxis_1;
-//    MpAlarmXAcknowledgeAll_0.Enable = true;
-//    MpAlarmXAcknowledgeAll(&MpAlarmXAcknowledgeAll_0);
-//    MpAlarmXAcknowledgeAll_0.Execute = false;
 }
 
 _TEST Start(void)
@@ -155,8 +154,14 @@ _TEST UpdateVelocity(void)
 					AxisControl.Parameters.Velocity = 60;
 					ActSubState = 2;
 					break;
-
+				
 				case 2:
+					TEST_BUSY_CONDITION(!MpAxisUpdate);
+					AxisControl.Command.UpdateVelocity = false;
+					ActSubState = 3;
+					break;
+
+				case 3:
 					TEST_BUSY_CONDITION(cycleCount < 60);
 					TestState = TEST_ASSERT;
 					break;

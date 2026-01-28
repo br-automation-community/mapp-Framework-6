@@ -7,5 +7,6 @@
     <Object Type="File" Description="Migrated from Axis1Alm.mpalarmxcore (mapp Services Version 5)" TransferedForTargetSourceCompare="true">Axis1AlLst.mpalarmxlist</Object>
     <Object Type="File" Description="Migrated from Axis1Alm.mpalarmxcore (mapp Services Version 5)" TransferedForTargetSourceCompare="true">Axis1AlQry.mpalarmxquery</Object>
     <Object Type="File" TransferedForTargetSourceCompare="true">Axis1Grp.mpcomgroup</Object>
+    <Object Type="File">Axis1ExLnk.mpcomextlink</Object>
   </Objects>
 </Package>

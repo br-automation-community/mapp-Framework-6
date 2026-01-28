@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio FileVersion="4.9"?>
+<Configuration>
+  <Element ID="gExternalLink" Type="mpcomextlink">
+    <Property ID="Component" Value="gMpLinkAppAxis_1" />
+    <Property ID="Parent" Value="gAlrmGroup" />
+  </Element>
+</Configuration>

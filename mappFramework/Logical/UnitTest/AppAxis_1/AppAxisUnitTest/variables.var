@@ -22,4 +22,5 @@ VAR
 	cycleCount : USINT;
 	StartPosition : LREAL;
 	maxVelocity : REAL;
+	MpAxisUpdate : BOOL;
 END_VAR
