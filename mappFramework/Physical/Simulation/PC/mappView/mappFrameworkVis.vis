@@ -32,12 +32,12 @@
     <BindingsSet refId="UserXDialogDuplicate" />
     <BindingsSet refId="AuditTrail" />
     <BindingsSet refId="CustomEvents" />
+    <BindingsSet refId="AuditQuery" />
     <BindingsSet refId="AuditDialogArchiveSettings" />
     <BindingsSet refId="Report" />
     <BindingsSet refId="ReportDialogView" />
     <BindingsSet refId="ReportDialogCreate" />
     <BindingsSet refId="PackML" />
-    <BindingsSet refId="AuditQuery" />
   </BindingsSets>
   <EventBindingsSets>
     <EventBindingsSet refId="Navigation" />
