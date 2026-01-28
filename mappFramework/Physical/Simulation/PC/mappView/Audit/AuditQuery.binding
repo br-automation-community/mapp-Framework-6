@@ -37,5 +37,9 @@
 			<Source xsi:type="opcUa" refId="::AuditMgr:QueryUserEvents.Info.HasMoreRows" attribute="value" />
 			<Target xsi:type="brease" contentRefId="AuditQuery" widgetRefId="PushBtnNextAuditQuery" attribute="enable" />
 		</Binding>
+		<Binding mode="twoWay">
+			<Source xsi:type="session" refId="SessionVarAuditQFilter" attribute="value" />
+			<Target xsi:type="brease" contentRefId="AuditQuery" widgetRefId="TableAuditQuery" attribute="filterConfiguration" />
+		</Binding>
 	</Bindings>
 </BindingsSet>
