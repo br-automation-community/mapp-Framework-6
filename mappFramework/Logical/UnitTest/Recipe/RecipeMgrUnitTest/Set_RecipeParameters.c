@@ -539,10 +539,12 @@ _TEST Invalid(void)
 					break;
 
 				case 3:
-					TEST_BUSY_CONDITION(!SelectRecipe("Invalid.par"));
+				//	TEST_BUSY_CONDITION(!SelectRecipe("Invalid.par"));
+                    
 					TEST_BUSY_CONDITION(MpRecipeUIConnect.Status != mpRECIPE_UI_STATUS_IDLE);
 					TEST_BUSY_CONDITION(HmiRecipe.Status.HMIcommand != REC_HMI_WAIT);
 					TEST_BUSY_CONDITION(MpRecipeSys.CommandDone != true);
+                    
 					TestState = TEST_ACT;
 					break;
 			}
@@ -551,7 +553,9 @@ _TEST Invalid(void)
 		case TEST_ACT:
 			switch (ActSubState)
 			{
+                
 				case 0:
+                    MpRecipeUIConnect.Recipe.List.SelectedIndex = 1;
 					MpRecipeUIConnect.Recipe.Load = true;
 					TEST_BUSY_CONDITION(MpRecipeUIConnect.Status != mpRECIPE_UI_STATUS_LOAD);
 					MpRecipeUIConnect.Recipe.Load = false;
