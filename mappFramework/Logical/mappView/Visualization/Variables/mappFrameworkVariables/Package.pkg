@@ -8,5 +8,6 @@
     <Object Type="File" Description="mapp Framework Report variables">Report.svar</Object>
     <Object Type="File" Description="mapp Framework PackML variables">PackML.svar</Object>
     <Object Type="File" TransferedForTargetSourceCompare="true">Navigation.svar</Object>
+    <Object Type="File" Description="mapp Framework Audit variables">Audit.svar</Object>
   </Objects>
 </Package>

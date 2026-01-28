@@ -32,12 +32,12 @@
     <BindingsSet refId="UserXDialogDuplicate" />
     <BindingsSet refId="AuditTrail" />
     <BindingsSet refId="CustomEvents" />
-    <BindingsSet refId="AuditQuery" />
     <BindingsSet refId="AuditDialogArchiveSettings" />
     <BindingsSet refId="Report" />
     <BindingsSet refId="ReportDialogView" />
     <BindingsSet refId="ReportDialogCreate" />
     <BindingsSet refId="PackML" />
+    <BindingsSet refId="AuditQuery" />
   </BindingsSets>
   <EventBindingsSets>
     <EventBindingsSet refId="Navigation" />
@@ -71,7 +71,9 @@
     <EventBindingsSet refId="Report" />
     <EventBindingsSet refId="ReportDialogView" />
     <EventBindingsSet refId="PackML" />
+    <EventBindingsSet refId="AuditQuery" />
   </EventBindingsSets>
+  <EventScriptsSets />
   <Dialogs>
     <Dialog refId="BackupCreate" />
     <Dialog refId="BackupDelete" />
@@ -139,6 +141,7 @@
     <VariablesSet refId="UserX" />
     <VariablesSet refId="Report" />
     <VariablesSet refId="Navigation" />
+    <VariablesSet refId="Audit" />
   </VariablesSets>
   <ExpressionsSets>
     <ExpressionsSet refId="Axis" />
