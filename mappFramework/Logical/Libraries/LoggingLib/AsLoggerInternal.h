@@ -27,27 +27,27 @@
 
 typedef struct LogMessage_typ
 {
-    BOOL used;
-    STRING name[MAX_NAME_LENGTH];
-    LogLevel level;
-    DATE_AND_TIME timeStamp;
-    USINT timeStampMilliseconds;
-    STRING message[MAX_MESSAGE_LENGTH];
+	BOOL used;
+	STRING name[MAX_NAME_LENGTH];
+	LogLevel level;
+	DATE_AND_TIME timeStamp;
+	USINT timeStampMilliseconds;
+	STRING message[MAX_MESSAGE_LENGTH];
 }LogMessage_typ;
 
 typedef struct LastMessage_typ
 {
-    STRING name[MAX_NAME_LENGTH];
-    STRING message[MAX_MESSAGE_LENGTH];
+	STRING name[MAX_NAME_LENGTH];
+	STRING message[MAX_MESSAGE_LENGTH];
 }LastMessage_typ;
 
 typedef struct LogStore_typ
 {
-    UINT inputIndex;
-    UINT* outputIndexes[MAX_INDEXES];
-    LogLevel level;
-    LogMessage_typ messages[MAX_LOG_ITEMS];
-    LastMessage_typ lastMessages[30];
+	UINT inputIndex;
+	UINT* outputIndexes[MAX_INDEXES];
+	LogLevel level;
+	LogMessage_typ messages[MAX_LOG_ITEMS];
+	LastMessage_typ lastMessages[30];
 }LogStore_typ;
 
 BOOL addNewOutputIndex(UINT* newOutputIndex);

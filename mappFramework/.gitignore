@@ -18,6 +18,7 @@
 /*.set
 /*.isopen
 /debug.log
+compile_flags.txt
 
 # Ignore .zip files, for the moment
 /*.zip

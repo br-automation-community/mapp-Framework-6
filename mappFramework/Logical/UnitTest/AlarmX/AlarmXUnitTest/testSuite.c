@@ -20,15 +20,15 @@
 
 void _INIT initTestSuite(void)
 {
-    Testsuite.Enable = 1;
+	Testsuite.Enable = 1;
 	utInit(&Testsuite);
-    
-    CommonTestsuite.Enable = 1;
-    utInit(&CommonTestsuite);
-    
-    strcpy((char*)&FileDeviceName, "mappAlarmXFiles");
-    strcpy((char*)&TextNameSpace, "mappFramework/AlarmX/MachineAlarms");
-    strcpy((char*)&TextID, "EmergencyStop.0");
+	
+	CommonTestsuite.Enable = 1;
+	utInit(&CommonTestsuite);
+	
+	strcpy((char*)&FileDeviceName, "mappAlarmXFiles");
+	strcpy((char*)&TextNameSpace, "mappFramework/AlarmX/MachineAlarms");
+	strcpy((char*)&TextID, "EmergencyStop.0");
 }
 
 

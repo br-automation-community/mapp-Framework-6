@@ -21,7 +21,7 @@ _TEARDOWN_SET(void)
 
 _SETUP_TEST(void)
 {
-    TEST_DONE;
+	TEST_DONE;
 }
 
 _TEARDOWN_TEST(void)
