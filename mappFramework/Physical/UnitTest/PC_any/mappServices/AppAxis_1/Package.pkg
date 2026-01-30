@@ -2,11 +2,11 @@
 <?AutomationStudio FileVersion="4.9"?>
 <Package xmlns="http://br-automation.co.at/AS/Package">
   <Objects>
-    <Object Type="File" Description="Migrated from Axis1Alm.mpalarmxcore (mapp Services Version 5)" Reference="true">Physical\Simulation\PC\mappServices\AppAxis_1\Axis1AlCat.mpalarmxcategory</Object>
-    <Object Type="File" Description="Migrated from Axis1Alm.mpalarmxcore (mapp Services Version 5)" Reference="true">Physical\Simulation\PC\mappServices\AppAxis_1\Axis1AlCor.mpalarmxcore</Object>
-    <Object Type="File" Description="Migrated from Axis1Alm.mpalarmxcore (mapp Services Version 5)" Reference="true">Physical\Simulation\PC\mappServices\AppAxis_1\Axis1AlLst.mpalarmxlist</Object>
-    <Object Type="File" Description="Migrated from Axis1Alm.mpalarmxcore (mapp Services Version 5)" Reference="true">Physical\Simulation\PC\mappServices\AppAxis_1\Axis1AlQry.mpalarmxquery</Object>
-    <Object Type="File" Reference="true">Physical\Simulation\PC\mappServices\AppAxis_1\Axis1Grp.mpcomgroup</Object>
-    <Object Type="File" Reference="true">Physical\Simulation\PC\mappServices\AppAxis_1\Axis1ExLnk.mpcomextlink</Object>
+    <Object Type="File" Description="Migrated from Axis1Alm.mpalarmxcore (mapp Services Version 5)" Reference="true">\Physical\Simulation\PC\mappServices\AppAxis_1\Axis1AlCat.mpalarmxcategory</Object>
+    <Object Type="File" Description="Migrated from Axis1Alm.mpalarmxcore (mapp Services Version 5)" Reference="true">\Physical\Simulation\PC\mappServices\AppAxis_1\Axis1AlCor.mpalarmxcore</Object>
+    <Object Type="File" Description="Migrated from Axis1Alm.mpalarmxcore (mapp Services Version 5)" Reference="true">\Physical\Simulation\PC\mappServices\AppAxis_1\Axis1AlLst.mpalarmxlist</Object>
+    <Object Type="File" Description="Migrated from Axis1Alm.mpalarmxcore (mapp Services Version 5)" Reference="true">\Physical\Simulation\PC\mappServices\AppAxis_1\Axis1AlQry.mpalarmxquery</Object>
+    <Object Type="File" Reference="true">\Physical\Simulation\PC\mappServices\AppAxis_1\Axis1Grp.mpcomgroup</Object>
+    <Object Type="File" Reference="true">\Physical\Simulation\PC\mappServices\AppAxis_1\Axis1ExLnk.mpcomextlink</Object>
   </Objects>
 </Package>
