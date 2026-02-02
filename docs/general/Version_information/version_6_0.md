@@ -1,4 +1,4 @@
-### v6.0.0 - Migration from AS4 to AS6
+### v6.5.0 - Migration from AS4 to AS6
 
 | Framework / Component | Description |
 |----------------------|-------------|
