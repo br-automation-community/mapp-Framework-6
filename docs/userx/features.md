@@ -1,6 +1,6 @@
-## 👤 mapp UserX Framework Features
+## 👤 mapp UserX Framework 6 Features
 
-The following features and functionality are included in the **mapp UserX Framework**:  
+The following features and functionality are included in the **mapp UserX Framework 6**:  
 
 • **Local user management** (as opposed to **Active Directory**)  
 

@@ -1,6 +1,6 @@
-## 🛡️ mapp Audit Framework
+## 🛡️ mapp Audit Framework 6
 
-This section describes the **mapp Audit Framework**. For full details on **mapp Audit** itself, see [here](https://help.br-automation.com/#/en/4/mapptechnology/mapp_services/mpaudit/mpaudit.html).
+This section describes the **mapp Audit Framework 6**. For full details on **mapp Audit** itself, see [here](https://help.br-automation.com/#/en/4/mapptechnology/mapp_services/mpaudit/mpaudit.html).
 
 > IMPORTANT:
 > The steps on the **"Required Modifications"** page must be executed in order to get the Framework into a 

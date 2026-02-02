@@ -1,6 +1,6 @@
-## 🧭 mapp Axis Framework
+## 🧭 mapp Axis Framework 6
 
-This section describes the **mapp Axis Framework**. For full details on **mapp Axis** itself, see [here](https://help.br-automation.com/#/en/4/motion%2Fmapp_motion%2Fkonzept%2Fmapp_motion%2F00_mapp_axis.html). For full details on **mapp Cockpit** itself, see [here](https://help.br-automation.com/#/en/4/diagnostics_support%2Fmappcockpit%2Fmapp_cockpit.html). 
+This section describes the **mapp Axis Framework 6**. For full details on **mapp Axis** itself, see [here](https://help.br-automation.com/#/en/4/motion%2Fmapp_motion%2Fkonzept%2Fmapp_motion%2F00_mapp_axis.html). For full details on **mapp Cockpit** itself, see [here](https://help.br-automation.com/#/en/4/diagnostics_support%2Fmappcockpit%2Fmapp_cockpit.html). 
 
 
 > IMPORTANT:

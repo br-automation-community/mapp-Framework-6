@@ -1,6 +1,6 @@
-## 💾 mapp Backup Framework
+## 💾 mapp Backup Framework 6
 
-This section describes the **mapp Backup Framework**. For full details on **mapp Backup** itself, see [here](https://help.br-automation.com/#/en/4/mapptechnology%2Fmapp_services%2Fmpbackup%2Fmpbackup.html).
+This section describes the **mapp Backup Framework 6**. For full details on **mapp Backup** itself, see [here](https://help.br-automation.com/#/en/4/mapptechnology%2Fmapp_services%2Fmpbackup%2Fmpbackup.html).
 
 > IMPORTANT:
 > The steps on the **"Required Modifications"** page must be executed in order to get the Framework into a 

@@ -2,14 +2,14 @@
 
 | Framework / Component | Description |
 |----------------------|-------------|
-| **mapp AlarmX** | **Key changes:** TBD <br> **Bugfixes:** TBD <br> **New behavior:** TBD  |
-| **mapp Axis / Cockpit** | **Key changes:** TBD <br> **Bugfixes:** TBD <br> **New behavior:** TBD |
-| **mapp Backup** | **Key changes:** TBD <br> **Bugfixes:** TBD <br> **New behavior:** TBD  |
-| **mapp File** | **Key changes:** TBD <br> **Bugfixes:** TBD <br> **New behavior:** TBD |
-| **mapp Recipe** | **Key changes:** TBD <br> **Bugfixes:** TBD <br> **New behavior:** TBD  |
-| **mapp UserX** | **Key changes:** TBD <br> **Bugfixes:** TBD <br> **New behavior:** TBD |
+| **mapp AlarmX** | **Key changes:** migration to AS6 <br> **Bugfixes:** - <br> **New behavior:** -  |
+| **mapp Axis / Cockpit** | **Key changes:** migration to AS6 <br> **Bugfixes:** - <br> **New behavior:** -  |
+| **mapp Backup** | **Key changes:** migration to AS6 <br> **Bugfixes:** - <br> **New behavior:** -  |
+| **mapp File** | **Key changes:** migration to AS6 <br> **Bugfixes:** - <br> **New behavior:** -  |
+| **mapp Recipe** | **Key changes:** migration to AS6 <br> **Bugfixes:** - <br> **New behavior:** -  |
+| **mapp UserX** | **Key changes:** migration to AS6 <br> **Bugfixes:** - <br> **New behavior:** -  |
 | **mapp Report** | **Key changes:** migration to AS6 <br> **Bugfixes:** - <br> **New behavior:** -  |
-| **Import Tool** | **Key changes:** TBD <br> **Bugfixes:** TBD <br> **New behavior:** TBD  |
-| **Documentation** |  **Key changes:** Help documentation moved to gitHub   |
- | **Miscellaneous** | **Key changes:** TBD <br> **Bugfixes:** TBD <br> **New behavior:** TBD  |
+| **Import Tool** | **Key changes:** migration to AS6 <br> **Bugfixes:** - <br> **New behavior:** -  |
+| **Documentation** | **Key changes:** migration to AS6 <br> **Bugfixes:** - <br> **New behavior:** -  |
+ | **Miscellaneous** | **Key changes:** migration to AS6 <br> **Bugfixes:** - <br> **New behavior:** -  |
 

@@ -1,6 +1,6 @@
-**mapp AlarmX Framework**
+**mapp AlarmX Framework 6**
 
-This section describes the mapp AlarmX Framework. For full details on mapp AlarmX itself, see [here](https://help.br-automation.com/#/en/4/mapptechnology/mapp_services/mpalarmx/mpalarmx.html). 
+This section describes the mapp AlarmX Framework 6. For full details on mapp AlarmX itself, see [here](https://help.br-automation.com/#/en/4/mapptechnology/mapp_services/mpalarmx/mpalarmx.html). 
 
 > IMPORTANT:
 > The steps on the **"Required Modifications"** page must be executed in order to get the Framework into a 

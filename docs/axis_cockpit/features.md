@@ -1,6 +1,6 @@
-## 🧭 mapp Axis Framework
+## 🧭 mapp Axis Framework 6
 
-The following features and functionality are included in the **mapp Axis Framework**:  
+The following features and functionality are included in the **mapp Axis Framework 6**:  
 
 • **Single-axis implementation** which can be repeated for multiple axes.  
   Includes basic commands, **manual/automatic modes**, and an overarching **state machine** for axis control  
@@ -15,7 +15,7 @@ The following features and functionality are included in the **mapp Axis Framewo
 
 ---
 
-The **mapp Axis Framework** is designed so that the main axis control code within the **AxisTemplate** package is reused for all axes that you add. This makes it easy to update the overall process for **all axes simultaneously**.
+The **mapp Axis Framework 6** is designed so that the main axis control code within the **AxisTemplate** package is reused for all axes that you add. This makes it easy to update the overall process for **all axes simultaneously**.
 
 Any modifications made to the following files within this package will apply to **all axes**:
 

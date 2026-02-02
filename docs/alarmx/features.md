@@ -1,6 +1,6 @@
-## mapp AlarmX Framework Features
+## mapp AlarmX Framework 6 Features
 
-The following features and functionality are included in the mapp AlarmX Framework:
+The following features and functionality are included in the mapp AlarmX Framework 6:
 
 * 100 ready-made discrete value monitoring alarms and a Boolean array to trigger each alarm
 * Localizable text for each alarm

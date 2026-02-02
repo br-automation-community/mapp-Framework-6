@@ -1,6 +1,6 @@
-## 💾 mapp Backup Framework Features
+## 💾 mapp Backup Framework 6 Features
 
-The following features and functionality are included in the **mapp Backup Framework**:  
+The following features and functionality are included in the **mapp Backup Framework 6**:  
 
 • **Easily create and restore a backup** from the **HMI**  
 
