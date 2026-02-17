@@ -20,6 +20,7 @@ nav:
       - ℹ️ 1. General Information:
           - General: general/index.md
           - 📄Introduction: general/introduction.md
+          - 📄Changes in AS6: general/AS6changes.md
           - 📄Support/Community: general/Support.md
           - 📄System Requirements: general/system_requirement.md
           - 📄Prerequisites: general/Prerequisities.md
