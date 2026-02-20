@@ -1,6 +1,6 @@
 ## Documentation for the mapp Framework
-For a full description of the mapp Framework and how to use it, [download](https://github.com/br-automation-community/mapp-Framework-6/releases) and install the Framework. Then refer to the Automation Studio Help at the following path: 
-**mapp Technology -> mapp Framework**
+For a full description of the mapp Framework and how to use it, [download](https://github.com/br-automation-community/mapp-Framework-6/releases) and install the Framework. Then refer to the online documentation at the following path [https://br-automation-community.github.io/mapp-Framework-6/] 
+
 
 
 ## Intended Use of this Repository
