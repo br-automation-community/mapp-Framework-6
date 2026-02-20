@@ -20,6 +20,9 @@
       <tuv xml:lang="de">
         <seg>Angemeldet</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>已登入</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>logged in</seg>
       </tuv>
@@ -27,6 +30,9 @@
     <tu tuid="101">
       <tuv xml:lang="de">
         <seg>Abgemeldet</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>已登出</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>logged out</seg>
@@ -36,6 +42,9 @@
       <tuv xml:lang="de">
         <seg>Abgemeldet (Timeout)</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>已登出（超時）</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>was logged out (timeout)</seg>
       </tuv>
@@ -43,6 +52,9 @@
     <tu tuid="103">
       <tuv xml:lang="de">
         <seg>Gesperrt (inkorrektes Passwort)</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>被鎖定（密碼錯誤）</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>got locked (incorrect password)</seg>
@@ -52,6 +64,9 @@
       <tuv xml:lang="de">
         <seg>Passwort geändert</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>已更改密碼</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>changed password</seg>
       </tuv>
@@ -59,6 +74,9 @@
     <tu tuid="105">
       <tuv xml:lang="de">
         <seg>Wert {&amp;attr} von {&amp;old} auf {&amp;new} geändert</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>編輯 {&amp;attr} 從 {&amp;old} 至 {&amp;new}</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>edited {&amp;attr} from {&amp;old} to {&amp;new}</seg>
@@ -68,6 +86,9 @@
       <tuv xml:lang="de">
         <seg>Anmelden fehlgeschlagen</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>登入失敗</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>failed to log in</seg>
       </tuv>
@@ -75,6 +96,9 @@
     <tu tuid="107">
       <tuv xml:lang="de">
         <seg>Passwortänderung fehlgeschlagen</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>未能更改密碼</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>failed to change password</seg>
@@ -84,6 +108,9 @@
       <tuv xml:lang="de">
         <seg>Ändern eines oder mehrerer Attribute fehlgeschlagen</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>編輯一個或多個屬性失敗</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>failed to edit one or more attributes</seg>
       </tuv>
@@ -91,6 +118,9 @@
     <tu tuid="150">
       <tuv xml:lang="de">
         <seg>Benutzer {&amp;obj} hinzugefügt</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>新增使用者 {&amp;obj}</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>added user {&amp;obj}</seg>
@@ -100,6 +130,9 @@
       <tuv xml:lang="de">
         <seg>Wert {&amp;attr} des Nutzers {&amp;obj} von {&amp;old} auf {&amp;new} geändert</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>編輯了 {&amp;obj} 的 {&amp;attr} 屬性，從 {&amp;old} 變更為 {&amp;new}</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>edited {&amp;attr} of {&amp;obj} from {&amp;old} to {&amp;new}</seg>
       </tuv>
@@ -107,6 +140,9 @@
     <tu tuid="152">
       <tuv xml:lang="de">
         <seg>Rolle {&amp;attr} dem Nutzer {&amp;obj} hinzugefügt</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>為使用者 {&amp;obj} 新增角色 {&amp;attr}</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>added role {&amp;attr} for user {&amp;obj}</seg>
@@ -116,6 +152,9 @@
       <tuv xml:lang="de">
         <seg>Rolle {&amp;attr} dem Nutzer {&amp;obj} entfernt</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>已移除使用者 {&amp;obj} 的角色 {&amp;attr}</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>removed role {&amp;attr} for user {&amp;obj}</seg>
       </tuv>
@@ -123,6 +162,9 @@
     <tu tuid="154">
       <tuv xml:lang="de">
         <seg>Nutzer {&amp;obj} gelöscht</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>已刪除使用者 {&amp;obj}</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>deleted user {&amp;obj}</seg>
@@ -132,6 +174,9 @@
       <tuv xml:lang="de">
         <seg>Nutzer {&amp;obj} deaktiviert</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>停用使用者 {&amp;obj}</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>deactivated user {&amp;obj}</seg>
       </tuv>
@@ -139,6 +184,9 @@
     <tu tuid="156">
       <tuv xml:lang="de">
         <seg>Nutzer {&amp;obj} gesperrt</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>鎖定使用者 {&amp;obj}</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>locked user {&amp;obj}</seg>
@@ -148,6 +196,9 @@
       <tuv xml:lang="de">
         <seg>Nutzer {&amp;obj} entsperrt</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>已解鎖使用者 {&amp;obj}</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>unlocked user {&amp;obj}</seg>
       </tuv>
@@ -155,6 +206,9 @@
     <tu tuid="158">
       <tuv xml:lang="de">
         <seg>Password von Nutzer {&amp;obj} zurückgesetzt</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>重設使用者 {&amp;obj} 的密碼</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>reset password of user {&amp;obj}</seg>
@@ -164,6 +218,9 @@
       <tuv xml:lang="de">
         <seg>Hinzufügen des Nutzers {&amp;obj} fehlgeschlagen</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>添加用户 {&amp;obj} 失败</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>failed to add user {&amp;obj}</seg>
       </tuv>
@@ -171,6 +228,9 @@
     <tu tuid="160">
       <tuv xml:lang="de">
         <seg>Ändern eines oder mehrerer Attribute des Nutzers {&amp;obj} fehlgeschlagen</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>无法编辑用户 {&amp;obj} 的一个或多个属性</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>failed to edit one or more attributes of user {&amp;obj}</seg>
@@ -180,6 +240,9 @@
       <tuv xml:lang="de">
         <seg>Nutzer {&amp;obj} konnte nicht gelöscht werden</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>删除用户 {&amp;obj} 失败</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>failed to delete user {&amp;obj}</seg>
       </tuv>
@@ -187,6 +250,9 @@
     <tu tuid="162">
       <tuv xml:lang="de">
         <seg>Nutzer {&amp;obj} konnte nicht deaktiviert werden</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>无法停用用户 {&amp;obj}</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>could not deactivate user {&amp;obj}</seg>
@@ -196,6 +262,9 @@
       <tuv xml:lang="de">
         <seg>Nutzer {&amp;obj} konnte nicht gesperrt werden</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>无法锁定用户 {&amp;obj}</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>could not lock user {&amp;obj}</seg>
       </tuv>
@@ -203,6 +272,9 @@
     <tu tuid="164">
       <tuv xml:lang="de">
         <seg>Nutzer {&amp;obj} konnte nicht entsperrt werden</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>无法解锁用户 {&amp;obj}</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>could not unlock user {&amp;obj}</seg>
@@ -212,6 +284,9 @@
       <tuv xml:lang="de">
         <seg>Passwort des Nutzers {&amp;obj} konnte nicht geändert werden</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>无法更改用户 {&amp;obj} 的密码</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>could not change password of user {&amp;obj}</seg>
       </tuv>
@@ -219,6 +294,9 @@
     <tu tuid="166">
       <tuv xml:lang="de">
         <seg>Rolle {&amp;obj} hinzugefügt</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>添加角色 {&amp;obj}</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>added role {&amp;obj}</seg>
@@ -228,6 +306,9 @@
       <tuv xml:lang="de">
         <seg>Wert {&amp;attr} der Rolle {&amp;obj} von {&amp;old} auf {&amp;new} geändert</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>编辑了角色 {&amp;obj} 的属性 {&amp;attr}，将其值从 {&amp;old} 修改为 {&amp;new}</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>edited {&amp;attr} of role {&amp;obj} from {&amp;old} to {&amp;new}</seg>
       </tuv>
@@ -235,6 +316,9 @@
     <tu tuid="168">
       <tuv xml:lang="de">
         <seg>Rolle {&amp;obj} gelöscht</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>已删除角色 {&amp;obj}</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>deleted role {&amp;obj}</seg>
@@ -244,6 +328,9 @@
       <tuv xml:lang="de">
         <seg>Rolle {&amp;obj} konnte nicht hinzugefügt werden</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>无法添加角色 {&amp;obj}</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>could not add role {&amp;obj}</seg>
       </tuv>
@@ -251,6 +338,9 @@
     <tu tuid="170">
       <tuv xml:lang="de">
         <seg>Ändern eines oder mehrerer Attribute der Rolle{&amp;obj} fehlgeschlagen</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>无法编辑角色 {&amp;obj} 的一个或多个属性</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>failed to edit one or more attributes of role {&amp;obj}</seg>
@@ -260,6 +350,9 @@
       <tuv xml:lang="de">
         <seg>Rolle {&amp;obj} konnte nicht gelöscht werden</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>无法删除角色 {&amp;obj}</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>could not delete Role {&amp;obj}</seg>
       </tuv>
@@ -267,6 +360,9 @@
     <tu tuid="300">
       <tuv xml:lang="de">
         <seg>Benutzer/Rollen - Datei importiert: {&amp;name}</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>导入用户/角色文件：{&amp;name}</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>imported user/role file: {&amp;name}</seg>
@@ -276,6 +372,9 @@
       <tuv xml:lang="de">
         <seg>Benutzer/Rollen - Datei exportiert: {&amp;name}</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>导出的用户/角色文件：{&amp;name}</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>exported user/role file: {&amp;name}</seg>
       </tuv>
@@ -283,6 +382,9 @@
     <tu tuid="302">
       <tuv xml:lang="de">
         <seg>Benutzer/Rollen - Datei konnte nicht importiert werden: {&amp;name}</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>无法导入用户/角色文件：{&amp;name}</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>could not import user/role file: {&amp;name}</seg>
@@ -292,6 +394,9 @@
       <tuv xml:lang="de">
         <seg>Benutzer/Rollen - Datei konnte nicht exportiert werden: {&amp;name}</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>无法导出用户/角色文件：{&amp;name}</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>could not export user/role file: {&amp;name}</seg>
       </tuv>
@@ -299,6 +404,9 @@
     <tu tuid="350">
       <tuv xml:lang="de">
         <seg>Elektronische Signatur erfolgreich durchgeführt</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>电子签名操作成功完成</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>performed electronic signature successfully</seg>
@@ -308,6 +416,9 @@
       <tuv xml:lang="de">
         <seg>Elektronische Signatur fehlgeschlagen</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>未能成功执行电子签名</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>failed to perform electronic signature successfully</seg>
       </tuv>
@@ -316,6 +427,9 @@
       <tuv xml:lang="de">
         <seg>Elektronische Signatur abgebrochen</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>已撤销的电子签名</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>cancelled electronic signature</seg>
       </tuv>
@@ -323,6 +437,9 @@
     <tu tuid="353">
       <tuv xml:lang="de">
         <seg>Elektronische Signatur aufgrund von überschrittener Grenze von falschen Eingaben verlassen</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>因错误输入次数超限而退出电子签名</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>exited electronic signature due to exceeded limit for incorrect input</seg>
@@ -343,12 +460,18 @@
       <tuv xml:lang="de">
         <seg>Wert von (UserID: {&amp;dpid}) von {&amp;old} auf {&amp;new} geändert</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>(用户ID：{&amp;dpid}) 的值已从 {&amp;old} 更改为 {&amp;new}</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>changed value of (UserID: {&amp;dpid}) from {&amp;old} to {&amp;new}</seg>
       </tuv>
     </tu>
     <tu tuid="402">
       <tuv xml:lang="de">
+        <seg>{=$MpAudit/Custom/{&amp;typ}}</seg>
+      </tuv>
+      <tuv xml:lang="zh">
         <seg>{=$MpAudit/Custom/{&amp;typ}}</seg>
       </tuv>
       <tuv xml:lang="en">
@@ -359,6 +482,9 @@
       <tuv xml:lang="de">
         <seg>Batch von {&amp;old} auf {&amp;new} geändert</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>将批次从 {&amp;old} 更改为 {&amp;new}</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>changed batch from {&amp;old} to {&amp;new}</seg>
       </tuv>
@@ -366,6 +492,9 @@
     <tu tuid="404">
       <tuv xml:lang="de">
         <seg>Neues Audit - Archiv verfügbar</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>新的审计存档已可用</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>new audit archive available</seg>
@@ -375,6 +504,9 @@
       <tuv xml:lang="de">
         <seg>Audit - Puffer gelöscht</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>清空了审计缓冲区</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>cleared the audit buffer</seg>
       </tuv>
@@ -382,6 +514,9 @@
     <tu tuid="500">
       <tuv xml:lang="de">
         <seg>Wert von {&amp;dpid} von {&amp;old} auf {&amp;new} geändert</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>将 {&amp;dpid} 的值从 {&amp;old} 更改为 {&amp;new}</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>changed value of {&amp;dpid} from {&amp;old} to {&amp;new}</seg>
@@ -391,6 +526,9 @@
       <tuv xml:lang="de">
         <seg>Alarm {&amp;name} hat den Zustand von {&amp;old} auf {&amp;new} geändert</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>警报 {&amp;name} 状态已从 {&amp;old} 变更为 {&amp;new}</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>alarm {&amp;name} changed state from {&amp;old} to {&amp;new}</seg>
       </tuv>
@@ -398,6 +536,9 @@
     <tu tuid="700">
       <tuv xml:lang="de">
         <seg>Laden des Rezepts gestartet: {&amp;name}</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>开始加载食谱：{&amp;name}</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>started loading recipe: {&amp;name}</seg>
@@ -407,6 +548,9 @@
       <tuv xml:lang="de">
         <seg>Laden des Rezepts beendet: {&amp;name}</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>加载完成配方：{&amp;name}</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>ended loading recipe: {&amp;name}</seg>
       </tuv>
@@ -414,6 +558,9 @@
     <tu tuid="702">
       <tuv xml:lang="de">
         <seg>Rezept gespeichert: {&amp;name}</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>已保存食谱：{&amp;name}</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>saved recipe: {&amp;name}</seg>
@@ -423,6 +570,9 @@
       <tuv xml:lang="de">
         <seg>Rezept von {&amp;old} auf {&amp;new} umbenannt</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>将食谱名称从 {&amp;old} 改为 {&amp;new}</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>renamed recipe from {&amp;old} to {&amp;new}</seg>
       </tuv>
@@ -430,6 +580,9 @@
     <tu tuid="704">
       <tuv xml:lang="de">
         <seg>Rezept gelöscht: {&amp;name}</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>已删除食谱：{&amp;name}</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>deleted recipe: {&amp;name}</seg>
@@ -439,6 +592,9 @@
       <tuv xml:lang="de">
         <seg>PackML Modus von {&amp;old} auf {&amp;new} geändert</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>将PackML模式从{&amp;old}更改为{&amp;new}</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>changed PackML mode from {&amp;old} to {&amp;new}</seg>
       </tuv>
@@ -446,6 +602,9 @@
     <tu tuid="801">
       <tuv xml:lang="de">
         <seg>PackML Zustand von {&amp;old} auf {&amp;new} geändert</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>将PackML状态从{&amp;old}更改为{&amp;new}</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>changed PackML state from {&amp;old} to {&amp;new}</seg>
@@ -455,6 +614,9 @@
       <tuv xml:lang="de">
         <seg>PackML Substatus von {&amp;old} auf {&amp;new} geändert</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>将PackML子状态从{&amp;old}更改为{&amp;new}</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>changed PackML substate from {&amp;old} to {&amp;new}</seg>
       </tuv>
@@ -462,6 +624,9 @@
     <tu tuid="900">
       <tuv xml:lang="de">
         <seg>Erstellen von Backup gestartet: {&amp;name}</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>开始创建备份：{&amp;name}</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>started creating backup: {&amp;name}</seg>
@@ -471,6 +636,9 @@
       <tuv xml:lang="de">
         <seg>Erstellen von Backup beendet: {&amp;name}</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>备份创建完成：{&amp;name}</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>ended creating backup: {&amp;name}</seg>
       </tuv>
@@ -478,6 +646,9 @@
     <tu tuid="902">
       <tuv xml:lang="de">
         <seg>Backup installiert: {&amp;name}</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>已安装备份：{&amp;name}</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>installed backup: {&amp;name}</seg>
@@ -487,6 +658,9 @@
       <tuv xml:lang="de">
         <seg>Program erstellt: {&amp;name}</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>创建该程序：{&amp;name}</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>created the program: {&amp;name}</seg>
       </tuv>
@@ -494,6 +668,9 @@
     <tu tuid="1001">
       <tuv xml:lang="de">
         <seg>Programm gelöscht: {&amp;name}</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>已删除程序：{&amp;name}</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>deleted the program: {&amp;name}</seg>
@@ -503,6 +680,9 @@
       <tuv xml:lang="de">
         <seg>Programm geändert: {&amp;name}</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>更改了程序：{&amp;name}</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>changed the program: {&amp;name}</seg>
       </tuv>
@@ -510,6 +690,9 @@
     <tu tuid="1003">
       <tuv xml:lang="de">
         <seg>Programm importiert: {&amp;name}</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>导入程序：{&amp;name}</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>imported the program: {&amp;name}</seg>
@@ -519,6 +702,9 @@
       <tuv xml:lang="de">
         <seg>Datei erstellt: {&amp;name}</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>创建了一个文件：{&amp;name}</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>created a file: {&amp;name}</seg>
       </tuv>
@@ -526,6 +712,9 @@
     <tu tuid="1101">
       <tuv xml:lang="de">
         <seg>Datei überschrieben: {&amp;name}</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>覆盖了文件：{&amp;name}</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>overwrote a file: {&amp;name}</seg>
@@ -535,6 +724,9 @@
       <tuv xml:lang="de">
         <seg>Information zu einer Datei hinzugefügt: {&amp;name}</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>附加到文件的信息：{&amp;name}</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>information appended to a file: {&amp;name}</seg>
       </tuv>
@@ -542,6 +734,9 @@
     <tu tuid="1103">
       <tuv xml:lang="de">
         <seg>Datei gelöscht: {&amp;name}</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>已删除文件：{&amp;name}</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>deleted a file: {&amp;name}</seg>
@@ -551,6 +746,9 @@
       <tuv xml:lang="de">
         <seg>Datei von {&amp;old} auf {&amp;new} umbenannt</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>将文件从 {&amp;old} 重命名为 {&amp;new}</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>renamed a file from {&amp;old} to {&amp;new}</seg>
       </tuv>
@@ -558,6 +756,9 @@
     <tu tuid="1105">
       <tuv xml:lang="de">
         <seg>Datei {&amp;name} von {&amp;src} nach {&amp;dest} kopiert und eingefügt</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>已将文件 {&amp;name} 从 {&amp;src} 复制并粘贴到 {&amp;dest}</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>copied and pasted file {&amp;name} from {&amp;src} to {&amp;dest}</seg>
@@ -567,6 +768,9 @@
       <tuv xml:lang="de">
         <seg>Datei {&amp;name} von {&amp;src} nach {&amp;dest} ausgeschnitten und eingefügt</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>将文件 {&amp;name} 从 {&amp;src} 剪切并粘贴到 {&amp;dest}</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>cut and pasted file {&amp;name} from {&amp;src} to {&amp;dest}</seg>
       </tuv>
@@ -574,6 +778,9 @@
     <tu tuid="1107">
       <tuv xml:lang="de">
         <seg>Datei gesperrt: {&amp;name}</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>锁定文件：{&amp;name}</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>locked a file: {&amp;name}</seg>
@@ -583,6 +790,9 @@
       <tuv xml:lang="de">
         <seg>Datei entsperrt: {&amp;name}</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>解锁了文件：{&amp;name}</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>unlocked a file: {&amp;name}</seg>
       </tuv>
@@ -590,6 +800,9 @@
     <tu tuid="1150">
       <tuv xml:lang="de">
         <seg>Ordner erstellt: {&amp;name}</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>创建了一个文件夹：{&amp;name}</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>created a folder: {&amp;name}</seg>
@@ -599,6 +812,9 @@
       <tuv xml:lang="de">
         <seg>Ordner überschrieben: {&amp;name}</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>覆盖了一个文件夹：{&amp;name}</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>overwrote a folder: {&amp;name}</seg>
       </tuv>
@@ -606,6 +822,9 @@
     <tu tuid="1152">
       <tuv xml:lang="de">
         <seg>Ordner gelöscht: {&amp;name}</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>已删除文件夹：{&amp;name}</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>deleted a folder: {&amp;name}</seg>
@@ -615,6 +834,9 @@
       <tuv xml:lang="de">
         <seg>Ordner von {&amp;old} auf {&amp;new} umbenannt</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>将文件夹从 {&amp;old} 重命名为 {&amp;new}</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>renamed a folder from {&amp;old} to {&amp;new}</seg>
       </tuv>
@@ -622,6 +844,9 @@
     <tu tuid="1154">
       <tuv xml:lang="de">
         <seg>Ordner {&amp;name} von {&amp;src} nach {&amp;dest} kopiert und eingefügt</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>已将文件夹 {&amp;name} 从 {&amp;src} 复制并粘贴到 {&amp;dest}</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>copied and pasted folder {&amp;name} from {&amp;src} to {&amp;dest}</seg>
@@ -631,6 +856,9 @@
       <tuv xml:lang="de">
         <seg>Ordner {&amp;name} von {&amp;src} nach {&amp;dest} ausgeschnitten und eingefügt</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>将文件夹 {&amp;name} 从 {&amp;src} 剪切并粘贴到 {&amp;dest}</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>cut and pasted folder {&amp;name} from {&amp;src} to {&amp;dest}</seg>
       </tuv>
@@ -638,6 +866,9 @@
     <tu tuid="1556">
       <tuv xml:lang="de">
         <seg>Ordner gesperrt: {&amp;name}</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>锁定文件夹 {&amp;name}</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>locked a folder {&amp;name}</seg>
@@ -647,6 +878,9 @@
       <tuv xml:lang="de">
         <seg>Ordner entsperrt: {&amp;name}</seg>
       </tuv>
+      <tuv xml:lang="zh">
+        <seg>解锁了一个文件夹：{&amp;name}</seg>
+      </tuv>
       <tuv xml:lang="en">
         <seg>unlocked a folder: {&amp;name}</seg>
       </tuv>
@@ -654,6 +888,9 @@
     <tu tuid="1200">
       <tuv xml:lang="de">
         <seg>Neue Hardware-Konfiguration importiert: {&amp;name}</seg>
+      </tuv>
+      <tuv xml:lang="zh">
+        <seg>导入新硬件配置：{&amp;name}</seg>
       </tuv>
       <tuv xml:lang="en">
         <seg>imported new hardware configuration: {&amp;name}</seg>
